@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Modify = styled.button`
+export const Modify = styled.button`
     position: absolute;
     right: 380px;
     bottom: 165px;;
@@ -9,4 +9,3 @@ const Modify = styled.button`
     border: 1px solid red;
 `;
 
-export { Modify };
