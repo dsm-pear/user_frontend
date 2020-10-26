@@ -1,3 +1,5 @@
+//프로필 스타일
+
 import styled from "styled-components";
 import { MainBackground } from "../../../assets";
 import { UserProfile } from "../../../assets";
@@ -13,7 +15,7 @@ const Main = styled.div`
 `;
 const MainProfile = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 1400px;
@@ -24,6 +26,14 @@ const MainProfile = styled.div`
   //border: solid 1px #9c9c9c;
   //border-radius: 20px;
   background-color: #ffffff;
+`;
+
+const Cover = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 580px;
 `;
 
 const Profile = styled.div`
@@ -78,7 +88,7 @@ const Produce = styled.div`
   border-radius: 10px;
   outline: none;
   font-size: 15px;
-  
+
   font-family: BBTreeGB;
   box-shadow: 0 1px 4px #c3c7c7;
   cursor: pointer;
@@ -147,7 +157,19 @@ const MainProjectClub = styled(MainProjectSolo)`
     color: #5955d8;
   }
 `;
-
+const Modify = styled.button`
+  width: 120px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #6192f3;
+  outline: none;
+  border: none;
+  box-shadow: 0 1px 4px #c3c7c7;
+  color: white;
+  font-family: BBTreeGL; 
+  font-weight: bold;  
+  font-size: 15px;
+`;
 
 const ProNum = styled.div``;
 
@@ -163,4 +185,6 @@ export {
   ProPhoto,
   PreProject,
   Produce,
+  Modify,
+  Cover,
 };
