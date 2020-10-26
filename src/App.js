@@ -1,21 +1,14 @@
-import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import GlobalFonts from "./GlobalStyle";
-import Login from "./Components/Login/Login.js";
-import UserProfile from "./Components/Profile/UserProfile";
-import MyProfile from "./Components/Profile/MyProfile";
+import React from 'react';
+import Header from './components/Main/Header';
+import Body from './components/Main/body';
 
-function App() {
-  return (
+const App = () => {
+  return(
     <>
-      <GlobalFonts />
-      <BrowserRouter>
-        <Route path="/login" component={Login} />
-        <Route path="/UserProfile" component={UserProfile} />
-        <MyProfile />
-      </BrowserRouter>
+    <Header/>
+    <Body/>
     </>
-  );
+  )
 }
 
 export default App;
