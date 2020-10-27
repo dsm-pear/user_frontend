@@ -4,6 +4,7 @@ import GlobalFonts from "./GlobalStyle";
 import Login from "./Components/Login/Login.js";
 import UserProfile from "./Components/Profile/UserProfile";
 import MyProfile from "./Components/Profile/MyProfile";
+import ViewReport from './Components/ViewReport/ViewReport';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <Route path="/login" component={Login} exact />
         <Route path="/UserProfile" component={UserProfile} exact />
         <Route path="/MyProfile" component={MyProfile} exact />
+        <ViewReport/>
       </BrowserRouter>
+
     </>
   );
 }
