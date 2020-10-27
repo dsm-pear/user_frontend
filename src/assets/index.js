@@ -1,2 +1,2 @@
-export { default as MainBackground } from "./MainBackground.png";
-export { default as UserProfile} from './UserProfile.png';
+export { default as MainBackground } from "./MainBackground.png"; 
+export { default as StudentProfile } from './StudentProfile.svg';
