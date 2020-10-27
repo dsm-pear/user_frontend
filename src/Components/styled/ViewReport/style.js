@@ -6,11 +6,10 @@ const Main = styled.div`
   background-image: url(${MainBackground});
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
-
 `;
 
 const Cover = styled.div`
-  width: 
+  /* width:  */
 `;
 
 export { Main, Cover };
