@@ -1,8 +1,7 @@
 //프로필 스타일
 
 import styled from "styled-components";
-import { MainBackground } from "../../../assets";
-import { UserProfile } from "../../../assets";
+import { MainBackground, StudentProfile} from "../../../assets";
 
 const Main = styled.div`
   display: flex;
@@ -50,7 +49,7 @@ const ProPhoto = styled.div`
   flex-direction: column;
 
   div {
-    background-image: url(${UserProfile});
+    background-image: url(${StudentProfile});
     height: 150px;
     width: 150px;
     margin: 10px;
@@ -92,7 +91,6 @@ const Produce = styled.div`
   height: 160px;
   width: 300px;
   padding: 20px;
-  
 `;
 const Project = styled.div`
   display: flex;
