@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1044" height="1080.212" viewBox="0 0 1044 1080.212">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.199" x2="0.974" y2="0.981" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#91f4ff"/>
+      <stop offset="0.516" stop-color="#81bcff"/>
+      <stop offset="1" stop-color="#5955d8"/>
+    </linearGradient>
+  </defs>
+  <g id="메인_스크롤_배경" transform="translate(-876 0.212)" opacity="0.6">
+    <path id="패스_112" data-name="패스 112" d="M-427.329,1024.246h1044V403.888s-87.984,52.194-149.125-35.79,71.58-232.634-83.51-292.284S190.174,138.446,73.857,111.6-93.163-55.417-93.163-55.417H-397.377s164.037,37.281,184.915,202.81-156.581,289.3-101.4,459.3S-3.688,755.822,44.032,833.367C71.566,878.11,42.671,961.241-98.894,1001.25-202.176,1030.44-427.329,1024.246-427.329,1024.246Z" transform="translate(1303.329 55.204)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
