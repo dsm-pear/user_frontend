@@ -10,9 +10,9 @@ function App() {
     <>
       <GlobalFonts />
       <BrowserRouter>
-        <Route path="/login" component={Login} />
-        <Route path="/UserProfile" component={UserProfile} />
-        <MyProfile />
+        <Route path="/login" component={Login} exact />
+        <Route path="/UserProfile" component={UserProfile} exact />
+        <Route path="/MyProfile" component={MyProfile} exact />
       </BrowserRouter>
     </>
   );

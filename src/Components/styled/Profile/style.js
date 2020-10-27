@@ -21,10 +21,7 @@ const MainProfile = styled.div`
   width: 1400px;
   height: 680px;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
-  //border: solid 1px #4d4d4d;
   border: solid 1px #e4eef2;
-  //border: solid 1px #9c9c9c;
-  //border-radius: 20px;
   background-color: #ffffff;
 `;
 
@@ -58,8 +55,8 @@ const ProPhoto = styled.div`
     width: 150px;
     margin: 10px;
   }
-  p,
-  span {
+  input {
+    background-color: white;
     padding: 0 20px;
     margin: 10px;
     display: flex;
@@ -69,6 +66,7 @@ const ProPhoto = styled.div`
     height: 40px;
     border-radius: 10px;
     outline: none;
+    border: none;
     font-size: 15px;
     font-family: BBTreeGB;
     box-shadow: 0 1px 4px #c3c7c7;
@@ -88,13 +86,13 @@ const Produce = styled.div`
   border-radius: 10px;
   outline: none;
   font-size: 15px;
-
   font-family: BBTreeGB;
   box-shadow: 0 1px 4px #c3c7c7;
   cursor: pointer;
   height: 160px;
   width: 300px;
   padding: 20px;
+  
 `;
 const Project = styled.div`
   display: flex;
@@ -116,44 +114,73 @@ const PreProject = styled.div`
   width: 700px;
 `;
 
-const MainProjectSolo = styled.div`
-  margin: 5px;
+export const MainProject = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   width: 648px;
   height: 49px;
+  margin: 5px;
+  border: 1.6px solid ${(props) => props.color};
   border-radius: 6px;
-  border: solid 1.6px #27d5b1;
   background-color: #ffffff;
   font-family: BBTreeGB;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
 
-  & :nth-child(1) {
-    width: 80px;
-    margin: 0 10px;
-    color: #27d5b1;
+  .project_team {
+    width: 10%;
+    color: ${({ color }) => color};
   }
-  & :nth-child(2) {
-    width: 400px;
+  .project_title {
+    width: 60%;
     margin: 0 10px;
+  }
+  .project_date {
+    width: 15%;
+  }
+  .project_save {
+    width: 15%;
+  }
+
+  > * {
+    &:nth-child(1) {
+      width: 10%;
+    }
+    &:nth-child(2) {
+      width: 60%;
+      margin: 0 10px;
+    }
+    &:nth-child(3) {
+      width: 15%;
+    }
+    &:nth-child(4) {
+      width: 15%;
+    }
   }
 `;
-const MainProjectTeam = styled(MainProjectSolo)`
+
+const MainProjectSolo = styled(MainProject)`
+  border: solid 1.6px #27d5b1;
+
+  &:first-child > span:first-child {
+    color: #27d5b1;
+  }
+`;
+const MainProjectTeam = styled(MainProject)`
   border: solid 1.6px #6192f3;
 
-  & :nth-child(1) {
+  &:first-child > span:first-child {
     color: #6192f3;
   }
 `;
 
-const MainProjectClub = styled(MainProjectSolo)`
+const MainProjectClub = styled(MainProject)`
   border: solid 1.6px #5955d8;
 
-  & :nth-child(1) {
+  &:first-child > span:first-child {
     color: #5955d8;
   }
 `;
@@ -166,8 +193,8 @@ const Modify = styled.button`
   border: none;
   box-shadow: 0 1px 4px #c3c7c7;
   color: white;
-  font-family: BBTreeGL; 
-  font-weight: bold;  
+  font-family: BBTreeGL;
+  font-weight: bold;
   font-size: 15px;
 `;
 

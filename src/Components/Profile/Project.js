@@ -1,18 +1,9 @@
 //프로젝트 리스트 컴포넌트
-import React from 'react';
-import * as S from '../styled/Profile/style';
+import React from "react";
+import MainProject from "./MainProject";
 
-const Project = props => {
-    const { team, title, date } = props;
-    return (
-        <div>
-            <S.MainProjectTeam>
-              <span>{ team }</span>
-              <p>{ title }</p>
-              <span>{ date }</span>
-            </S.MainProjectTeam>
-        </div>
-    )
-}
+const Project = (props) => {
+  return <MainProject {...props} />;
+};
 
 export default Project;
