@@ -11,9 +11,13 @@ const Main = styled.div`
     background-repeat: no-repeat;
 `;
 
-
+const BorderBox = styled.div`
+    border: 1px solid #4d4d4d;
+    
+`;
 
 export {
     Main,
+    BorderBox,
 
 }

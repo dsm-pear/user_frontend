@@ -9,7 +9,7 @@ const ReportWriting = () => {
     return (
         <S.Main>
             {/* margin 맥여주는 div */}
-            <div> 
+            <S.BorderBox> 
                 {/* 안쪽 padding 맥여주는 div */}
                <div>
                     <div> 
@@ -96,7 +96,7 @@ const ReportWriting = () => {
                         </div>
                     </div>
                </div>
-            </div>
+            </S.BorderBox>
         </S.Main>
     );
 }
