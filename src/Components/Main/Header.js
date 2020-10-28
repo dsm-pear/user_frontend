@@ -1,6 +1,6 @@
 import React from "react";
-import Pearlogo from "../../img/pearlogo.svg";
-import * as S from "../../style/MainStyled/HeaderStyle";
+import { PearLogo } from "../../assets";
+import * as S from "../styled/MainStyled/HeaderStyle";
 
 const Header = () => {
   return (
@@ -9,7 +9,7 @@ const Header = () => {
         <S.HeaderSubBox>
           {/* 로고 */}
           <S.Mainlogo>
-            <img src={Pearlogo} alt="Pearlogo" />
+            <img src={PearLogo} alt="Pearlogo" />
           </S.Mainlogo>
 
           {/* 검색창 */}
