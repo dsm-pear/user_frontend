@@ -45,7 +45,7 @@ const ReportWriting = () => {
                         {/* 팀 깃헙 링크 */}
                         <div className="attaching-link attaching">
                             <span>
-                                <form name="githubLink" action="" method="" autoComplete="on">
+                                <form name="githubLink" action="" method="post" autoComplete="on">
                                     <img src={link} /><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
                                 </form>
                             </span>
@@ -59,9 +59,27 @@ const ReportWriting = () => {
                     <div>
                         {/* 팀 제작 (left) */}
                         <div>
-                            <span className="add-team">
-
-                            </span>
+                            {/* add teamName */}
+                            <div>
+                                <span className="add-teamName">
+                                    <form name="teamName" action="" method="post" autoComplete="on">
+                                        <input type={Text} placeholder="팀의 이름을 입력해주세요." />
+                                        <button type="submit" name="확인" value="확인">확인</button> 
+                                    </form>
+                                </span>
+                            </div>
+                            {/* add member */}
+                            <div>
+                                <span className="add-teamMember"><input type={Text} placeholder="팀원을 입력해주세요." /></span>
+                            </div>
+                            {/* make team btn */}
+                            <div>
+                                <span>
+                                    <form name="teamName" action="" method="post" autoComplete="on">
+                                        <button type="submit">팀 만들기</button>
+                                    </form>
+                                </span>
+                            </div>
                         </div>
                         {/* save & submit btn (right) */}
                         <div>
