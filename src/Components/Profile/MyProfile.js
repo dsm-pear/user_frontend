@@ -5,6 +5,7 @@ import * as S from "../styled/Profile/style";
 //import UserProfile from "./UserProfile";
 import Project from "./Project";
 import Profile from "./Profile";
+import Header from "../Main/Header";
 
 function MyProfile({}) {
   const [text, setText] = useState("수정");
@@ -45,7 +46,7 @@ function MyProfile({}) {
                 team="개인"
                 title="1301 강은빈입니다"
                 date="20.10.26"
-                save ="[요청 중]"
+                save="[요청 중]"
               />
               <Project
                 team="동아리"
