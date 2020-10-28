@@ -14,7 +14,6 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/UserProfile" component={UserProfile} />
         <Route path="/ReportWriting" component={ReportWriting} />
-        <MyProfile />
       </BrowserRouter>
     </>
   );
