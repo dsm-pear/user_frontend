@@ -4,6 +4,7 @@ import GlobalFonts from "./GlobalStyle";
 import Login from "./Components/Login/Login.js";
 import UserProfile from "./Components/Profile/UserProfile";
 import MyProfile from "./Components/Profile/MyProfile";
+import ReportWriting from "./Components/ReportWriting/ReportWriting";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Route path="/login" component={Login} />
         <Route path="/UserProfile" component={UserProfile} />
+        <Route path="/ReportWriting" component={ReportWriting} />
         <MyProfile />
       </BrowserRouter>
     </>
