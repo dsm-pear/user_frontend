@@ -75,7 +75,7 @@ const ReportWriting = () => {
                             {/* make team btn */}
                             <div>
                                 <span>
-                                    <form name="teamName" action="" method="post" autoComplete="on">
+                                    <form name="makeTeam" action="" method="post" autoComplete="on">
                                         <button type="submit">팀 만들기</button>
                                     </form>
                                 </span>
@@ -83,12 +83,16 @@ const ReportWriting = () => {
                         </div>
                         {/* save & submit btn (right) */}
                         <div>
-                            <span className="save-btn">
-                            
-                            </span>
-                            <span className="submit-btn">
-                            
-                            </span>
+                            <div>
+                                <span className="btn save-btn"><button>임시저장</button></span>
+                            </div>
+                            <div>
+                                <span className="btn submit-btn">
+                                    <form name="reportSubmit" action="" method="post" autoComplete="on">
+                                        <button type="submit">제출하기</button>
+                                    </form>
+                                </span>
+                            </div>
                         </div>
                     </div>
                </div>
