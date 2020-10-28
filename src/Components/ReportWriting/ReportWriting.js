@@ -11,25 +11,25 @@ const ReportWriting = () => {
             {/* margin 맥여주는 div */}
             <S.BorderBox> 
                 {/* 안쪽 padding 맥여주는 div */}
-               <div>
-                    <div> 
-                        {/* 보고서 작성하기 img 맥여주는 span */}
+               <S.InlineBox>
+                    <S.ReportHeader> 
+                        {/* <보고서 작성하기 img> 맥여주는 span */}
                         <span><img src={RWlogo} /></span>
-                    </div>
-                    <div>
+                    </S.ReportHeader>
+                    <S.SelectBoxs>
                         {/* 사용 언어, 학년 등 선택박스 만드는 div */}
                         <div>
-                            <div>
-                                <span>사용 언어<img src={select} /></span>
-                            </div>
-                            <div>
-                                <span>개발 분야<img src={select} /></span>
-                            </div>
-                            <div>
-                                <span>공개범위<img src={select} /></span>
-                            </div>
+                            <S.Select>
+                                <div><span>사용 언어</span><img src={select} /></div>
+                            </S.Select>
+                            <S.Select>
+                                <div><span>개발 분야</span><img src={select} /></div>
+                            </S.Select>
+                            <S.Select>
+                                <div><span>공개범위</span><img src={select} /></div>
+                            </S.Select>
                         </div>
-                    </div>
+                    </S.SelectBoxs>
                     {/* 보고서 제목 ~ 보고서 파일 첨부까지 */}
                     <div>
                         {/* 보고서 제목 */}
@@ -95,7 +95,7 @@ const ReportWriting = () => {
                             </div>
                         </div>
                     </div>
-               </div>
+               </S.InlineBox>
             </S.BorderBox>
         </S.Main>
     );
