@@ -21,17 +21,17 @@ const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     width: 100%;
-    height: 80%;
-    margin: 3rem 16rem 1rem;
+    height: 86%;
+    margin: 4rem 16rem 0rem;
 `;
 
 const InlineBox = styled.div`
     width: 100%;
     height: 100%;
-    padding: 2rem 3rem 0;
+    padding: 1.5rem 2.5rem 0;
 `;
 
-const ReportHeader = styled.div`
+const ReportLogo = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -41,19 +41,20 @@ const ReportHeader = styled.div`
         width:30%;
     }
     img {
-        width: 55%;
+        width: 60%;
     }
 `;
 
 const SelectBoxs = styled.div`
     width: 100%;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
+`;
 
-    div {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
+const PaddingBox = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 1.5rem;
 `;
 
 const Select = styled.div`
@@ -79,12 +80,54 @@ const Select = styled.div`
         cursor: pointer;
     }
 `;
+
+const ReportMain = styled.div`
+    margin-top: 0.8rem;
+`;
+
+const ReportHeader = styled.div`
+    width: 100%;
+    height: 100%;
+
+    input {
+        width: 100%;
+        background: #F8F8F8;
+        border: 1px solid #F8F8F8;
+        outline: none;
+        padding: .8rem .8rem;
+        font-family: BBTreeGR;
+        font-size: 14px;
+        text-align: left;
+    }
+`;
+
+const ReprotWriteBox = styled.div`
+    width: 100%;
+    margin-top: .8rem;
+
+    textarea {
+        resize: none;
+        width: 100%;
+        background: #F8F8F8;
+        border: 1px solid #F8F8F8;
+        outline: none;
+        padding: .8rem .8rem;
+        font-family: BBTreeGR;
+        font-size: 13px;
+        text-align: left;
+    }
+`;
+
 export {
     Main,
     BorderBox,
     InlineBox,
-    ReportHeader,
+    ReportLogo,
     SelectBoxs,
+    PaddingBox,
     Select,
+    ReportMain,
+    ReportHeader,
+    ReprotWriteBox,
 
 }

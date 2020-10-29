@@ -12,13 +12,13 @@ const ReportWriting = () => {
             <S.BorderBox> 
                 {/* 안쪽 padding 맥여주는 div */}
                <S.InlineBox>
-                    <S.ReportHeader> 
+                    <S.ReportLogo> 
                         {/* <보고서 작성하기 img> 맥여주는 span */}
                         <span><img src={RWlogo} /></span>
-                    </S.ReportHeader>
+                    </S.ReportLogo>
                     <S.SelectBoxs>
                         {/* 사용 언어, 학년 등 선택박스 만드는 div */}
-                        <div>
+                        <S.PaddingBox>
                             <S.Select>
                                 <div><span>사용 언어</span><img src={select} /></div>
                             </S.Select>
@@ -28,20 +28,18 @@ const ReportWriting = () => {
                             <S.Select>
                                 <div><span>공개범위</span><img src={select} /></div>
                             </S.Select>
-                        </div>
+                        </S.PaddingBox>
                     </S.SelectBoxs>
                     {/* 보고서 제목 ~ 보고서 파일 첨부까지 */}
-                    <div>
+                    <S.ReportMain>
                         {/* 보고서 제목 */}
-                        <div>
+                        <S.ReportHeader>
                             <input type={Text} placeholder="개발 보고서의 제목을 입력해주세요." />
-                        </div>
+                        </S.ReportHeader>
                         {/* 보고서 소개 글 */}
-                        <div className="write-text">
-                            <span>
-                                <textarea name="writingbox" rows="5" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요." style={{resize:"none"}}></textarea>
-                            </span>
-                        </div>
+                        <S.ReprotWriteBox>
+                            <textarea name="writingbox" rows="8" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요." style={{resize:"none"}}></textarea>
+                        </S.ReprotWriteBox>
                         {/* 팀 깃헙 링크 */}
                         <div className="attaching-link attaching">
                             <span>
@@ -54,7 +52,7 @@ const ReportWriting = () => {
                         <div className="attaching-file attaching">
                             <span><img src={link} /></span>
                         </div>
-                    </div>
+                    </S.ReportMain>
                     {/* 팀 제작 ~ submit btn */}
                     <div>
                         {/* 팀 제작 (left) */}
