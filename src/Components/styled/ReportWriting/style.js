@@ -20,8 +20,8 @@ const Main = styled.div`
 const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
-    width: 100%;
-    height: 86%;
+    width: 1500px;
+    height: 600px;
     margin: 4rem 16rem 0rem;
 `;
 
@@ -41,7 +41,7 @@ const ReportLogo = styled.div`
         width:30%;
     }
     img {
-        width: 60%;
+        width: 10rem;
     }
 `;
 
@@ -58,7 +58,7 @@ const PaddingBox = styled.div`
 `;
 
 const Select = styled.div`
-    width: 10%;
+    width: 4.8rem;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
@@ -74,7 +74,7 @@ const Select = styled.div`
         font-size: 13px;
     }
     img {
-        width: 11%;
+        width: 8px;
     } 
     &:hover {
         cursor: pointer;
@@ -82,7 +82,7 @@ const Select = styled.div`
 `;
 
 const ReportMain = styled.div`
-    margin-top: 0.8rem;
+    margin-top: .8rem;
 `;
 
 const ReportHeader = styled.div`
@@ -96,7 +96,7 @@ const ReportHeader = styled.div`
         outline: none;
         padding: .8rem .8rem;
         font-family: BBTreeGR;
-        font-size: 14px;
+        font-size: 15px;
         text-align: left;
     }
 `;
@@ -118,6 +118,61 @@ const ReprotWriteBox = styled.div`
     }
 `;
 
+const LinkBox = styled.div`
+    width: 100%;
+    height: 100%;
+    margin-top: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    span {
+        width: 100%;
+        height: 100%;
+    }
+    form {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        background: #F8F8F8;
+        border: 1px solid #F8F8F8;
+        padding: .4rem .4rem;
+    }
+    img {
+        width: 20px; 
+    }
+    input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: #F8F8F8;
+        margin-left: .4rem;
+        font-family: BBTreeGR;
+        font-size: 14px;
+    }
+`;
+
+const AttachFile = styled.div`
+    width: 100%;
+    height: 100%;
+    margin-top: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    span {
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: .4rem .4rem;
+        background: #F8F8F8;
+        img {
+            width: 20px;
+        }
+    }
+`;
+
 export {
     Main,
     BorderBox,
@@ -129,5 +184,7 @@ export {
     ReportMain,
     ReportHeader,
     ReprotWriteBox,
+    LinkBox,
+    AttachFile,
 
 }

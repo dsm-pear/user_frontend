@@ -38,20 +38,20 @@ const ReportWriting = () => {
                         </S.ReportHeader>
                         {/* 보고서 소개 글 */}
                         <S.ReprotWriteBox>
-                            <textarea name="writingbox" rows="8" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요." style={{resize:"none"}}></textarea>
+                            <textarea name="writingbox" rows="10" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요." style={{resize:"none"}}></textarea>
                         </S.ReprotWriteBox>
                         {/* 팀 깃헙 링크 */}
-                        <div className="attaching-link attaching">
+                        <S.LinkBox>
                             <span>
                                 <form name="githubLink" action="" method="post" autoComplete="on">
                                     <img src={link} /><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
                                 </form>
                             </span>
-                        </div>
+                        </S.LinkBox>
                         {/* 보고서 파일 첨부 */}
-                        <div className="attaching-file attaching">
+                        <S.AttachFile>
                             <span><img src={link} /></span>
-                        </div>
+                        </S.AttachFile>
                     </S.ReportMain>
                     {/* 팀 제작 ~ submit btn */}
                     <div>
