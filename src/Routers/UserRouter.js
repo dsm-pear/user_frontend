@@ -5,6 +5,7 @@ import Header from "../Components/Main/Header";
 import Login from "../Components/Login/Login";
 import UserProfile from "../Components/Profile/UserProfile";
 import MyProfile from "../Components/Profile/MyProfile";
+import ViewReport from '../Components/ViewReport/ViewReport';
 
 function UserRouter() {
   return (
@@ -15,6 +16,7 @@ function UserRouter() {
         <Route path="/Login" component={Login} exact />
         <Route path="/UserProfile" component={UserProfile} exact />
         <Route path="/MyProfile" component={MyProfile} exact />
+        <Route path="/ViewReport" component={ViewReport} exact/>
       </Switch>
     </>
   );
