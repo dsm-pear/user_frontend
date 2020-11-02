@@ -39,6 +39,7 @@ const ReportLogo = styled.div`
 
     span {
         width:30%;
+        padding: 0 .6rem;
     }
     img {
         width: 10rem;
@@ -173,6 +174,32 @@ const AttachFile = styled.div`
     }
 `;
 
+const SubmitBox = styled.div`
+    width:100%;
+    display: flex;
+`;
+    
+
+const MakeTeam = styled.div`
+    width: 70%;
+    height: 145px;
+    border: 1px solid;
+
+    form {
+        width:100%;
+        height: 100%;
+        display: flex;
+        
+    }
+`;
+
+const SaveSubBtn = styled.div`
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+`;
+
 export {
     Main,
     BorderBox,
@@ -186,5 +213,7 @@ export {
     ReprotWriteBox,
     LinkBox,
     AttachFile,
-
+    SubmitBox,
+    MakeTeam,
+    SaveSubBtn
 }
