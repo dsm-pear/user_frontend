@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "../styled/ViewReport/style";
 import ReportGrade from "./ReportGrade";
-import Categorybar from './Categorybar';
+import Categorybar from './Category/Categorybar';
 import MainProject from './MainProject';
 
 function ViewReport() {
