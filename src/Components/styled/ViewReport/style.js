@@ -12,13 +12,13 @@ const Main = styled.div`
 `;
 
 const Cover = styled.div`
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
   width: 1500px;
   height: 680px;
 
-  .coverCategory{
+  .coverCategory {
     width: 280px;
     margin-right: 20px;
   }
@@ -54,14 +54,14 @@ const Categorybar = styled.div`
 `;
 
 const Category = styled.div`
-  margin: 20px;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 100%;
   height: 30%;
 
   cursor: pointer;
   & > span {
+    margin: 30px 0 0 30px;
     font-size: 20px;
     font-family: BBTreeGb;
     font-weight: 400;
@@ -69,28 +69,130 @@ const Category = styled.div`
 `;
 
 const ReportKindOf = styled.div`
-  margin: 10px 0 0 20px;
+  margin-top: 15px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: auto;
 
-  span {
-    margin: 5px;
+  /*  > ul > li {
+    padding: 10px 0 10px 50px ;
+    width: 85%;
     font-size: 15px;
     font-family: BBTreeGb;
-  }
-  span:hover {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color:  #716dec;
+  } */
+
+  li:hover {
     color: #5a5edc;
   }
 `;
 
 const MainProject = styled.div`
-  width : 100%;
-  height : 100%;
+  width: 100%;
+  height: 100%;
   border: solid 1px #e4eef2;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: white;
-
 `;
 
-export { Main, Cover, Box, Categorybar, Category, ReportKindOf, MainProject };
+const ProjectHeader = styled.nav`
+  width: 100%;
+  height: 11%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: solid 1px #e4eef2;
+  .nav {
+    margin: 0 20px;
+    > button {
+      cursor: pointer;
+      margin: 0 10px;
+      outline: none;
+      border: none;
+      width: 63px;
+      height: 22px;
+      border-radius: 14px;
+      font-family: BBTreeGb;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    }
+  }
+  > select {
+    margin: 0 20px;
+  }
+`;
+const MainPro = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Project = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 960px;
+  height: 49px;
+  margin: 10px;
+  border: 1.6px solid ${(props) => props.color};
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-family: BBTreeGB;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+
+  .project_team {
+    width: 10%;
+    color: ${({ color }) => color};
+  }
+  .project_title {
+    width: 60%;
+    margin: 0 10px;
+  }
+  .project_date {
+    width: 15%;
+  }
+  .project_save {
+    width: 15%;
+  }
+
+  > * {
+    &:nth-child(1) {
+      width: 10%;
+    }
+    &:nth-child(2) {
+      width: 60%;
+      margin: 0 10px;
+    }
+    &:nth-child(3) {
+      width: 15%;
+    }
+    &:nth-child(4) {
+      width: 15%;
+    }
+  }
+`;
+
+const MainCover = styled.div`
+  border: 1px solid blue;
+  margin: 40px;
+`;
+
+export {
+  Main,
+  Cover,
+  Box,
+  Categorybar,
+  Category,
+  ReportKindOf,
+  MainProject,
+  ProjectHeader,
+  MainPro,
+  Project,
+  MainCover,
+};
