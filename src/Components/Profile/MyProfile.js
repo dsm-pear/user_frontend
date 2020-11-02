@@ -5,9 +5,8 @@ import * as S from "../styled/Profile/style";
 //import UserProfile from "./UserProfile";
 import Project from "./Project";
 import Profile from "./Profile";
-import Header from "../Main/Header";
 
-function MyProfile({}) {
+function MyProfile({props}) {
   const [text, setText] = useState("수정");
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
   const ProModify = () => {
