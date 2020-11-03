@@ -20,9 +20,11 @@ const Main = styled.div`
 const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
-    width: 1500px;
-    height: 600px;
-    margin: 4rem 16rem 0rem;
+    width: 65%;
+    max-width: 65%;
+    height: 82%;
+    max-height: 82%;
+    margin-top: 5rem;
 `;
 
 const InlineBox = styled.div`
