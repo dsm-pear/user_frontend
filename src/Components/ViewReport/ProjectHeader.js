@@ -49,8 +49,8 @@ export default class App extends Component {
           <button>동아리</button>
         </div>
         <select placeholder="정렬">
-          <option>오름차순</option>
-          <option>내림차순</option>
+          <option>최신순</option>
+          <option>오래된순</option>
         </select>
       </S.ProjectHeader>
     );
