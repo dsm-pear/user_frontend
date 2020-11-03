@@ -58,13 +58,16 @@ const Category = styled.div`
   flex-direction: column;
   width: 100%;
   height: 30%;
+  &:nth-child(2) {
+    margin-top: 30px;
+  }
 
   cursor: pointer;
   & > span {
-    margin: 30px 0 0 30px;
+    margin: 15px 0 0 30px;
     font-size: 20px;
-    font-family: BBTreeGb;
-    font-weight: 400;
+    font-family: BBTreeGl;
+    font-weight: 800;
   }
 `;
 
@@ -74,17 +77,27 @@ const ReportKindOf = styled.div`
   display: flex;
   flex-direction: column;
 
-  /*  > ul > li {
-    padding: 10px 0 10px 50px ;
+  > ul > a {
+    color: black;
+    font-weight: 300px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 10px 0 10px 50px;
     width: 85%;
     font-size: 15px;
-    font-family: BBTreeGb;
+    font-family: BBTreeGL;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
-    background-color:  #716dec;
-  } */
+    &.active {
+      color: white;
 
-  li:hover {
+      background-image: linear-gradient(to bottom, #5955d8, #716dec);
+    }
+  }
+
+  a:hover {
     color: #5a5edc;
   }
 `;
@@ -107,16 +120,24 @@ const ProjectHeader = styled.nav`
   border-bottom: solid 1px #e4eef2;
   .nav {
     margin: 0 20px;
-    > button {
-      cursor: pointer;
-      margin: 0 10px;
-      outline: none;
-      border: none;
-      width: 63px;
-      height: 22px;
-      border-radius: 14px;
-      font-family: BBTreeGb;
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    & label {
+      & div {
+        text-align: center;
+        cursor: pointer;
+        margin: 0 10px;
+        outline: none;
+        border: none;
+        width: 63px;
+        height: 22px;
+        display: inline-block;
+        border-radius: 14px;
+        font-family: BBTreeGb;
+        background: #efefef;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      }
+      & input {
+        display: none;
+      }
     }
   }
   > select {
@@ -179,7 +200,6 @@ const Project = styled.div`
 `;
 
 const MainCover = styled.div`
-  border: 1px solid blue;
   margin: 40px;
 `;
 
