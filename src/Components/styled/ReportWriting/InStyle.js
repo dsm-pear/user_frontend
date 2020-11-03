@@ -68,7 +68,7 @@ const TeamMember = styled.div`
             width: 12px;
         }
 `;
-
+        
 const SaveBtn = styled.div`
     padding-left: 2rem;   
     margin-left: 1rem;
