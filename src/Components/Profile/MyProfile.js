@@ -6,19 +6,7 @@ import * as S from "../styled/Profile/style";
 import Project from "./Project";
 import Profile from "./Profile";
 
-<<<<<<< Updated upstream
-function MyProfile({props}) {
-=======
-<<<<<<< Updated upstream
-function MyProfile({}) {
-=======
-<<<<<<< Updated upstream
-function MyProfile({props}) {
-=======
-function MyProfile({}) {
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+function MyProfile({ props }) {
   const [text, setText] = useState("수정");
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
   const ProModify = () => {
@@ -57,19 +45,7 @@ function MyProfile({}) {
                 team="개인"
                 title="1301 강은빈입니다"
                 date="20.10.26"
-<<<<<<< Updated upstream
                 save="[요청 중]"
-=======
-<<<<<<< Updated upstream
-                save ="[요청 중]"
-=======
-<<<<<<< Updated upstream
-                save="[요청 중]"
-=======
-                save ="[요청 중]"
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
               />
               <Project
                 team="동아리"
