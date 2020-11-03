@@ -5,4 +5,3 @@ export { default as search } from './search.svg';
 export { default as select } from './select.svg';
 export { default as link } from './link.svg';
 export { default as searchImg } from './searchImg.png';
-export { default as searchImgX2 } from './searchImgX2.png';
