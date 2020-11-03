@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderBox = styled.div`
-  margin-top: 51.5px;
+  padding-top: 50px;
   display: flex;
   margin-left: 177px;
   margin-right: 222px;
