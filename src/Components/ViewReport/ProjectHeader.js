@@ -7,7 +7,6 @@ export default class App extends Component {
     this.state = { background: "#e4eef2", textColor: "black" };
     this.changeColor1 = this.changeColor1.bind(this);
     this.changeColor2 = this.changeColor2.bind(this);
-
   }
 
   changeColor1 = () => {
