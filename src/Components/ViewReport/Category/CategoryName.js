@@ -2,8 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import * as S from "../../styled/ViewReport/style";
 
-const CategoryName = (props) => {
-  const { SwName, Ele } = props;
+const CategoryName = ({ SwName, Ele}) => {
 
   return (
     <S.Category>
