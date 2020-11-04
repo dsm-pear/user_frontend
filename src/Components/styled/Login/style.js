@@ -63,7 +63,7 @@ const Logininput = styled.div`
   }
 
   & p {
-    margin: 15px; 
+    margin: 15px;
     font-family: "BBTreeGB";
     font-size: 15px;
     color: #5955d8;
@@ -71,4 +71,10 @@ const Logininput = styled.div`
   }
 `;
 
-export { LoginBody, Loginbg, Title, Logininput };
+const SignUpMain = styled.div``;
+
+const SignUpName = styled.div``;
+
+const Input = styled.input``;
+
+export { LoginBody, Loginbg, Title, Logininput, SignUpMain, SignUpName, Input };
