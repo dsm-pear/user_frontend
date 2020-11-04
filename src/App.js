@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <GlobalFonts />
-      <Router>
+      <BrowserRouter>
         <Switch>
           <Route path="/Login" component={Login} />
           <Route path="/UserProfile" component={UserProfile} />
@@ -18,7 +18,7 @@ function App() {
           <Route path="/report-writing" component={ReportWriting} />
           {/* uri 명명 규칙은 카멜이나 스네이크등의 케이스보단 케밥 케이스를 선호 */}
         </Switch>
-      </Router>
+      </BrowserRouter>
     </>
   );
 }
