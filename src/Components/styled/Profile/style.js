@@ -1,8 +1,7 @@
 //프로필 스타일
 
 import styled from "styled-components";
-import { MainBackground } from "../../../assets";
-import { UserProfile } from "../../../assets";
+import { MainBackground, StudentProfile} from "../../../assets";
 
 const Main = styled.div`
   display: flex;
@@ -50,7 +49,7 @@ const ProPhoto = styled.div`
   flex-direction: column;
 
   div {
-    background-image: url(${UserProfile});
+    background-image: url(${StudentProfile});
     height: 150px;
     width: 150px;
     margin: 10px;
@@ -92,7 +91,6 @@ const Produce = styled.div`
   height: 160px;
   width: 300px;
   padding: 20px;
-  
 `;
 const Project = styled.div`
   display: flex;
@@ -160,6 +158,7 @@ export const MainProject = styled.div`
       width: 15%;
     }
   }
+
 `;
 
 const MainProjectSolo = styled(MainProject)`
@@ -169,6 +168,7 @@ const MainProjectSolo = styled(MainProject)`
     color: #27d5b1;
   }
 `;
+
 const MainProjectTeam = styled(MainProject)`
   border: solid 1.6px #6192f3;
 
