@@ -10,6 +10,7 @@ export default createGlobalStyle`
     }
 
     @font-face {
+
     font-family: 'BBTreeGL';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff')
     format('woff');
