@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, {useState,useEffect} from 'react';
 import Pearlogo from '../../img/pearlogo.svg';
 import Profile from '../../img/Profile.svg'
@@ -5,6 +6,15 @@ import * as S from '../../style/MainStyled/HeaderStyle'
 import DownArrow from '../../img/DownArrow.png';
 import UpArrow from '../../img/UpArrow.png';
 import Seachimage from '../../img/Seachimage.png';
+=======
+import React, {useState} from 'react';
+import Pearlogo from '../../assets/PEARlogo.svg';
+import Profile from '../../assets/StudentProfile.svg'
+import * as S from '../../style/MainStyled/HeaderStyle'
+import DownArrow from '../../assets/ArrowImg/DownArrow.png';
+import UpArrow from '../../assets/ArrowImg/UpArrow.png';
+import Seachimage from '../../assets/Seachimage.png';
+>>>>>>> Stashed changes
 
 const Header = () => {
     const [ seachtype, setSeachtype ] = useState("제목");
@@ -22,6 +32,7 @@ const Header = () => {
             setShow(false);
             setImg(DownArrow);
         }
+<<<<<<< Updated upstream
         
     }
 
@@ -53,6 +64,34 @@ const Header = () => {
         else{
             setProfile(false);
         }
+=======
+    }
+
+    const onTitleSeach = () => {
+        setSeachtype("제목");
+    }
+
+    const onLanguageSeach = () => {
+        setSeachtype("언어");
+    }
+
+    const onProfileSeach = () => {
+        setSeachtype("프로필");
+    }
+
+    const onReportUp = () => {
+        setReport(true);
+    }
+    const onReportDown = () => {
+        setReport(false);
+    }
+
+    const onProfileUp = () => {
+        setProfile(true);
+    }
+    const onProfileDown = () => {
+        setProfile(false);
+>>>>>>> Stashed changes
     }
 
     return (
@@ -71,9 +110,15 @@ const Header = () => {
                             { 
                             show ? 
                             <S.SeachList>
+<<<<<<< Updated upstream
                                 <S.SeachType onClick={() => onChoice(1)}>제목</S.SeachType>
                                 <S.SeachType onClick={() => onChoice(2)}>언어</S.SeachType>
                                 <S.SeachType onClick={() => onChoice(3)}>프로필</S.SeachType>
+=======
+                                <S.SeachType onClick={()=>onTitleSeach()}>제목</S.SeachType>
+                                <S.SeachType onClick={()=>onLanguageSeach()}>언어</S.SeachType>
+                                <S.SeachType onClick={()=>onProfileSeach()}>프로필</S.SeachType>
+>>>>>>> Stashed changes
                             </S.SeachList>
                             :null
                             }
@@ -89,7 +134,11 @@ const Header = () => {
                         <S.MenuUl>
                             <S.MenuList>공지사항</S.MenuList>
                             <S.MenuList>보고서 작성</S.MenuList>
+<<<<<<< Updated upstream
                             <S.MenuList onMouseEnter={() => onReport(true)} onMouseLeave={()=>onReport(false)}>
+=======
+                            <S.MenuList onMouseEnter={()=>onReportUp()} onMouseLeave={()=>onReportDown()}>
+>>>>>>> Stashed changes
                                 보고서 보기
                                 {
                                     report ?
@@ -104,7 +153,11 @@ const Header = () => {
                                 </S.MenuList>
 
                             {     /*토큰 여부에 따라 출력*/
+<<<<<<< Updated upstream
                             <S.MenuList onMouseEnter={() => onProfile(true)} onMouseLeave={()=>onProfile(false)}>
+=======
+                            <S.MenuList onMouseEnter={()=>onProfileUp()} onMouseLeave={()=>onProfileDown()}>
+>>>>>>> Stashed changes
                                 <S.Profile>프로필</S.Profile>
                                 {
                                     profile ?
