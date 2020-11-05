@@ -63,12 +63,92 @@ const Logininput = styled.div`
   }
 
   & p {
-    margin: 15px; 
+    margin: 15px;
     font-family: "BBTreeGB";
     font-size: 15px;
     color: #5955d8;
     border-bottom: 1px solid #5955d8;
   }
 `;
+const SignUpButton = styled.div`
+  margin: 30px 10px;
+  width: 500px;
+  border-radius: 20px;
+  background-color: #e1e1e1;
+  & {
+    padding: 15px 0;
+    text-align: center;
+    font-family: BBTreeGB;
+    font-size: 23px;
+    color: #777777;
+  }
+`;
 
-export { LoginBody, Loginbg, Title, Logininput };
+const SignMain = styled.div`
+  width: 600px;
+  height: 60%;
+  
+  border: 1px solid red;
+  .InputCover{
+    margin-top: 40px;
+  }
+  .h1Name {
+    margin: 10px;
+    width: 27%;
+    border-bottom: solid 3px #5955d8;
+    & h1 {
+      font-family: BBTreeGB;
+      font-size: 40px;
+    }
+`;
+
+const CoverInput = styled.div`
+  margin: 10px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  height: 50px;
+  background-color: #e3f0ff;
+  & input {
+    cursor: pointer;
+    width: 350px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: BBTreeGL;
+    background-color: #e3f0ff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+  }
+`;
+
+const Button = styled.div`
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  margin: 0 10px;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 300;
+  font-family: BBTreeGl;
+  width: 110px;
+
+  border-radius: 13px;
+  background-color: #5955d8;
+  .Number {
+    background-color: #e1e1e1;
+  }
+`;
+
+export {
+  LoginBody,
+  Loginbg,
+  Title,
+  Logininput,
+  SignMain,
+  SignUpButton,
+  Button,
+  CoverInput,
+};
