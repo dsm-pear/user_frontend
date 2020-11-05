@@ -4,7 +4,7 @@ import Profile from '../../assets/StudentProfile.svg'
 import * as S from '../../style/MainStyled/HeaderStyle'
 import DownArrow from '../../assets/ArrowImg/DownArrow.png';
 import UpArrow from '../../assets/ArrowImg/UpArrow.png';
-import Searchimage from '../../assets/Searchimg.png';
+import Searchimage from '../../assets/SearchImg.png';
 
 const Header = () => {
     const [ searchtype, setSearchtype ] = useState("제목");
