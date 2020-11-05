@@ -158,6 +158,7 @@ export const MainProject = styled.div`
       width: 15%;
     }
   }
+
 `;
 
 const MainProjectSolo = styled(MainProject)`
@@ -167,6 +168,7 @@ const MainProjectSolo = styled(MainProject)`
     color: #27d5b1;
   }
 `;
+
 const MainProjectTeam = styled(MainProject)`
   border: solid 1.6px #6192f3;
 

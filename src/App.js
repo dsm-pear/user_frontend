@@ -1,22 +1,18 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+
+import { Route, BrowserRouter } from "react-router-dom";
 import GlobalFonts from "./GlobalStyle";
-import Login from "./Components/Login/Login.js";
-import UserProfile from "./Components/Profile/UserProfile";
-import MyProfile from "./Components/Profile/MyProfile";
-import ViewReport from './Components/ViewReport/ViewReport';
+import UserRouter from "./Routers/UserRouter";
+
 
 const App = () => {
   return(
     <>
       <GlobalFonts />
       <BrowserRouter>
-        <Route path="/login" component={Login} exact />
-        <Route path="/UserProfile" component={UserProfile} exact />
-        <Route path="/MyProfile" component={MyProfile} exact />
-        <ViewReport/>
-      </BrowserRouter>
 
+        <Route path="/" component={UserRouter} />
+      </BrowserRouter>
     </>
   )
 }
