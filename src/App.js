@@ -5,8 +5,8 @@ import GlobalFonts from "./GlobalStyle";
 import UserRouter from "./Routers/UserRouter";
 
 
-function App() {
-  return (
+const App = () => {
+  return(
     <>
       <GlobalFonts />
       <BrowserRouter>
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" component={UserRouter} />
       </BrowserRouter>
     </>
-  );
+  )
 }
 
 export default App;
