@@ -62,7 +62,7 @@ const Header = () => {
                     {/* 검색창 */}
                     <S.SeachBar>
                         <S.SeachBarSelect onClick={onlist}>
-                            <S.SeachChoice><img src={img} />{searchtype}</S.SeachChoice>
+                            <S.SeachChoice><img src={img} alt="검색"/>{searchtype}</S.SeachChoice>
                             { 
                             show ? 
                             <S.SeachList>
@@ -76,7 +76,7 @@ const Header = () => {
 
                         <S.SeachBarInput placeholder="검색창"/>
 
-                        <S.SeachBarButton><img src={SearchImg}/></S.SeachBarButton>
+                        <S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton>
                     </S.SeachBar>
 
                     {/* 메뉴 */}
