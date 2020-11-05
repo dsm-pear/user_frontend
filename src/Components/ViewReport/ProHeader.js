@@ -1,5 +1,4 @@
 import React, {  useState } from "react";
-import * as S from "../styled/ViewReport/style";
 
 const Header = (props) => {
   const {name} = props;
