@@ -4,10 +4,10 @@ import Profile from '../../assets/StudentProfile.svg'
 import * as S from '../../style/MainStyled/HeaderStyle'
 import DownArrow from '../../assets/ArrowImg/DownArrow.png';
 import UpArrow from '../../assets/ArrowImg/UpArrow.png';
-import Seachimage from '../../assets/Searchimg.png';
+import Searchimage from '../../assets/Searchimg.png';
 
 const Header = () => {
-    const [ seachtype, setSeachtype ] = useState("제목");
+    const [ searchtype, setSearchtype ] = useState("제목");
     const [ show, setShow ] = useState(false)
     const [ report, setReport ] = useState(false)
     const [ profile, setProfile ] = useState(false)
@@ -25,15 +25,15 @@ const Header = () => {
     }
 
     const onTitleSeach = () => {
-        setSeachtype("제목");
+        setSearchtype("제목");
     }
 
     const onLanguageSeach = () => {
-        setSeachtype("언어");
+        setSearchtype("언어");
     }
 
     const onProfileSeach = () => {
-        setSeachtype("프로필");
+        setSearchtype("프로필");
     }
 
     const onReportUp = () => {
@@ -62,7 +62,7 @@ const Header = () => {
                     {/* 검색창 */}
                     <S.SeachBar>
                         <S.SeachBarSelect onClick={onlist}>
-                            <S.SeachChoice><img src={img} />{seachtype}</S.SeachChoice>
+                            <S.SeachChoice><img src={img} />{searchtype}</S.SeachChoice>
                             { 
                             show ? 
                             <S.SeachList>
@@ -76,7 +76,7 @@ const Header = () => {
 
                         <S.SeachBarInput placeholder="검색창"/>
 
-                        <S.SeachBarButton><img src={Seachimage}/></S.SeachBarButton>
+                        <S.SeachBarButton><img src={Searchimage}/></S.SeachBarButton>
                     </S.SeachBar>
 
                     {/* 메뉴 */}
