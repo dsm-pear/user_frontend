@@ -10,12 +10,23 @@ export default createGlobalStyle`
     }
 
     @font-face {
+
     font-family: 'BBTreeGL';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff')
     format('woff');
     font-weight: normal;
     font-style: normal;
+
+    @font-face {
+    font-family: 'BBTreeGO_R';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGO_R.woff')
+    format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
+}
+
+
     /* http://meyerweb.com/eric/tools/css/reset/ 
       v2.0 | 20110126
       License: none (public domain)

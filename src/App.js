@@ -1,12 +1,18 @@
-import React from 'react';
-import Header from './components/Main/Header';
-import Body from './components/Main/body';
+import React from "react";
+
+import { Route, BrowserRouter } from "react-router-dom";
+import GlobalFonts from "./GlobalStyle";
+import UserRouter from "./Routers/UserRouter";
+
 
 const App = () => {
   return(
     <>
-    <Header/>
-    <Body/>
+      <GlobalFonts />
+      <BrowserRouter>
+
+        <Route path="/" component={UserRouter} />
+      </BrowserRouter>
     </>
   )
 }
