@@ -14,6 +14,7 @@ import {
   ReportGame,
   ReportInfo,
   ReportWeb,
+  ReportWriting,
 } from "../Components/index";
 
 function UserRouter() {
@@ -26,6 +27,7 @@ function UserRouter() {
         <Route path="/UserProfile" component={UserProfile} exact />
         <Route path="/MyProfile" component={MyProfile} exact />
         <Route path="/ViewReport" component={ViewReport} exact />
+        <Route path="/report-writing" component={ReportWriting} exact />
         {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/ViewReport/ReportWeb" component={ReportWeb} exact />
         <Route path="/ViewReport/ReportApp" component={ReportApp} exact />
