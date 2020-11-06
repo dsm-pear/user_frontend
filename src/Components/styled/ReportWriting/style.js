@@ -20,17 +20,18 @@ const Main = styled.div`
 const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
-    width: 65%;
-    max-width: 65%;
-    height: 82%;
-    max-height: 82%;
+    width: 68%;
+    max-width: 68%;
+    height: 80%;
+    max-height: 80%;
     margin-top: 5rem;
+    padding: 1.5rem 2.5rem 0;
+    overflow-y: scroll;
 `;
 
 const InlineBox = styled.div`
     width: 100%;
     height: 100%;
-    padding: 1.5rem 2.5rem 0;
 `;
 
 const ReportLogo = styled.div`
@@ -98,7 +99,7 @@ const ReportHeader = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGB;
         font-size: 15px;
         text-align: left;
     }
@@ -115,7 +116,7 @@ const ReprotWriteBox = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGB;
         font-size: 13px;
         text-align: left;
     }
@@ -151,7 +152,7 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGB;
         font-size: 13px;
     }
 `;
@@ -179,7 +180,7 @@ const AttachFile = styled.div`
 const SubmitBox = styled.div`
     width:100%;
     display: flex;
-    margin-top: .8rem;
+    margin: .8rem 0 3rem;
 `;
     
 
