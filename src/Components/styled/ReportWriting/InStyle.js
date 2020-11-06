@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { MainBackground } from "../../../assets";
 
 const TeamLeftBox = styled.div`
     width: 75%;
@@ -17,13 +16,14 @@ const TeamRightBox = styled.div`
     margin-top: 5rem;
 
     button {
+        width: 6rem;
         border: 1px solid #6192f3;
         border-radius: 18px;
         outline: none;
         background: #6192f3;
         padding: .3rem 1rem;
         color: white;
-        font-family: BBTreeGR;
+        font-family: BBTreeGB;
         font-size: 13px;
     }
     button:hover {
@@ -32,7 +32,7 @@ const TeamRightBox = styled.div`
 `;
 
 const TeamName = styled.div`
-    width: 12rem;
+    width: 13rem;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
@@ -44,12 +44,12 @@ const TeamName = styled.div`
             border: 1px solid #F8F8F8;
             text-align: left;
             font-size: 13px;
-            font-family: BBTreeGR;
+            font-family: BBTreeGB;
     }
 `;
 
 const TeamMember = styled.div`
-    width: 12rem;
+    width: 13rem;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
@@ -61,7 +61,7 @@ const TeamMember = styled.div`
             border: 1px solid #F8F8F8;
             text-align: left;
             font-size: 13px;
-            font-family: BBTreeGR;
+            font-family: BBTreeGB;
             margin-right: 8px;
         }
         span > img {
@@ -73,13 +73,14 @@ const SaveBtn = styled.div`
     padding-left: 2rem;   
     margin-left: 1rem;
         button {
+            width: 5.5rem;
             border: 1px solid #6192f3;
             border-radius: 18px;
             outline: none;
             background: #6192f3;
             padding: .3rem 1rem;
             color: white;
-            font-family: BBTreeGR;
+            font-family: BBTreeGB;
             font-size: 13px;
         }
         button:hover {
@@ -91,13 +92,14 @@ const SubBtn = styled.div`
     padding-left: 2rem;   
     margin-left: 1rem;
         form > button {
+            width: 5.5rem;
             border: 1px solid #6192f3;
             border-radius: 18px;
             outline: none;
             background: #6192f3;
             padding: .3rem 1rem;
             color: white;
-            font-family: BBTreeGR;
+            font-family: BBTreeGB;
             font-size: 13px;
         }
         form > button:hover {
