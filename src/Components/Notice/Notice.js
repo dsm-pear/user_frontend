@@ -58,7 +58,7 @@ const Notice = () => {
                     <S.NoticeAdd>
                         더보기
                         <S.NoticeAddImg>
-                            <img  src={DownArrow}/>
+                            <img src={DownArrow}/>
                         </S.NoticeAddImg>
                     </S.NoticeAdd>
                     
