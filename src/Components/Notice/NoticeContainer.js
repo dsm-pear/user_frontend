@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from '../../style/NoticeStyled/NoticeStyle';
+import * as S from '../styled/NoticeStyled/NoticeStyle';
 
 const NoticeContainer = () => {
     return (

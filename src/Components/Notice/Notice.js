@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NoticeContainer from './NoticeContainer';
 import Header  from '../Main/Header';
-import * as S from '../../style/NoticeStyled/NoticeStyle';
+import * as S from '../styled/NoticeStyled/NoticeStyle';
 import DownArrow from '../../assets/ArrowImg/DownArrow.png';
 import UpArrow from '../../assets/ArrowImg/UpArrow.png';
 
@@ -21,13 +21,12 @@ const Notice = () => {
         }
     }
 
-    const onChange = (e) => {
-        if(e === 1){
-            setRange("최신순");
-        }
-        else if(e === 2){
-            setRange("오래된순");
-        }
+    const onNew = () => {
+        setRange("최신순");
+    }
+
+    const onOld = () => {
+        setRange("오래된순");
     }
 
     return(
@@ -43,8 +42,8 @@ const Notice = () => {
                         {
                             show ?
                             <S.NoticeRange>
-                                <S.NoticeC onClick={()=>onChange(1)}>최신순</S.NoticeC>
-                                <S.NoticeC onClick={()=>onChange(2)}>오래된순</S.NoticeC>
+                                <S.NoticeC onClick={()=>onNew()}>최신순</S.NoticeC>
+                                <S.NoticeC onClick={()=>onOld()}>오래된순</S.NoticeC>
                             </S.NoticeRange>
                             :null
                         }
@@ -69,5 +68,7 @@ const Notice = () => {
         </>
     )
 }
+
+search
 
 export default Notice;

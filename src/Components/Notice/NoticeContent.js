@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../Main/Header';
-import * as S from '../../style/NoticeStyled/NoticeContentStyle';
+import * as S from '../styled/NoticeStyled/NoticeContentStyle';
 import Leave from '../../assets/ArrowImg/Leave.png';
+import { link } from '../../assets/link.svg';
 
 const NoticeContent = () => {
 
@@ -14,7 +15,7 @@ const NoticeContent = () => {
                 <S.NoticeContant>
                     <S.NoticeHeader>
                         <S.NoLeave>
-                            <img src={Leave}/>
+                            <img src={Leave} alt="사진"/>
                         </S.NoLeave>
 
                         <S.NoTitle>
@@ -22,7 +23,7 @@ const NoticeContent = () => {
                         </S.NoTitle>
 
                         <S.NoDay>
-                            2020.10.6 에 작성 됨
+                            2020.11.5 에 작성 됨
                         </S.NoDay>
                     </S.NoticeHeader>
 
@@ -58,9 +59,10 @@ const NoticeContent = () => {
                     </S.NoticeContain>
 
                     <S.NoticeFile>
-                        <div>
-                            ㅁㄴㅇㄹㄴㅇㄹ
-                            </div>
+                        <img src={link} alt="사진"/>
+                        <S.FileTitle>
+                            <div>아무말 대잔치</div>
+                        </S.FileTitle>
                     </S.NoticeFile>
 
                 </S.NoticeContant>

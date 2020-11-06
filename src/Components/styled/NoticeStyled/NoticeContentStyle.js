@@ -55,8 +55,22 @@ export const NoticeContain = styled.div`
     font-size: 18px;
     line-height: 1.67;
     letter-spacing: 1.8px;
-    overflow: auto;
     padding-right: 20px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 10px; 
+        /* 스크롤바의 width */
+    }
+    &::-webkit-scrollbar-track {
+        background-color: #f0f0f0; 
+        /* 스크롤바의 전체 */
+    }
+    &::-webkit-scrollbar-thumb { 
+        background: linear-gradient(135deg,#81bcff,#56D4E2);
+        border-radius: 10px;
+        /* 스크롤바 색 */
+    }
 `;
 
 export const NoticeFile = styled.div`
@@ -69,7 +83,13 @@ export const NoticeFile = styled.div`
     font-size: 16px;
     line-height: 1.19;
     letter-spacing: 1.6px;
-    div{
-        padding-top: 13px;
+    display: flex;
+    img{
+        width: 20px;
+        padding-left: 15px
     }
+`;
+
+export const FileTitle = styled.div`
+padding-left: 15px;
 `;
