@@ -87,9 +87,9 @@ const SignUpButton = styled.div`
 const SignMain = styled.div`
   width: 600px;
   height: 60%;
-  
+
   border: 1px solid red;
-  .InputCover{
+  .InputCover {
     margin-top: 40px;
   }
   .h1Name {
@@ -100,6 +100,7 @@ const SignMain = styled.div`
       font-family: BBTreeGB;
       font-size: 40px;
     }
+  }
 `;
 
 const CoverInput = styled.div`

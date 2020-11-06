@@ -1,7 +1,7 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 const Header = (props) => {
-  const {name} = props;
+  const { name } = props;
   const [color, setColor] = useState("");
   const [font, setFont] = useState("");
   const handler = (e) => {
@@ -18,7 +18,7 @@ const Header = (props) => {
   return (
     <label setColor={color}>
       <div style={{ background: color, color: font }} setFont={font}>
-        { name }
+        {name}
       </div>
       <input onChange={handler} type="checkbox"></input>
     </label>
