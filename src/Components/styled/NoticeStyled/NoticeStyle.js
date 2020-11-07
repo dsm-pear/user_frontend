@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import main from '../../assets/MainBackground.png'
+import main from '../../../assets/MainBackground.png'
 
 
 export const Background = styled.div`
@@ -138,6 +138,7 @@ export const NoticeAdd = styled.div`
 export const NoticeAddImg = styled.div`
     width: 10px;
     margin: 0 auto;
+    cursor: pointer;
     img{
         width: 10px;
     }

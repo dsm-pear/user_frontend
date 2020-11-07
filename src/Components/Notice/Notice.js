@@ -38,7 +38,7 @@ const Notice = () => {
                 <S.NoticeSubBox>
 
                     <S.NoticeChoice onClick={onChoice}>
-                        <S.Noticearr>{range}<img src={img}/></S.Noticearr>
+                        <S.Noticearr>{range}<img src={img} alt="사진"/></S.Noticearr>
                         {
                             show ?
                             <S.NoticeRange>
@@ -58,7 +58,7 @@ const Notice = () => {
                     <S.NoticeAdd>
                         더보기
                         <S.NoticeAddImg>
-                            <img src={DownArrow}/>
+                            <img src={DownArrow} alt="사진"/>
                         </S.NoticeAddImg>
                     </S.NoticeAdd>
                     
@@ -68,7 +68,5 @@ const Notice = () => {
         </>
     )
 }
-
-search
 
 export default Notice;

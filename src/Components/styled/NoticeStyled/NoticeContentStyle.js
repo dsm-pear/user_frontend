@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from '../../assets/MainBackground.png';
+import background from '../../../assets/MainBackground.png';
 
 export const Background = styled.div`
     background-image: url(${background});
@@ -29,6 +29,7 @@ export const NoticeHeader = styled.div`
 export const NoLeave = styled.div`
     margin-left: 30px;
     img{
+        cursor: pointer;
         width: 21px;
     }
 `
@@ -84,12 +85,13 @@ export const NoticeFile = styled.div`
     line-height: 1.19;
     letter-spacing: 1.6px;
     display: flex;
-    img{
-        width: 20px;
-        padding-left: 15px
-    }
+`;
+export const FileLink = styled.div`
+    width: 20px;
+    padding-left: 15px;
 `;
 
 export const FileTitle = styled.div`
-padding-left: 15px;
+    padding-left: 15px;
+    cursor: pointer;
 `;
