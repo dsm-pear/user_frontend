@@ -185,14 +185,25 @@ const AttachFile = styled.div`
     justify-content: flex-start;
 
     span {
+        display: flex;
         width: 100%;
         border: none;
         outline: none;
         padding: .4rem .4rem;
         background: #F8F8F8;
+        
         img {
             width: 20px;
         }
+    }
+    span > input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: #F8F8F8;
+        margin-left: .5rem;
+        font-family: BBTreeGB;
+        font-size: 13px;
     }
 `;
 
