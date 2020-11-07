@@ -52,7 +52,9 @@ const ReportWriting = () => {
                         </S.LinkBox>
                         {/* 보고서 파일 첨부 */}
                         <S.AttachFile>
-                            <span><img src={link} /></span>
+                            <span>
+                                <img src={link} /><input type={Text} placeholder="팀이 작성한 개발 보고서의 파일을 올려주세요." readOnly/>
+                            </span>
                         </S.AttachFile>
                     </S.ReportMain>
                     {/* 팀 제작 ~ submit btn */}
