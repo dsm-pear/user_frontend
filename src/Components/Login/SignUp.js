@@ -25,9 +25,7 @@ function SignUp() {
       console.log("check");
       setButton("#5955d8");
       setBcolor("#ffffff");
-      
     }
-    
   };
   //비밀번호 재 확인
   const submit = (e) => {
@@ -38,7 +36,6 @@ function SignUp() {
         setInput("#ffeded");
         alert("비밀번호를 다시 확인해주세요");
       }
-      
     }
   };
   //이름이 입력 될때마다 찍기

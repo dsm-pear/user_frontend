@@ -71,11 +71,24 @@ const Logininput = styled.div`
   }
 
   & p {
-    margin: 15px; 
+    margin: 15px;
     font-family: "BBTreeGB";
     font-size: 15px;
     color: #5955d8;
     border-bottom: 1px solid #5955d8;
+  }
+`;
+const SignUpButton = styled.div`
+  margin: 30px 10px;
+  width: 500px;
+  border-radius: 20px;
+  background-color: #e1e1e1;
+  & {
+    padding: 15px 0;
+    text-align: center;
+    font-family: BBTreeGB;
+    font-size: 23px;
+    color: #777777;
   }
 `;
 
@@ -115,7 +128,6 @@ const CoverInput = styled.div`
     border: none;
     outline: none;
     border-radius: 20px;
-    
   }
 `;
 

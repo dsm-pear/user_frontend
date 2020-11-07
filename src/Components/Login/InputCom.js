@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import * as S from "../styled/Login/style";
 
-const Input = ({ placeholder, button, type }) => {
-  const [number, setNumber] = useState("");
+const Input = ({ placeholder, button, type, setData, Data }) => {
+  //버튼 색 변경
   const [bcolor, setBcolor] = useState("#e1e1e1");
   const handler = (e) => {
     if (e.target.value !== "") {
@@ -10,7 +10,8 @@ const Input = ({ placeholder, button, type }) => {
     } else {
       setBcolor("#e1e1e1");
     }
-    setNumber(e.target.value);
+    //회원가입 창에서 인풋 입력값 보내줌
+    setData(e.target.value);
   };
 
   const Chick = (e) => {
@@ -21,14 +22,13 @@ const Input = ({ placeholder, button, type }) => {
   };
   return (
     <S.CoverInput>
-      <input
-        type={type}
-        value={number}
-        onChange={handler}
-        placeholder={placeholder}
-      ></input>
+      <input type={type} onChange={handler} placeholder={placeholder}></input>
       {button ? (
-        <S.Button style={{ background: bcolor }} className="Number">
+        <S.Button
+          onClick={Chick}
+          style={{ background: bcolor }}
+          className="Number"
+        >
           {button}
         </S.Button>
       ) : null}
