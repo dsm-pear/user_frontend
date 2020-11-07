@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+const Main = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const LoginBody = styled.div`
   display: flex;
   justify-content: center;
@@ -41,7 +49,7 @@ const Logininput = styled.div`
     background-color: #e3f0ff;
     border: none;
     outline: none;
-    margin: 10px;
+    margin: 15px;
 
     &::placeholder {
       color: #5955d8;
@@ -71,4 +79,72 @@ const Logininput = styled.div`
   }
 `;
 
-export { LoginBody, Loginbg, Title, Logininput };
+const SignMain = styled.div`
+  width: 600px;
+  height: 60%;
+  .InputCover {
+    margin-top: 40px;
+  }
+  .h1Name {
+    margin: 10px;
+    width: 33%;
+    border-bottom: solid 3px #5955d8;
+    & h1 {
+      font-family: BBTreeGB;
+      font-size: 50px;
+    }
+  }
+`;
+
+const CoverInput = styled.div`
+  margin: 15px 10px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  height: 50px;
+  background-color: #e3f0ff;
+  & input {
+    cursor: pointer;
+    width: 350px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: BBTreeGL;
+    background-color: #e3f0ff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    
+  }
+`;
+
+const Button = styled.div`
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  margin: 0 10px;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 300;
+  font-family: BBTreeGl;
+  width: 110px;
+
+  border-radius: 13px;
+  background-color: #5955d8;
+  .Number {
+    background-color: #e1e1e1;
+  }
+`;
+
+export {
+  Main,
+  LoginBody,
+  Loginbg,
+  Title,
+  Logininput,
+  SignMain,
+  SignUpButton,
+  Button,
+  CoverInput,
+};

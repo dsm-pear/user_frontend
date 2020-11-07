@@ -12,6 +12,13 @@ const Input = ({ placeholder, button, type }) => {
     }
     setNumber(e.target.value);
   };
+
+  const Chick = (e) => {
+    if (Data.post !== "") {
+      alert("확인 되었습니다.");
+      console.log("강은빈 멍청이");
+    }
+  };
   return (
     <S.CoverInput>
       <input
