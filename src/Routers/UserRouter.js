@@ -14,6 +14,7 @@ import {
   ReportGame,
   ReportInfo,
   ReportWeb,
+  MainReport,
 } from "../Components/index";
 
 function UserRouter() {
@@ -22,7 +23,7 @@ function UserRouter() {
       <GlobalFonts />
       <Switch>
         <Route path="/Login" component={Login} exact />
-        <Route path="/Signup" component={SignUp} exact />
+        <Route path="/SignUp" component={SignUp} exact />
         <Route path="/UserProfile" component={UserProfile} exact />
         <Route path="/MyProfile" component={MyProfile} exact />
         <Route path="/ViewReport" component={ViewReport} exact />
@@ -37,6 +38,7 @@ function UserRouter() {
         <Route path="/ViewReport/ReportInfo" component={ReportInfo} exact />
         {/*융합 보고서 */}
         <Route path="/ViewReport/ReportFus" component={ReportFus} exact />
+        <Route path="/ViewReport/main-report" component={MainReport} exact />
       </Switch>
     </>
   );
