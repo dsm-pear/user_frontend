@@ -81,12 +81,12 @@ const PaddingBox = styled.div`
 `;
 
 const Select = styled.div`
-    width: 4.8rem;
+    width: 5.5rem;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
     font-family: BBTreeGL;
-    margin-left: 2rem;
+    margin-left: 1.5rem;
     div {
         width: 100%;
         display: flex;
