@@ -61,7 +61,7 @@ const TeamMember = styled.div`
             border: 1px solid #F8F8F8;
             text-align: left;
             font-size: 13px;
-            font-family: BBTreeGB;
+            font-family: BBTreeGR;
             margin-right: 8px;
         }
         span > img {
