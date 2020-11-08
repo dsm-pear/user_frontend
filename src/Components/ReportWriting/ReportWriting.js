@@ -16,19 +16,25 @@ const ReportWriting = () => {
                <S.InlineBox>
                     <S.ReportLogo> 
                         {/* <보고서 작성하기 img> 맥여주는 span */}
-                        <span><img src={RWlogo} /></span>
+                        <span><img src={RWlogo} alt="logo" /></span>
                     </S.ReportLogo>
                     <S.SelectBoxs>
                         {/* 사용 언어, 학년 등 선택박스 만드는 div */}
                         <S.PaddingBox>
-                            <S.Select>
-                                <div><span>사용 언어</span><img src={select} /></div>
+                        { /*<S.Select>
+                                <div><span>학년선택</span><img src={select} /></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>개발 분야</span><img src={select} /></div>
+                                <div><span>팀 선택</span><img src={select} /></div>
+                            </S.Select>*/ }
+                            <S.Select>
+                                <div><span>사용언어</span><img src={select} alt="select"/></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>공개범위</span><img src={select} /></div>
+                                <div><span>개발분야</span><img src={select} alt="select"/></div>
+                            </S.Select>
+                            <S.Select>
+                                <div><span>공개범위</span><img src={select} alt="select"/></div>
                             </S.Select>
                         </S.PaddingBox>
                     </S.SelectBoxs>
@@ -45,15 +51,15 @@ const ReportWriting = () => {
                         {/* 팀 깃헙 링크 */}
                         <S.LinkBox>
                             <span>
-                                <form name="githubLink" action="" method="post" autoComplete="on">
-                                    <img src={link} /><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
+                                <form name="githubLink" action="" method="post">
+                                    <img src={link} alt="link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
                                 </form>
                             </span>
                         </S.LinkBox>
                         {/* 보고서 파일 첨부 */}
                         <S.AttachFile>
                             <span>
-                                <img src={link} /><input type={Text} placeholder="팀이 작성한 개발 보고서의 파일을 올려주세요." readOnly/>
+                                <img src={link} alt="link"/><input type={Text} placeholder="팀이 작성한 개발 보고서의 파일을 올려주세요." readOnly/>
                             </span>
                         </S.AttachFile>
                     </S.ReportMain>
@@ -62,14 +68,14 @@ const ReportWriting = () => {
                         {/* 팀 제작 (left) */}
                         <S.MakeTeam>
                             {/* add teamName */}
-                            <form name="makeTeam" action="" method="post" autoComplete="on">
+                            <form name="makeTeam" action="" method="post">
                                 <I.TeamLeftBox>
                                     <I.TeamName>
                                         <span><input type={Text} placeholder="팀의 이름을 입력해주세요." /></span>
                                     </I.TeamName>
                                     {/* add member */}
                                     <I.TeamMember>
-                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} /></span>
+                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} alt="search" /></span>
                                     </I.TeamMember>
                                 </I.TeamLeftBox>
                                 <I.TeamRightBox>
@@ -83,7 +89,7 @@ const ReportWriting = () => {
                                 <button>임시저장</button>
                             </I.SaveBtn>
                             <I.SubBtn>
-                                <form name="reportSubmit" action="" method="post" autoComplete="on">
+                                <form name="reportSubmit" action="" method="post">
                                     <button type="submit">제출하기</button>
                                 </form>
                             </I.SubBtn>
