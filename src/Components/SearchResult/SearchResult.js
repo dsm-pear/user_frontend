@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import SearchResultContainer from './SearchResultContainer';
+import SearchProfileContainer from './SearchResultProfile';
 import Header from '../Main/Header';
 import DownArrow from '../../assets/ArrowImg/DownArrow.png'
 import UpArrow from '../../assets/ArrowImg/UpArrow.png'
@@ -52,6 +53,7 @@ const SearchResult = () => {
                     <S.ResultContant>
 
                         <SearchResultContainer/>
+                        <SearchProfileContainer/>
 
                     </S.ResultContant>
 

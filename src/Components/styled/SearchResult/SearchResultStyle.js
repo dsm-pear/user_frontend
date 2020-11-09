@@ -117,6 +117,7 @@ export const ContainerBDC = styled.div`
     line-height: 1.21;
     letter-spacing: 1.4px;
     font-size: 14px;
+    align-items: center;
 `;
 
 export const ContainerTitle = styled.div`
@@ -125,6 +126,7 @@ export const ContainerTitle = styled.div`
     line-height: 1.19;
     letter-spacing: 1.6px;
     padding-left: 40px;
+    align-items: center;
 `;
 
 export const ContainerDay = styled.div`
@@ -132,6 +134,7 @@ export const ContainerDay = styled.div`
     font-size: 16px;
     line-height: 1.19;
     letter-spacing: 1.6px;
+    align-items: center;
 `;
 
 export const ResultAdd = styled.div`
@@ -149,5 +152,14 @@ export const ResultAddImg = styled.div`
     cursor: pointer;
     img{
         width: 10px;
+    }
+`;
+
+export const ResultProfile = styled.div`
+    padding-left: 30px;
+    width: 80px;
+    img{
+        width: 30px;
+        padding-top: 3px;
     }
 `;
