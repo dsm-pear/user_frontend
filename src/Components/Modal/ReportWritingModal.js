@@ -1,5 +1,6 @@
 import React, {  } from 'react';
 import * as S from '../styled/Modal/RwModalStyle';
+import * as I from '../styled/Modal/RwModalInStyle';
 import { Close } from "../../assets";
 import { searchImg } from "../../assets";
 import { NowTeam } from "../../assets";
