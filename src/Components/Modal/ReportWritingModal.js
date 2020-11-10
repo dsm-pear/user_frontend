@@ -9,19 +9,23 @@ const ReportWritingModal = () => {
     return (
         <S.Main>
         {/* 전체 container */}
-            <div>
+            <S.ModalMain>
             {/* 모달 설정 및 가운데 정렬 */}
-                <div>
+                <S.ModalSort>
                 {/* 모달 padding, margin 설정 */}
-                    <div>
+                    <S.CloseBtn>
                     {/* 닫기 버튼 */}
                         <span><img src={Close} alt="Close"/></span>
-                    </div>
-                    <div>
+                    </S.CloseBtn>
+                    <S.SearchInput>
                     {/* 검색 input */}
-                        <span><input type={Text} /><img src={searchImg} alt="search" /></span>
-                    </div>
-                    <div>
+                        <I.BorderInput>
+                            <form name="input-name" action="" method="post">
+                                <span><input type={Text} /><img src={searchImg} alt="search" /></span>
+                            </form>
+                        </I.BorderInput>
+                    </S.SearchInput>
+                    <S.SearchResult>
                     {/* 검색 result창 */}
                         <div>
                             <div>
@@ -30,13 +34,13 @@ const ReportWritingModal = () => {
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div>
+                    </S.SearchResult>
+                    <S.TeamState>
                     {/* 현재 팀 상태 */}
                         <div><span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/></div>
-                    </div>
-                </div>
-            </div>
+                    </S.TeamState>
+                </S.ModalSort>
+            </S.ModalMain>
         </S.Main>
     );
 }
