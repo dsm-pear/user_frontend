@@ -1,16 +1,23 @@
 import styled from "styled-components";
-import { MainScrollBackground } from "../../../assets/index";
-import { MainBackground } from "../../../assets/index";
 
-const Main = styled.div`
-  height: 100vh;
-  background-image: url(${MainBackground});
-  background-size: 100vw 100vh;
-  background-repeat: no-repeat;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const MainBox = styled.div`
+  width: 80%;
+  height: 100%;
+  border: 1px solid red;
+  background-Color:white;
 `;
 
-export { Main };
+const Header = styled.div`
+  width: 100%;
+  height: 10%;
+  border: 1px solid red;
+
+`;
+
+const Name = styled.div`
+  width: 80%;
+  border: 1px solid red;
+`;
+
+
+export { MainBox, Header, Name };
