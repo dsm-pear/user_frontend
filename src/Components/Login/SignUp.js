@@ -33,7 +33,7 @@ function SignUp() {
   };
   //비밀번호 재 확인
   const submit = (e) => {
-    if (password.length <= 8 && password.length <= 13) {
+    if (password.length <= 8 && password.length >= 13) {
       alert("비밀번호를 8자 이상 13자 이하로 입력해주세요");
       if (password !== pwconfirm) {
         console.log("달라요");
