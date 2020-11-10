@@ -91,7 +91,6 @@ const SignUpButton = styled.div`
     color: #777777;
   }
 `;
-
 const SignMain = styled.div`
   width: 600px;
   height: 60%;
@@ -121,7 +120,7 @@ const CoverInput = styled.div`
   & input {
     cursor: pointer;
     width: 350px;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     font-family: BBTreeGL;
     background-color: #e3f0ff;
