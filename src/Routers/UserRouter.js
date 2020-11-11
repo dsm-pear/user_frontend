@@ -17,6 +17,7 @@ import {
   MainReport,
   ReportWriting,
   ReportWritingModal,
+
 } from "../Components/index";
 
 function UserRouter() {
@@ -29,6 +30,7 @@ function UserRouter() {
         <Route path="/user-profile" component={UserProfile} exact />
         <Route path="/my-profile" component={MyProfile} exact />
         <Route path="/view-report" component={ViewReport} exact />
+
         <Route path="/report-writing" component={ReportWriting} exact />
         <Route path="/report-writing-modal" component={ReportWritingModal} exact />
         {/* 보고서 파트별로  소프트웨어 개발과 */}
