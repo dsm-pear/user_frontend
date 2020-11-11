@@ -42,10 +42,6 @@ const BorderBox = styled.div`
         border-radius: 10px;
         /* 스크롤바 색 */
     }
-    &::-webkit-scrollbar-thumb:hover {
-        width: 20px;
-        
-    }
 `;
 
 const InlineBox = styled.div`
