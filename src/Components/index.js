@@ -13,4 +13,3 @@ export { default as ReportFus } from "./ViewReport/ViewReportGroup/ReportFus";
 export { default as MainReport } from './ViewReport/Report/MainReport';
 export { default as ReportWriting } from "./ReportWriting/ReportWriting";
 export { default as ReportWritingModal } from "./Modal/ReportWritingModal";
-
