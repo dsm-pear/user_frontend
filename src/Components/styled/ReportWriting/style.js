@@ -6,6 +6,8 @@ const Main = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100%;
+    min-width: 1045px;
     background-image: url(${MainBackground});
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
@@ -21,6 +23,7 @@ const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     width: 68%;
+    min-width: 1045px;
     max-width: 68%;
     height: 80%;
     max-height: 80%;
@@ -29,18 +32,22 @@ const BorderBox = styled.div`
     overflow-y: scroll;
 
     &::-webkit-scrollbar { 
-        width: 10px; 
+        width: 20px; 
         /* 스크롤바의 width */
     }
 
-    &::-webkit-scrollbar-track {
-        background-color: #f0f0f0; 
-        /* 스크롤바의 전체 */
-    }
     &::-webkit-scrollbar-thumb { 
         background: linear-gradient(135deg,#81bcff,#56D4E2);
         border-radius: 10px;
+        background-clip: padding-box;
+        border: 6.5px solid transparent;
         /* 스크롤바 색 */
+    }
+
+    &::-webkit-scrollbar-track {
+        margin: .4rem;
+        border-radius: 10px;
+        /* 스크롤바의 전체 */
     }
 `;
 
