@@ -84,12 +84,12 @@ const PaddingBox = styled.div`
 `;
 
 const Select = styled.div`
-    width: 4.8rem;
+    width: 5.5rem;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
     font-family: BBTreeGL;
-    margin-left: 2rem;
+    margin-left: 1.5rem;
     div {
         width: 100%;
         display: flex;
@@ -188,14 +188,25 @@ const AttachFile = styled.div`
     justify-content: flex-start;
 
     span {
+        display: flex;
         width: 100%;
         border: none;
         outline: none;
         padding: .4rem .4rem;
         background: #F8F8F8;
+        
         img {
             width: 20px;
         }
+    }
+    span > input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: #F8F8F8;
+        margin-left: .5rem;
+        font-family: BBTreeGB;
+        font-size: 13px;
     }
 `;
 
