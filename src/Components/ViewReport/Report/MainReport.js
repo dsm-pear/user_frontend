@@ -1,31 +1,28 @@
 import React from "react";
 import * as S from "../../styled/ViewReport/MainStyle";
-import { createGlobalStyle } from "styled-components";
-import { MainScrollBackground } from "../../../assets/index";
 import ReportHeader from "./ReportHeader";
+import ReportView from "./ReportView";
+import ReportComment from "./ReportComment";
 
 function MainReport() {
-  const Globlastyle = createGlobalStyle`
-  body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url(${MainScrollBackground});
-    //background-size: 100vw 100vh;
-    background-repeat: no-repeat;
-  }`;
-
   return (
-    <>
-      <Globlastyle />
+    <S.Main>
       <S.MainBox>
         <ReportHeader
-          team="개인"
+          team="동아리"
           grade="1학년"
+          subject="웹 개발 보고서"
           title="이 페이지는 보고서 보기 페이지 입니다."
         />
+        <ReportView
+          title="이 페이지는 보고서 보기 페이지 입니다."
+          text="안녕하세요 1학년 3반 강은빈 입니다. 저는 프론트엔드 개발자를 희망하고 있습니다. "
+          gitLink="https://github.com/silverbeen"
+          fileLink="파일 링크"
+        />
+        <ReportComment />
       </S.MainBox>
-    </>
+    </S.Main>
   );
 }
 
