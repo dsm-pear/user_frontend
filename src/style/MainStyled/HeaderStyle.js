@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 export const HeaderBox = styled.div`
@@ -5,7 +6,7 @@ export const HeaderBox = styled.div`
     display: fixed;
     margin-left: 150px;
     margin-right: 222px;
-    z-index: 10;s
+    z-index: 10;
 `;
 
 export const HeaderSubBox = styled.div`
@@ -57,7 +58,11 @@ export const SeachList = styled.div`
     margin-top: 20px;
     z-index: 5;
     width: 58px;
+<<<<<<< Updated upstream
+    height: 95px;
+=======
     height: 75px;
+>>>>>>> Stashed changes
     border-radius: 6px;
     background-color: #e4eef2;
     padding-top: 12px;

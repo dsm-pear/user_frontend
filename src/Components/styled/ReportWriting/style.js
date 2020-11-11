@@ -20,17 +20,37 @@ const Main = styled.div`
 const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
-    width: 65%;
-    max-width: 65%;
-    height: 82%;
-    max-height: 82%;
+    width: 68%;
+    max-width: 68%;
+    height: 80%;
+    max-height: 80%;
     margin-top: 5rem;
+    padding: 1.5rem 2.5rem 0;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 10px; 
+        /* 스크롤바의 width */
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #f0f0f0; 
+        /* 스크롤바의 전체 */
+    }
+    &::-webkit-scrollbar-thumb { 
+        background: linear-gradient(135deg,#81bcff,#56D4E2);
+        border-radius: 10px;
+        /* 스크롤바 색 */
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        width: 20px;
+        
+    }
 `;
 
 const InlineBox = styled.div`
     width: 100%;
     height: 100%;
-    padding: 1.5rem 2.5rem 0;
 `;
 
 const ReportLogo = styled.div`
@@ -61,12 +81,12 @@ const PaddingBox = styled.div`
 `;
 
 const Select = styled.div`
-    width: 4.8rem;
+    width: 5.5rem;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
-    font-family: BBTreeGB;
-    margin-left: 2rem;
+    font-family: BBTreeGL;
+    margin-left: 1.5rem;
     div {
         width: 100%;
         display: flex;
@@ -98,7 +118,7 @@ const ReportHeader = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGB;
         font-size: 15px;
         text-align: left;
     }
@@ -115,7 +135,7 @@ const ReprotWriteBox = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGL;
         font-size: 13px;
         text-align: left;
     }
@@ -151,7 +171,7 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGB;
         font-size: 13px;
     }
 `;
@@ -165,21 +185,32 @@ const AttachFile = styled.div`
     justify-content: flex-start;
 
     span {
+        display: flex;
         width: 100%;
         border: none;
         outline: none;
         padding: .4rem .4rem;
         background: #F8F8F8;
+        
         img {
             width: 20px;
         }
+    }
+    span > input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: #F8F8F8;
+        margin-left: .5rem;
+        font-family: BBTreeGB;
+        font-size: 13px;
     }
 `;
 
 const SubmitBox = styled.div`
     width:100%;
     display: flex;
-    margin-top: .8rem;
+    margin: .8rem 0 3rem;
 `;
     
 
