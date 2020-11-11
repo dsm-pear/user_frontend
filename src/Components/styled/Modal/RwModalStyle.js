@@ -50,14 +50,45 @@ const SearchInput = styled.div`
 `;
 
 const SearchResult = styled.div`
+    height: 72%;
+    max-height: 72%;
     margin: 1.5rem 1rem 0;
+    padding: .8rem 0;
     border: 1px solid #e4eef2;
     border-radius: 7px;
     background-color: #e4eef2;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 20px; 
+        /* 스크롤바의 width */
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: #5955d8;
+        border-radius: 10px;
+        background-clip: padding-box;
+        border: 7.5px solid transparent;
+        /* 스크롤바 색 */
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #e4eef2; 
+        margin: .4rem;
+        border-radius: 10px;
+        /* 스크롤바의 전체 */
+    }
 `;
 
 const TeamState = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 1rem;
+    padding: 0 .2rem;
 
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 
