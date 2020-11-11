@@ -27,17 +27,42 @@ const ReportWritingModal = () => {
                     </S.SearchInput>
                     <S.SearchResult>
                     {/* 검색 result창 */}
-                        <div>
+                        <I.BorderResult>
                             <div>
                                 <form name="team-member" action="" method="post">
-                                    <div><span>전규현(201215jgh@dsm.hs.kr)</span><imput type="checkbox" name="Teaminfo" value="member"/></div>
+                                    <div>
+                                        <span>전규현(201215jgh@dsm.hs.kr)</span><input type="checkbox" name="Teaminfo" value="member"/>
+                                    </div>
                                 </form>
                             </div>
-                        </div>
+                        </I.BorderResult>
+                        <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                     </S.SearchResult>
                     <S.TeamState>
                     {/* 현재 팀 상태 */}
-                        <div><span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/></div>
+                        <I.BorderState>
+                            <span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/>
+                        </I.BorderState>
                     </S.TeamState>
                 </S.ModalSort>
             </S.ModalMain>
