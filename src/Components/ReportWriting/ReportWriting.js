@@ -21,6 +21,12 @@ const ReportWriting = () => {
                     <S.SelectBoxs>
                         {/* 사용 언어, 학년 등 선택박스 만드는 div */}
                         <S.PaddingBox>
+                        { /*<S.Select>
+                                <div><span>학년선택</span><img src={select}  alt="grade-select" /></div>
+                            </S.Select>
+                            <S.Select>
+                                <div><span>팀 선택</span><img src={select} alt="team-select" /></div>
+                            </S.Select>*/ }
                             <S.Select>
                                 <div><span>사용 언어</span><img src={select} alt="language"/></div>
                             </S.Select>
@@ -46,7 +52,7 @@ const ReportWriting = () => {
                         <S.LinkBox>
                             <span>
                                 <form name="githubLink" action="" method="post" autoComplete="on">
-                                    <img src={link} alt=""/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
+                                    <img src={link} alt="gitgub-link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
                                 </form>
                             </span>
                         </S.LinkBox>
@@ -60,7 +66,7 @@ const ReportWriting = () => {
                         {/* 팀 제작 (left) */}
                         <S.MakeTeam>
                             {/* add teamName */}
-                            <form name="makeTeam" action="" method="post" autoComplete="on">
+                            <form name="makeTeam" action="" method="post">
                                 <I.TeamLeftBox>
                                     <I.TeamName>
                                         <span><input type={Text} placeholder="팀의 이름을 입력해주세요." /></span>
@@ -81,7 +87,7 @@ const ReportWriting = () => {
                                 <button>임시저장</button>
                             </I.SaveBtn>
                             <I.SubBtn>
-                                <form name="reportSubmit" action="" method="post" autoComplete="on">
+                                <form name="reportSubmit" action="" method="post">
                                     <button type="submit">제출하기</button>
                                 </form>
                             </I.SubBtn>

@@ -35,28 +35,7 @@ const ReportWritingModal = () => {
                                     </div>
                                 </form>
                             </div>
-                        </I.BorderResult>
-                        <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
+                        </I.BorderResult>                   
                     </S.SearchResult>
                     <S.TeamState>
                     {/* 현재 팀 상태 */}
