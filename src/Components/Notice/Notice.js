@@ -11,7 +11,7 @@ const Notice = () => {
     const [ img, setImg ] = useState(DownArrow);
 
     const onChoice = () => {
-        if(show===true){
+        if(show){
             setShow(false);
             setImg(DownArrow);
         }
@@ -42,8 +42,8 @@ const Notice = () => {
                         {
                             show ?
                             <S.NoticeRange>
-                                <S.NoticeC onClick={()=>onNew()}>최신순</S.NoticeC>
-                                <S.NoticeC onClick={()=>onOld()}>오래된순</S.NoticeC>
+                                <S.NoticeC onClick={onNew}>최신순</S.NoticeC>
+                                <S.NoticeC onClick={onOld}>오래된순</S.NoticeC>
                             </S.NoticeRange>
                             :null
                         }
