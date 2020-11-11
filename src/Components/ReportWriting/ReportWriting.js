@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  } from 'react';
 import * as S from '../styled/ReportWriting/style';
 // In의 약자 I
 import * as I from '../styled/ReportWriting/InStyle'; 
@@ -16,19 +16,19 @@ const ReportWriting = () => {
                <S.InlineBox>
                     <S.ReportLogo> 
                         {/* <보고서 작성하기 img> 맥여주는 span */}
-                        <span><img src={RWlogo} /></span>
+                        <span><img src={RWlogo} alt="Rwlogo"/></span>
                     </S.ReportLogo>
                     <S.SelectBoxs>
                         {/* 사용 언어, 학년 등 선택박스 만드는 div */}
                         <S.PaddingBox>
                             <S.Select>
-                                <div><span>사용 언어</span><img src={select} /></div>
+                                <div><span>사용 언어</span><img src={select} alt="language"/></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>개발 분야</span><img src={select} /></div>
+                                <div><span>개발 분야</span><img src={select} alt="major"/></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>공개범위</span><img src={select} /></div>
+                                <div><span>공개범위</span><img src={select} alt="scope"/></div>
                             </S.Select>
                         </S.PaddingBox>
                     </S.SelectBoxs>
@@ -46,13 +46,13 @@ const ReportWriting = () => {
                         <S.LinkBox>
                             <span>
                                 <form name="githubLink" action="" method="post" autoComplete="on">
-                                    <img src={link} /><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
+                                    <img src={link} alt=""/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
                                 </form>
                             </span>
                         </S.LinkBox>
                         {/* 보고서 파일 첨부 */}
                         <S.AttachFile>
-                            <span><img src={link} /></span>
+                            <span><img src={link} alt="attachfile"/></span>
                         </S.AttachFile>
                     </S.ReportMain>
                     {/* 팀 제작 ~ submit btn */}
@@ -67,7 +67,7 @@ const ReportWriting = () => {
                                     </I.TeamName>
                                     {/* add member */}
                                     <I.TeamMember>
-                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} /></span>
+                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} alt="inputmember"/></span>
                                     </I.TeamMember>
                                 </I.TeamLeftBox>
                                 <I.TeamRightBox>
