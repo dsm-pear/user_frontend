@@ -27,7 +27,7 @@ const ReportWritingModal = () => {
                                 <form name="team-member" action="" method="post">
                                     <div><span>전규현(201215jgh@dsm.hs.kr)</span><imput type="checkbox" name="Teaminfo" value="member"/></div>
                                 </form>
-                            </div>
+                           </div>
                         </div>
                     </div>
                     <div>
