@@ -18,7 +18,9 @@ import {
   Notice,
   NoticeContent,
   SearchResult,
-} from "../components/index";
+  ReportWritingModal,
+
+} from "../Components/index";
 
 function UserRouter() {
   return (
@@ -34,6 +36,7 @@ function UserRouter() {
         <Route path="/notice" component={Notice} exact/>
         <Route path="/notice-content" component={NoticeContent} exact/>
         <Route path="/search-result" component={SearchResult} exact/>
+        <Route path="/report-writing-modal" component={ReportWritingModal} exact />
         {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/ViewReport/ReportWeb" component={ReportWeb} exact />
         <Route path="/ViewReport/ReportApp" component={ReportApp} exact />
