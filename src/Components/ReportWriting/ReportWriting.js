@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  } from 'react';
 import * as S from '../styled/ReportWriting/style';
 // In의 약자 I
 import * as I from '../styled/ReportWriting/InStyle'; 
@@ -16,25 +16,25 @@ const ReportWriting = () => {
                <S.InlineBox>
                     <S.ReportLogo> 
                         {/* <보고서 작성하기 img> 맥여주는 span */}
-                        <span><img src={RWlogo} alt="logo" /></span>
+                        <span><img src={RWlogo} alt="Rwlogo"/></span>
                     </S.ReportLogo>
                     <S.SelectBoxs>
                         {/* 사용 언어, 학년 등 선택박스 만드는 div */}
                         <S.PaddingBox>
                         { /*<S.Select>
-                                <div><span>학년선택</span><img src={select} /></div>
+                                <div><span>학년선택</span><img src={select}  alt="grade-select" /></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>팀 선택</span><img src={select} /></div>
+                                <div><span>팀 선택</span><img src={select} alt="team-select" /></div>
                             </S.Select>*/ }
                             <S.Select>
-                                <div><span>사용언어</span><img src={select} alt="select"/></div>
+                                <div><span>사용 언어</span><img src={select} alt="language"/></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>개발분야</span><img src={select} alt="select"/></div>
+                                <div><span>개발 분야</span><img src={select} alt="major"/></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>공개범위</span><img src={select} alt="select"/></div>
+                                <div><span>공개범위</span><img src={select} alt="scope"/></div>
                             </S.Select>
                         </S.PaddingBox>
                     </S.SelectBoxs>
@@ -51,16 +51,14 @@ const ReportWriting = () => {
                         {/* 팀 깃헙 링크 */}
                         <S.LinkBox>
                             <span>
-                                <form name="githubLink" action="" method="post">
-                                    <img src={link} alt="link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
+                                <form name="githubLink" action="" method="post" autoComplete="on">
+                                    <img src={link} alt="gitgub-link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
                                 </form>
                             </span>
                         </S.LinkBox>
                         {/* 보고서 파일 첨부 */}
                         <S.AttachFile>
-                            <span>
-                                <img src={link} alt="link"/><input type={Text} placeholder="팀이 작성한 개발 보고서의 파일을 올려주세요." readOnly/>
-                            </span>
+                            <span><img src={link} alt="attachfile"/></span>
                         </S.AttachFile>
                     </S.ReportMain>
                     {/* 팀 제작 ~ submit btn */}
@@ -75,7 +73,7 @@ const ReportWriting = () => {
                                     </I.TeamName>
                                     {/* add member */}
                                     <I.TeamMember>
-                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} alt="search" /></span>
+                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} alt="inputmember"/></span>
                                     </I.TeamMember>
                                 </I.TeamLeftBox>
                                 <I.TeamRightBox>

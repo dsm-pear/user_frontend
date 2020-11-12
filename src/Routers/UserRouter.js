@@ -19,7 +19,6 @@ import {
   NoticeContent,
   SearchResult,
   ReportWritingModal,
-
 } from "../Components/index";
 
 function UserRouter() {

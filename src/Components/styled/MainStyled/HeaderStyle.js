@@ -5,7 +5,7 @@ export const HeaderBox = styled.div`
     display: fixed;
     margin-left: 150px;
     margin-right: 222px;
-    z-index: 10;s
+    z-index: 10;
 `;
 
 export const HeaderSubBox = styled.div`
