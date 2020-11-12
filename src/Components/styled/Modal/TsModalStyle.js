@@ -42,9 +42,14 @@ const CloseBtn = styled.div`
     }
 `;
 
+const ClickMember = styled.div`
+    
+`;
+
 export {
     Main,
     ModalMain,
     ModalSort,
-    CloseBtn
+    CloseBtn,
+    ClickMember
 }
