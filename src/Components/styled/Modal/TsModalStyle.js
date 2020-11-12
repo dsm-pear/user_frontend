@@ -42,9 +42,19 @@ const CloseBtn = styled.div`
     }
 `;
 
+const ClickMember = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 4rem 1rem 0;
+    height: 72%;
+    max-height: 72%;
+    padding: 1rem 0;
+`;
+
 export {
     Main,
     ModalMain,
     ModalSort,
-    CloseBtn
+    CloseBtn,
+    ClickMember
 }

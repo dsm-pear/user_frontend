@@ -14,3 +14,4 @@ export { default as ReportWriting } from "./ReportWriting/ReportWriting";
 export { default as Notice } from "./Notice/Notice";
 export { default as NoticeContent } from "./Notice/NoticeContent";
 export { default as ReportWritingModal } from "./Modal/ReportWritingModal";
+export { default as TeamStateModal } from "./Modal/TeamStateModal";

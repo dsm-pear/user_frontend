@@ -1,6 +1,6 @@
 import React, {  } from 'react';
 import * as S from '../styled/Modal/TsModalStyle';
-//import * as I from '../styled/Modal/TsModalInStyle';
+import * as I from '../styled/Modal/TsModalInStyle';
 import { Close } from "../../assets";
 
 const TeamStateModal = () => {
@@ -15,6 +15,15 @@ const TeamStateModal = () => {
                     {/* 닫기 버튼 */}
                         <span><img src={Close} alt="Close"/></span>
                     </S.CloseBtn>
+                    <S.ClickMember>
+                    {/* 멤버 선택 틀 */}
+                        <I.MemberBox>
+                        {/* 멤버 선택 박스 */}
+                            <div>
+                                <span>전규현(201215jgh@dsm.hs.kr)</span><input type="checkbox" name="Teaminfo" value="member"/>
+                            </div>
+                        </I.MemberBox>
+                    </S.ClickMember>
                 </S.ModalSort>
             </S.ModalMain>
         </S.Main>
