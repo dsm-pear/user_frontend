@@ -18,6 +18,7 @@ import {
   Notice,
   NoticeContent,
   SearchResult,
+  Main
 } from "../components/index";
 
 function UserRouter() {
@@ -25,15 +26,19 @@ function UserRouter() {
     <>
       <GlobalFonts />
       <Switch>
+        <Route path="/" component={Main} exact/>
         <Route path="/Login" component={Login} exact />
         <Route path="/Signup" component={SignUp} exact />
         <Route path="/UserProfile" component={UserProfile} exact />
         <Route path="/MyProfile" component={MyProfile} exact />
         <Route path="/ViewReport" component={ViewReport} exact />
         <Route path="/report-writing" component={ReportWriting} exact />
-        <Route path="/Notice" component={Notice} exact/>
-        <Route path="/Notice/NoticeContent" component={NoticeContent} exact/>
-        <Route path="/SearchResult" component={SearchResult} exact/>
+        <Route path="/notice" component={Notice} exact/>
+        <Route path="/notice-content" component={NoticeContent} exact/>
+        {/*검색 조건에 따라 제목, 언어, 프로필*/}
+        <Route path="/search-result/title" component={SearchResult} exact/>
+        <Route path="/search-result/language" component={SearchResult} exact/>
+        <Route path="/search-result/profile" component={SearchResult} exact/>
         {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/ViewReport/ReportWeb" component={ReportWeb} exact />
         <Route path="/ViewReport/ReportApp" component={ReportApp} exact />
