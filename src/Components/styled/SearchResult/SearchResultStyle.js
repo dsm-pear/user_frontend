@@ -109,6 +109,7 @@ export const Container = styled.div`
 
 export const ContainerContant = styled.div`
     display: flex;
+    align-items: center;
 `;
 
 export const ContainerBDC = styled.div`
@@ -118,6 +119,7 @@ export const ContainerBDC = styled.div`
     letter-spacing: 1.4px;
     font-size: 14px;
     align-items: center;
+    text-align: center;
 `;
 
 export const ContainerTitle = styled.div`
@@ -161,5 +163,35 @@ export const ResultProfile = styled.div`
     img{
         width: 30px;
         padding-top: 3px;
+    }
+`;
+
+export const ResultName = styled.div`
+    color: #000000;
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 1.6px;
+`;
+
+export const ResultEmail = styled.div`
+    color: #000000;
+    margin-left: 50px;
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 1.6px;
+`;
+
+export const ResultGithub = styled.div`
+    float: right;
+    margin-right: 50px;
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 1.6px;
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
+    a:hover{
+        color: #6192f3;
     }
 `;
