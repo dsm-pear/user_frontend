@@ -3,22 +3,73 @@ import { StudentProfile } from '../../assets';
 import React from 'react';
 
 const SearchResultProfile = () => {
+    const data = [
+        {
+            "id": 1,
+            "name": "한준호",
+            "email": "oajh04@naver.com",
+            "link": "https://www.youtube.com/"
+        },
+        {
+            "id": 2,
+            "name": "한준호",
+            "email": "oajh04@naver.com",
+            "link": "https://www.youtube.com/"
+        },
+        {
+            "id": 3,
+            "name": "한준호",
+            "email": "oajh04@naver.com",
+            "link": "https://www.youtube.com/"
+        },
+        {
+            "id": 4,
+            "name": "한준호",
+            "email": "oajh04@naver.com",
+            "link": "https://www.youtube.com/"
+        },
+        {
+            "id": 5,
+            "name": "한준호",
+            "email": "oajh04@naver.com",
+            "link": "https://www.youtube.com/"
+        },
+        {
+            "id": 6,
+            "name": "한준호",
+            "email": "oajh04@naver.com",
+            "link": "https://www.youtube.com/"
+        },
+    ]
+
     return (
-        <S.Container>
-                <S.ContainerContant>
-                    <S.ResultProfile>
-                        <img src={StudentProfile} alt="사진"/>
-                    </S.ResultProfile>
+        <>
+            {
+                data.map((data)=> {
+                    return(
+                        <S.Container key={data.id} style={{color: "#6192f3"}}>
+                            <S.ContainerContant >
+                                <S.ResultProfile>
+                                    <img src={StudentProfile} alt="사진"/>
+                                </S.ResultProfile>
 
-                    <S.ContainerTitle>
-                        제목
-                    </S.ContainerTitle>
+                                <S.ResultName>
+                                    {data.name}
+                                </S.ResultName>
 
-                    <S.ContainerDay>
-                        2020.11.03
-                    </S.ContainerDay>
-                </S.ContainerContant>
-            </S.Container>
+                                <S.ResultEmail>
+                                    {data.email}
+                                </S.ResultEmail>
+
+                                <S.ResultGithub>
+                                    <a href={data.link}>깃허브 링크</a>
+                                </S.ResultGithub>
+                            </S.ContainerContant>
+                        </S.Container>
+                    )
+                })
+            }
+        </>
     )
 }
 
