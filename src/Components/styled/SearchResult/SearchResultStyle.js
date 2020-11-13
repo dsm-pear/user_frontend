@@ -75,16 +75,18 @@ export const ResultC = styled.div`
 export const ResultContant = styled.div`
     width: 984px;
     height: 530px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     &::-webkit-scrollbar { 
         width: 10px; 
         /* 스크롤바의 width */
     }
+
     &::-webkit-scrollbar-track {
         background-color: #f0f0f0; 
         /* 스크롤바의 전체 */
     }
+
     &::-webkit-scrollbar-thumb { 
         background: linear-gradient(135deg,#81bcff,#56D4E2);
         border-radius: 10px;
