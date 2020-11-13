@@ -34,10 +34,9 @@ const ReportWritingModal = () => {
                                         <span>전규현(201215jgh@dsm.hs.kr)</span><input type="checkbox" name="Teaminfo" value="member"/>
                                     </div>
                                 </form>
-                            </div>
-                        </I.BorderResult>                   
-                    </S.SearchResult>
-                    <S.TeamState>
+                           </div>
+                        </div>
+                    </div>
                     {/* 현재 팀 상태 */}
                         <I.BorderState>
                             <span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/>

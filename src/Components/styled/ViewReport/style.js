@@ -24,7 +24,7 @@ const Cover = styled.div`
   }
 `;
 
-const Box = styled.div`
+const Box = styled.div` 
   display: flex;
   align-items: center;
   justify-content: center;
