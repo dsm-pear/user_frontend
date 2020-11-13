@@ -14,3 +14,5 @@ export { default as MainScrollBackground_3 } from "./MainScrollBackground-3.svg"
 export { default as MainScrollBackground_4 } from "./MainScrollBackground-4.svg";
 export { default as MainSmallLogo } from "./MainSmallLogo.svg";
 export { default as Emphasis } from './Emphasis.svg';
+export { default as Comment } from './Comment.svg';
+export { default as Link } from './link.svg';
