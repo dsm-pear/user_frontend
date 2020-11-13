@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-//import background from '../../img/'
+import main from '../../../assets/MainBackground.png';
 
-export const Main = styled.div`
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    //background-image: 
+export const MainBox = styled.div`
+    background-image: url(${main});
     background-size: 100vw 100vh;
+    height: 100vh;
+    width: 100vw;
     background-repeat: no-repeat;
+    min-width: 1520px;
 `;
