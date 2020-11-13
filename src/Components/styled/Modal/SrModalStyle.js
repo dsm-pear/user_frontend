@@ -55,7 +55,7 @@ const ModalMainText = styled.div`
     font-family: BBTreeGL;
 
     p {
-        margin-top: .2rem;
+        margin-top: .4rem;
     }
 `;
 
@@ -65,7 +65,10 @@ const SubmitBtn = styled.div`
     align-items: center;
     margin-top: 2.5rem;
 
-    button {
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 147px;
         height: 32px;
         background: #5955D8;
@@ -81,7 +84,7 @@ const SubmitBtn = styled.div`
             cursor: pointer;
             background: #6D6ADA;
             transition: .2s;
-        }
+        } 
     }
     
 `;
