@@ -36,9 +36,7 @@ function UserRouter() {
         <Route path="/notice" component={Notice} exact/>
         <Route path="/notice-content" component={NoticeContent} exact/>
         {/*검색 조건에 따라 제목, 언어, 프로필*/}
-        <Route path="/search-result/title" component={SearchResult} exact/>
-        <Route path="/search-result/language" component={SearchResult} exact/>
-        <Route path="/search-result/profile" component={SearchResult} exact/>
+        <Route path="/search-result/:data" component={SearchResult} exact/>
         {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/ViewReport/ReportWeb" component={ReportWeb} exact />
         <Route path="/ViewReport/ReportApp" component={ReportApp} exact />
