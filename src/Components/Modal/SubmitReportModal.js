@@ -23,7 +23,7 @@ const ReportWritingModal = () => {
                         </p><span>잘못 작성할 경우 보고서가 제출되지 않을 수 있습니다. 확인하고 제출 바랍니다.</span>
                     </S.ModalMainText>
                     <S.SubmitBtn>
-                        <button type="button" name="submit" value="submit">제출</button>
+                        <span>제출</span>
                     </S.SubmitBtn>
                 </S.ModalSort>
             </S.ModalMain>
