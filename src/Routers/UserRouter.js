@@ -20,6 +20,7 @@ import {
   ReportWritingModal,
   TeamStateModal,
   SubmitReportModal,
+  SubmitSuccess,
 } from "../Components/index";
 
 function UserRouter() {
@@ -38,6 +39,7 @@ function UserRouter() {
         <Route path="/report-writing-modal" component={ReportWritingModal} exact />
         <Route path="/team-state-modal" component={TeamStateModal} exact />
         <Route path="/submit-report-modal" component={SubmitReportModal} exact />
+        <Route path="/submit-succes-modal" component={SubmitSuccess} exact />
         {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/ViewReport/ReportWeb" component={ReportWeb} exact />
         <Route path="/ViewReport/ReportApp" component={ReportApp} exact />
