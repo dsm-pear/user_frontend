@@ -22,8 +22,8 @@ const BorderBox = styled.div`
     border: 1px solid #4d4d4d;
     width: 68%;
     max-width: 68%;
-    height: 80%;
-    max-height: 80%;
+    height: 78%;
+    max-height: 78%;
     margin-top: 5rem;
     padding: 1.5rem 2.5rem 0;
     overflow-y: scroll;
