@@ -37,10 +37,12 @@ const ReportWritingModal = () => {
                            </div>
                         </I.BorderResult>
                     </S.SearchResult>
+                    <S.TeamState>
                     {/* 현재 팀 상태 */}
-                    <I.BorderState>
-                        <span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/>
-                    </I.BorderState>
+                        <I.BorderState>
+                            <span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/>
+                        </I.BorderState>
+                    </S.TeamState>
                 </S.ModalSort>
             </S.ModalMain>
         </S.Main>
