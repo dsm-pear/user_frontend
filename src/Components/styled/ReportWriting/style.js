@@ -174,8 +174,9 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGB;
+        font-family: BBTreeGL;
         font-size: 13px;
+        font-weight: bold;
     }
 `;
 
@@ -198,15 +199,6 @@ const AttachFile = styled.div`
         img {
             width: 20px;
         }
-    }
-    span > input {
-        width: 100%;
-        border: none;
-        outline: none;
-        background: #F8F8F8;
-        margin-left: .5rem;
-        font-family: BBTreeGB;
-        font-size: 13px;
     }
 `;
 
