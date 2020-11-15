@@ -44,7 +44,8 @@ const TeamName = styled.div`
             border: 1px solid #F8F8F8;
             text-align: left;
             font-size: 13px;
-            font-family: BBTreeGB;
+            font-family: BBTreeGR;
+            font-weight: bold;
     }
 `;
 
@@ -61,7 +62,8 @@ const TeamMember = styled.div`
             border: 1px solid #F8F8F8;
             text-align: left;
             font-size: 13px;
-            font-family: BBTreeGR;
+            font-family: BBTreeGL;
+            font-weight: bold;
             margin-right: 8px;
         }
         span > img {
