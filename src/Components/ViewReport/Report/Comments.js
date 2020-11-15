@@ -2,13 +2,14 @@ import React from "react";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const Comments = ({ name, email, comment }) => {
+
   return (
     <S.CommentBox>
       <S.Info>
         <div></div>
-        <span className="Name">{name}</span>
-        <span className="Email">{email}</span>
-        <span className="Comment">{comment}</span>
+        <a href="/user-profile" className="Name">{name}</a>
+        <a href="/user-profile"  className="Email">{email}</a>
+        <a href="/user-profile"  className="Comment">{comment}</a>
       </S.Info>
       <S.Date></S.Date>
     </S.CommentBox>
