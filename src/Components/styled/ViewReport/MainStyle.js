@@ -34,14 +34,19 @@ const Header = styled.div`
 
 /* 헤더 제목 */
 export const Name = styled.div`
- cursor: pointer;
+  cursor: pointer;
   margin: 0 20px;
   width: 80%;
   font-family: BBTreeGl;
   font-size: 20px;
   font-weight: 500;
-  span {
+  span,a {
     margin: 0 10px;
+    text-decoration: none;
+    color: black;
+  }
+  a:hover{
+    color:#56d4e2;
   }
   /* team 별로 색 다르게 */
   span:nth-child(1) {
@@ -70,6 +75,7 @@ const title = styled.div`
 const MainText = styled(title)`
   height: 200px;
   max-height: 200px;
+  line-height: 25px;
 `;
 
 const Linkimg = styled(title)`
@@ -87,9 +93,9 @@ const Linkimg = styled(title)`
   p {
     padding: 10px;
   }
-  a{
+  a {
     color: #5955d8;
-    text-decoration:none;
+    text-decoration: none;
   }
 `;
 
@@ -182,6 +188,7 @@ const Info = styled.div`
     text-decoration: none;
     margin: 3px 10px;
     font-family: BBTreeGl;
+    line-height: 25px;
   }
 
   .Name {
