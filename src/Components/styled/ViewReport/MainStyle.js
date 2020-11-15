@@ -31,8 +31,10 @@ const Header = styled.div`
   height: 8%;
   border-bottom: solid 1px #e4eef2;
 `;
+
 /* 헤더 제목 */
 export const Name = styled.div`
+ cursor: pointer;
   margin: 0 20px;
   width: 80%;
   font-family: BBTreeGl;
@@ -54,14 +56,14 @@ const Contents = styled.div`
 `;
 
 const title = styled.div`
+  cursor: pointer;
   width: 100%;
   height: 50px;
   background-color: #fafafa;
   margin: 15px 0;
   box-shadow: 1px 1px rgba(0, 0, 0, 0.16);
-  p,
-  a {
-    padding: 10px 10px 10px 20px;
+  p {
+    padding: 15px 10px 10px 20px;
   }
 `;
 
@@ -70,14 +72,24 @@ const MainText = styled(title)`
   max-height: 200px;
 `;
 
-const LinkFile = styled(title)    `
+const Linkimg = styled(title)`
   display: flex;
   flex-direction: row;
+  align-items: center;
   .img {
-    width: 30px;
-    height: 30px;
+    margin: 10px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url(${Link});
-    background-size: 30px;
+  }
+  a,
+  p {
+    padding: 10px;
+  }
+  a{
+    color: #5955d8;
+    text-decoration:none;
   }
 `;
 
@@ -164,10 +176,14 @@ const Info = styled.div`
     outline: none;
   }
 
-  span {
+  span,
+  a {
+    color: black;
+    text-decoration: none;
     margin: 3px 10px;
     font-family: BBTreeGl;
   }
+
   .Name {
     text-align: center;
     font-weight: bold;
@@ -186,6 +202,44 @@ const CommentBox = styled.div``;
 
 const Date = styled.div``;
 
+const CoverLang = styled.div`
+  cursor: pointer;
+  width: 90%;
+  height: 10%;
+  border: solid 1px #e4eef2;
+  margin-bottom: 50px;
+
+  > h2 {
+    margin: 10px;
+    font-size: 20px;
+    font-family: BBTreeGl;
+  }
+`;
+
+const TableCover = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: auto;
+  margin: 30px;
+`;
+const Language = styled.div`
+  cursor: pointer;
+  > span {
+    margin: 8px;
+    width: 5%;
+    padding: 5px;
+    border: solid 1px #e4eef2;
+    border-radius: 10px;
+  }
+  > span:hover {
+    background-color: #e4effe;
+    font-family: BBTreeGl;
+    font-weight: 500;
+    padding: 10px;
+  }
+`;
+
 export {
   Main,
   MainBox,
@@ -193,7 +247,7 @@ export {
   Contents,
   title,
   MainText,
-  LinkFile,
+  Linkimg,
   CommentMain,
   Search,
   MainCom,
@@ -201,4 +255,7 @@ export {
   Info,
   Date,
   Add,
+  TableCover,
+  CoverLang,
+  Language,
 };
