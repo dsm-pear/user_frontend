@@ -34,7 +34,7 @@ const ReportWriting = () => {
                                 <div><span>개발 분야</span><img src={select} alt="major"/></div>
                             </S.Select>
                             <S.Select>
-                                <div><span>공개범위</span><img src={select} alt="scope"/></div>
+                                <div><span>공개 범위</span><img src={select} alt="scope"/></div>
                             </S.Select>
                         </S.PaddingBox>
                     </S.SelectBoxs>
