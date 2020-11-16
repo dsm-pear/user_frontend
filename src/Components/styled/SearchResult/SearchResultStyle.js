@@ -120,6 +120,7 @@ export const ContainerBDC = styled.div`
     line-height: 1.21;
     letter-spacing: 1.4px;
     font-size: 14px;
+    color: ${(props) => props.fontcolor};
     align-items: center;
     text-align: center;
 `;
@@ -181,10 +182,10 @@ export const ResultEmail = styled.div`
     font-size: 16px;
     line-height: 1.19;
     letter-spacing: 1.6px;
+    width: 600px;
 `;
 
 export const ResultGithub = styled.div`
-    float: right;
     margin-right: 50px;
     font-size: 16px;
     line-height: 1.19;
