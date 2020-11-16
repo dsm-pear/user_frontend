@@ -1,6 +1,6 @@
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import { StudentProfile } from '../../assets';
-import React from 'react';
+import React, {useCallback} from 'react';
 
 const SearchResultProfile = () => {
     const data = [
@@ -42,32 +42,38 @@ const SearchResultProfile = () => {
         },
     ]
 
+    const SearchPropfile = useCallback(
+        (dataList) => {
+            return dataList.map((data)=>{
+                return(
+                    <S.Container key={data.id} style={{color: "#6192f3"}} >
+                        <S.ContainerContant >
+                            <S.ResultProfile>
+                                <img src={StudentProfile} alt="사진"/>
+                            </S.ResultProfile>
+
+                            <S.ResultName>
+                                {data.name}
+                            </S.ResultName>
+
+                            <S.ResultEmail>
+                                {data.email}
+                            </S.ResultEmail>
+
+                            <S.ResultGithub>
+                                <a href={data.link}>깃허브 링크</a>
+                            </S.ResultGithub>
+                        </S.ContainerContant>
+                    </S.Container>
+                )
+            })
+        }
+    ,[]);
+
     return (
         <>
             {
-                data.map((data)=> {
-                    return(
-                        <S.Container key={data.id} style={{color: "#6192f3"}}>
-                            <S.ContainerContant >
-                                <S.ResultProfile>
-                                    <img src={StudentProfile} alt="사진"/>
-                                </S.ResultProfile>
-
-                                <S.ResultName>
-                                    {data.name}
-                                </S.ResultName>
-
-                                <S.ResultEmail>
-                                    {data.email}
-                                </S.ResultEmail>
-
-                                <S.ResultGithub>
-                                    <a href={data.link}>깃허브 링크</a>
-                                </S.ResultGithub>
-                            </S.ContainerContant>
-                        </S.Container>
-                    )
-                })
+                SearchPropfile(data)
             }
         </>
     )
