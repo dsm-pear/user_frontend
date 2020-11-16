@@ -103,13 +103,18 @@ export const QuestButton = styled.button`
 
 /* 모달 스타일 */
 
+
+
+export const ModalBox = styled.div`
+    display: ${(props) => (props.visible ? 'block' : 'none')};
+`;
+
 export const ModalBackground = styled.div `
     position: fixed;
     top: 0; left: 0;
     width: 100%; 
     height: 100%;
     display: flex;
-    display: ${(props) => props.display};
     justify-content: center;
     align-items : center;
     z-index: 3;
@@ -124,16 +129,21 @@ export const Modal = styled.div`
 `;
 
 export const ModalClose = styled.div`
+    float: right;
     width: 15.3px;
     height: 15.1px;
     font-size: 30px;
-    right: 18.6px;
+    margin-right: 15px;
+    img{
+        width: 20px;
+        cursor: pointer;
+    }
 `;
 
 export const ModalContant = styled.div`
     line-height: 1.2;
     letter-spacing: 2.4px;
-    font-size: 30px;
+    font-size: 28px;
     text-align: center;
     align-items : center;
     position: absolute;
