@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from '../styled/MainStyled/BodyStyle';
 import Logo from '../../assets/PEARlogo.svg';
+import Nextpage from '../../assets/nextpageimg.png';
 
 const Body = () => {
 
@@ -22,7 +23,7 @@ const Body = () => {
             </S.LogoBox>
             <S.NextBox>
                 <div>
-                <img src={Logo} alt="사진" onClick={onclick}/>
+                <img src={Nextpage} alt="사진" onClick={onclick}/>
                 </div>
             </S.NextBox>
         </S.MainBody>

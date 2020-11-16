@@ -34,13 +34,13 @@ export const LogoText = styled.div`
   
 export const NextBox = styled.div`
     width: 100%;
-    div{
-        margin: auto;
-        align-items: center;
-    }
-    
     img{
+        width: 100px;
         cursor: pointer;
+        align-items: center;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 `
   
