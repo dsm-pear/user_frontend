@@ -40,13 +40,15 @@ export const Name = styled.div`
   font-family: BBTreeGl;
   font-size: 20px;
   font-weight: 500;
-  span,a {
+  span,
+  a {
     margin: 0 10px;
     text-decoration: none;
     color: black;
   }
-  a:hover{
-    color:#56d4e2;
+  a:hover {
+    color: #56d4e2;
+    transition: all 0.5s;
   }
   /* team 별로 색 다르게 */
   span:nth-child(1) {
@@ -60,7 +62,7 @@ const Contents = styled.div`
   height: auto;
 `;
 
-const title = styled.div`
+const Title = styled.div`
   cursor: pointer;
   width: 100%;
   height: 50px;
@@ -181,14 +183,17 @@ const Info = styled.div`
     border: none;
     outline: none;
   }
-
-  span,
-  a {
+  a,
+  span {
     color: black;
     text-decoration: none;
     margin: 3px 10px;
     font-family: BBTreeGl;
     line-height: 25px;
+  }
+  a:hover {
+    color: #5955d8;
+    transition: all 0.5s;
   }
 
   .Name {
@@ -237,13 +242,6 @@ const Language = styled.div`
     width: 5%;
     padding: 5px;
     border: solid 1px #e4eef2;
-    border-radius: 10px;
-  }
-  > span:hover {
-    background-color: #e4effe;
-    font-family: BBTreeGl;
-    font-weight: 500;
-    padding: 10px;
   }
 `;
 
@@ -252,7 +250,7 @@ export {
   MainBox,
   Header,
   Contents,
-  title,
+  Title,
   MainText,
   Linkimg,
   CommentMain,

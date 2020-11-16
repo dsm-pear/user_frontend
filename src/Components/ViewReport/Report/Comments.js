@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const Comments = ({ name, email, comment }) => {
@@ -7,9 +8,9 @@ const Comments = ({ name, email, comment }) => {
     <S.CommentBox>
       <S.Info>
         <div></div>
-        <a href="/user-profile" className="Name">{name}</a>
-        <a href="/user-profile"  className="Email">{email}</a>
-        <a href="/user-profile"  className="Comment">{comment}</a>
+        <Link to="/user-profile" className="Name">{name}</Link>
+        <Link to="/user-profile"  className="Email">{email}</Link>
+        <span  className="Comment">{comment}</span>
       </S.Info>
       <S.Date></S.Date>
     </S.CommentBox>

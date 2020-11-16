@@ -4,9 +4,9 @@ import * as S from "../../styled/ViewReport/MainStyle";
 const ReportView = ({ title, text, git, file}) => {
   return (
     <S.Contents>
-      <S.title>
+      <S.Title>
         <p>{title}</p>
-      </S.title>
+      </S.Title>
       <S.MainText>
         <p>{text}</p>
       </S.MainText>
