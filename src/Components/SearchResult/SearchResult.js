@@ -33,6 +33,19 @@ const SearchResult = (props) => {
         setRange("오래된순");
     }
 
+    const param = () => {
+        return (
+
+        params.data === "profile" ? 
+            <SearchResultProfile/>
+            : params.data === "title" ?
+            <SearchResultTitle/>
+            : params.data === "language" ?
+            <SearchResultLanguage/>
+            : null
+
+        )
+    }
     
     return(
         <>
@@ -55,12 +68,9 @@ const SearchResult = (props) => {
                     </S.ResultChoice>
 
                     <S.ResultContant>
+
                         {
-                            params.data === "profile" ? 
-                            <SearchResultProfile/>
-                            : params.data === "title" ?
-                            <SearchResultTitle/>
-                            : <SearchResultLanguage/>
+                            param()
                         }
 
                     </S.ResultContant>
