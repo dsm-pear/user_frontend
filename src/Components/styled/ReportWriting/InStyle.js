@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+const SelctFlexBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const ListTable = styled.div`
+    font-family: BBTreeGL;
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #000000;
+    cursor: pointer;
+    &:hover{
+        transition: .2s;
+        color:#5955d8;
+    }
+`;
+
 const TeamLeftBox = styled.div`
     width: 75%;
     display: flex;
@@ -110,6 +128,8 @@ const SubBtn = styled.div`
 `;
 
 export {
+    SelctFlexBox,
+    ListTable,
     TeamLeftBox,
     TeamRightBox,
     TeamName,
