@@ -47,7 +47,6 @@ const Questions = () => {
                         onClose={closeModal}
                     />
                 }
-                
             </S.Questions>
         </>
     )
