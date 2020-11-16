@@ -74,13 +74,13 @@ const Title = styled.div`
   }
 `;
 
-const MainText = styled(title)`
+const MainText = styled(Title)`
   height: 200px;
   max-height: 200px;
   line-height: 25px;
 `;
 
-const Linkimg = styled(title)`
+const Linkimg = styled(Title)`
   display: flex;
   flex-direction: row;
   align-items: center;
