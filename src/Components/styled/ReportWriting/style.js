@@ -115,7 +115,6 @@ const ViewList = styled.div`
     cursor: pointer;
     z-index: 5;
     margin: 4px 10px 0 0;
-
     left: -1px;
     padding: 8px 8px 0;
 `;
