@@ -8,7 +8,7 @@ const SelctFlexBox = styled.div`
 
 const ListTable = styled.div`
     font-family: BBTreeGL;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     margin-bottom: 12px;
     color: #000000;
