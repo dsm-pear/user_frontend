@@ -16,3 +16,4 @@ export { default as MainSmallLogo } from "./MainSmallLogo.svg";
 export { default as Emphasis } from './Emphasis.svg';
 export { default as Comment } from './Comment.svg';
 export { default as Link } from './link.svg';
+export { default as github } from './github.svg';
