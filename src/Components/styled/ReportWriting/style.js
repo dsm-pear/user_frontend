@@ -106,7 +106,7 @@ const Select = styled.div`
 const ViewList = styled.div`
     position: absolute;
     min-width: 90px;
-    height: 81px;
+    min-height: 81px;
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     border-top: none;
@@ -115,9 +115,9 @@ const ViewList = styled.div`
     cursor: pointer;
     z-index: 5;
     margin: 4px 10px 0 0;
-
     left: -1px;
-    padding: 8px 8px 0;
+    padding: 8px .3rem 0;
+    transition: .2s;
 `;
 
 const ReportMain = styled.div`
@@ -134,8 +134,9 @@ const ReportHeader = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGB;
-        font-size: 15px;
+        font-family: BBTreeGL;
+        font-weight: normal;
+        font-size: 14px;
         text-align: left;
     }
 `;
@@ -152,7 +153,7 @@ const ReprotWriteBox = styled.div`
         outline: none;
         padding: .8rem .8rem;
         font-family: BBTreeGL;
-        font-size: 13px;
+        font-size: 14px;
         text-align: left;
     }
 `;
@@ -187,9 +188,9 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGL;
+        font-family: BBTreeGR;
         font-size: 13px;
-        font-weight: bold;
+        
     }
 `;
 
@@ -231,7 +232,6 @@ const MakeTeam = styled.div`
         width:100%;
         height: 100%;
         display: flex;
-        
     }
 `;
 

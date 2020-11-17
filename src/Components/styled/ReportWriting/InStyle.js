@@ -9,6 +9,7 @@ const SelctFlexBox = styled.div`
 const ListTable = styled.div`
     font-family: BBTreeGL;
     font-size: 13px;
+    font-weight: normal;
     margin-bottom: 12px;
     color: #000000;
     cursor: pointer;
@@ -41,7 +42,8 @@ const TeamRightBox = styled.div`
         background: #6192f3;
         padding: .3rem 1rem;
         color: white;
-        font-family: BBTreeGB;
+        font-family: BBTreeGL;
+        
         font-size: 13px;
     }
     button:hover {
@@ -50,25 +52,7 @@ const TeamRightBox = styled.div`
 `;
 
 const TeamName = styled.div`
-    width: 13rem;
-    background: #F8F8F8;
-    outline: none;
-    border: 1px solid #F8F8F8;
-    border-radius: 21px;
-    padding: 0.3rem 1rem;
-        span > input {
-            background: #F8F8F8;
-            outline: none;
-            border: 1px solid #F8F8F8;
-            text-align: left;
-            font-size: 13px;
-            font-family: BBTreeGR;
-            font-weight: bold;
-    }
-`;
-
-const TeamMember = styled.div`
-    width: 13rem;
+    width: 12.5rem;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
@@ -81,7 +65,23 @@ const TeamMember = styled.div`
             text-align: left;
             font-size: 13px;
             font-family: BBTreeGL;
-            font-weight: bold;
+    }
+`;
+
+const TeamMember = styled.div`
+    width: 12.5rem;
+    background: #F8F8F8;
+    outline: none;
+    border: 1px solid #F8F8F8;
+    border-radius: 21px;
+    padding: 0.3rem 1rem;
+        span > input {
+            background: #F8F8F8;
+            outline: none;
+            border: 1px solid #F8F8F8;
+            text-align: left;
+            font-size: 13px;
+            font-family: BBTreeGL;
             margin-right: 8px;
         }
         span > img {
@@ -100,7 +100,8 @@ const SaveBtn = styled.div`
             background: #6192f3;
             padding: .3rem 1rem;
             color: white;
-            font-family: BBTreeGB;
+            font-family: BBTreeGL;
+            
             font-size: 13px;
         }
         button:hover {
@@ -119,7 +120,8 @@ const SubBtn = styled.div`
             background: #6192f3;
             padding: .3rem 1rem;
             color: white;
-            font-family: BBTreeGB;
+            font-family: BBTreeGL;
+            
             font-size: 13px;
         }
         form > button:hover {

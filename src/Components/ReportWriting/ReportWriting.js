@@ -54,9 +54,9 @@ const ReportWriting = () => {
                                 {
                                     list === 2 &&
                                     <S.ViewList>
-                                        <I.ListTable>개인</I.ListTable>
-                                        <I.ListTable>팀</I.ListTable>
-                                        <I.ListTable>비공개</I.ListTable>
+                                        <I.ListTable>소프트웨어</I.ListTable>
+                                        <I.ListTable>인베디드</I.ListTable>
+                                        <I.ListTable>정보보안</I.ListTable>
                                     </S.ViewList>
                                 }
                             </S.Select>
