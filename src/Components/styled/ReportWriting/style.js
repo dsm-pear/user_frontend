@@ -11,6 +11,18 @@ const Main = styled.div`
     background-image: url(${MainBackground});
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 10px; 
+        /* 스크롤바의 width */
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: linear-gradient(135deg,#81bcff,#56D4E2);
+        border-radius: 10px;
+        /* 스크롤바 색 */
+    }
 
     * {
         box-sizing: border-box;
@@ -23,32 +35,12 @@ const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     width: 68%;
-    min-width: 1045px;
+    min-width: 950px;
     max-width: 68%;
-    height: 78%;
-    max-height: 78%;
-    margin-top: 5rem;
+    height: 85%;
+    max-height: 100%;
+    margin: 10rem 0 4rem;
     padding: 1.5rem 2.5rem 0;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar { 
-        width: 20px; 
-        /* 스크롤바의 width */
-    }
-
-    &::-webkit-scrollbar-thumb { 
-        background: linear-gradient(135deg,#81bcff,#56D4E2);
-        border-radius: 10px;
-        background-clip: padding-box;
-        border: 6.5px solid transparent;
-        /* 스크롤바 색 */
-    }
-
-    &::-webkit-scrollbar-track {
-        margin: .4rem;
-        border-radius: 10px;
-        /* 스크롤바의 전체 */
-    }
 `;
 
 const InlineBox = styled.div`
@@ -117,7 +109,6 @@ const ViewList = styled.div`
     margin: 4px 10px 0 0;
     left: -1px;
     padding: 8px .3rem 0;
-    transition: .2s;
 `;
 
 const ReportMain = styled.div`
