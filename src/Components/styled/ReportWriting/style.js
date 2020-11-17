@@ -8,6 +8,7 @@ const Main = styled.div`
     height: 100vh;
     width: 100%;
     min-width: 1045px;
+    min-height: 650px;
     background-image: url(${MainBackground});
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
@@ -38,6 +39,7 @@ const BorderBox = styled.div`
     min-width: 950px;
     max-width: 68%;
     height: 85%;
+    min-height: 620px;
     max-height: 100%;
     margin: 10rem 0 4rem;
     padding: 1.5rem 2.5rem 0;
@@ -98,7 +100,8 @@ const Select = styled.div`
 const ViewList = styled.div`
     position: absolute;
     min-width: 90px;
-    min-height: 81px;
+    height: ${props => props.isAble ? '81px': '0px'};
+    transition: 3s;
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     border-top: none;
@@ -106,7 +109,7 @@ const ViewList = styled.div`
     text-align: left;
     cursor: pointer;
     z-index: 5;
-    margin: 4px 10px 0 0;
+    margin: 4.5px 10px 0 0;
     left: -1px;
     padding: 8px .3rem 0;
 `;
