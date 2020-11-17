@@ -23,7 +23,7 @@ import {
   SubmitReportModal,
   SubmitSuccess,
   SearchResult,
-  main,
+  Main,
 } from "../Components/index";
 
 function UserRouter() {
