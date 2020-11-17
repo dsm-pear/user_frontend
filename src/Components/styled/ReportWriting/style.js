@@ -89,7 +89,7 @@ const Select = styled.div`
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
-    font-family: BBTreeGR;
+    font-family: BBTreeGL;
     margin-left: 1.5rem;
 
     span {
