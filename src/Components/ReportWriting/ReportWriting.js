@@ -42,7 +42,7 @@ const ReportWriting = () => {
                                 <I.SelctFlexBox><span>구분 선택</span><img src={select} alt="language"/></I.SelctFlexBox>
                                 {
                                     list === 1 &&
-                                    <S.ViewList>
+                                    <S.ViewList isAble={list === 1}>
                                         <I.ListTable>개인</I.ListTable>
                                         <I.ListTable>팀</I.ListTable>
                                         <I.ListTable>비공개</I.ListTable>
@@ -53,7 +53,7 @@ const ReportWriting = () => {
                                 <I.SelctFlexBox><span>개발 분야</span><img src={select} alt="major"/></I.SelctFlexBox>
                                 {
                                     list === 2 &&
-                                    <S.ViewList>
+                                    <S.ViewList isAble={list === 2}>
                                         <I.ListTable>소프트웨어</I.ListTable>
                                         <I.ListTable>인베디드</I.ListTable>
                                         <I.ListTable>정보보안</I.ListTable>
@@ -64,7 +64,7 @@ const ReportWriting = () => {
                                 <I.SelctFlexBox><span>공개 범위</span><img src={select} alt="scope"/></I.SelctFlexBox>
                                 {
                                     list === 3 &&
-                                    <S.ViewList>
+                                    <S.ViewList isAble={list === 3}>
                                         <I.ListTable>전체 공개</I.ListTable>
                                         <I.ListTable>학생 공개</I.ListTable>
                                         <I.ListTable>비공개</I.ListTable>
