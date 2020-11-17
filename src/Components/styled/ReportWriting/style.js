@@ -188,7 +188,7 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGL;
         font-size: 13px;
         
     }
