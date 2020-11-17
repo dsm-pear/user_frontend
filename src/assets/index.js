@@ -4,6 +4,7 @@ export { default as RWlogo} from './RWlogo.svg';
 export { default as link} from './link.svg';
 export { default as searchImg} from './searchImg.png';
 export { default as select} from './select.svg';
+export { default as main} from './Main.png';
 export { default as Close} from './Close.svg';
 export { default as NowTeam} from './NowTeam.svg';
 export { default as TeacherProfile } from "./TeacherProfile.svg";
