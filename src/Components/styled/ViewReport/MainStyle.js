@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MainScrollBackground_1 } from "../../../assets/index";
-import { StudentProfile, Comment, Link } from "../../../assets/index";
+import { StudentProfile, Comment, Link, github } from "../../../assets/index";
 
 const Main = styled.body`
   height: 182vh;
@@ -37,12 +37,13 @@ export const Name = styled.div`
   cursor: pointer;
   margin: 0 20px;
   width: 80%;
-  font-family: BBTreeGl;
+  font-family: BBTreeGB;
   font-size: 20px;
   font-weight: 500;
   span,
   a {
     margin: 0 10px;
+    font-weight: 500;
     text-decoration: none;
     color: black;
   }
@@ -66,9 +67,9 @@ const Title = styled.div`
   cursor: pointer;
   width: 100%;
   height: 50px;
-  background-color: #fafafa;
+  background-color: #fafbfc;
   margin: 15px 0;
-  box-shadow: 1px 1px rgba(0, 0, 0, 0.16);
+  border: 1px solid var(--color-border-primary);
   p {
     padding: 15px 10px 10px 20px;
   }
@@ -84,6 +85,13 @@ const Linkimg = styled(Title)`
   display: flex;
   flex-direction: row;
   align-items: center;
+  .git {
+    margin: 10px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-image: url(${github});
+  }
   .img {
     margin: 10px;
     width: 20px;
@@ -91,6 +99,7 @@ const Linkimg = styled(Title)`
     background-size: 20px;
     background-image: url(${Link});
   }
+
   a,
   p {
     padding: 10px;
@@ -242,6 +251,19 @@ const Language = styled.div`
     width: 5%;
     padding: 5px;
     border: solid 1px #e4eef2;
+    border-radius: 10px;
+  }
+  > span:hover {
+    background-color: #9d9de9;
+    transition: all 0.8s;
+  }
+`;
+
+const Year = styled.div`
+  width: 20%;
+  span {
+    margin: 0 20px;
+    font-family: BBTreeGl;
   }
 `;
 
@@ -263,4 +285,5 @@ export {
   TableCover,
   CoverLang,
   Language,
+  Year,
 };
