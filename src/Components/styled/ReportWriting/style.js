@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { } from "styled-components";
 import { MainBackground } from "../../../assets";
 
 const Main = styled.div`
@@ -8,9 +8,22 @@ const Main = styled.div`
     height: 100vh;
     width: 100%;
     min-width: 1045px;
+    min-height: 650px;
     background-image: url(${MainBackground});
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 10px; 
+        /* 스크롤바의 width */
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: linear-gradient(135deg,#81bcff,#56D4E2);
+        border-radius: 10px;
+        /* 스크롤바 색 */
+    }
 
     * {
         box-sizing: border-box;
@@ -23,32 +36,13 @@ const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     width: 68%;
-    min-width: 1045px;
+    min-width: 950px;
     max-width: 68%;
-    height: 78%;
-    max-height: 78%;
-    margin-top: 5rem;
+    height: 85%;
+    min-height: 620px;
+    max-height: 100%;
+    margin: 10rem 0 4rem;
     padding: 1.5rem 2.5rem 0;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar { 
-        width: 20px; 
-        /* 스크롤바의 width */
-    }
-
-    &::-webkit-scrollbar-thumb { 
-        background: linear-gradient(135deg,#81bcff,#56D4E2);
-        border-radius: 10px;
-        background-clip: padding-box;
-        border: 6.5px solid transparent;
-        /* 스크롤바 색 */
-    }
-
-    &::-webkit-scrollbar-track {
-        margin: .4rem;
-        border-radius: 10px;
-        /* 스크롤바의 전체 */
-    }
 `;
 
 const InlineBox = styled.div`
@@ -89,7 +83,7 @@ const Select = styled.div`
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
-    font-family: BBTreeGR;
+    font-family: BBTreeGL;
     margin-left: 1.5rem;
 
     span {
@@ -101,12 +95,20 @@ const Select = styled.div`
     &:hover {
         cursor: pointer;
     }
+    &:hover > div ~ div {
+        visibility: visible;
+        height: 81px;
+    }
+    & > div ~ div {
+        visibility: hidden;
+        height: 0px;
+    }
 `;
 
 const ViewList = styled.div`
     position: absolute;
     min-width: 90px;
-    min-height: 81px;
+    transition: all 0.3s;
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     border-top: none;
@@ -114,10 +116,9 @@ const ViewList = styled.div`
     text-align: left;
     cursor: pointer;
     z-index: 5;
-    margin: 4px 10px 0 0;
+    margin: 4.5px 10px 0 0;
     left: -1px;
-    padding: 8px .3rem 0;
-    transition: .2s;
+    overflow: hidden;
 `;
 
 const ReportMain = styled.div`
@@ -188,7 +189,7 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGL;
         font-size: 13px;
         
     }
