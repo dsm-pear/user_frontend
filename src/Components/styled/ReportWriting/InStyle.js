@@ -1,24 +1,5 @@
 import styled from "styled-components";
 
-const SelctFlexBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`;
-
-const ListTable = styled.div`
-    font-family: BBTreeGL;
-    font-size: 13px;
-    font-weight: normal;
-    margin-bottom: 12px;
-    color: #000000;
-    cursor: pointer;
-    &:hover{
-        transition: .2s;
-        color:#5955d8;
-    }
-`;
-
 const TeamLeftBox = styled.div`
     width: 75%;
     display: flex;
@@ -42,8 +23,7 @@ const TeamRightBox = styled.div`
         background: #6192f3;
         padding: .3rem 1rem;
         color: white;
-        font-family: BBTreeGL;
-        
+        font-family: BBTreeGB;
         font-size: 13px;
     }
     button:hover {
@@ -52,7 +32,7 @@ const TeamRightBox = styled.div`
 `;
 
 const TeamName = styled.div`
-    width: 12.5rem;
+    width: 13rem;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
@@ -64,12 +44,12 @@ const TeamName = styled.div`
             border: 1px solid #F8F8F8;
             text-align: left;
             font-size: 13px;
-            font-family: BBTreeGL;
+            font-family: BBTreeGB;
     }
 `;
 
 const TeamMember = styled.div`
-    width: 12.5rem;
+    width: 13rem;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
@@ -81,7 +61,7 @@ const TeamMember = styled.div`
             border: 1px solid #F8F8F8;
             text-align: left;
             font-size: 13px;
-            font-family: BBTreeGL;
+            font-family: BBTreeGR;
             margin-right: 8px;
         }
         span > img {
@@ -100,8 +80,7 @@ const SaveBtn = styled.div`
             background: #6192f3;
             padding: .3rem 1rem;
             color: white;
-            font-family: BBTreeGL;
-            
+            font-family: BBTreeGB;
             font-size: 13px;
         }
         button:hover {
@@ -120,8 +99,7 @@ const SubBtn = styled.div`
             background: #6192f3;
             padding: .3rem 1rem;
             color: white;
-            font-family: BBTreeGL;
-            
+            font-family: BBTreeGB;
             font-size: 13px;
         }
         form > button:hover {
@@ -130,8 +108,6 @@ const SubBtn = styled.div`
 `;
 
 export {
-    SelctFlexBox,
-    ListTable,
     TeamLeftBox,
     TeamRightBox,
     TeamName,

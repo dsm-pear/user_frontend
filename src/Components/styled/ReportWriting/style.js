@@ -25,8 +25,8 @@ const BorderBox = styled.div`
     width: 68%;
     min-width: 1045px;
     max-width: 68%;
-    height: 78%;
-    max-height: 78%;
+    height: 80%;
+    max-height: 80%;
     margin-top: 5rem;
     padding: 1.5rem 2.5rem 0;
     overflow-y: scroll;
@@ -84,14 +84,18 @@ const PaddingBox = styled.div`
 `;
 
 const Select = styled.div`
-    position: relative;
-    width: 90px;
+    width: 5.5rem;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
-    font-family: BBTreeGR;
+    font-family: BBTreeGL;
     margin-left: 1.5rem;
-
+    div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     span {
         font-size: 13px;
     }
@@ -101,23 +105,6 @@ const Select = styled.div`
     &:hover {
         cursor: pointer;
     }
-`;
-
-const ViewList = styled.div`
-    position: absolute;
-    min-width: 90px;
-    min-height: 81px;
-    background-color: #ffffff;
-    border: 1px solid #4d4d4d;
-    border-top: none;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    text-align: left;
-    cursor: pointer;
-    z-index: 5;
-    margin: 4px 10px 0 0;
-    left: -1px;
-    padding: 8px .3rem 0;
-    transition: .2s;
 `;
 
 const ReportMain = styled.div`
@@ -134,9 +121,8 @@ const ReportHeader = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGL;
-        font-weight: normal;
-        font-size: 14px;
+        font-family: BBTreeGB;
+        font-size: 15px;
         text-align: left;
     }
 `;
@@ -153,7 +139,7 @@ const ReprotWriteBox = styled.div`
         outline: none;
         padding: .8rem .8rem;
         font-family: BBTreeGL;
-        font-size: 14px;
+        font-size: 13px;
         text-align: left;
     }
 `;
@@ -188,9 +174,8 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGR;
+        font-family: BBTreeGB;
         font-size: 13px;
-        
     }
 `;
 
@@ -214,6 +199,15 @@ const AttachFile = styled.div`
             width: 20px;
         }
     }
+    span > input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: #F8F8F8;
+        margin-left: .5rem;
+        font-family: BBTreeGB;
+        font-size: 13px;
+    }
 `;
 
 const SubmitBox = styled.div`
@@ -232,6 +226,7 @@ const MakeTeam = styled.div`
         width:100%;
         height: 100%;
         display: flex;
+        
     }
 `;
 
@@ -250,7 +245,6 @@ export {
     SelectBoxs,
     PaddingBox,
     Select,
-    ViewList,
     ReportMain,
     ReportHeader,
     ReprotWriteBox,

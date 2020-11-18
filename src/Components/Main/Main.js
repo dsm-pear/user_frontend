@@ -6,12 +6,9 @@ import Footer from './Footer';
 import * as S from '../styled/MainStyled/MainStyle';
 
 const Main = () => {
-
-    
     return (
         <S.MainBox>
             <Header/>
-            <Body/>
             <Question/>
             <Footer/>
         </S.MainBox>

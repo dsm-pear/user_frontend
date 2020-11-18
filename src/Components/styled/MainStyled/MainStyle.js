@@ -1,6 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import main from '../../../assets/Main.png';
+import { main } from '../../../assets/index';
 
 export const MainBox = styled.div`
     background-image: url(${main});

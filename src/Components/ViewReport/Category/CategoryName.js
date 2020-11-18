@@ -12,7 +12,7 @@ const CategoryName = ({ SwName, Ele}) => {
           {Ele.map(({ text, link }, i) => {
             return (
               <NavLink
-                to={`/view-report/${link}`}
+                to={`/ViewReport/${link}`}
                 key={i}
                 activeClassName="active"
               >
