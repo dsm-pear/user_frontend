@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { } from "styled-components";
 import { MainBackground } from "../../../assets";
 
 const Main = styled.div`
@@ -95,13 +95,20 @@ const Select = styled.div`
     &:hover {
         cursor: pointer;
     }
+    &:hover > div ~ div {
+        visibility: visible;
+        height: 81px;
+    }
+    & > div ~ div {
+        visibility: hidden;
+        height: 0px;
+    }
 `;
 
 const ViewList = styled.div`
     position: absolute;
     min-width: 90px;
-    height: ${props => props.isAble ? '81px': '0px'};
-    transition: 3s;
+    transition: all 0.3s;
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     border-top: none;
@@ -111,7 +118,7 @@ const ViewList = styled.div`
     z-index: 5;
     margin: 4.5px 10px 0 0;
     left: -1px;
-    padding: 8px .3rem 0;
+    overflow: hidden;
 `;
 
 const ReportMain = styled.div`
