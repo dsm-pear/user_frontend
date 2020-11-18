@@ -20,7 +20,8 @@ import {
   NoticeContent,
   SearchResult,
   ReportWritingModal,
-  TeamStateModal
+  TeamStateModal,
+  Main
 } from "../Components/index";
 
 function UserRouter() {
@@ -28,6 +29,7 @@ function UserRouter() {
     <>
       <GlobalFonts />
       <Switch>
+        <Route path="/" component={Main} exact/>
         <Route path="/login" component={Login} exact />
         <Route path="/sign-up" component={SignUp} exact />
         <Route path="/user-profile" component={UserProfile} exact />
@@ -37,7 +39,7 @@ function UserRouter() {
         <Route path="/report-writing" component={ReportWriting} exact />
         <Route path="/notice" component={Notice} exact/>
         <Route path="/notice-content" component={NoticeContent} exact/>
-        <Route path="/search-result" component={SearchResult} exact/>
+        <Route path="/search-result/:data" component={SearchResult} exact/>
         <Route path="/report-writing-modal" component={ReportWritingModal} exact />
         <Route path="/team-state-modal" component={TeamStateModal} exact />
         {/* 보고서 파트별로  소프트웨어 개발과 */}
