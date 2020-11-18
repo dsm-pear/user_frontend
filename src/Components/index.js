@@ -10,6 +10,7 @@ export { default as ReportAI } from "./ViewReport/ViewReportGroup/ReportAI";
 export { default as ReportEmb } from "./ViewReport/ViewReportGroup/ReportEmb";
 export { default as ReportInfo } from "./ViewReport/ViewReportGroup/ReportInfo";
 export { default as ReportFus } from "./ViewReport/ViewReportGroup/ReportFus";
+export { default as MainReport } from "./ViewReport/Report/MainReport";
 export { default as ReportWriting } from "./ReportWriting/ReportWriting";
 export { default as Notice } from "./Notice/Notice";
 export { default as NoticeContent } from "./Notice/NoticeContent";
