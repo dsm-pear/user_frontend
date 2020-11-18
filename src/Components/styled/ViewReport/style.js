@@ -24,7 +24,7 @@ const Cover = styled.div`
   }
 `;
 
-const Box = styled.div`
+const Box = styled.div` 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,6 +125,7 @@ const ProjectHeader = styled.nav`
         text-align: center;
         cursor: pointer;
         margin: 0 10px;
+        padding-top: 5px;
         outline: none;
         border: none;
         width: 63px;
