@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MainScrollBackground_1 } from "../../../assets/index";
-import { StudentProfile, Comment, Link } from "../../../assets/index";
+import { StudentProfile, Comment, Link, github } from "../../../assets/index";
 
 const Main = styled.body`
   height: 182vh;
@@ -31,18 +31,25 @@ const Header = styled.div`
   height: 8%;
   border-bottom: solid 1px #e4eef2;
 `;
+
 /* 헤더 제목 */
 export const Name = styled.div`
+  cursor: pointer;
   margin: 0 20px;
   width: 80%;
-  font-family: BBTreeGl;
+  font-family: BBTreeGB;
   font-size: 20px;
   font-weight: 500;
-  span {
+  span,
+  a {
     margin: 0 10px;
     font-weight: 500;
     text-decoration: none;
     color: black;
+  }
+  a:hover {
+    color: #56d4e2;
+    transition: all 0.5s;
   }
   /* team 별로 색 다르게 */
   span:nth-child(1) {
@@ -56,10 +63,11 @@ const Contents = styled.div`
   height: auto;
 `;
 
-const title = styled.div`
+const Title = styled.div`
+  cursor: pointer;
   width: 100%;
   height: 50px;
-  background-color: #fafafa;
+  background-color: #fafbfc;
   margin: 15px 0;
   border: 1px solid var(--color-border-primary);
   p {
@@ -67,12 +75,13 @@ const title = styled.div`
   }
 `;
 
-const MainText = styled(title)`
+const MainText = styled(Title)`
   height: 200px;
   max-height: 200px;
+  line-height: 25px;
 `;
 
-const LinkFile = styled(title)    `
+const Linkimg = styled(Title)`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -84,10 +93,11 @@ const LinkFile = styled(title)    `
     background-image: url(${github});
   }
   .img {
-    width: 30px;
-    height: 30px;
+    margin: 10px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url(${Link});
-    background-size: 30px;
   }
 
   a,
@@ -182,11 +192,19 @@ const Info = styled.div`
     border: none;
     outline: none;
   }
-
+  a,
   span {
+    color: black;
+    text-decoration: none;
     margin: 3px 10px;
     font-family: BBTreeGl;
+    line-height: 25px;
   }
+  a:hover {
+    color: #5955d8;
+    transition: all 0.5s;
+  }
+
   .Name {
     text-align: center;
     font-weight: bold;
@@ -254,9 +272,9 @@ export {
   MainBox,
   Header,
   Contents,
-  title,
+  Title,
   MainText,
-  LinkFile,
+  Linkimg,
   CommentMain,
   Search,
   MainCom,

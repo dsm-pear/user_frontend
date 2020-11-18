@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { } from "styled-components";
 import { MainBackground } from "../../../assets";
 
 const Main = styled.div`
@@ -8,9 +8,22 @@ const Main = styled.div`
     height: 100vh;
     width: 100%;
     min-width: 1045px;
+    min-height: 650px;
     background-image: url(${MainBackground});
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 10px; 
+        /* 스크롤바의 width */
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: linear-gradient(135deg,#81bcff,#56D4E2);
+        border-radius: 10px;
+        /* 스크롤바 색 */
+    }
 
     * {
         box-sizing: border-box;
@@ -23,32 +36,13 @@ const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     width: 68%;
-    min-width: 1045px;
+    min-width: 950px;
     max-width: 68%;
-    height: 80%;
-    max-height: 80%;
-    margin-top: 5rem;
+    height: 85%;
+    min-height: 620px;
+    max-height: 100%;
+    margin: 10rem 0 4rem;
     padding: 1.5rem 2.5rem 0;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar { 
-        width: 20px; 
-        /* 스크롤바의 width */
-    }
-
-    &::-webkit-scrollbar-thumb { 
-        background: linear-gradient(135deg,#81bcff,#56D4E2);
-        border-radius: 10px;
-        background-clip: padding-box;
-        border: 6.5px solid transparent;
-        /* 스크롤바 색 */
-    }
-
-    &::-webkit-scrollbar-track {
-        margin: .4rem;
-        border-radius: 10px;
-        /* 스크롤바의 전체 */
-    }
 `;
 
 const InlineBox = styled.div`
@@ -84,18 +78,14 @@ const PaddingBox = styled.div`
 `;
 
 const Select = styled.div`
-    width: 5.5rem;
+    position: relative;
+    width: 90px;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
     font-family: BBTreeGL;
     margin-left: 1.5rem;
-    div {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+
     span {
         font-size: 13px;
     }
@@ -105,6 +95,30 @@ const Select = styled.div`
     &:hover {
         cursor: pointer;
     }
+    &:hover > div ~ div {
+        visibility: visible;
+        height: 81px;
+    }
+    & > div ~ div {
+        visibility: hidden;
+        height: 0px;
+    }
+`;
+
+const ViewList = styled.div`
+    position: absolute;
+    min-width: 90px;
+    transition: all 0.3s;
+    background-color: #ffffff;
+    border: 1px solid #4d4d4d;
+    border-top: none;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    text-align: left;
+    cursor: pointer;
+    z-index: 5;
+    margin: 4.5px 10px 0 0;
+    left: -1px;
+    overflow: hidden;
 `;
 
 const ReportMain = styled.div`
@@ -121,8 +135,9 @@ const ReportHeader = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGB;
-        font-size: 15px;
+        font-family: BBTreeGL;
+        font-weight: normal;
+        font-size: 14px;
         text-align: left;
     }
 `;
@@ -139,7 +154,7 @@ const ReprotWriteBox = styled.div`
         outline: none;
         padding: .8rem .8rem;
         font-family: BBTreeGL;
-        font-size: 13px;
+        font-size: 14px;
         text-align: left;
     }
 `;
@@ -174,8 +189,9 @@ const LinkBox = styled.div`
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGB;
+        font-family: BBTreeGL;
         font-size: 13px;
+        
     }
 `;
 
@@ -199,15 +215,6 @@ const AttachFile = styled.div`
             width: 20px;
         }
     }
-    span > input {
-        width: 100%;
-        border: none;
-        outline: none;
-        background: #F8F8F8;
-        margin-left: .5rem;
-        font-family: BBTreeGB;
-        font-size: 13px;
-    }
 `;
 
 const SubmitBox = styled.div`
@@ -226,7 +233,6 @@ const MakeTeam = styled.div`
         width:100%;
         height: 100%;
         display: flex;
-        
     }
 `;
 
@@ -245,6 +251,7 @@ export {
     SelectBoxs,
     PaddingBox,
     Select,
+    ViewList,
     ReportMain,
     ReportHeader,
     ReprotWriteBox,
