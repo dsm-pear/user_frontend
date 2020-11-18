@@ -17,7 +17,11 @@ const ReportHeader = ({ team, grade, subject, title }) => {
         <span>{subject}</span> >
         {/* 보고서 제목 */}
         <span>{title}</span>
-      </S.Name>
+      </S.Name> 
+      <S.Year>
+        <span>게시일</span>
+        <span>2020년 7월 19일</span>
+      </S.Year>
     </S.Header>
   );
 };
