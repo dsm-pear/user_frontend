@@ -13,6 +13,8 @@ const ListTable = styled.div`
     margin-bottom: 12px;
     color: #000000;
     cursor: pointer;
+    padding: .2rem 4px;
+    margin: .4rem .3rem;
     &:hover{
         transition: .2s;
         color:#5955d8;
@@ -58,13 +60,13 @@ const TeamName = styled.div`
     border: 1px solid #F8F8F8;
     border-radius: 21px;
     padding: 0.3rem 1rem;
-        span > input {
-            background: #F8F8F8;
-            outline: none;
-            border: 1px solid #F8F8F8;
-            text-align: left;
-            font-size: 13px;
-            font-family: BBTreeGL;
+    span > input {
+        background: #F8F8F8;
+        outline: none;
+        border: 1px solid #F8F8F8;
+        text-align: left;
+        font-size: 13px;
+        font-family: BBTreeGL;
     }
 `;
 
