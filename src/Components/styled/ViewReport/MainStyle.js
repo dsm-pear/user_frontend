@@ -40,6 +40,9 @@ export const Name = styled.div`
   font-weight: 500;
   span {
     margin: 0 10px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
   }
   /* team 별로 색 다르게 */
   span:nth-child(1) {
@@ -58,10 +61,9 @@ const title = styled.div`
   height: 50px;
   background-color: #fafafa;
   margin: 15px 0;
-  box-shadow: 1px 1px rgba(0, 0, 0, 0.16);
-  p,
-  a {
-    padding: 10px 10px 10px 20px;
+  border: 1px solid var(--color-border-primary);
+  p {
+    padding: 15px 10px 10px 20px;
   }
 `;
 
@@ -73,11 +75,28 @@ const MainText = styled(title)`
 const LinkFile = styled(title)    `
   display: flex;
   flex-direction: row;
+  align-items: center;
+  .git {
+    margin: 10px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-image: url(${github});
+  }
   .img {
     width: 30px;
     height: 30px;
     background-image: url(${Link});
     background-size: 30px;
+  }
+
+  a,
+  p {
+    padding: 10px;
+  }
+  a {
+    color: #5955d8;
+    text-decoration: none;
   }
 `;
 
@@ -186,6 +205,50 @@ const CommentBox = styled.div``;
 
 const Date = styled.div``;
 
+const CoverLang = styled.div`
+  cursor: pointer;
+  width: 90%;
+  height: 10%;
+  border: solid 1px #e4eef2;
+  margin-bottom: 50px;
+
+  > h2 {
+    margin: 10px;
+    font-size: 20px;
+    font-family: BBTreeGl;
+  }
+`;
+
+const TableCover = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: auto;
+  margin: 30px;
+`;
+const Language = styled.div`
+  cursor: pointer;
+  > span {
+    margin: 8px;
+    width: 5%;
+    padding: 5px;
+    border: solid 1px #e4eef2;
+    border-radius: 10px;
+  }
+  > span:hover {
+    background-color: #9d9de9;
+    transition: all 0.8s;
+  }
+`;
+
+const Year = styled.div`
+  width: 20%;
+  span {
+    margin: 0 20px;
+    font-family: BBTreeGl;
+  }
+`;
+
 export {
   Main,
   MainBox,
@@ -201,4 +264,8 @@ export {
   Info,
   Date,
   Add,
+  TableCover,
+  CoverLang,
+  Language,
+  Year,
 };
