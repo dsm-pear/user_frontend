@@ -117,7 +117,8 @@ const ReportWriting = () => {
                                     </I.TeamName>
                                     {/* add member */}
                                     <I.TeamMember>
-                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} alt="inputmember"/></span>
+                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} alt="inputmember"/>
+                                        </span>
                                     </I.TeamMember>
                                 </I.TeamLeftBox>
                                 <I.TeamRightBox>
