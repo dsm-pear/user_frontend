@@ -14,7 +14,7 @@ const ReportWriting = () => {
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
     }
-    const onMouseLeave = () => {
+    const onMouseLeave = () => { 
         setHoverNumber(0)
     }
     return (
@@ -30,7 +30,8 @@ const ReportWriting = () => {
                     <S.SelectBoxs>
                         {/* 사용 언어, 학년 등 선택박스 만드는 div */}
                         <S.PaddingBox>
-                        { /*<S.Select>
+                        { /*<S.Select> 
+                        
                                 <div><span>학년선택</span><img src={select}  alt="grade-select" /></div>
                             </S.Select>
                             <S.Select>
@@ -48,21 +49,20 @@ const ReportWriting = () => {
                                         <I.ListTable>비공개</I.ListTable>
                                     </S.ViewList>
                             </S.Select>
-                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={130}>
                             { 
                                 hoverNumber === 2 ?
                                 <I.SelctFlexBox><span>개발 분야</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>개발 분야</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }       
                                     <S.ViewList>
-                                        <I.ListTable>
-                                            <div>소프트웨어</div>
-                                            <I.InList>-웹</I.InList>
-                                            <I.InList>-앱</I.InList>
-                                            <I.InList>-게임</I.InList>
-                                        </I.ListTable>
+                                        <I.ListTable>소프트웨어</I.ListTable>
+                                        <I.InList>- 웹</I.InList>
+                                        <I.InList>- 앱</I.InList>
+                                        <I.InList>- 게임</I.InList>
                                         <I.ListTable>인베디드</I.ListTable>
                                         <I.ListTable>정보보안</I.ListTable>
+                                        <I.ListTable>융합</I.ListTable>
                                     </S.ViewList>
                             </S.Select>
                             <S.Select data-id="3" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
