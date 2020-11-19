@@ -15,7 +15,7 @@ const Main = styled.div`
     overflow-y: scroll;
 
     &::-webkit-scrollbar { 
-        width: 10px; 
+        width: 10px;
         /* 스크롤바의 width */
     }
 
@@ -38,10 +38,10 @@ const BorderBox = styled.div`
     width: 68%;
     min-width: 950px;
     max-width: 68%;
-    height: 85%;
-    min-height: 620px;
+    height: 730px;
+    min-height: 730px;
     max-height: 100%;
-    margin: 10rem 0 4rem;
+    margin: 15rem 0 3rem;
     padding: 1.5rem 2.5rem 0;
 `;
 
