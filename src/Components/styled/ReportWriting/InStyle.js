@@ -14,16 +14,26 @@ const ListTable = styled.div`
     color: #000000;
     cursor: pointer;
     padding: .2rem 4px;
-    margin: .2rem .3rem;    
+    margin: .3rem .3rem;   
+
+    &:hover {
+        transition: .2s;
+        color: #5955d8;
+    } 
 `;
 
 const InList = styled.div`
     font-family: BBTreeGL;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
     color: #000000;
     cursor: pointer;
-    margin: 0 0 2px 12px;
+    margin: 0 0 5px 12px;
+
+    &:hover {
+        transition: .2s;
+        color: #5955d8;
+    } 
 `;
 
 const TeamLeftBox = styled.div`
