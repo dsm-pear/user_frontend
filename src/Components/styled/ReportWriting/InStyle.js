@@ -14,11 +14,16 @@ const ListTable = styled.div`
     color: #000000;
     cursor: pointer;
     padding: .2rem 4px;
-    margin: .4rem .3rem;
-    &:hover{
-        transition: .2s;
-        color:#5955d8;
-    }
+    margin: .2rem .3rem;    
+`;
+
+const InList = styled.div`
+    font-family: BBTreeGL;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000000;
+    cursor: pointer;
+    margin: 0 0 2px 12px;
 `;
 
 const TeamLeftBox = styled.div`
@@ -54,7 +59,7 @@ const TeamRightBox = styled.div`
 `;
 
 const TeamName = styled.div`
-    width: 12.5rem;
+    width: 13rem;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
@@ -71,7 +76,7 @@ const TeamName = styled.div`
 `;
 
 const TeamMember = styled.div`
-    width: 12.5rem;
+    width: 13rem;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
@@ -134,6 +139,7 @@ const SubBtn = styled.div`
 export {
     SelctFlexBox,
     ListTable,
+    InList,
     TeamLeftBox,
     TeamRightBox,
     TeamName,
