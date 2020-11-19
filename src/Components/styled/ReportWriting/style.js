@@ -97,8 +97,8 @@ const Select = styled.div`
     }
     &:hover > div ~ div {
         visibility: visible;
-        height: 81px;
-    }
+        height: ${({ height }) => height ? height : '68'}px;
+   }
     & > div ~ div {
         visibility: hidden;
         height: 0px;
