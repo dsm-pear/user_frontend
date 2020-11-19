@@ -50,7 +50,7 @@ const ReportWriting = () => {
                                         <I.ListTable>비공개</I.ListTable>
                                     </S.ViewList>
                             </S.Select>
-                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={145}>
+                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
                             { 
                                 hoverNumber === 2 ?
                                 <I.SelctFlexBox><span>개발 분야</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
