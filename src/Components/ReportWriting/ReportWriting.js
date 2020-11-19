@@ -51,10 +51,16 @@ const ReportWriting = () => {
                             <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
                             { 
                                 hoverNumber === 2 ?
-                                <I.SelctFlexBox><span>구분 선택</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
-                                : <I.SelctFlexBox><span>구분 선택</span><img src={select} alt="language"/></I.SelctFlexBox>
-                            }                                    <S.ViewList>
-                                        <I.ListTable>소프트웨어</I.ListTable>
+                                <I.SelctFlexBox><span>개발 분야</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
+                                : <I.SelctFlexBox><span>개발 분야</span><img src={select} alt="language"/></I.SelctFlexBox>
+                            }       
+                                    <S.ViewList>
+                                        <I.ListTable>
+                                            <div>소프트웨어</div>
+                                            <I.InList>-웹</I.InList>
+                                            <I.InList>-앱</I.InList>
+                                            <I.InList>-게임</I.InList>
+                                        </I.ListTable>
                                         <I.ListTable>인베디드</I.ListTable>
                                         <I.ListTable>정보보안</I.ListTable>
                                     </S.ViewList>
@@ -62,9 +68,10 @@ const ReportWriting = () => {
                             <S.Select data-id="3" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
                             { 
                                 hoverNumber === 3 ?
-                                <I.SelctFlexBox><span>구분 선택</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
-                                : <I.SelctFlexBox><span>구분 선택</span><img src={select} alt="language"/></I.SelctFlexBox>
-                            }                                    <S.ViewList>
+                                <I.SelctFlexBox><span>공개범위</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
+                                : <I.SelctFlexBox><span>공개범위</span><img src={select} alt="language"/></I.SelctFlexBox>
+                            }       
+                                    <S.ViewList>
                                         <I.ListTable>전체 공개</I.ListTable>
                                         <I.ListTable>학생 공개</I.ListTable>
                                         <I.ListTable>비공개</I.ListTable>
@@ -80,7 +87,7 @@ const ReportWriting = () => {
                         </S.ReportHeader>
                         {/* 보고서 소개 글 */}
                         <S.ReprotWriteBox>
-                            <textarea name="writingbox" rows="10" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요." style={{resize:"none"}}></textarea>
+                            <textarea name="writingbox" rows="15" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요." style={{resize:"none"}}></textarea>
                         </S.ReprotWriteBox>
                         {/* 팀 깃헙 링크 */}
                         <S.LinkBox>
