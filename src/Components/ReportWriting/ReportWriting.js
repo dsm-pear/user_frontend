@@ -40,7 +40,8 @@ const ReportWriting = () => {
                             <S.Select data-id="1" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
                             { 
                                 hoverNumber === 1 ?
-                                <I.SelctFlexBox><span>구분 선택</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
+                                <I.SelctFlexBox><span>구분 선택</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                </I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>구분 선택</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }
                                     <S.ViewList>
@@ -49,10 +50,11 @@ const ReportWriting = () => {
                                         <I.ListTable>비공개</I.ListTable>
                                     </S.ViewList>
                             </S.Select>
-                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={130}>
+                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={145}>
                             { 
                                 hoverNumber === 2 ?
-                                <I.SelctFlexBox><span>개발 분야</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
+                                <I.SelctFlexBox><span>개발 분야</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                </I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>개발 분야</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }       
                                     <S.ViewList>
@@ -68,7 +70,8 @@ const ReportWriting = () => {
                             <S.Select data-id="3" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
                             { 
                                 hoverNumber === 3 ?
-                                <I.SelctFlexBox><span>공개범위</span><img src={selecthover} style={{width:'11px'}} alt="language"/></I.SelctFlexBox>
+                                <I.SelctFlexBox><span>공개범위</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                </I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>공개범위</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }       
                                     <S.ViewList>
