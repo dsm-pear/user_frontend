@@ -51,8 +51,9 @@ const TeamRightBox = styled.div`
     align-items: center;
     margin-top: 5rem;
 
-    button {
-        width: 6rem;
+    div {
+        text-align: center;
+        width: 5.5rem;
         border: 1px solid #6192f3;
         border-radius: 18px;
         outline: none;
@@ -60,8 +61,11 @@ const TeamRightBox = styled.div`
         padding: .3rem 1rem;
         color: white;
         font-family: BBTreeGL;
-        
         font-size: 13px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
     button:hover {
             cursor: pointer;
@@ -115,41 +119,43 @@ const TeamMember = styled.div`
 const SaveBtn = styled.div`
     padding-left: 2rem;   
     margin-left: 1rem;
-        button {
-            width: 5.5rem;
-            border: 1px solid #6192f3;
-            border-radius: 18px;
-            outline: none;
-            background: #6192f3;
-            padding: .3rem 1rem;
-            color: white;
-            font-family: BBTreeGL;
-            
-            font-size: 13px;
-        }
-        button:hover {
-            cursor: pointer;
-        }
+    
+    div {
+        text-align: center;
+        width: 5.5rem;
+        border: 1px solid #6192f3;
+        border-radius: 18px;
+        outline: none;
+        background: #6192f3;
+        padding: .3rem 1rem;
+        color: white;
+        font-family: BBTreeGL;
+        font-size: 13px;
+    }
+    div:hover {
+        cursor: pointer;
+    }
 `;
 
 const SubBtn = styled.div`
     padding-left: 2rem;   
     margin-left: 1rem;
-        form > button {
-            width: 5.5rem;
-            border: 1px solid #6192f3;
-            border-radius: 18px;
-            outline: none;
-            background: #6192f3;
-            padding: .3rem 1rem;
-            color: white;
-            font-family: BBTreeGL;
-            
-            font-size: 13px;
-        }
-        form > button:hover {
-            cursor: pointer;
-        }
+    
+    div {
+        text-align: center;
+        width: 5.5rem;
+        border: 1px solid #6192f3;
+        border-radius: 18px;
+        outline: none;
+        background: #6192f3;
+        padding: .3rem 1rem;
+        color: white;
+        font-family: BBTreeGL;
+        font-size: 13px;
+    }
+    div:hover {
+        cursor: pointer;
+    }
 `;
 
 export {
