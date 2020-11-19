@@ -95,9 +95,9 @@ const ReportWriting = () => {
                         {/* 팀 깃헙 링크 */}
                         <S.LinkBox>
                             <span>
-                                <form name="githubLink" action="" method="post" autoComplete="on">
+                                <div>
                                     <img src={link} alt="gitgub-link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
-                                </form>
+                                </div>
                             </span>
                         </S.LinkBox>
                         {/* 보고서 파일 첨부 */}
@@ -110,7 +110,7 @@ const ReportWriting = () => {
                         {/* 팀 제작 (left) */}
                         <S.MakeTeam>
                             {/* add teamName */}
-                            <form name="makeTeam" action="" method="post">
+                            <span>
                                 <I.TeamLeftBox>
                                     <I.TeamName>
                                         <span><input type={Text} placeholder="팀의 이름을 입력해주세요." /></span>
@@ -122,19 +122,17 @@ const ReportWriting = () => {
                                     </I.TeamMember>
                                 </I.TeamLeftBox>
                                 <I.TeamRightBox>
-                                    <button type="submit">팀 만들기</button>
+                                    <div>팀 만들기</div>
                                 </I.TeamRightBox>
-                            </form>
+                            </span>
                         </S.MakeTeam>
                         {/* save & submit btn (right) */}
                         <S.SaveSubBtn>
                             <I.SaveBtn>
-                                <button>임시저장</button>
+                                <div>임시저장</div>
                             </I.SaveBtn>
                             <I.SubBtn>
-                                <form name="reportSubmit" action="" method="post">
-                                    <button type="submit">제출하기</button>
-                                </form>
+                                <div>제출하기</div>
                             </I.SubBtn>
                         </S.SaveSubBtn>
                     </S.SubmitBox>

@@ -171,7 +171,7 @@ const LinkBox = styled.div`
         width: 100%;
         height: 100%;
     }
-    span > form {
+    span > div {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -180,10 +180,10 @@ const LinkBox = styled.div`
         border: 1px solid #F8F8F8;
         padding: .4rem .4rem;
     }
-    form > img {
+    div > img {
         width: 20px; 
     }
-    form > input {
+    div > input {
         width: 100%;
         border: none;
         outline: none;
@@ -229,7 +229,7 @@ const MakeTeam = styled.div`
     height: 145px;
     border: 1px solid;
 
-    form {
+    span {
         width:100%;
         height: 100%;
         display: flex;
