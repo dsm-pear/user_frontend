@@ -92,18 +92,24 @@ const TeamMember = styled.div`
     border: 1px solid #F8F8F8;
     border-radius: 21px;
     padding: 0.3rem 1rem;
-        span > input {
-            background: #F8F8F8;
-            outline: none;
-            border: 1px solid #F8F8F8;
-            text-align: left;
-            font-size: 13px;
-            font-family: BBTreeGL;
-            margin-right: 8px;
-        }
-        span > img {
-            width: 12px;
-        }
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    span > input {
+        background: #F8F8F8;
+        outline: none;
+        border: 1px solid #F8F8F8;
+        text-align: left;
+        font-size: 13px;
+        font-family: BBTreeGL;
+        margin-right: 8px;
+    }
+    span > img {
+        width: 12px;
+    }
 `;
         
 const SaveBtn = styled.div`
