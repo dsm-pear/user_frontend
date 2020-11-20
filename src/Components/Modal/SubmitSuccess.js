@@ -2,7 +2,7 @@ import React, {  } from 'react';
 import * as S from '../styled/Modal/ScModalStyle';
 import { Close } from "../../assets";
 
-const ReportWritingModal = () => {
+const SubmitSuccess = () => {
     return (
         <S.Main>
         {/* 전체 container */}
@@ -27,4 +27,4 @@ const ReportWritingModal = () => {
     );
 }
 
-export default ReportWritingModal;
+export default SubmitSuccess;
