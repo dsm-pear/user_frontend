@@ -1,17 +1,19 @@
-import React, {  } from 'react';
+import React from 'react';
 import * as S from '../styled/Modal/SrModalStyle';
 import { Close } from "../../assets";
 
-const ReportWritingModal = () => {
+
+const SubmitReportModal = ({setState}) => {
+    const onClick = () => {
+        setState(false);
+    }
+
     return (
         <S.Main>
-        {/* 전체 container */}
             <S.ModalMain>
-            {/* 모달 설정 및 가운데 정렬 */}
                 <S.ModalSort>
-                {/* 모달 padding, margin 설정 */}
-                    <S.CloseBtn>
-                    {/* 닫기 버튼 */}
+                    <S.CloseBtn onClick={onClick}>
+                   
                         <span><img src={Close} alt="Close"/></span>
                     </S.CloseBtn>
                     <S.ModalHeader>
@@ -31,4 +33,4 @@ const ReportWritingModal = () => {
     );
 }
 
-export default ReportWritingModal;
+export default SubmitReportModal;
