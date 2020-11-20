@@ -19,7 +19,7 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
-    transition: .8s;
+    transition: all .8s;
     height: ${({height})=>height};
     overflow: hidden; 
     width: 650px;

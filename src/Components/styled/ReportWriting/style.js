@@ -108,7 +108,7 @@ const Select = styled.div`
 const ViewList = styled.div`
     position: absolute;
     min-width: 90px;
-    transition: all 0.3s;
+    transition: all 0.45s;
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     border-top: none;
