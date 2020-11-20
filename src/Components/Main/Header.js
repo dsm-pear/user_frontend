@@ -11,11 +11,12 @@ const Header = () => {
 
     const [ searchtype, setSearchtype ] = useState("제목");
     const [ color, setColor ] = useState("#000000");
-    const [ show, setShow ] = useState(false)
-    const [ report, setReport ] = useState(false)
-    const [ profile, setProfile ] = useState(false)
-    const [ img, setImg ] = useState(DownArrow)
-    const [ value, setValue ] = useState("title")
+    const [ show, setShow ] = useState(false);
+    const [ report, setReport ] = useState(false);
+    const [ profile, setProfile ] = useState(false);
+    const [ img, setImg ] = useState(DownArrow);
+    const [ value, setValue ] = useState("title");
+    const [ keyword, setKeyword ] = useState("제목");
 
     const onlist = () => {
         if(!show){
@@ -58,11 +59,7 @@ const Header = () => {
     const onProfileDown = () => {
         setProfile(false);
     }
-
-    //const submit = () => {
-    //    history.push('/search-result/'+value);
-    //}
-
+    
     return (
         <>
             <S.HeaderBox>
@@ -91,7 +88,7 @@ const Header = () => {
 
                             <S.SeachBarInput name="search" placeholder="검색창"/>
 
-                            <S.SeachBarButton><Link to={'/search-result/'+value}><img src={SearchImg} alt="검색"/></Link></S.SeachBarButton>
+                            <S.SeachBarButton><Link to={`/search-result/mode=${value}&keyword=${keyword}&size=&page=`}><img src={SearchImg} alt="검색"/></Link></S.SeachBarButton>
                             </form>
                     </S.SeachBar>
 
@@ -102,14 +99,13 @@ const Header = () => {
 
                             <S.MenuList><Link to={'/report-writing'}>보고서 작성</Link></S.MenuList>
                             <S.MenuList onMouseEnter={onReportUp} onMouseLeave={onReportDown}>
-                                보고서 보기
+                                <Link to={'/view-report'}>보고서 보기</Link>
                                 {
                                     report &&
                                     <S.MenuSee>
                                         <S.ReportSee>1학년</S.ReportSee>
                                         <S.ReportSee>2학년</S.ReportSee>
                                         <S.ReportSee>3학년</S.ReportSee>
-                                        <S.ReportSee>공통</S.ReportSee>
                                     </S.MenuSee>
                                 }
                                 </S.MenuList>
@@ -120,7 +116,7 @@ const Header = () => {
                                 {
                                     profile &&
                                     <S.Mypage>
-                                        <S.Mypro><Link to={"/MyProfile"}>MYPAGE</Link></S.Mypro>
+                                        <S.Mypro><Link to={"/my-profile"}>MYPAGE</Link></S.Mypro>
                                         <S.Mypro>로그아웃</S.Mypro>
                                     </S.Mypage>
                                 }
