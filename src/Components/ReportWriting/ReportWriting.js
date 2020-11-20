@@ -12,7 +12,7 @@ import { link } from "../../assets";
 const ReportWriting = () => {
     const [hoverNumber, setHoverNumber] = useState(0)
     const [ state, setState ] = useState("hidden");
-    const [ opa, setOpa ] = useState("0");
+    const [ hei, setHei ] = useState("0");
 
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
@@ -22,12 +22,12 @@ const ReportWriting = () => {
     }
     const onClick = () => {
         setState("visable");
-        setOpa("1");
+        setHei("280px");
     }
 
     return (
         <>
-            <SubmitReportModal setState={setState} setOpa={setOpa} state={state} opa={opa}/>   
+            <SubmitReportModal setState={setState} setHei={setHei} state={state} hei={hei}/>   
             <S.Main>
             
             <S.BorderBox> 
