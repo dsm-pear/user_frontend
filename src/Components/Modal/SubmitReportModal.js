@@ -3,15 +3,15 @@ import * as S from '../styled/Modal/SrModalStyle';
 import { Close } from "../../assets";
 
 
-const SubmitReportModal = ({setState, setOpa, state, opa}) => {
+const SubmitReportModal = ({setState, setHei, state, hei}) => {
     const onClick = () => {
         setState("hidden");
-        setOpa("0");
+        setHei("0");
     }
 
     return (
-        <S.Main opacity={opa} visibility={state}>
-            <S.ModalMain>
+        <S.Main visibility={state}>
+            <S.ModalMain height={hei} >
                 <S.ModalSort>
                     <S.CloseBtn onClick={onClick}>
                         <span><img src={Close} alt="Close"/></span>
