@@ -76,10 +76,13 @@ const SearchResult = (props) => {
                     </S.ResultContant>
 
                     <S.ResultAdd>
-                        더보기
-                        <S.ResultAddImg>
-                            <img src={DownArrow} alt="사진"/>
-                        </S.ResultAddImg>
+                        <S.ResultAddNumber>
+                            <a>1</a>
+                            <a>2</a>
+                            <a>3</a>
+                            <a>4</a>
+                            <a>5</a>
+                        </S.ResultAddNumber>
                     </S.ResultAdd>
                     
                 </S.ResultSubBox>

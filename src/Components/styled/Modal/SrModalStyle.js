@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 const Main = styled.div`
+    position: absolute;
+    z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: gray;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    visibility: ${({visibility})=>visibility};
 
     * {
         margin: 0;
@@ -15,9 +19,10 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
-    z-index: 5;
+    transition: all .8s;
+    height: ${({height})=>height};
+    overflow: hidden; 
     width: 650px;
-    height: 280px;
     border: 1px solid #ffffff;
     border-radius: 20px;
     background-color: #ffffff;
