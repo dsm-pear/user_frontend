@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 const Main = styled.div`
+    position: absolute;
+    z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: gray;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
 
     * {
         margin: 0;
@@ -15,7 +18,6 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
-    z-index: 5;
     width: 650px;
     height: 280px;
     border: 1px solid #ffffff;
