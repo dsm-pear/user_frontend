@@ -10,8 +10,6 @@ const Main = styled.div`
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
     visibility: ${({visibility})=>visibility};
-    transition: .6s;
-    opacity: ${({opacity})=>opacity}; 
 
     * {
         margin: 0;
@@ -21,8 +19,10 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
+    transition: .8s;
+    height: ${({height})=>height};
+    overflow: hidden; 
     width: 650px;
-    height: 280px;
     border: 1px solid #ffffff;
     border-radius: 20px;
     background-color: #ffffff;
