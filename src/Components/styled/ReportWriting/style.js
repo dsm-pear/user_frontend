@@ -15,7 +15,7 @@ const Main = styled.div`
     overflow-y: scroll;
 
     &::-webkit-scrollbar { 
-        width: 10px; 
+        width: 10px;
         /* 스크롤바의 width */
     }
 
@@ -38,10 +38,10 @@ const BorderBox = styled.div`
     width: 68%;
     min-width: 950px;
     max-width: 68%;
-    height: 85%;
-    min-height: 620px;
+    height: 730px;
+    min-height: 730px;
     max-height: 100%;
-    margin: 10rem 0 4rem;
+    margin: 15rem 0 3rem;
     padding: 1.5rem 2.5rem 0;
 `;
 
@@ -97,8 +97,8 @@ const Select = styled.div`
     }
     &:hover > div ~ div {
         visibility: visible;
-        height: 81px;
-    }
+        height: ${({ height }) => height ? height: '74'}px;
+   }
     & > div ~ div {
         visibility: hidden;
         height: 0px;
@@ -171,7 +171,7 @@ const LinkBox = styled.div`
         width: 100%;
         height: 100%;
     }
-    span > form {
+    span > div {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -180,10 +180,10 @@ const LinkBox = styled.div`
         border: 1px solid #F8F8F8;
         padding: .4rem .4rem;
     }
-    form > img {
+    div > img {
         width: 20px; 
     }
-    form > input {
+    div > input {
         width: 100%;
         border: none;
         outline: none;
@@ -229,7 +229,7 @@ const MakeTeam = styled.div`
     height: 145px;
     border: 1px solid;
 
-    form {
+    span {
         width:100%;
         height: 100%;
         display: flex;
