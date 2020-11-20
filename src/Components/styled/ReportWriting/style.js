@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { } from "styled-components";
 import { MainBackground } from "../../../assets";
 
 const Main = styled.div`
@@ -6,9 +6,24 @@ const Main = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100%;
+    min-width: 1045px;
+    min-height: 650px;
     background-image: url(${MainBackground});
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 10px;
+        /* 스크롤바의 width */
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: linear-gradient(135deg,#81bcff,#56D4E2);
+        border-radius: 10px;
+        /* 스크롤바 색 */
+    }
 
     * {
         box-sizing: border-box;
@@ -21,31 +36,13 @@ const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     width: 68%;
+    min-width: 950px;
     max-width: 68%;
-    height: 80%;
-    max-height: 80%;
-    margin-top: 5rem;
+    height: 730px;
+    min-height: 730px;
+    max-height: 100%;
+    margin: 15rem 0 3rem;
     padding: 1.5rem 2.5rem 0;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar { 
-        width: 10px; 
-        /* 스크롤바의 width */
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: #f0f0f0; 
-        /* 스크롤바의 전체 */
-    }
-    &::-webkit-scrollbar-thumb { 
-        background: linear-gradient(135deg,#81bcff,#56D4E2);
-        border-radius: 10px;
-        /* 스크롤바 색 */
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        width: 20px;
-        
-    }
 `;
 
 const InlineBox = styled.div`
@@ -81,18 +78,14 @@ const PaddingBox = styled.div`
 `;
 
 const Select = styled.div`
-    width: 4.8rem;
+    position: relative;
+    width: 90px;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
     font-family: BBTreeGL;
-    margin-left: 2rem;
-    div {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    margin-left: 1.5rem;
+
     span {
         font-size: 13px;
     }
@@ -102,6 +95,30 @@ const Select = styled.div`
     &:hover {
         cursor: pointer;
     }
+    &:hover > div ~ div {
+        visibility: visible;
+        height: ${({ height }) => height ? height: '74'}px;
+   }
+    & > div ~ div {
+        visibility: hidden;
+        height: 0px;
+    }
+`;
+
+const ViewList = styled.div`
+    position: absolute;
+    min-width: 90px;
+    transition: all 0.3s;
+    background-color: #ffffff;
+    border: 1px solid #4d4d4d;
+    border-top: none;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    text-align: left;
+    cursor: pointer;
+    z-index: 5;
+    margin: 4.5px 10px 0 0;
+    left: -1px;
+    overflow: hidden;
 `;
 
 const ReportMain = styled.div`
@@ -118,8 +135,9 @@ const ReportHeader = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGB;
-        font-size: 15px;
+        font-family: BBTreeGL;
+        font-weight: normal;
+        font-size: 14px;
         text-align: left;
     }
 `;
@@ -136,7 +154,7 @@ const ReprotWriteBox = styled.div`
         outline: none;
         padding: .8rem .8rem;
         font-family: BBTreeGL;
-        font-size: 13px;
+        font-size: 14px;
         text-align: left;
     }
 `;
@@ -153,7 +171,7 @@ const LinkBox = styled.div`
         width: 100%;
         height: 100%;
     }
-    span > form {
+    span > div {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -162,17 +180,18 @@ const LinkBox = styled.div`
         border: 1px solid #F8F8F8;
         padding: .4rem .4rem;
     }
-    form > img {
+    div > img {
         width: 20px; 
     }
-    form > input {
+    div > input {
         width: 100%;
         border: none;
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGB;
+        font-family: BBTreeGL;
         font-size: 13px;
+        
     }
 `;
 
@@ -185,11 +204,13 @@ const AttachFile = styled.div`
     justify-content: flex-start;
 
     span {
+        display: flex;
         width: 100%;
         border: none;
         outline: none;
         padding: .4rem .4rem;
         background: #F8F8F8;
+        
         img {
             width: 20px;
         }
@@ -208,11 +229,10 @@ const MakeTeam = styled.div`
     height: 145px;
     border: 1px solid;
 
-    form {
+    span {
         width:100%;
         height: 100%;
         display: flex;
-        
     }
 `;
 
@@ -231,6 +251,7 @@ export {
     SelectBoxs,
     PaddingBox,
     Select,
+    ViewList,
     ReportMain,
     ReportHeader,
     ReprotWriteBox,
