@@ -9,6 +9,9 @@ const Main = styled.div`
     height: 100vh;
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
+    visibility: ${({visibility})=>visibility};
+    transition: .6s;
+    opacity: ${({opacity})=>opacity}; 
 
     * {
         margin: 0;
