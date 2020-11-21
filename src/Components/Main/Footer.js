@@ -30,7 +30,7 @@ const Footer = () => {
                         </S.Intro>
                         <S.Intro>
                             <S.Title>
-                                Frontend
+                                Front-End
                             </S.Title>
                             <S.People>
                                 <div>강은빈 김혜준</div>
