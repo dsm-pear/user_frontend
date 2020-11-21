@@ -83,7 +83,7 @@ const SearchResultTitle = () => {
                 )
             })
         }
-    )
+    ,[]);
 
     return (
         <>
