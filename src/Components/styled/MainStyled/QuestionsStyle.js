@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 
 export const Questions = styled.div`
-    width: 100%;
     height: 100%;
     background-color: #ffffff;  
 `
@@ -106,6 +105,7 @@ export const QuestButton = styled.button`
 
 
 export const ModalBox = styled.div`
+    width: 100%;
     display: ${(props) => (props.visible ? 'block' : 'none')};
 `;
 
