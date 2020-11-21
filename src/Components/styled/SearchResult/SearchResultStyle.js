@@ -6,8 +6,8 @@ export const Background = styled.div`
     background-image: url(${main});
     background-size: 100vw 100vh;
     height: 100vh;
-    width: 100vw;
     background-repeat: no-repeat;
+    font-family: BBTreeGB;
 `;
 
 export const ResultBox = styled.div`
@@ -142,23 +142,7 @@ export const ContainerDay = styled.div`
     align-items: center;
 `;
 
-export const ResultAdd = styled.div`
-    font-size: 18px;
-    line-height: 1.22;
-    letter-spacing: 1.8px;
-    text-align: center;
-    margin-top: 30px;
-    cursor: pointer;
-`;
 
-export const ResultAddImg = styled.div`
-    width: 10px;
-    margin: 0 auto;
-    cursor: pointer;
-    img{
-        width: 10px;
-    }
-`;
 
 export const ResultProfile = styled.div`
     padding-left: 30px;
@@ -193,6 +177,30 @@ export const ResultGithub = styled.div`
     a{
         text-decoration: none;
         color: #000000;
+    }
+    a:hover{
+        color: #6192f3;
+    }
+`;
+
+export const ResultAdd = styled.div`
+    font-size: 18px;
+    line-height: 1.22;
+    letter-spacing: 1.8px;
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
+    justify-content: space-between;
+`;
+
+export const ResultAddNumber = styled.div`
+    width: 200px;
+    justify-content: space-between;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+    a{
+        padding: 5px;
     }
     a:hover{
         color: #6192f3;
