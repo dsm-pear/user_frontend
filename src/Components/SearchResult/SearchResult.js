@@ -9,6 +9,7 @@ import UpArrow from '../../assets/ArrowImg/UpArrow.png'
 
 const SearchResult = (props) => {
     const { params } = props.match;
+    console.log(params)
 
     const [ range, setRange ] = useState("정렬");
     const [ show, setShow ] = useState(false);
@@ -76,10 +77,13 @@ const SearchResult = (props) => {
                     </S.ResultContant>
 
                     <S.ResultAdd>
-                        더보기
-                        <S.ResultAddImg>
-                            <img src={DownArrow} alt="사진"/>
-                        </S.ResultAddImg>
+                        <S.ResultAddNumber>
+                            <a href="/">1</a>
+                            <a href="/">2</a>
+                            <a href="/">3</a>
+                            <a href="/">4</a>
+                            <a href="/">5</a>
+                        </S.ResultAddNumber>
                     </S.ResultAdd>
                     
                 </S.ResultSubBox>
