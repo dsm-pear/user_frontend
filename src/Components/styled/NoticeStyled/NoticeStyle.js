@@ -6,8 +6,13 @@ export const Background = styled.div`
     background-image: url(${main});
     background-size: 100vw 100vh;
     height: 100vh;
-    width: 100vw;
     background-repeat: no-repeat;
+    min-width: 1520px;
+    font-family: BBTreeGB;
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
 `;
 
 export const NoticeBox = styled.div`
@@ -75,7 +80,7 @@ export const NoticeC = styled.div`
 export const NoticeContant = styled.div`
     width: 984px;
     height: 530px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     &::-webkit-scrollbar { 
         width: 10px; 
@@ -135,11 +140,17 @@ export const NoticeAdd = styled.div`
     cursor: pointer;
 `;
 
-export const NoticeAddImg = styled.div`
-    width: 10px;
-    margin: 0 auto;
-    cursor: pointer;
-    img{
-        width: 10px;
+export const NoticeAddNumber = styled.div`
+    width: 200px;
+    justify-content: space-between;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+    a{
+        padding: 5px;
+        color: ${(props) => props.color}
+    }
+    a:hover{
+        color: #6192f3;
     }
 `;
