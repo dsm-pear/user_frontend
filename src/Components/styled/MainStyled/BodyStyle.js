@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const MainBody = styled.div`
-    width: 100%;
     height: 90.3%;
     min-width: 1530px;
 `
   
 export const LogoBox = styled.div`
     width: 50%;
-    height: 90.3%;
+    height: 80vh;
 `
 
 export const LogoSubBox = styled.div`
