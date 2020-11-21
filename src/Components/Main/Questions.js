@@ -80,7 +80,6 @@ const Questions = () => {
                         message={message}
                     />
                 }
-                
             </S.Questions>
         </>
     )
