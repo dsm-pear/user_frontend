@@ -20,8 +20,9 @@ const Main = styled.div`
 
 const ModalMain = styled.div`
     transition: all .6s;
-    height: 210px;
     opacity: ${({opacity}) => opacity};
+    box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
+    height: 210px;
     width: 650px;
     border: 1px solid #ffffff;
     border-radius: 20px;

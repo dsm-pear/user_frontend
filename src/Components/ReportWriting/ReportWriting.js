@@ -26,7 +26,7 @@ const ReportWriting = () => {
     const onClick = () => {
         setState("visable");
         setHei("280px");
-        setMyOpa('1');
+        setMyOpa('1')
     }
 
     return (
@@ -57,7 +57,7 @@ const ReportWriting = () => {
                                     <S.ViewList>
                                         <I.ListTable>개인</I.ListTable>
                                         <I.ListTable>팀</I.ListTable>
-                                        SubmitReportModal            <I.ListTable>비공개</I.ListTable>
+                                        <I.ListTable>비공개</I.ListTable>
                                     </S.ViewList>
                             </S.Select>
                             <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
