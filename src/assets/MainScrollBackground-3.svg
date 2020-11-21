@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1922" height="1423.213" viewBox="0 0 1922 1423.213">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.188" x2="0.318" y2="1.06" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#91f4ff"/>
+      <stop offset="0.469" stop-color="#81bcff"/>
+      <stop offset="1" stop-color="#6964ff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.199" x2="0.974" y2="0.981" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#91f4ff"/>
+      <stop offset="0.516" stop-color="#81bcff"/>
+      <stop offset="1" stop-color="#5955d8"/>
+    </linearGradient>
+  </defs>
+  <g id="메인_스크롤_배경" transform="translate(2 0.213)" opacity="0.6">
+    <path id="패스_456" data-name="패스 456" d="M-23,541.2v508.879H882.952s-155.607-14.046-300.736-46.183C479.348,981.119,381.727,949.23,348.72,906.8c-79.536-102.232,101.519-118.742,0-189.2S167.472,731.54,76.94,697.78-23,541.2-23,541.2Z" transform="translate(21 372.919)" opacity="0.6" fill="url(#linear-gradient)"/>
+    <path id="패스_112" data-name="패스 112" d="M-427.329,1366.693h1044V549.569s-87.984,68.748-149.125-47.142,71.58-306.421-83.51-384.991-193.862,82.5-310.179,47.142S-93.163-55.417-93.163-55.417H-397.377S-233.34-6.31-212.462,211.72s-156.581,381.062-101.4,604.985S-3.688,1013.13,44.032,1115.27C71.566,1174.205,42.671,1283.7-98.894,1336.4-202.176,1374.851-427.329,1366.693-427.329,1366.693Z" transform="translate(1303.329 55.204)" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>
