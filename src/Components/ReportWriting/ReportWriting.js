@@ -10,26 +10,29 @@ import { selecthover } from "../../assets";
 import { link } from "../../assets";
 
 const ReportWriting = () => {
-    const [hoverNumber, setHoverNumber] = useState(0)
+    const [ hoverNumber, setHoverNumber ] = useState(0)
     const [ state, setState ] = useState("hidden");
     const [ hei, setHei ] = useState("0");
+    const [ myopa, setMyOpa ] = useState("1");
 
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
     }
+
     const onMouseLeave = () => { 
         setHoverNumber(0)
     }
+
     const onClick = () => {
         setState("visable");
         setHei("280px");
+        setMyOpa('1');
     }
 
     return (
         <>
-            <SubmitReportModal setState={setState} setHei={setHei} state={state} hei={hei}/>   
-            <S.Main>
-            
+        <SubmitReportModal setState={setState} setHei={setHei} state={state} hei={hei} myopa={myopa} setMyOpa={setMyOpa}/>   
+        <S.Main>    
             <S.BorderBox> 
                <S.InlineBox>
                     <S.ReportLogo> 
@@ -54,7 +57,7 @@ const ReportWriting = () => {
                                     <S.ViewList>
                                         <I.ListTable>개인</I.ListTable>
                                         <I.ListTable>팀</I.ListTable>
-                                        <I.ListTable>비공개</I.ListTable>
+                                        SubmitReportModal            <I.ListTable>비공개</I.ListTable>
                                     </S.ViewList>
                             </S.Select>
                             <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
