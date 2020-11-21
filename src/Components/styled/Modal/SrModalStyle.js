@@ -19,13 +19,14 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
-    transition: all .8s;
+    transition: all .6s;
     height: ${({height})=>height};
     overflow: hidden; 
     width: 650px;
     border: 1px solid #ffffff;
     border-radius: 20px;
     background-color: #ffffff;
+    opacity: ${({ myopa }) => myopa};
 `;
 
 const ModalSort = styled.div`
