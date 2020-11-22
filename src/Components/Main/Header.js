@@ -52,7 +52,6 @@ const Header = () => {
     const onReportDown = () => {
         setReport(false);
     }
-
     const onProfileUp = () => {
         setProfile(true);
     }
@@ -95,7 +94,7 @@ const Header = () => {
                     {/* 메뉴 */}
                     <S.MenuBar>
                         <S.MenuUl>
-                            <S.MenuList><Link to={'/notice'}>공지사항</Link></S.MenuList>
+                            <S.MenuList><Link to={'/notice?page=1'}>공지사항</Link></S.MenuList>
 
                             <S.MenuList><Link to={'/report-writing'}>보고서 작성</Link></S.MenuList>
                             <S.MenuList onMouseEnter={onReportUp} onMouseLeave={onReportDown}>
@@ -111,7 +110,7 @@ const Header = () => {
                                 </S.MenuList>
 
                             {     /*토큰 여부에 따라 출력*/
-                            <S.MenuList onMouseEnter={()=>onProfileUp()} onMouseLeave={()=>onProfileDown()}>
+                            <S.MenuList onMouseEnter={onProfileUp} onMouseLeave={onProfileDown}>
                                 <S.Profile>프로필</S.Profile>
                                 {
                                     profile &&
