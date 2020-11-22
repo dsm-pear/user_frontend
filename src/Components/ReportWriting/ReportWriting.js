@@ -127,7 +127,6 @@ const ReportWriting = () => {
                                 </I.TeamRightBox>
                             </span>
                         </S.MakeTeam>
-                        {/* save & submit btn (right) */}
                         <S.SaveSubBtn>
                             <I.SaveBtn>
                                 <div>임시저장</div>
