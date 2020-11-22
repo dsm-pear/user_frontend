@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import main from '../../../assets/Main.png';
 

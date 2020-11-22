@@ -17,6 +17,7 @@ const Header = () => {
     const [ img, setImg ] = useState(DownArrow);
     const [ value, setValue ] = useState("title");
     const [ keyword, setKeyword ] = useState("제목");
+    setKeyword("제목")
 
     const onlist = () => {
         if(!show){

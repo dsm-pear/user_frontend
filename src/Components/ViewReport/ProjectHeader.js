@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "../styled/ViewReport/style";
 import ProHeader from "./ProHeader";
-import { select, searchImg } from "../../assets";
+import { select } from "../../assets";
 
 function ProjectHeader() {
   return (
