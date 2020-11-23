@@ -1,41 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Main/Header';
 import * as S from '../styled/NoticeStyled/NoticeContentStyle';
 import Leave from '../../assets/ArrowImg/Leave.png';
 import link from '../../assets/link.svg';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 const NoticeContent = (props) => {
     const { params } = props.match;
-    console.log(params.data);
+    const pvalue = params.data - 1;
 
-    const [ contentData, setContentData ] = useState("");
+    const [ contentData, setContentData ] = useState(null);
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(null);
 
-    // axios.get('/https://api.dsm-pear.hs.kr/notice/', {
-    //     params: {
-    //         noticeId: params.data
-    //     }
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //     if(response.status === 200){
-    //         setContentData(response.data)
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     setError(error)
-    // });
-
+    useEffect(() => {
+        const DataApi = async () => {
+          try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setContentData(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            const response = await axios.get(
+              `https://jsonplaceholder.typicode.com/users`
+            );
+            setContentData(response.data);
+            
+          } catch (e) {
+            setError(e);
+          }
+          setLoading(false);
+        };
+    
+        DataApi();
+      }, []);
+    
+      if (loading) return <div>로딩중..</div>;
+      if (error) return <div>에러가 발생했습니다</div>;
+      if (!contentData) return null;
     return(
         <>
                 <S.Background>
                     <Header/>
 
-                    <S.NoticeContant key={contentData.notice_id}>
+                    <S.NoticeContant key={contentData[pvalue].id}>
                         <S.NoticeHeader>
                             <S.NoLeave>
                                 <Link to={'/notice'}>
@@ -44,16 +54,16 @@ const NoticeContent = (props) => {
                             </S.NoLeave>
 
                             <S.NoTitle>
-                                {params.data}
+                                {contentData[pvalue].name}
                             </S.NoTitle>
 
                             <S.NoDay>
-                                {contentData.created_at}
+                                {contentData[pvalue].username}
                             </S.NoDay>
                         </S.NoticeHeader>
 
                         <S.NoticeContain>
-                            {contentData.description}
+                            {contentData[pvalue].name}
                         </S.NoticeContain>
 
                         <S.NoticeFile>
@@ -61,7 +71,7 @@ const NoticeContent = (props) => {
                             <img src={link} alt="사진"/>
                             </S.FileLink>
                             <S.FileTitle>
-                                <div>아무말 대잔치</div>
+                                <div>파일이름</div>
                             </S.FileTitle>
                         </S.NoticeFile>
 
@@ -72,3 +82,24 @@ const NoticeContent = (props) => {
 }
 
 export default NoticeContent;
+
+/*
+const a = async () => {
+        try{
+            const res = await axios.get(`http://3.18.113.20:3000/file/13`);
+            if(res.status === 200){
+                setContentData(res.data)
+                console.log(res);
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        setLoading(false);
+        a()
+        setLoading(true);
+    },[])
+    */
