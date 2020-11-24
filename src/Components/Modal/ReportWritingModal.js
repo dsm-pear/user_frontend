@@ -1,15 +1,21 @@
-import React, {  } from 'react';
+import React, { useState } from 'react';
 import * as S from '../styled/Modal/RwModalStyle';
 import * as I from '../styled/Modal/RwModalInStyle';
 import { Close } from "../../assets";
 import { searchImg } from "../../assets";
 import { NowTeam } from "../../assets";
+import { clickNT } from "../../assets";
 
-const ReportWritingModal = ({setOpen, setMyHei, setOpas, open, myHei, opas}) => {
+const ReportWritingModal = ({setOpen, setMyHei, open, myHei, opas}) => {
+    const [ toggled, setToggled ] = useState(false);
     
     const onClick = () => {
-        setOpen("hidden");
-        setMyHei("0");
+        setOpen("hidden")
+        setMyHei("0")
+    }
+
+    const btnClick = () => {
+        setToggled(!toggled);
     }
 
     return (
@@ -38,8 +44,13 @@ const ReportWritingModal = ({setOpen, setMyHei, setOpas, open, myHei, opas}) => 
                         </I.BorderResult>
                     </S.SearchResult>
                     <S.TeamState>
-                        <I.BorderState>
-                            <span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/>
+                        <I.BorderState onClick={btnClick}>
+                            <span>현재 팀 상태</span>
+                            {
+                                toggled === true ?
+                                <img src={clickNT} alt="clickNT"/>
+                                :<img src={NowTeam} alt="NowTeam"/>
+                            }
                         </I.BorderState>
                     </S.TeamState>
                 </S.ModalSort>
