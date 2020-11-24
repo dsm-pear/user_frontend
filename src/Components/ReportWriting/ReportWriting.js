@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import ReportWritingModal from '../Modal/ReportWritingModal';
 import SubmitReportModal from '../Modal/SubmitReportModal';
 import * as S from '../styled/ReportWriting/style';
-// In의 약자 I
 import * as I from '../styled/ReportWriting/InStyle'; 
 import { RWlogo } from "../../assets";
 import { searchImg } from "../../assets";
@@ -13,7 +13,10 @@ const ReportWriting = () => {
     const [ hoverNumber, setHoverNumber ] = useState(0)
     const [ state, setState ] = useState("hidden");
     const [ hei, setHei ] = useState("0");
-    const [ myopa, setMyOpa ] = useState("1");
+    const [ myopa, setMyOpa ] = useState('1');
+    const [ open, setOpen ] = useState("hidden");
+    const [ myHei, setMyHei ] = useState("0");
+    const [ opas, setOpas ] = useState('1');
 
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
@@ -26,12 +29,19 @@ const ReportWriting = () => {
     const onClick = () => {
         setState("visible");
         setHei("280px");
-        setMyOpa('1')
+        setMyOpa('1');
+    }
+    
+    const teamBtnClick = () => {
+        setOpen("visible");
+        setMyHei("450px");
+        setOpas('1');
     }
 
     return (
         <>
-        <SubmitReportModal setState={setState} setHei={setHei} state={state} hei={hei} myopa={myopa} setMyOpa={setMyOpa}/>   
+        <SubmitReportModal setState={setState} setHei={setHei} setMyOpa={setMyOpa} state={state} hei={hei} myopa={myopa}/>
+        <ReportWritingModal setOpen={setOpen} setMyHei={setMyHei} setOpas={setOpas} open={open} myHei={myHei} opas={opas}/>
         <S.Main>    
             <S.BorderBox> 
                <S.InlineBox>
@@ -41,7 +51,6 @@ const ReportWriting = () => {
                     <S.SelectBoxs>
                         <S.PaddingBox>
                         { /*<S.Select> 
-                        
                                 <div><span>학년선택</span><img src={select}  alt="grade-select" /></div>
                             </S.Select>
                             <S.Select>
@@ -123,7 +132,7 @@ const ReportWriting = () => {
                                     </I.TeamMember>
                                 </I.TeamLeftBox>
                                 <I.TeamRightBox>
-                                    <div>팀 만들기</div>
+                                    <div onClick={teamBtnClick}>팀 만들기</div>
                                 </I.TeamRightBox>
                             </span>
                         </S.MakeTeam>
