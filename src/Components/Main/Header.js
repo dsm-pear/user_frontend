@@ -5,7 +5,7 @@ import * as S from '../styled/MainStyled/HeaderStyle'
 import DownArrow from '../../assets/ArrowImg/DownArrow.png';
 import UpArrow from '../../assets/ArrowImg/UpArrow.png';
 import SearchImg from '../../assets/searchImg.png';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 
 const Header = () => {
 
@@ -16,7 +16,7 @@ const Header = () => {
     const [ profile, setProfile ] = useState(false);
     const [ img, setImg ] = useState(DownArrow);
     const [ value, setValue ] = useState("title");
-    const [ keyword, setKeyword ] = useState("제목");
+    const [ keyword, setKeyword ] = useState("");
 
     const onlist = () => {
         if(!show){
@@ -58,6 +58,14 @@ const Header = () => {
     const onProfileDown = () => {
         setProfile(false);
     }
+
+    const onSearch = (e) => {
+        setKeyword(e.target.value);
+    }
+
+    const onsubmit = () => {
+        Link.push(`/search-result?mode=${value}&keyword=${keyword}&size=7&page=1`);
+    }
     
     return (
         <>
@@ -85,10 +93,10 @@ const Header = () => {
                                 }
                             </S.SeachBarSelect>
 
-                            <S.SeachBarInput name="search" placeholder="검색창"/>
+                            <S.SeachBarInput name="search" placeholder="검색창" onChange={onSearch}/>
 
-                            <S.SeachBarButton><Link to={`/search-result/${value}/keyword=${keyword}&size=&page=`}><img src={SearchImg} alt="검색"/></Link></S.SeachBarButton>
-                            </form>
+                            <Link to={`/search-result?mode=${value}&keyword=${keyword}&size=7&page=1`}><S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton></Link>
+                        </form>
                     </S.SeachBar>
 
                     {/* 메뉴 */}
