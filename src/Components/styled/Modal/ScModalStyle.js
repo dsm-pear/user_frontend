@@ -39,6 +39,11 @@ const CloseBtn = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     span > img {
         width: 18px;

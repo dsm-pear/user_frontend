@@ -19,7 +19,7 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
-    transition: all .6s;
+    transition: all .8s;
     height: ${({height})=>height};
     opacity: ${({ opas }) => opas};
     box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
@@ -88,6 +88,11 @@ const SearchResult = styled.div`
 `;
 
 const TeamState = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     display: flex;
     justify-content: flex-end;
     margin: 1rem 1rem;

@@ -51,6 +51,11 @@ const InlineBox = styled.div`
 `;
 
 const ReportLogo = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -68,6 +73,11 @@ const ReportLogo = styled.div`
 const SelectBoxs = styled.div`
     width: 100%;
     margin-top: 1.5rem;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 `;
 
 const PaddingBox = styled.div`
@@ -108,7 +118,7 @@ const Select = styled.div`
 const ViewList = styled.div`
     position: absolute;
     min-width: 90px;
-    transition: all 0.45s;
+    transition: all 0.3s;
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     border-top: none;
@@ -225,6 +235,11 @@ const SubmitBox = styled.div`
     
 
 const MakeTeam = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     width: 70%;
     height: 145px;
     border: 1px solid;
@@ -237,6 +252,11 @@ const MakeTeam = styled.div`
 `;
 
 const SaveSubBtn = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     width: 30%;
     display: flex;
     justify-content: center;
