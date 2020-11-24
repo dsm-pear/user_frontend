@@ -5,12 +5,18 @@ import { Close } from "../../assets";
 import { searchImg } from "../../assets";
 import { NowTeam } from "../../assets";
 
-const ReportWritingModal = () => {
+const ReportWritingModal = ({setOpen, setMyHei, setOpas, open, myHei, opas}) => {
+    
+    const onClick = () => {
+        setOpen("hidden");
+        setMyHei("0");
+    }
+
     return (
-        <S.Main>
-            <S.ModalMain>
+        <S.Main visibility={open}>
+            <S.ModalMain height={myHei} opas={opas}>
                 <S.ModalSort>
-                    <S.CloseBtn>
+                    <S.CloseBtn onClick={onClick}>
                         <span><img src={Close} alt="Close"/></span>
                     </S.CloseBtn>
                     <S.SearchInput>
