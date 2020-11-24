@@ -13,7 +13,7 @@ const SubmitReportModal = ({setState, setHei, state, hei, myopa, setMyOpa}) => {
     }
 
     const btnClick = () => {
-        setView("visable");
+        setView("visible");
         setState("hidden");
         setMyOpa('0');
         setOpa("1");
