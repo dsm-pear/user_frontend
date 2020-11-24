@@ -3,10 +3,11 @@ import background from '../../../assets/MainBackground.png';
 
 export const Background = styled.div`
     background-image: url(${background});
-    background-size: 100vw 100vh;
+    background-size: 100% 100vh;
     height: 100vh;
     background-repeat: no-repeat;
     font-family: BBTreeGB;
+    min-width: 1820px;
 `;
 
 export const NoticeContant = styled.div`
