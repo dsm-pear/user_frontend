@@ -66,7 +66,6 @@ const Header = () => {
     
     return (
         <>
-        
             <S.HeaderBox>
                 <S.HeaderSubBox>
                     {/* 로고 */}
