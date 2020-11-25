@@ -17,11 +17,6 @@ export const Main = styled.div`
         width: 10px;
         /* 스크롤바의 width */
     }
-    &::-webkit-scrollbar-thumb { 
-        background: linear-gradient(135deg,#81bcff,#56D4E2);
-        border-radius: 10px;
-        /* 스크롤바 색 */
-    }
     * {
         box-sizing: border-box;
         margin: 0;

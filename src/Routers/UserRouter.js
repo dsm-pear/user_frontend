@@ -23,6 +23,7 @@ import {
   TeamStateModal,
   SubmitReportModal,
   SubmitSuccess,
+  SearchResult,
   Main,
 } from "../Components/index";
 
