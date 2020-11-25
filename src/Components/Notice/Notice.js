@@ -47,7 +47,7 @@ const Notice = ({location}) => {
     }
 
     const processed = (querys) => page_arr.map((num)=>{
-        if(querys.page != num){
+        if(Number(querys.page) !== num){
             return <Link onClick={()=>setPageValue(num)} to={`/notice?page=${page_arr[num]}`} key={num}> {page_arr[num]} </Link>
         }
         else {
