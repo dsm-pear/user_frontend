@@ -1,41 +1,60 @@
-import React, {  } from 'react';
+import React, { useState } from 'react';
 import * as S from '../styled/Modal/RwModalStyle';
+import * as I from '../styled/Modal/RwModalInStyle';
 import { Close } from "../../assets";
 import { searchImg } from "../../assets";
 import { NowTeam } from "../../assets";
+import { clickNT } from "../../assets";
 
-const ReportWritingModal = () => {
+const ReportWritingModal = ({setOpen, setMyHei, open, myHei, opas}) => {
+    const [ toggled, setToggled ] = useState(false);
+    
+    const onClick = () => {
+        setOpen("hidden")
+        setMyHei("0")
+    }
+
+    const btnClick = () => {
+        setToggled(!toggled);
+    }
+
     return (
-        <S.Main>
-        {/* 전체 container */}
-            <div>
-            {/* 모달 설정 및 가운데 정렬 */}
-                <div>
-                {/* 모달 padding, margin 설정 */}
-                    <div>
-                    {/* 닫기 버튼 */}
+        <S.Main visibility={open}>
+            <S.ModalMain height={myHei} opas={opas}>
+                <S.ModalSort>
+                    <S.CloseBtn onClick={onClick}>
                         <span><img src={Close} alt="Close"/></span>
-                    </div>
-                    <div>
-                    {/* 검색 input */}
-                        <span><input type={Text} /><img src={searchImg} alt="search" /></span>
-                    </div>
-                    <div>
-                    {/* 검색 result창 */}
-                        <div>
+                    </S.CloseBtn>
+                    <S.SearchInput>
+                        <I.BorderInput>
+                            <form name="input-name" action="" method="post">
+                                <span><input type={Text} /><img src={searchImg} alt="search" /></span>
+                            </form>
+                        </I.BorderInput>
+                    </S.SearchInput>
+                    <S.SearchResult>
+                        <I.BorderResult>
                             <div>
                                 <form name="team-member" action="" method="post">
-                                    <div><span>전규현(201215jgh@dsm.hs.kr)</span><imput type="checkbox" name="Teaminfo" value="member"/></div>
+                                    <div>
+                                        <span>전규현(201215jgh@dsm.hs.kr)</span><input type="checkbox" name="Teaminfo" value="member"/>
+                                    </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                    {/* 현재 팀 상태 */}
-                        <div><span>현재 팀 상태</span><img src={NowTeam} alt="NowTeam"/></div>
-                    </div>
-                </div>
-            </div>
+                           </div>
+                        </I.BorderResult>
+                    </S.SearchResult>
+                    <S.TeamState>
+                        <I.BorderState onClick={btnClick}>
+                            <span>현재 팀 상태</span>
+                            {
+                                toggled === true ?
+                                <img src={clickNT} alt="clickNT"/>
+                                :<img src={NowTeam} alt="NowTeam"/>
+                            }
+                        </I.BorderState>
+                    </S.TeamState>
+                </S.ModalSort>
+            </S.ModalMain>
         </S.Main>
     );
 }
