@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MemberBox = styled.div`
+export const MemberBox = styled.div`
     width: 90%;
     height: 12%;
     display: flex;
@@ -26,7 +26,3 @@ const MemberBox = styled.div`
         margin-left: .6rem;
     }
 `;
-
-export {
-    MemberBox
-}
