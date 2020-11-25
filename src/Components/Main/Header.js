@@ -95,7 +95,7 @@ const Header = () => {
 
                             <S.SeachBarInput name="search" placeholder="검색창" onChange={onSearch}/>
 
-                            <Link to={`/search-result?mode=${value}&keyword=${keyword}&size=7&page=1`}><S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton></Link>
+                            <Link to={`/search-result?mode=${value}&keyword=${keyword}&page=1`}><S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton></Link>
                         </form>
                     </S.SeachBar>
 
