@@ -7,7 +7,7 @@ export const Background = styled.div`
     background-size: 100% 100vh;
     height: 100vh;
     background-repeat: no-repeat;
-    min-width: 1820px;
+    min-width: 1320px;
     font-family: BBTreeGB;
     a{
         text-decoration: none;
@@ -16,7 +16,7 @@ export const Background = styled.div`
 `;
 
 export const NoticeBox = styled.div`
-    width: 1483px;
+    width: 80%;
     height: 720px;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #e4eef2;
@@ -100,7 +100,6 @@ export const NoticeContant = styled.div`
 
 export const Container = styled.div`
     margin-bottom: 20px;
-    width: 960px;
     height: 55px;
     border-radius: 6px;
     border: solid 1.6px #6192f3;
