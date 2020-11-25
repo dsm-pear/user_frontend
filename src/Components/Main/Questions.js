@@ -8,9 +8,10 @@ const Questions = () => {
     const [ email, setEmail ] = useState("");
     const [ content, setContent ] = useState("");
 
+    /*
     const [questdata, setQuestdata] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null);*/
     const [ message, setMessage ] = useState("버그 & 문의 사항이 접수 되었습니다")
 
     const closeModal = () => {
@@ -30,8 +31,6 @@ const Questions = () => {
             setMessage("빈 칸을 입력해주세요")
             setModalVisible(true);
         }else{
-            console.log(email);
-            console.log(content);
             setMessage("버그 & 문의 사항이 접수 되었습니다")
             setModalVisible(true);
         }
