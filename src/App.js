@@ -3,7 +3,6 @@ import { Route, BrowserRouter } from "react-router-dom";
 import GlobalFonts from "./GlobalStyle";
 import UserRouter from "./Routers/UserRouter";
 
-
 const App = () => {
   return(
     <>
