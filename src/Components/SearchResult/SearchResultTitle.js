@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import { Link } from 'react-router-dom';
 
@@ -66,7 +65,6 @@ const SearchResultTitle = () => {
         (dataList) => {
             return dataList.map((data)=>{
                 const color = data.bdc === "팀" ? "#6192f3" : data.bdc === "개인" ? "#27d5b1" : "#5955d8";
-                
                 return(
                     <Link to={`/view-report/main-report`}>
                         <S.Container bordercolor={color} key={data.id}>
@@ -75,7 +73,7 @@ const SearchResultTitle = () => {
                                     [{data.bdc}]
                                 </S.ContainerBDC>
                                 <S.ContainerTitle>
-                                    {data.title}
+                                    {data.name}
                                 </S.ContainerTitle>
                                 <S.ContainerDay>
                                     {data.day}
@@ -86,7 +84,7 @@ const SearchResultTitle = () => {
                 )
             })
         }
-    )
+    ,[]);
 
     return (
         <>

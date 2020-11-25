@@ -41,11 +41,11 @@ const SearchResult = ({location}) => {
         return (
 
             query.mode === "profile" ? 
-            <SearchResultProfile/>
+            <SearchResultProfile limit={limitdata} pageValue={pageValue}/>
             : query.mode === "title" ?
-            <SearchResultTitle/>
+            <SearchResultTitle limit={limitdata} pageValue={pageValue}/>
             : query.mode === "language" ?
-            <SearchResultLanguage/>
+            <SearchResultLanguage limit={limitdata}pageValue={pageValue}/>
             : null
 
         )
@@ -74,8 +74,8 @@ const SearchResult = ({location}) => {
     });
     
     const prev = () => {
-        if(a!=1){
-            if(page%5 != 0){
+        if(a!==1){
+            if(page%5 !== 0){
                 setPage(page-page%5)
                 seta(a-a%5-4)
             }else{
