@@ -8,7 +8,7 @@ export const Background = styled.div`
     height: 100vh;
     background-repeat: no-repeat;
     font-family: BBTreeGB;
-    min-width: 1820px;
+    min-width: 1320px;
     a{
         text-decoration: none;
         color: #000000;
@@ -16,7 +16,7 @@ export const Background = styled.div`
 `;
 
 export const ResultBox = styled.div`
-    width: 1483px;
+    width: 80%;
     height: 720px;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #e4eef2;
@@ -80,7 +80,7 @@ export const ResultC = styled.div`
 export const ResultContant = styled.div`
     width: 984px;
     height: 530px;
-    overflow-y: auto;
+    overflow-y: hidden;
 
     &::-webkit-scrollbar { 
         width: 10px; 
@@ -101,7 +101,6 @@ export const ResultContant = styled.div`
 
 export const Container = styled.div`
     margin-bottom: 20px;
-    width: 960px;
     height: 55px;
     border-radius: 6px;
     background-color: #ffffff;
