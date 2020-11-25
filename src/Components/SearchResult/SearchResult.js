@@ -65,7 +65,7 @@ const SearchResult = ({location}) => {
     }
 
     const processed = (querys) => page_arr.map((num)=>{
-        if(Number(querys.page) != num){
+        if(Number(querys.page) !== num){
             return <Link onClick={()=>setPageValue(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} key={num}> {page_arr[num]} </Link>
         }
         else {
