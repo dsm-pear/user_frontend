@@ -8,6 +8,10 @@ export const Background = styled.div`
     height: 100vh;
     background-repeat: no-repeat;
     font-family: BBTreeGB;
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
 `;
 
 export const ResultBox = styled.div`
@@ -189,7 +193,6 @@ export const ResultAdd = styled.div`
     letter-spacing: 1.8px;
     text-align: center;
     margin-top: 30px;
-    cursor: pointer;
     justify-content: space-between;
 `;
 
@@ -199,8 +202,11 @@ export const ResultAddNumber = styled.div`
     position: relative;
     left: 50%;
     transform: translate(-50%,0);
+    display: flex;
     a{
         padding: 5px;
+        text-decoration: none;
+        color: black;
     }
     a:hover{
         color: #6192f3;

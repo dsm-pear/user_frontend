@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCallback } from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
+import { Link } from 'react-router-dom';
 
 const SearchResultTitle = () => {
     
@@ -67,19 +68,21 @@ const SearchResultTitle = () => {
                 const color = data.bdc === "팀" ? "#6192f3" : data.bdc === "개인" ? "#27d5b1" : "#5955d8";
                 
                 return(
-                    <S.Container bordercolor={color} key={data.id}>
-                        <S.ContainerContant>
-                            <S.ContainerBDC fontcolor={color}>
-                                [{data.bdc}]
-                            </S.ContainerBDC>
-                            <S.ContainerTitle>
-                                {data.title}
-                            </S.ContainerTitle>
-                            <S.ContainerDay>
-                                {data.day}
-                            </S.ContainerDay>
-                        </S.ContainerContant>
-                    </S.Container>
+                    <Link to={`/view-report/main-report`}>
+                        <S.Container bordercolor={color} key={data.id}>
+                            <S.ContainerContant>
+                                <S.ContainerBDC fontcolor={color}>
+                                    [{data.bdc}]
+                                </S.ContainerBDC>
+                                <S.ContainerTitle>
+                                    {data.title}
+                                </S.ContainerTitle>
+                                <S.ContainerDay>
+                                    {data.day}
+                                </S.ContainerDay>
+                            </S.ContainerContant>
+                        </S.Container>
+                    </Link>
                 )
             })
         }
