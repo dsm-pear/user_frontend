@@ -1,33 +1,60 @@
-import React, { useState } from "react";
-import Pearlogo from "../../assets/PEARlogo.svg";
-import Profile from "../../assets/StudentProfile.svg";
-import * as S from "../styled/MainStyled/HeaderStyle";
-import DownArrow from "../../assets/ArrowImg/DownArrow.png";
-import UpArrow from "../../assets/ArrowImg/UpArrow.png";
-import SearchImg from "../../assets/searchImg.png";
-import { Link } from "react-router-dom";
+import React, {useState} from 'react';
+import Pearlogo from '../../assets/PEARlogo.svg';
+import Profile from '../../assets/StudentProfile.svg'
+import * as S from '../styled/MainStyled/HeaderStyle'
+import DownArrow from '../../assets/ArrowImg/DownArrow.png';
+import UpArrow from '../../assets/ArrowImg/UpArrow.png';
+import SearchImg from '../../assets/searchImg.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const [searchtype, setSearchtype] = useState("제목");
-  const [color, setColor] = useState("#000000");
-  const [show, setShow] = useState(false);
-  const [report, setReport] = useState(false);
-  const [profile, setProfile] = useState(false);
-  const [img, setImg] = useState(DownArrow);
-  const [value, setValue] = useState("title");
-  const [keyword, setKeyword] = useState("제목");
 
-  const onlist = () => {
-    if (!show) {
-      setShow(true);
-      setImg(UpArrow);
-      setColor("#5955d8");
-    } else {
-      setShow(false);
-      setImg(DownArrow);
-      setColor("#000000");
+    const [ searchtype, setSearchtype ] = useState("제목");
+    const [ color, setColor ] = useState("#000000");
+    const [ show, setShow ] = useState(false);
+    const [ report, setReport ] = useState(false);
+    const [ profile, setProfile ] = useState(false);
+    const [ img, setImg ] = useState(DownArrow);
+    const [ value, setValue ] = useState("title");
+    const [ keyword, setKeyword ] = useState("");
+
+    const onlist = () => {
+        if(!show){
+            setShow(true);
+            setImg(UpArrow);
+            setColor("#5955d8");
+        }
+        else{
+            setShow(false);
+            setImg(DownArrow);
+            setColor("#000000");
+        }
     }
-    
+
+    const onTitleSeach = () => {
+        setSearchtype("제목");
+        setValue("title");
+    }
+
+    const onLanguageSeach = () => {
+        setSearchtype("언어");
+        setValue("language");
+    }
+
+    const onProfileSeach = () => {
+        setSearchtype("프로필");
+        setValue("profile");
+    }
+
+    const onReportUp = () => {
+        setReport(true);
+    }
+    const onReportDown = () => {
+        setReport(false);
+    }
+    const onProfileUp = () => {
+        setProfile(true);
+    }
     const onProfileDown = () => {
         setProfile(false);
     }
