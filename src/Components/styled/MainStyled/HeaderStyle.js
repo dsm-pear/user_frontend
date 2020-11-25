@@ -39,9 +39,6 @@ export const SeachBar = styled.div`
         display: flex;
         font-family: BBTreeGB;
     }
-    a{
-        text-decoration: none;
-    }
 `;
 
 export const SeachBarSelect = styled.div`
@@ -70,7 +67,6 @@ export const SeachChoice = styled.div`
 
 export const SeachList = styled.div`
     cursor: pointer;
-    transition: all 0.3s;
     margin-top: 20px;
     z-index: 5;
     width: 58px;
@@ -79,7 +75,6 @@ export const SeachList = styled.div`
     background-color: #e4eef2;
     padding-top: 12px;
     padding-left: 10px;
-    transition: transform 0.5s;
 `;
 
 export const SeachType = styled.div`
@@ -102,7 +97,6 @@ export const SeachBarInput = styled.input`
 
 export const SeachBarButton = styled.button`
     width: 60px;
-    height: 38px;
     border: none;
     border-radius: 0 21px 21px 0;
     background-color: #e4eef2;
@@ -124,7 +118,6 @@ export const MenuBar = styled.div`
 export const MenuUl = styled.ul`
     justify-content: space-between;
     display: flex;
-    font-size: 20px;
 `
 
 export const MenuList = styled.li `
@@ -142,8 +135,8 @@ export const MenuList = styled.li `
 
 export const MenuSee = styled.div`
     width: 85px;
-    height: 100px;
-    padding-top: 20px;
+    height: 110px;
+    padding-top: 10px;
     border: solid 1px #e4eef2;
     background-color: #ffffff;
     text-align: center;
@@ -151,16 +144,15 @@ export const MenuSee = styled.div`
     margin-top: 80px;
     z-index: 5;
     position: absolute;
-    transition: all 0.3s;
 `;
 
 export const ReportSee = styled.div`
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 14px;
     color: #000000;
     cursor: pointer;
     &:hover{
-        font-size: 19px;
+        font-size: 16px;
         color:#5955d8;
     }
 `;
@@ -185,11 +177,11 @@ export const Mypage = styled.div`
 `;
 
 export const Mypro = styled.div`
-    font-size: 17px;
+    font-size: 15px;
     margin-bottom: 10px;
     color: #000000;
     &:hover{
-        font-size: 18px;
+        font-size: 16px;
         color:#5955d8;
     }
 `;

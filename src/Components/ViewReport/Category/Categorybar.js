@@ -11,19 +11,19 @@ const Categorybar = () => {
         Ele={[
           {
             text: "웹 개발 보고서",
-            link: "ReportWeb",
+            link: "report-web",
           },
           {
             text: "앱 개발 보고서",
-            link: "ReportApp",
+            link: "report-app",
           },
           {
             text: "게임 개발 보고서",
-            link: "ReportGame",
+            link: "report-game",
           },
           {
             text: "인공지능 개발 보고서",
-            link: "ReportAi",
+            link: "report-ai",
           },
         ]}
       />
@@ -32,7 +32,7 @@ const Categorybar = () => {
         Ele={[
           {
             text: "임베디드 개발 보고서",
-            link: "ReportEmb",
+            link: "report-emb",
           },
         ]}
       />
@@ -41,7 +41,7 @@ const Categorybar = () => {
         Ele={[
           {
             text: "정보 보안 개발 보고서",
-            link: "ReportInfo",
+            link: "report-info",
           },
         ]}
       />
@@ -50,7 +50,7 @@ const Categorybar = () => {
         Ele={[
           {
             text: "융합 개발 보고서",
-            link: "ReportFus",
+            link: "report-fus",
           },
         ]}
       />
