@@ -9,7 +9,8 @@ import { selecthover } from "../../assets";
 import { link } from "../../assets";
 
 const ReportWriting = () => {
-    const [ hoverNumber, setHoverNumber ] = useState(0)
+    const [ hoverNumber, setHoverNumber ] = useState(0);
+    const [ clickNumber, setClickNumber ] = useState(0);
     const [ state, setState ] = useState("hidden");
     const [ hei, setHei ] = useState("0");
     const [ myopa, setMyOpa ] = useState('1');
@@ -26,6 +27,14 @@ const ReportWriting = () => {
     const onMouseLeave = () => { 
         setHoverNumber(0)
     }
+
+    const isIdClick = (e) => {
+        console.log(e.target.dataset)
+
+        if(e.target.dataset && 'division' || e.target.dataset && 'field' || e.target.dataset && 'scope') {
+            setClickNumber(Number(e.currentTarget.dataset.id))
+        } else {return null}
+    }
     
     const onClick = () => {
         setState("visible");
@@ -39,8 +48,16 @@ const ReportWriting = () => {
         setOpas('1');
     }
 
-    const clickInputBox = () => {
-        setWid("15rem");
+    const clickInputBox = (e) => {
+        // if (!toggle) {
+        //     setWid("15rem");
+        // } else {
+        //     setWid("12rem");
+        // }
+
+        // 페이지 접속시 toggle: false
+        // 인풋 클릭을 한다: -> 이떄 toggle: false
+        setWid(toggle ? "12rem" : "15rem");
         setToggle(!toggle);
     }
 
@@ -69,11 +86,11 @@ const ReportWriting = () => {
                                 </I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>구분 선택</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }
-                                <S.ViewList>
-                                    <I.ListTable>개인</I.ListTable>
-                                    <I.ListTable>팀</I.ListTable>
-                                    <I.ListTable>동아리</I.ListTable>
-                                </S.ViewList>
+                            <S.ViewList>
+                                <I.ListTable data-id="1" data-type="division" onClick={isIdClick}>개인</I.ListTable>
+                                <I.ListTable data-id="2" data-type="division" onClick={isIdClick}>팀</I.ListTable>
+                                <I.ListTable data-id="3" data-type="division" onClick={isIdClick}>동아리</I.ListTable>
+                            </S.ViewList>
                             </S.Select>
                             <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
                             { 
@@ -83,13 +100,13 @@ const ReportWriting = () => {
                                 : <I.SelctFlexBox><span>개발 분야</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }       
                             <S.ViewList>
-                                <I.ListTable>소프트웨어</I.ListTable>
+                                <I.ListTable data-id="1" data-type="field" onClick={isIdClick}>소프트웨어</I.ListTable>
                                 <I.InList>- 웹</I.InList>
                                 <I.InList>- 앱</I.InList>
                                 <I.InList>- 게임</I.InList>
-                                <I.ListTable>인베디드</I.ListTable>
-                                <I.ListTable>정보보안</I.ListTable>
-                                <I.ListTable>융합</I.ListTable>
+                                <I.ListTable data-id="2" data-type="field" onClick={isIdClick}>임베디드</I.ListTable>
+                                <I.ListTable data-id="3" data-type="field" onClick={isIdClick}>정보보안</I.ListTable>
+                                <I.ListTable data-id="4" data-type="field" onClick={isIdClick}>융합</I.ListTable>
                             </S.ViewList>
                             </S.Select>
                             <S.Select data-id="3" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
@@ -99,11 +116,11 @@ const ReportWriting = () => {
                                 </I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>공개범위</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }       
-                                <S.ViewList>
-                                    <I.ListTable>전체 공개</I.ListTable>
-                                    <I.ListTable>학생 공개</I.ListTable>
-                                    <I.ListTable>비공개</I.ListTable>
-                                </S.ViewList>
+                            <S.ViewList>
+                                <I.ListTable data-id="1" data-type="scope" onClick={isIdClick}>전체 공개</I.ListTable>
+                                <I.ListTable data-id="2" data-type="scope" onClick={isIdClick}>학생 공개</I.ListTable>
+                                <I.ListTable data-id="3" data-type="scope" onClick={isIdClick}>비공개</I.ListTable>
+                            </S.ViewList>
                             </S.Select>
                         </S.PaddingBox>
                     </S.SelectBoxs>
