@@ -10,26 +10,29 @@ import { selecthover } from "../../assets";
 import { link } from "../../assets";
 
 const ReportWriting = () => {
-    const [hoverNumber, setHoverNumber] = useState(0)
+    const [ hoverNumber, setHoverNumber ] = useState(0)
     const [ state, setState ] = useState("hidden");
     const [ hei, setHei ] = useState("0");
+    const [ myopa, setMyOpa ] = useState("1");
 
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
     }
+
     const onMouseLeave = () => { 
         setHoverNumber(0)
     }
+
     const onClick = () => {
         setState("visable");
         setHei("280px");
+        setMyOpa('1')
     }
 
     return (
         <>
-            <SubmitReportModal setState={setState} setHei={setHei} state={state} hei={hei}/>   
-            <S.Main>
-            
+        <SubmitReportModal setState={setState} setHei={setHei} state={state} hei={hei} myopa={myopa} setMyOpa={setMyOpa}/>   
+        <S.Main>    
             <S.BorderBox> 
                <S.InlineBox>
                     <S.ReportLogo> 

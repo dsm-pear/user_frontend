@@ -19,8 +19,10 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
-    transition: all .8s;
+    transition: all .6s;
     height: ${({height})=>height};
+    opacity: ${({ myopa }) => myopa};
+    box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
     overflow: hidden; 
     width: 650px;
     border: 1px solid #ffffff;
