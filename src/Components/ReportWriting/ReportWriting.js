@@ -4,7 +4,6 @@ import SubmitReportModal from '../Modal/SubmitReportModal';
 import * as S from '../styled/ReportWriting/style';
 import * as I from '../styled/ReportWriting/InStyle'; 
 import { RWlogo } from "../../assets";
-import { searchImg } from "../../assets";
 import { select } from "../../assets";
 import { selecthover } from "../../assets";
 import { link } from "../../assets";
