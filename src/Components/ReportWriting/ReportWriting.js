@@ -17,6 +17,8 @@ const ReportWriting = () => {
     const [ open, setOpen ] = useState("hidden");
     const [ myHei, setMyHei ] = useState("0");
     const [ opas, setOpas ] = useState('1');
+    const [ wid, setWid ] = useState("11.5rem");
+    const [ toggle, setToggle ] = useState(false);
 
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
@@ -36,6 +38,11 @@ const ReportWriting = () => {
         setOpen("visible");
         setMyHei("450px");
         setOpas('1');
+    }
+
+    const clickInputBox = () => {
+        setWid("15rem");
+        setToggle(!toggle);
     }
 
     return (
@@ -123,13 +130,12 @@ const ReportWriting = () => {
                         <S.MakeTeam>
                             <span>
                                 <I.TeamLeftBox>
-                                    <I.TeamName>
-                                        <span><input type={Text} placeholder="팀의 이름을 입력해주세요." /></span>
+                                    <I.TeamName onClick={clickInputBox} width={wid}>
+                                        {
+                                            toggle
+                                        }
+                                        <span><input type={Text} placeholder="팀의 이름을 입력해주세요."/></span>
                                     </I.TeamName>
-                                    <I.TeamMember>
-                                        <span><input type={Text} placeholder="팀원을 입력해주세요."/><img src={searchImg} alt="inputmember"/>
-                                        </span>
-                                    </I.TeamMember>
                                 </I.TeamLeftBox>
                                 <I.TeamRightBox>
                                     <div onClick={teamBtnClick}>팀 만들기</div>
