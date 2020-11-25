@@ -24,7 +24,7 @@ import {
   SubmitSuccess,
   SearchResult,
   Main,
-} from "../components/index";
+} from "../Components/index";
 
 function UserRouter() {
   return (
