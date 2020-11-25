@@ -87,7 +87,7 @@ const ReportWriting = () => {
                                 <I.InList>- 웹</I.InList>
                                 <I.InList>- 앱</I.InList>
                                 <I.InList>- 게임</I.InList>
-                                <I.ListTable>인베디드</I.ListTable>
+                                <I.ListTable>임베디드</I.ListTable>
                                 <I.ListTable>정보보안</I.ListTable>
                                 <I.ListTable>융합</I.ListTable>
                             </S.ViewList>
