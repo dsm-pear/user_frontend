@@ -1,7 +1,6 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import * as S from '../styled/NoticeStyled/NoticeStyle';
 import { Link } from 'react-router-dom';
-
 import axios from 'axios';
 
 
