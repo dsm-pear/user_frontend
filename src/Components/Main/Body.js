@@ -6,7 +6,7 @@ import Nextpage from '../../assets/nextpageimg.png';
 const Body = () => {
 
     const onclick = () => {
-        window.scrollTo({top: 935, behavior: "smooth"});
+        window.scrollTo({top: 938, behavior: "smooth"});
     }
 
     return (
@@ -35,8 +35,3 @@ const Body = () => {
 }
 
 export default Body;
-
-{/* <S.Logo src={Logo} />
-            <S.LogoText>
-                <p>P</p>reserve&nbsp;<p>E</p>xperience&nbsp;<p>A</p>bout your&nbsp;<p>R</p>eport
-            </S.LogoText> */}
