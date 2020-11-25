@@ -5,7 +5,7 @@ import * as S from '../styled/MainStyled/HeaderStyle'
 import DownArrow from '../../assets/ArrowImg/DownArrow.png';
 import UpArrow from '../../assets/ArrowImg/UpArrow.png';
 import SearchImg from '../../assets/searchImg.png';
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -63,9 +63,6 @@ const Header = () => {
         setKeyword(e.target.value);
     }
 
-    const onsubmit = () => {
-        Link.push(`/search-result?mode=${value}&keyword=${keyword}&size=7&page=1`);
-    }
     
     return (
         <>
