@@ -1,8 +1,8 @@
-
 import React, {useCallback, useState, useEffect} from 'react';
 import * as S from '../styled/NoticeStyled/NoticeStyle';
 import { Link } from 'react-router-dom';
-import axios from 'axios;
+import axios from 'axios';
+
 
 const NoticeContainer = (props) => {
     /*
@@ -58,26 +58,6 @@ const NoticeContainer = (props) => {
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>{error}</div>;
     if (!containerData) return null;
-
-
-    const Container = useCallback(
-        (dataList)=>{
-            return dataList.map((data)=>{
-                return(
-                <S.Container key={data.id}>
-                    <S.ContainerContant>
-                        <S.ContainerTitle>
-                            {data.title}
-                        </S.ContainerTitle>
-                        <S.ContainerDay>
-                            {data.day}
-                        </S.ContainerDay>
-                    </S.ContainerContant>
-                </S.Container>
-                )
-            })
-        }
-    ,[]);
 
     return (
         <>
