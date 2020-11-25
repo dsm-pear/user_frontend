@@ -11,7 +11,6 @@ const Notice = ({location}) => {
     const [ range, setRange ] = useState("정렬");
     const [ show, setShow ] = useState(false);
     const [ img, setImg ] = useState(DownArrow);
-    const [ sort, setSort ] = useState("");
 
     const query = queryString.parse(location.search);
 
@@ -57,8 +56,8 @@ const Notice = ({location}) => {
     });
     
     const prev = () => {
-        if(a!=1){
-            if(page%5 != 0){
+        if(a!==1){
+            if(page%5 !== 0){
                 setPage(page-page%5)
                 seta(a-a%5-4)
             }else{
@@ -105,7 +104,7 @@ const Notice = ({location}) => {
 
                         <S.NoticeContant>
 
-                            <NoticeContainer limit={limitdata} page={pageValue} sort={sort}/>
+                            <NoticeContainer limit={limitdata} page={pageValue}/>
 
                         </S.NoticeContant>
 

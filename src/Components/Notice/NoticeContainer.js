@@ -4,19 +4,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const NoticeContainer = (props) => {
+    /*
     const LimitData = props.limit;
     const PageData = props.page;
     const sort = props.sort;
+    */
     const [ containerData, setContainerData ] = useState("");
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(null);
-    
-    const data = [
-        {
-            id: "1",
-            name: "ana",
-        }
-    ]
 
     const Container = useCallback(
         (dataList)=>{
