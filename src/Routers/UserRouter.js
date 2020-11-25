@@ -1,41 +1,64 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import GlobalFonts from "../GlobalStyle";
-import Header from "../Components/Main/Header";
-import Login from "../Components/Login/Login";
-import UserProfile from "../Components/Profile/UserProfile";
-import MyProfile from "../Components/Profile/MyProfile";
-import ViewReport from '../Components/ViewReport/ViewReport';
-import ReportWeb from '../Components/ViewReport/ViewReportGroup/ReportWeb';
-import ReportApp from '../Components/ViewReport/ViewReportGroup/ReportApp';
-import ReportGame from '../Components/ViewReport/ViewReportGroup/ReportGame';
-import ReportAI from '../Components/ViewReport/ViewReportGroup/ReportAI';
-import ReportEmb from '../Components/ViewReport/ViewReportGroup/ReportEmb';
-import ReportInfo from '../Components/ViewReport/ViewReportGroup/ReportInfo';
-import ReportFus from '../Components/ViewReport/ViewReportGroup/ReportFus';
-
+import {
+  Login,
+  SignUp,
+  UserProfile,
+  MyProfile,
+  ViewReport,
+  ReportAI,
+  ReportApp,
+  ReportEmb,
+  ReportFus,
+  ReportGame,
+  ReportInfo,
+  ReportWeb,
+  MainReport,
+  ReportWriting,
+  Notice,
+  NoticeContent,
+  ReportWritingModal,
+  TeamStateModal,
+  SubmitReportModal,
+  SubmitSuccess,
+  SearchResult,
+  Main,
+} from "../components/index";
 
 function UserRouter() {
   return (
     <>
       <GlobalFonts />
-      <Header />
       <Switch>
-        <Route path="/Login" component={Login} exact />
-        <Route path="/UserProfile" component={UserProfile} exact />
-        <Route path="/MyProfile" component={MyProfile} exact />
-        <Route path="/ViewReport" component={ViewReport} exact/>
+        <Route path="/" component={Main} exact/>
+        <Route path="/login" component={Login} exact />
+        <Route path="/sign-up" component={SignUp} exact />
+        <Route path="/user-profile" component={UserProfile} exact />
+        <Route path="/my-profile" component={MyProfile} exact />
+        <Route path="/view-report" component={ViewReport} exact />
+        <Route path="/report-writing" component={ReportWriting} exact />
+        <Route path="/notice" component={Notice} exact/>
+        <Route path="/notice-content/:data" component={NoticeContent} exact/>
+        <Route path="/report-writing-modal" component={ReportWritingModal} exact />
+        <Route path="/team-state-modal" component={TeamStateModal} exact />
+        <Route path="/submit-report-modal" component={SubmitReportModal} exact />
+        <Route path="/submit-succes-modal" component={SubmitSuccess} exact />
+        {/*검색 조건에 따라 제목, 언어, 프로필*/}
+        <Route path="/search-result" component={SearchResult} exact/>
+    
         {/* 보고서 파트별로  소프트웨어 개발과 */}
-        <Route path="/ViewReport/ReportWeb" component={ReportWeb} exact />
-        <Route path="/ViewReport/ReportApp" component={ReportApp} exact />
-        <Route path="/ViewReport/ReportGame" component={ReportGame} exact />
-        <Route path="/ViewReport/ReportAI" component={ReportAI} exact />
+        <Route path="/view-report/report-web" component={ReportWeb} exact />
+        <Route path="/view-report/report-app" component={ReportApp} exact />
+        <Route path="/view-report/report-game" component={ReportGame} exact />
+        <Route path="/view-report/report-ai" component={ReportAI} exact />
         {/* 임베디드 개발과 */}
-        <Route path="/ViewReport/ReportEmb" component={ReportEmb} exact />
+        <Route path="/view-report/report-emb" component={ReportEmb} exact />
         {/*정보 보안 */}
-        <Route path="/ViewReport/ReportInfo" component={ReportInfo} exact />
+        <Route path="/view-report/report-info" component={ReportInfo} exact />
         {/*융합 보고서 */}
-        <Route path="/ViewReport/ReportFus" component={ReportFus} exact />
+        <Route path="/view-report/report-fus" component={ReportFus} exact />
+        <Route path="/view-report/main-report" component={MainReport} exact />
       </Switch>
     </>
   );
