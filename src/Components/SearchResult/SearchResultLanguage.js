@@ -1,31 +1,29 @@
-import React, {useCallback, useState, useEffect} from 'react';
-import * as S from '../styled/NoticeStyled/NoticeStyle';
+import React, { useCallback, useEffect, useState } from 'react';
+import * as S from '../styled/SearchResult/SearchResultStyle';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-
-const NoticeContainer = (props) => {
-    /*
-    const LimitData = props.limit;
-    const PageData = props.page;
-    const sort = props.sort;
-    */
-    const [ containerData, setContainerData ] = useState("");
+const SearchResultLanguage = () => {
+    const [ LanguageData, setContainerData ] = useState("");
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(null);
 
-    const Container = useCallback(
-        (dataList)=>{
+    const SearchLanguage = useCallback(
+        (dataList) => {
             return dataList.map((data)=>{
+                const color = data.bdc === "팀" ? "#6192f3" : data.bdc === "개인" ? "#27d5b1" : "#5955d8";
                 return(
-                    <Link to={`/notice-content/${data.id}`} key={data.id}>
-                        <S.Container>
+                    <Link to={`/view-report/main-report`}>
+                        <S.Container bordercolor={color} key={data.id}>
                             <S.ContainerContant>
+                                <S.ContainerBDC fontcolor={color}>
+                                    [{data.bdc}]
+                                </S.ContainerBDC>
                                 <S.ContainerTitle>
                                     {data.name}
                                 </S.ContainerTitle>
                                 <S.ContainerDay>
-                                    2020.11.23
+                                    {data.day}
                                 </S.ContainerDay>
                             </S.ContainerContant>
                         </S.Container>
@@ -57,15 +55,15 @@ const NoticeContainer = (props) => {
 
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>{error}</div>;
-    if (!containerData) return null;
+    if (!LanguageData) return null;
 
     return (
         <>
             {
-                Container(containerData)
+                SearchLanguage(LanguageData)
             }
         </>
     )
 }
 
-export default NoticeContainer;
+export default SearchResultLanguage;

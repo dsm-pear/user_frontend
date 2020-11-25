@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Main = styled.div`
+export const Main = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@ const Main = styled.div`
     }
 `;
 
-const ModalMain = styled.div`
+export const ModalMain = styled.div`
     z-index: 5;
     width: 350px;
     height: 450px;
@@ -23,13 +23,13 @@ const ModalMain = styled.div`
     background-color: #ffffff;
 `;
 
-const ModalSort = styled.div`
+export const ModalSort = styled.div`
     width: 100%;
     height: 100%;
     padding: 1rem 1rem;
 `;
 
-const CloseBtn = styled.div`
+export const CloseBtn = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -42,7 +42,7 @@ const CloseBtn = styled.div`
     }
 `;
 
-const ClickMember = styled.div`
+export const ClickMember = styled.div`
     display: flex;
     justify-content: center;
     margin: 4rem 1rem 0;
@@ -50,11 +50,3 @@ const ClickMember = styled.div`
     max-height: 72%;
     padding: 1rem 0;
 `;
-
-export {
-    Main,
-    ModalMain,
-    ModalSort,
-    CloseBtn,
-    ClickMember
-}

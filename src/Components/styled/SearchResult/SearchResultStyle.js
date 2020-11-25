@@ -7,15 +7,15 @@ export const Background = styled.div`
     background-size: 100% 100vh;
     height: 100vh;
     background-repeat: no-repeat;
-    min-width: 1820px;
     font-family: BBTreeGB;
+    min-width: 1820px;
     a{
         text-decoration: none;
         color: #000000;
     }
 `;
 
-export const NoticeBox = styled.div`
+export const ResultBox = styled.div`
     width: 1483px;
     height: 720px;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
@@ -25,19 +25,19 @@ export const NoticeBox = styled.div`
     margin-top: 60px;
 `;
 
-export const NoticeSubBox = styled.div`
+export const ResultSubBox = styled.div`
     width: 990px;
     height: 520px;
     margin: auto;
     margin-top: 50px;
 `;
 
-export const NoticeChoice = styled.div`
+export const ResultChoice = styled.div`
     float: right;
     margin-bottom: 20px;
 `;
 
-export const Noticearr = styled.div`
+export const Resultarr = styled.div`
     font-size: 13px;
     line-height: 1.17;
     letter-spacing: 1.2px;
@@ -55,7 +55,7 @@ export const Noticearr = styled.div`
     }
 `;
 
-export const NoticeRange = styled.div`
+export const ResultRange = styled.div`
     width: 99px;
     height: 60px;
     font-size: 13px;
@@ -66,10 +66,9 @@ export const NoticeRange = styled.div`
     border: solid 1px #4d4d4d;
     border-top: none;
     background-color: white;
-    transition-duration: 0.3s;
 `;
 
-export const NoticeC = styled.div`
+export const ResultC = styled.div`
     color: #000000;
     padding: 10px 13px 0 13px;
     cursor: pointer;
@@ -78,19 +77,21 @@ export const NoticeC = styled.div`
     }
 `;
 
-export const NoticeContant = styled.div`
+export const ResultContant = styled.div`
     width: 984px;
     height: 530px;
-    overflow-y: hidden;
+    overflow-y: auto;
 
     &::-webkit-scrollbar { 
         width: 10px; 
         /* 스크롤바의 width */
     }
+
     &::-webkit-scrollbar-track {
         background-color: #f0f0f0; 
         /* 스크롤바의 전체 */
     }
+
     &::-webkit-scrollbar-thumb { 
         background: linear-gradient(135deg,#81bcff,#56D4E2);
         border-radius: 10px;
@@ -103,8 +104,8 @@ export const Container = styled.div`
     width: 960px;
     height: 55px;
     border-radius: 6px;
-    border: solid 1.6px #6192f3;
     background-color: #ffffff;
+    border: solid 1.6px ${(props) => props.bordercolor};
     align-items: center;
     display: flex;
     cursor: pointer;
@@ -114,15 +115,28 @@ export const Container = styled.div`
 `;
 
 export const ContainerContant = styled.div`
-display: flex;
+    display: flex;
+    align-items: center;
+`;
+
+export const ContainerBDC = styled.div`
+    width: 80px;
+    padding-left: 30px;
+    line-height: 1.21;
+    letter-spacing: 1.4px;
+    font-size: 14px;
+    color: ${(props) => props.fontcolor};
+    align-items: center;
+    text-align: center;
 `;
 
 export const ContainerTitle = styled.div`
-    width: 780px;
+    width: 670px;
     font-size: 16px;
     line-height: 1.19;
     letter-spacing: 1.6px;
-    padding-left: 50px;
+    padding-left: 40px;
+    align-items: center;
 `;
 
 export const ContainerDay = styled.div`
@@ -130,25 +144,70 @@ export const ContainerDay = styled.div`
     font-size: 16px;
     line-height: 1.19;
     letter-spacing: 1.6px;
+    align-items: center;
 `;
 
-export const NoticeAdd = styled.div`
+
+
+export const ResultProfile = styled.div`
+    padding-left: 30px;
+    width: 80px;
+    img{
+        width: 30px;
+        padding-top: 3px;
+    }
+`;
+
+export const ResultName = styled.div`
+    color: #000000;
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 1.6px;
+`;
+
+export const ResultEmail = styled.div`
+    color: #000000;
+    margin-left: 50px;
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 1.6px;
+    width: 600px;
+`;
+
+export const ResultGithub = styled.div`
+    margin-right: 50px;
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 1.6px;
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
+    a:hover{
+        color: #6192f3;
+    }
+`;
+
+export const ResultAdd = styled.div`
     font-size: 18px;
     line-height: 1.22;
     letter-spacing: 1.8px;
     text-align: center;
     margin-top: 30px;
+    justify-content: space-between;
 `;
 
-export const NoticeAddNumber = styled.div`
-    display: flex;
+export const ResultAddNumber = styled.div`
     width: 200px;
     justify-content: space-between;
     position: relative;
     left: 50%;
     transform: translate(-50%,0);
+    display: flex;
     a{
         padding: 5px;
+        text-decoration: none;
+        color: black;
     }
     a:hover{
         color: #6192f3;

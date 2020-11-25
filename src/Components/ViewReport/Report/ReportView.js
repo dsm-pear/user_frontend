@@ -1,21 +1,23 @@
 import React from "react";
 import * as S from "../../styled/ViewReport/MainStyle";
 
-const ReportView = ({ title, text, gitLink, fileLink }) => {
+const ReportView = ({ title, text, git, file}) => {
   return (
     <S.Contents>
-      <S.title>
+      <S.Title>
         <p>{title}</p>
-      </S.title>
+      </S.Title>
       <S.MainText>
         <p>{text}</p>
       </S.MainText>
-      <S.Link>
-        <a href={gitLink}>보고서 깃허브 보기</a>
-      </S.Link>
-      <S.Link>
-        <p>{fileLink}</p>
-      </S.Link>
+      <S.Linkimg>
+        <div className="git"></div>
+        <a href={git}>프로젝트 깃허브 구경하기</a>
+      </S.Linkimg>
+      <S.Linkimg>
+      <div className="img"></div>
+        <p>{file}</p>
+      </S.Linkimg>
     </S.Contents>
   );
 };
