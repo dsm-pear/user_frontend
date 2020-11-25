@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 
 export const HeaderBox = styled.div`
@@ -6,6 +7,11 @@ export const HeaderBox = styled.div`
     margin-left: 150px;
     margin-right: 222px;
     z-index: 10;
+    font-family: BBTreeGB;
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
 `;
 
 export const HeaderSubBox = styled.div`
@@ -18,6 +24,9 @@ export const Mainlogo = styled.div`
     &:focus{
         border: none;
     }
+    img{
+        cursor: pointer;
+    }
 `;
 
 export const SeachBar = styled.div`
@@ -26,7 +35,10 @@ export const SeachBar = styled.div`
     display: flex;
     border: none;
     margin-right: 320px;
-    
+    form{
+        display: flex;
+        font-family: BBTreeGB;
+    }
 `;
 
 export const SeachBarSelect = styled.div`
@@ -36,6 +48,7 @@ export const SeachBarSelect = styled.div`
     border-radius: 21px 0 0 21px;
     background-color: #e4eef2;
     cursor: pointer;
+    font-family: BBTreeGB;
     &:focus {
         outline: none;
     }
@@ -48,7 +61,7 @@ export const SeachChoice = styled.div`
     img{
         width: 10px;
         margin-right: 3px;
-        color: #000000;
+        font-family: BBTreeGB;
     }
 `;
 
@@ -57,7 +70,7 @@ export const SeachList = styled.div`
     margin-top: 20px;
     z-index: 5;
     width: 58px;
-    height: 75px;
+    height: 65px;
     border-radius: 6px;
     background-color: #e4eef2;
     padding-top: 12px;
@@ -93,6 +106,7 @@ export const SeachBarButton = styled.button`
     }
     img{
         width: 20px;
+        font-family: BBTreeGB;
     }
 `;
 
@@ -114,19 +128,20 @@ export const MenuList = styled.li `
     &:hover{
         color:#5955d8;
     }
-    div{
-    }
+    a:hover{
+            color: #5955d8;
+        }
 `;
 
 export const MenuSee = styled.div`
     width: 85px;
-    height: 138px;
+    height: 110px;
     padding-top: 10px;
     border: solid 1px #e4eef2;
     background-color: #ffffff;
     text-align: center;
     cursor: pointer;
-    margin-top: 90px;
+    margin-top: 80px;
     z-index: 5;
     position: absolute;
 `;
@@ -150,13 +165,13 @@ export const Profile = styled.div`
 
 export const Mypage = styled.div`
     width: 80px;
-    height: 73px;
+    height: 63px;
     padding-top: 18px;
     border: solid 1px #e4eef2;
     background-color: #ffffff;
     text-align: center;
     position: absolute;
-    margin-top: 65px;
+    margin-top: 60px;
     margin-left: 5px;
     z-index: 5;
 `;

@@ -56,10 +56,13 @@ const Notice = () => {
                     </S.NoticeContant>
 
                     <S.NoticeAdd>
-                        더보기
-                        <S.NoticeAddImg>
-                            <img src={DownArrow} alt="사진"/>
-                        </S.NoticeAddImg>
+                        <S.NoticeAddNumber>
+                            <a href="/">1</a>
+                            <a href="/">2</a>
+                            <a href="/">3</a>
+                            <a href="/">4</a>
+                            <a href="/">5</a>
+                        </S.NoticeAddNumber>
                     </S.NoticeAdd>
                     
                 </S.NoticeSubBox>

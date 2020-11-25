@@ -2,10 +2,9 @@
 import styled from 'styled-components';
 
 export const Questions = styled.div`
-    width: 100%;
     height: 100%;
     background-color: #ffffff;  
-`;
+`
 
 export const QuestionBox = styled.div`
     width: 1032px;
@@ -103,9 +102,13 @@ export const QuestButton = styled.button`
 
 /* 모달 스타일 */
 
+
+
 export const ModalBox = styled.div`
+    width: 100%;
     display: ${(props) => (props.visible ? 'block' : 'none')};
 `;
+
 export const ModalBackground = styled.div `
     position: fixed;
     top: 0; left: 0;
@@ -115,7 +118,7 @@ export const ModalBackground = styled.div `
     justify-content: center;
     align-items : center;
     z-index: 3;
-`;
+`
 
 export const Modal = styled.div`
     width: 660px;

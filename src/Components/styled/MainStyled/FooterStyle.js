@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const FooterBox = styled.div`
-    width: 100%;
     height: 150px;
     background-color: #f5fafc;
     min-width: 1320px;
+    font-family: BBTreeGB;
 `;
 
 export const FooterSubBox = styled.div`
@@ -51,6 +51,6 @@ export const Title = styled.div`
 export const People = styled.div`
     height: 60px;
     div{
-        display: inline;
+        padding: 2px 6px;
     }
 `;

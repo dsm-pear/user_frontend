@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 const Main = styled.div`
+    position: absolute;
+    z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: gray;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    visibility: ${({visibility})=>visibility};
 
     * {
         margin: 0;
@@ -15,9 +19,12 @@ const Main = styled.div`
 `;
 
 const ModalMain = styled.div`
-    z-index: 5;
+    transition: all .8s;
+    height: ${({height})=>height};
+    opacity: ${({ opas }) => opas};
+    box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
+    overflow: hidden; 
     width: 350px;
-    height: 450px;
     border: 1px solid #ffffff;
     border-radius: 20px;
     background-color: #ffffff;
@@ -81,6 +88,11 @@ const SearchResult = styled.div`
 `;
 
 const TeamState = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     display: flex;
     justify-content: flex-end;
     margin: 1rem 1rem;
