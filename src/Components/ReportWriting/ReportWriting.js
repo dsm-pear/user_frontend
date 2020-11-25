@@ -31,9 +31,9 @@ const ReportWriting = () => {
     const isIdClick = (e) => {
         console.log(e.target.dataset)
 
-        if(e.target.dataset && 'division' || e.target.dataset && 'field' || e.target.dataset && 'scope') {
+        if(e.target.dataset === 'division' || e.target.dataset === 'field' || e.target.dataset === 'scope') {
             setClickNumber(Number(e.currentTarget.dataset.id))
-        } else {return null}
+        }
     }
     
     const onClick = () => {
