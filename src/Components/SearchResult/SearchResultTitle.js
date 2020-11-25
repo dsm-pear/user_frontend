@@ -73,7 +73,7 @@ const SearchResultTitle = () => {
                                     [{data.bdc}]
                                 </S.ContainerBDC>
                                 <S.ContainerTitle>
-                                    {data.name}
+                                    {data.title}
                                 </S.ContainerTitle>
                                 <S.ContainerDay>
                                     {data.day}
