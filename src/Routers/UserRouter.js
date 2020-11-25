@@ -18,6 +18,7 @@ import {
   ReportWriting,
   Notice,
   NoticeContent,
+  SearchResult,
   ReportWritingModal,
   TeamStateModal,
   SubmitReportModal,
@@ -40,6 +41,7 @@ function UserRouter() {
         <Route path="/report-writing" component={ReportWriting} exact />
         <Route path="/notice" component={Notice} exact/>
         <Route path="/notice-content/:data" component={NoticeContent} exact/>
+        <Route path="/search-result" component={SearchResult} exact/>
         <Route path="/report-writing-modal" component={ReportWritingModal} exact />
         <Route path="/team-state-modal" component={TeamStateModal} exact />
         <Route path="/submit-report-modal" component={SubmitReportModal} exact />

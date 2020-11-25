@@ -10,7 +10,9 @@ import { link } from "../../assets";
 
 const ReportWriting = () => {
     const [ hoverNumber, setHoverNumber ] = useState(0);
-    const [ clickNumber, setClickNumber ] = useState(0);
+    const [ clickDivisionNumber, setClickDivisionNumber ] = useState('구분 선택');
+    const [ clickFieldNumber, setClickFieldNumber ] = useState(0);
+    const [ clickScopeNumber, setClickScopeNumber ] = useState(0);
     const [ state, setState ] = useState("hidden");
     const [ hei, setHei ] = useState("0");
     const [ myopa, setMyOpa ] = useState('1');
@@ -29,11 +31,15 @@ const ReportWriting = () => {
     }
 
     const isIdClick = (e) => {
-        console.log(e.target.dataset)
-
-        if(e.target.dataset && 'division' || e.target.dataset && 'field' || e.target.dataset && 'scope') {
-            setClickNumber(Number(e.currentTarget.dataset.id))
-        } else {return null}
+        console.log(e.target.dataset.type)
+        
+        if(e.target.dataset.type === 'division'){ 
+            setClickDivisionNumber((e.currentTarget.dataset.id))
+        } else if(e.target.dataset.type === 'field'){
+            setClickFieldNumber(Number(e.currentTarget.dataset.id))
+        } else if(e.target.dataset.type === 'scope') {
+            setClickScopeNumber(Number(e.currentTarget.dataset.id))
+        }
     }
     
     const onClick = () => {
@@ -82,14 +88,14 @@ const ReportWriting = () => {
                             <S.Select data-id="1" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
                             { 
                                 hoverNumber === 1 ?
-                                <I.SelctFlexBox><span>구분 선택</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                <I.SelctFlexBox><span>{clickDivisionNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
                                 </I.SelctFlexBox>
-                                : <I.SelctFlexBox><span>구분 선택</span><img src={select} alt="language"/></I.SelctFlexBox>
+                                : <I.SelctFlexBox><span>{clickDivisionNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }
                             <S.ViewList>
-                                <I.ListTable data-id="1" data-type="division" onClick={isIdClick}>개인</I.ListTable>
-                                <I.ListTable data-id="2" data-type="division" onClick={isIdClick}>팀</I.ListTable>
-                                <I.ListTable data-id="3" data-type="division" onClick={isIdClick}>동아리</I.ListTable>
+                                <I.ListTable data-id="개인" data-type="division" onClick={isIdClick}>개인</I.ListTable>
+                                <I.ListTable data-id="팀" data-type="division" onClick={isIdClick}>팀</I.ListTable>
+                                <I.ListTable data-id="동아리" data-type="division" onClick={isIdClick}>동아리</I.ListTable>
                             </S.ViewList>
                             </S.Select>
                             <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
