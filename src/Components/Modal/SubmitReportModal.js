@@ -1,17 +1,31 @@
-import React, {  } from 'react';
+import React, {useState} from 'react';
+import SubmitSuccess from './SubmitSuccess';
 import * as S from '../styled/Modal/SrModalStyle';
 import { Close } from "../../assets";
 
-const ReportWritingModal = () => {
+const SubmitReportModal = ({setState, setHei, state, hei, myopa, setMyOpa}) => {
+    const [ view, setView ] = useState("hidden");
+    const [ opa, setOpa ] = useState("0");
+
+    const onClick = () => {
+        setState("hidden");
+        setHei("0");
+    }
+
+    const btnClick = () => {
+        setView("visible");
+        setState("hidden");
+        setMyOpa('0');
+        setOpa("1");
+    }
+
     return (
-        <S.Main>
-        {/* 전체 container */}
-            <S.ModalMain>
-            {/* 모달 설정 및 가운데 정렬 */}
+        <>
+        <SubmitSuccess setView={setView} setOpa={setOpa} view={view} opa={opa} />
+        <S.Main visibility={state}>
+            <S.ModalMain height={hei} myopa={myopa}>
                 <S.ModalSort>
-                {/* 모달 padding, margin 설정 */}
-                    <S.CloseBtn>
-                    {/* 닫기 버튼 */}
+                    <S.CloseBtn onClick={onClick}>
                         <span><img src={Close} alt="Close"/></span>
                     </S.CloseBtn>
                     <S.ModalHeader>
@@ -22,13 +36,14 @@ const ReportWritingModal = () => {
                         </p><span>순으로 작성 되어있는지 다시 한번 더 확인해주시기 바랍니다. 만약 위의 내용을</span><p>
                         </p><span>잘못 작성할 경우 보고서가 제출되지 않을 수 있습니다. 확인하고 제출 바랍니다.</span>
                     </S.ModalMainText>
-                    <S.SubmitBtn>
+                    <S.SubmitBtn onClick={btnClick}>
                         <span>제출</span>
                     </S.SubmitBtn>
                 </S.ModalSort>
             </S.ModalMain>
         </S.Main>
+        </>
     );
 }
 
-export default ReportWritingModal;
+export default SubmitReportModal;

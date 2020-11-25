@@ -5,8 +5,8 @@ export const Background = styled.div`
     background-image: url(${background});
     background-size: 100vw 100vh;
     height: 100vh;
-    width: 100vw;
     background-repeat: no-repeat;
+    font-family: BBTreeGB;
 `;
 
 export const NoticeContant = styled.div`
@@ -57,7 +57,7 @@ export const NoticeContain = styled.div`
     line-height: 1.67;
     letter-spacing: 1.8px;
     padding-right: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     &::-webkit-scrollbar { 
         width: 10px; 

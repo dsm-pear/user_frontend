@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
-const Main = styled.div`
+export const Main = styled.div`
+    position: absolute;
+    z-index: 99;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: gray;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    visibility: ${({visibility})=>visibility};
 
     * {
         margin: 0;
@@ -14,25 +18,32 @@ const Main = styled.div`
     }
 `;
 
-const ModalMain = styled.div`
-    z-index: 5;
-    width: 650px;
+export const ModalMain = styled.div`
+    transition: all .6s;
+    opacity: ${({opacity}) => opacity};
+    box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
     height: 210px;
+    width: 650px;
     border: 1px solid #ffffff;
     border-radius: 20px;
     background-color: #ffffff;
 `;
 
-const ModalSort = styled.div`
+export const ModalSort = styled.div`
     width: 100%;
     height: 100%;
     padding: 1rem 1rem;
 `;
 
-const CloseBtn = styled.div`
+export const CloseBtn = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     span > img {
         width: 18px;
@@ -42,13 +53,13 @@ const CloseBtn = styled.div`
     }
 `;
 
-const ModalHeader = styled.div`
+export const ModalHeader = styled.div`
     font-size: 30px;
     text-align: center;
     margin-top: 1.5rem;
     font-family: BBTreeGB;
 `;
-const ModalMainText = styled.div`
+export const ModalMainText = styled.div`
     font-size: 17px;
     text-align: center;
     margin-top: 1.4rem;
@@ -58,12 +69,3 @@ const ModalMainText = styled.div`
         margin-top: .4rem;
     }
 `;
-
-export {
-    Main,
-    ModalMain,
-    ModalSort,
-    CloseBtn,
-    ModalHeader,
-    ModalMainText
-}

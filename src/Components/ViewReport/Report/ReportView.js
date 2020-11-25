@@ -11,7 +11,7 @@ const ReportView = ({ title, text, git, file}) => {
         <p>{text}</p>
       </S.MainText>
       <S.Linkimg>
-        <div className="img"></div>
+        <div className="git"></div>
         <a href={git}>프로젝트 깃허브 구경하기</a>
       </S.Linkimg>
       <S.Linkimg>

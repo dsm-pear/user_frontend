@@ -24,7 +24,7 @@ const Cover = styled.div`
   }
 `;
 
-const Box = styled.div` 
+const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,6 +32,8 @@ const Box = styled.div`
   height: 80px;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
   background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  cursor : pointer;
+
 
   span {
     font-size: 23px;
@@ -204,6 +206,69 @@ const MainCover = styled.div`
   margin: 40px;
 `;
 
+const Select = styled.div`
+  margin: 0 30px;
+  position: relative;
+  width: 80px;
+  border: 1px solid #4d4d4d;
+  background: #ffffff;
+  padding: 0.2rem 0.3rem;
+  font-family: BBTreeGL;
+  margin-left: 1.5rem;
+
+  span {
+    font-size: 13px;
+  }
+  img {
+    width: 8px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover > div ~ div {
+    visibility: visible;
+    height: 81px;
+  }
+  & > div ~ div {
+    visibility: hidden;
+    height: 0px;
+  }
+`;
+const ViewList = styled.div`
+  position: absolute;
+  min-width: 90px;
+  transition: all 0.3s;
+  background-color: #ffffff;
+  border: 1px solid #4d4d4d;
+  border-top: none;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  text-align: left;
+  cursor: pointer;
+  z-index: 5;
+  margin: 4.5px 10px 0 0;
+  left: -1px;
+  overflow: hidden;
+`;
+
+const SelctFlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ListTable = styled.div`
+  font-family: BBTreeGL;
+  font-size: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding: 5px;
+  margin: 10px;
+  &:hover {
+    transition: 0.2s;
+    color: #5955d8;
+  }
+`;
+
 export {
   Main,
   Cover,
@@ -216,4 +281,8 @@ export {
   MainPro,
   Project,
   MainCover,
+  Select,
+  ViewList,
+  SelctFlexBox,
+  ListTable,
 };

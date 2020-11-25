@@ -35,8 +35,3 @@ const Body = () => {
 }
 
 export default Body;
-
-{/* <S.Logo src={Logo} />
-            <S.LogoText>
-                <p>P</p>reserve&nbsp;<p>E</p>xperience&nbsp;<p>A</p>bout your&nbsp;<p>R</p>eport
-            </S.LogoText> */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import * as S from '../styled/NoticeStyled/NoticeStyle';
 
 const NoticeContainer = () => {
@@ -15,7 +15,7 @@ const NoticeContainer = () => {
         },
         {
             "id": 3,
-            "title": "4번 제목",
+            "title": "3번 제목",
             "day": "2020.10.07"
         },
         {
@@ -56,23 +56,29 @@ const NoticeContainer = () => {
         
     ]
 
+    const Container = useCallback(
+        (dataList)=>{
+            return dataList.map((data)=>{
+                return(
+                <S.Container key={data.id}>
+                    <S.ContainerContant>
+                        <S.ContainerTitle>
+                            {data.title}
+                        </S.ContainerTitle>
+                        <S.ContainerDay>
+                            {data.day}
+                        </S.ContainerDay>
+                    </S.ContainerContant>
+                </S.Container>
+                )
+            })
+        }
+    ,[]);
+
     return (
         <>
             {
-                data.map((data)=>{
-                    return(
-                    <S.Container key={data.id}>
-                        <S.ContainerContant>
-                            <S.ContainerTitle>
-                                {data.title}
-                            </S.ContainerTitle>
-                            <S.ContainerDay>
-                                {data.day}
-                            </S.ContainerDay>
-                        </S.ContainerContant>
-                    </S.Container>
-                    )
-                })
+                Container(data)
             }
         </>
     )
