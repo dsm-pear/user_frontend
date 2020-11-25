@@ -7,7 +7,7 @@ export const MainBody = styled.div`
   
 export const LogoBox = styled.div`
     width: 50%;
-    height: 90.3%;
+    height: 80vh;
 `
 
 export const LogoSubBox = styled.div`
