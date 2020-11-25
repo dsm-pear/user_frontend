@@ -15,13 +15,6 @@ const Notice = ({location}) => {
 
     const query = queryString.parse(location.search);
 
-    const [ pageValue, setPageValue ] = useState(1);
-    const [ page, setPage ] = useState(5);
-    const [ a, seta ] = useState(1);
-    let page_arr = [];
-    const limitdata = 7;
-    const p = 28;
-
     const onChoice = () => {
         if(show){
             setShow(false);
@@ -40,6 +33,15 @@ const Notice = ({location}) => {
     const onOld = () => {
         setRange("오래된순");
     }
+
+    /* api 연동되면 수정할 것들 */
+
+    const [ pageValue, setPageValue ] = useState(1);
+    const [ page, setPage ] = useState(5);
+    const [ a, seta ] = useState(1);
+    let page_arr = [];
+    const limitdata = 7;
+    const p = 12;
 
     for(let i = a; i <= page; i++) {
         page_arr[i]=i;
