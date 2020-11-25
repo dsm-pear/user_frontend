@@ -90,27 +90,6 @@ export const TeamName = styled.div`
         font-family: BBTreeGL;
     }
 `;
-
-const TeamMember = styled.div`
-    width: 13rem;
-    background: #F8F8F8;
-    outline: none;
-    border: 1px solid #F8F8F8;
-    border-radius: 21px;
-    padding: 0.3rem 1rem;
-        span > input {
-            background: #F8F8F8;
-            outline: none;
-            border: 1px solid #F8F8F8;
-            text-align: left;
-            font-size: 13px;
-            font-family: BBTreeGR;
-            margin-right: 8px;
-        }
-        span > img {
-            width: 12px;
-        }
-`;
         
 export const SaveBtn = styled.div`
     padding-left: 2rem;   
