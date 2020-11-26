@@ -6,9 +6,13 @@ import SearchResultLanguage from './SearchResultLanguage';
 import Header from '../Main/Header';
 import DownArrow from '../../assets/ArrowImg/DownArrow.png'
 import UpArrow from '../../assets/ArrowImg/UpArrow.png'
+import queryString from 'query-string';
+import { Link } from 'react-router-dom';
 
-const SearchResult = (props) => {
-    const { params } = props.match;
+const SearchResult = ({location}) => {
+    const query = queryString.parse(location.search);
+
+    console.log(query.keyword)
 
     const [ range, setRange ] = useState("정렬");
     const [ show, setShow ] = useState(false);
@@ -36,15 +40,62 @@ const SearchResult = (props) => {
     const param = () => {
         return (
 
-        params.data === "profile" ? 
-            <SearchResultProfile/>
-            : params.data === "title" ?
-            <SearchResultTitle/>
-            : params.data === "language" ?
-            <SearchResultLanguage/>
+            query.mode === "profile" ? 
+            <SearchResultProfile limit={limitdata} pageValue={pageValue}/>
+            : query.mode === "title" ?
+            <SearchResultTitle limit={limitdata} pageValue={pageValue}/>
+            : query.mode === "language" ?
+            <SearchResultLanguage limit={limitdata}pageValue={pageValue}/>
             : null
 
         )
+    }
+
+    /* api 연동되면 수정할 것들 */
+
+    const [ pageValue, setPageValue ] = useState(1);
+    const [ page, setPage ] = useState(5);
+    const [ a, seta ] = useState(1);
+    let page_arr = [];
+    const limitdata = 7;
+    const p = 12;
+
+    for(let i = a; i <= page; i++) {
+        page_arr[i]=i;
+    }
+
+    const processed = (querys) => page_arr.map((num)=>{
+        if(Number(querys.page) !== num){
+            return <Link onClick={()=>setPageValue(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} key={num}> {page_arr[num]} </Link>
+        }
+        else {
+            return <Link onClick={()=>setPageValue(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </Link>
+        }
+    });
+    
+    const prev = () => {
+        if(a!==1){
+            if(page%5 !== 0){
+                setPage(page-page%5)
+                seta(a-a%5-4)
+            }else{
+                setPage(page-5)
+                seta(a-5)
+            }   
+        }
+    }
+
+    const next = () => {
+        if(page < p){
+            if(p < page + 5){
+                setPage(p)
+                seta(a+5);
+            }
+            else {
+                setPage(page+5);
+                seta(a+5);
+            }
+        }
     }
     
     return(
@@ -76,10 +127,13 @@ const SearchResult = (props) => {
                     </S.ResultContant>
 
                     <S.ResultAdd>
-                        더보기
-                        <S.ResultAddImg>
-                            <img src={DownArrow} alt="사진"/>
-                        </S.ResultAddImg>
+                        <S.ResultAddNumber>
+                                <div onClick={prev}>이전</div>
+                                {
+                                    processed(query)
+                                }
+                                <div onClick={next}>다음</div>
+                        </S.ResultAddNumber>
                     </S.ResultAdd>
                     
                 </S.ResultSubBox>

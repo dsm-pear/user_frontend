@@ -18,11 +18,11 @@ import {
   ReportWriting,
   Notice,
   NoticeContent,
+  SearchResult,
   ReportWritingModal,
   TeamStateModal,
   SubmitReportModal,
   SubmitSuccess,
-  SearchResult,
   Main,
 } from "../Components/index";
 
@@ -39,13 +39,14 @@ function UserRouter() {
         <Route path="/view-report" component={ViewReport} exact />
         <Route path="/report-writing" component={ReportWriting} exact />
         <Route path="/notice" component={Notice} exact/>
-        <Route path="/notice-content" component={NoticeContent} exact/>
+        <Route path="/notice-content/:data" component={NoticeContent} exact/>
+        <Route path="/search-result" component={SearchResult} exact/>
         <Route path="/report-writing-modal" component={ReportWritingModal} exact />
         <Route path="/team-state-modal" component={TeamStateModal} exact />
         <Route path="/submit-report-modal" component={SubmitReportModal} exact />
         <Route path="/submit-succes-modal" component={SubmitSuccess} exact />
         {/*검색 조건에 따라 제목, 언어, 프로필*/}
-        <Route path="/search-result/:data" component={SearchResult} exact/>
+        <Route path="/search-result" component={SearchResult} exact/>
     
         {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/view-report/report-web" component={ReportWeb} exact />

@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "../../styled/ViewReport/MainStyle";
 import Comments from "./Comments";
 
-const ReportComment = ({}) => {
+const ReportComment = () => {
   const comment = [
     {
       name: "강은빈",
