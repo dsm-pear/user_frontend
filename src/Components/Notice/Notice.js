@@ -3,8 +3,7 @@ import NoticeContainer from './NoticeContainer';
 import {Link} from 'react-router-dom';
 import Header  from '../Main/Header';
 import * as S from '../styled/NoticeStyled/NoticeStyle';
-import DownArrow from '../../assets/ArrowImg/DownArrow.png';
-import UpArrow from '../../assets/ArrowImg/UpArrow.png';
+import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
 
 const Notice = ({location}) => {
@@ -70,7 +69,7 @@ const Notice = ({location}) => {
                     <S.NoticeSubBox>
 
                         <S.NoticeChoice>
-                            총 {p} 페이지 중 {query.page} 페이지 입니다
+                            총 {p}페이지 중 {query.page} 페이지 입니다
                         </S.NoticeChoice>
 
                         <S.NoticeContant>
@@ -82,11 +81,11 @@ const Notice = ({location}) => {
                         <S.NoticeAdd>
                             <S.NoticeAddNumber>
 
-                                <div onClick={prev}>이전</div>
+                                <img src={LeftArrow} alt="사진" onClick={prev}/>
                                 {
                                     processed(query)
                                 }
-                                <div onClick={next}>다음</div>
+                                <img src={RightArrow} alt="사진" onClick={next}/>
 
                             </S.NoticeAddNumber>
                         </S.NoticeAdd>
