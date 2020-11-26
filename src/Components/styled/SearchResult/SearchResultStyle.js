@@ -161,18 +161,24 @@ export const ResultAdd = styled.div`
 `;
 
 export const ResultAddNumber = styled.div`
-    width: 200px;
+    width: 300px;
     justify-content: space-between;
     position: relative;
     left: 50%;
     transform: translate(-50%,0);
     display: flex;
+    align-items: center;
     a{
-        padding: 5px;
+        padding: 0 10px;
         text-decoration: none;
         color: black;
     }
     a:hover{
         color: #6192f3;
+    }
+    img{
+        padding: 0 10px;
+        width: 15px;
+        height: 15px;
     }
 `;
