@@ -33,9 +33,9 @@ export const NoticeSubBox = styled.div`
 `;
 
 export const NoticeChoice = styled.div`
-    margin-bottom: 35px;
+    margin-bottom: 11px;
     margin-right: 12px;
-    font-size: 19px;
+    font-size: 21px;
     float: right;
 `;
 
@@ -102,16 +102,24 @@ export const NoticeAdd = styled.div`
 `;
 
 export const NoticeAddNumber = styled.div`
-    display: flex;
-    width: 200px;
+    width: 300px;
     justify-content: space-between;
     position: relative;
     left: 50%;
     transform: translate(-50%,0);
+    display: flex;
+    align-items: center;
     a{
-        padding: 5px;
+        padding: 0 10px;
+        text-decoration: none;
+        color: black;
     }
     a:hover{
         color: #6192f3;
+    }
+    img{
+        padding: 0 10px;
+        width: 15px;
+        height: 15px;
     }
 `;
