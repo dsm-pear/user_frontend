@@ -4,8 +4,7 @@ import SearchResultTitle from './SearchResultTitle';
 import SearchResultProfile from './SearchResultProfile';
 import SearchResultLanguage from './SearchResultLanguage';
 import Header from '../Main/Header';
-import DownArrow from '../../assets/ArrowImg/DownArrow.png'
-import UpArrow from '../../assets/ArrowImg/UpArrow.png'
+import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 
@@ -95,11 +94,11 @@ const SearchResult = ({location}) => {
 
                     <S.ResultAdd>
                         <S.ResultAddNumber>
-                                <div onClick={prev}>이전</div>
+                                <img src={LeftArrow} alt="사진" onClick={prev}/>
                                 {
                                     processed(query)
                                 }
-                                <div onClick={next}>다음</div>
+                                <img src={RightArrow} alt="사진" onClick={next}/>
                         </S.ResultAddNumber>
                     </S.ResultAdd>
                     
