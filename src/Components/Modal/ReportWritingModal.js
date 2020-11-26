@@ -48,7 +48,7 @@ const ReportWritingModal = ({setOpen, setMyHei, open, myHei, opas}) => {
                                         <div onClick={clickCheckBox}>
                                         {
                                             toggle === true ?
-                                            <img src={checked} alt="checked" style={{border:'1px solid black'}} />
+                                            <img src={checked} alt="checked"/>
                                             :<img src={bfchecked} alt="beforechecked"/>
                                         }
                                         </div>
