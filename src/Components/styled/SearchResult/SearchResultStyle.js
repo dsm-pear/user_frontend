@@ -29,12 +29,16 @@ export const ResultSubBox = styled.div`
     width: 990px;
     height: 520px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 40px;
 `;
 
 export const ResultChoice = styled.div`
-    float: right;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    margin-left: 13px;
+    font-size: 17px;
+    span{
+        font-size: 20px;
+    }
 `;
 
 export const Resultarr = styled.div`
@@ -100,6 +104,8 @@ export const ResultContant = styled.div`
 `;
 
 export const Container = styled.div`
+    margin: auto;
+    width: 97%;
     margin-bottom: 20px;
     height: 55px;
     border-radius: 6px;
