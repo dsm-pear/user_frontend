@@ -12,31 +12,6 @@ import { Link } from 'react-router-dom';
 const SearchResult = ({location}) => {
     const query = queryString.parse(location.search);
 
-    console.log(query.keyword)
-
-    const [ range, setRange ] = useState("정렬");
-    const [ show, setShow ] = useState(false);
-    const [ img, setImg ] = useState(DownArrow);
-
-    const onChoice = () => {
-        if(show===true){
-            setShow(false);
-            setImg(DownArrow);
-        }
-        else{
-            setShow(true);
-            setImg(UpArrow);
-        }
-    }
-
-    const onNew = () => {
-        setRange("최신순");
-    }
-
-    const onOld = () => {
-        setRange("오래된순");
-    }
-
     const param = () => {
         return (
 
@@ -106,16 +81,8 @@ const SearchResult = ({location}) => {
             <S.ResultBox>
                 <S.ResultSubBox>
 
-                    <S.ResultChoice onClick={onChoice}>
-                        <S.Resultarr>{range}<img src={img} alt="사진"/></S.Resultarr>
-                        {
-                            show &&
-                            <S.ResultRange>
-                                <S.ResultC onClick={onNew}>최신순</S.ResultC>
-                                <S.ResultC onClick={onOld}>오래된순</S.ResultC>
-                            </S.ResultRange>
-                            
-                        }
+                    <S.ResultChoice>
+                        <span>{query.keyword}</span> 에 대한 검색결과입니다.
                     </S.ResultChoice>
 
                     <S.ResultContant>
