@@ -99,6 +99,8 @@ export const NoticeContant = styled.div`
 `;
 
 export const Container = styled.div`
+    margin: auto;
+    width: 97%;
     margin-bottom: 20px;
     height: 55px;
     border-radius: 6px;
