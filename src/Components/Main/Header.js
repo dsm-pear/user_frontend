@@ -101,7 +101,7 @@ const Header = () => {
                         <S.MenuUl>
                             <S.MenuList><Link to={'/notice?page=1'}>공지사항</Link></S.MenuList>
 
-                            <S.MenuList><Link to={'/report-writing'}>보고서 작성</Link></S.MenuList>
+                            <S.MenuList><Link to={'/report-writing'}>보고서 등록</Link></S.MenuList>
                             <S.MenuList onMouseEnter={onReportUp} onMouseLeave={onReportDown}>
                                 <Link to={'/view-report'}>보고서 보기</Link>
                                 {
