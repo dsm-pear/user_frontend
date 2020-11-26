@@ -8,30 +8,8 @@ import UpArrow from '../../assets/ArrowImg/UpArrow.png';
 import queryString from 'query-string';
 
 const Notice = ({location}) => {
-    const [ range, setRange ] = useState("정렬");
-    const [ show, setShow ] = useState(false);
-    const [ img, setImg ] = useState(DownArrow);
 
     const query = queryString.parse(location.search);
-
-    const onChoice = () => {
-        if(show){
-            setShow(false);
-            setImg(DownArrow);
-        }
-        else{
-            setShow(true);
-            setImg(UpArrow);
-        }
-    }
-
-    const onNew = () => {
-        setRange("최신순");
-    }
-
-    const onOld = () => {
-        setRange("오래된순");
-    }
 
     /* api 연동되면 수정할 것들 */
 
@@ -91,15 +69,8 @@ const Notice = ({location}) => {
                 <S.NoticeBox>
                     <S.NoticeSubBox>
 
-                        <S.NoticeChoice onClick={onChoice}>
-                            <S.Noticearr>{range}<img src={img} alt="사진"/></S.Noticearr>
-                            {
-                                show &&
-                                <S.NoticeRange>
-                                    <S.NoticeC onClick={onNew}>최신순</S.NoticeC>
-                                    <S.NoticeC onClick={onOld}>오래된순</S.NoticeC>
-                                </S.NoticeRange>
-                            }
+                        <S.NoticeChoice>
+                            총 {p} 페이지 중 {query.page} 페이지 입니다
                         </S.NoticeChoice>
 
                         <S.NoticeContant>
