@@ -111,6 +111,7 @@ const ReportWriting = () => {
                                 <I.InList data-id="앱" data-type="field" onClick={isIdClick}>- 앱</I.InList>
                                 <I.InList data-id="게임" data-type="field" onClick={isIdClick}>- 게임</I.InList>
                                 <I.ListTable data-id="임베디드" data-type="field" onClick={isIdClick}>임베디드</I.ListTable>
+                                {/* 임베디드 시스템, 임베디드 소프트웨어 */}
                                 <I.ListTable data-id="정보보안" data-type="field" onClick={isIdClick}>정보보안</I.ListTable>
                                 <I.ListTable data-id="융합" data-type="field" onClick={isIdClick}>융합</I.ListTable>
                             </S.ViewList>
