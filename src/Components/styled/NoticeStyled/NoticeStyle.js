@@ -33,49 +33,10 @@ export const NoticeSubBox = styled.div`
 `;
 
 export const NoticeChoice = styled.div`
+    margin-bottom: 35px;
+    margin-right: 12px;
+    font-size: 19px;
     float: right;
-    margin-bottom: 20px;
-`;
-
-export const Noticearr = styled.div`
-    font-size: 13px;
-    line-height: 1.17;
-    letter-spacing: 1.2px;
-    width: 79px;
-    height: 15px;
-    padding: 6px 10px;
-    margin-right: 27px;
-    border: solid 1px #4d4d4d;
-    background-color: #ffffff;
-    cursor: pointer;
-    img{
-        width: 10px;
-        float: right;
-        margin-top: 3px;
-    }
-`;
-
-export const NoticeRange = styled.div`
-    width: 99px;
-    height: 60px;
-    font-size: 13px;
-    line-height: 1.23;
-    z-index: 2;
-    position: absolute;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    border: solid 1px #4d4d4d;
-    border-top: none;
-    background-color: white;
-    transition-duration: 0.3s;
-`;
-
-export const NoticeC = styled.div`
-    color: #000000;
-    padding: 10px 13px 0 13px;
-    cursor: pointer;
-    &:hover{
-        color: #5955d8;
-    }
 `;
 
 export const NoticeContant = styled.div`
@@ -99,8 +60,7 @@ export const NoticeContant = styled.div`
 `;
 
 export const Container = styled.div`
-    margin: auto;
-    width: 97%;
+    width: 99.4%;
     margin-bottom: 20px;
     height: 55px;
     border-radius: 6px;
