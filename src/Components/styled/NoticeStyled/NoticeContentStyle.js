@@ -50,7 +50,7 @@ export const NoDay = styled.div`
 `
 
 export const NoticeContain = styled.div`
-    width: 990px;
+    width: 970px;
     height: 480px;
     margin: auto;
     margin-top: 50px;
