@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const SearchResult = ({location}) => {
     const query = queryString.parse(location.search);
 
-    const param = () => {
+    const mode = () => {
         return (
 
             query.mode === "profile" ? 
@@ -81,13 +81,18 @@ const SearchResult = ({location}) => {
                 <S.ResultSubBox>
 
                     <S.ResultChoice>
-                        <span>{query.keyword}</span> 에 대한 검색결과입니다.
+                        <S.ResultKeyword>
+                            <span>{query.keyword}</span> 에 대한 검색결과입니다.
+                        </S.ResultKeyword>
+                        <S.ResultPage>
+                            총 {p}페이지 중 {query.page} 페이지 입니다
+                        </S.ResultPage>
                     </S.ResultChoice>
 
                     <S.ResultContant>
 
                         {
-                            param()
+                            mode()
                         }
 
                     </S.ResultContant>
