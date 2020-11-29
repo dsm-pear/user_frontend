@@ -37,8 +37,6 @@ const Questions = () => {
         
     }
 
-    
-
     return(
         <>
             <S.Questions>
