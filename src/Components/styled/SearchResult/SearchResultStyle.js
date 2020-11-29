@@ -33,11 +33,25 @@ export const ResultSubBox = styled.div`
 `;
 
 export const ResultChoice = styled.div`
-    margin-bottom: 35px;
-    font-size: 17px;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+`;
+
+export const ResultKeyword = styled.div`
+    width: 50%;
+    font-size: 19px;
     span{
-        font-size: 25px;
+        font-size: 30px;
     }
+`
+
+export const ResultPage = styled.div`
+    width: 50%;
+    margin-right: 12px;
+    font-size: 21px;
+    text-align: right;
+    
 `;
 
 export const ResultContant = styled.div`
