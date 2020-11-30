@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-const SelctFlexBox = styled.div`
+export const SelctFlexBox = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
 `;
 
-const ListTable = styled.div`
+export const ListTable = styled.div`
     font-family: BBTreeGL;
     font-size: 12px;
     font-weight: normal;
@@ -22,7 +22,7 @@ const ListTable = styled.div`
     } 
 `;
 
-const InList = styled.div`
+export const InList = styled.div`
     font-family: BBTreeGL;
     font-size: 12px;
     font-weight: normal;
@@ -36,16 +36,16 @@ const InList = styled.div`
     } 
 `;
 
-const TeamLeftBox = styled.div`
-    width: 75%;
+export const TeamLeftBox = styled.div`
+    width: 60%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-bottom: 5rem;
 `;
 
-const TeamRightBox = styled.div`
-    width: 25%;
+export const TeamRightBox = styled.div`
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,13 +72,15 @@ const TeamRightBox = styled.div`
     }
 `;
 
-const TeamName = styled.div`
-    width: 13rem;
+export const TeamName = styled.div`
+    width: ${({width})=>width};
+    transition: all .6s;
     background: #F8F8F8;
     outline: none;
     border: 1px solid #F8F8F8;
     border-radius: 21px;
     padding: 0.3rem 1rem;
+
     span > input {
         background: #F8F8F8;
         outline: none;
@@ -86,37 +88,10 @@ const TeamName = styled.div`
         text-align: left;
         font-size: 13px;
         font-family: BBTreeGL;
-    }
-`;
-
-const TeamMember = styled.div`
-    width: 13rem;
-    background: #F8F8F8;
-    outline: none;
-    border: 1px solid #F8F8F8;
-    border-radius: 21px;
-    padding: 0.3rem 1rem;
-
-    span {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    span > input {
-        background: #F8F8F8;
-        outline: none;
-        border: 1px solid #F8F8F8;
-        text-align: left;
-        font-size: 13px;
-        font-family: BBTreeGL;
-        margin-right: 8px;
-    }
-    span > img {
-        width: 12px;
     }
 `;
         
-const SaveBtn = styled.div`
+export const SaveBtn = styled.div`
     padding-left: 2rem;   
     margin-left: 1rem;
     
@@ -137,7 +112,7 @@ const SaveBtn = styled.div`
     }
 `;
 
-const SubBtn = styled.div`
+export const SubBtn = styled.div`
     padding-left: 2rem;   
     margin-left: 1rem;
     
@@ -157,15 +132,3 @@ const SubBtn = styled.div`
         cursor: pointer;
     }
 `;
-
-export {
-    SelctFlexBox,
-    ListTable,
-    InList,
-    TeamLeftBox,
-    TeamRightBox,
-    TeamName,
-    TeamMember,
-    SaveBtn,
-    SubBtn
-}

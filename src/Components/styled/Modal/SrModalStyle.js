@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Main = styled.div`
+export const Main = styled.div`
     position: absolute;
     z-index: 99;
     display: flex;
@@ -18,7 +18,7 @@ const Main = styled.div`
     }
 `;
 
-const ModalMain = styled.div`
+export const ModalMain = styled.div`
     transition: all .6s;
     height: ${({height})=>height};
     opacity: ${({ myopa }) => myopa};
@@ -30,16 +30,21 @@ const ModalMain = styled.div`
     background-color: #ffffff;
 `;
 
-const ModalSort = styled.div`
+export const ModalSort = styled.div`
     width: 100%;
     height: 100%;
     padding: 1rem 1rem;
 `;
 
-const CloseBtn = styled.div`
+export const CloseBtn = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     span > img {
         width: 18px;
@@ -49,13 +54,13 @@ const CloseBtn = styled.div`
     }
 `;
 
-const ModalHeader = styled.div`
+export const ModalHeader = styled.div`
     font-size: 30px;
     text-align: center;
     margin-top: 1.5rem;
     font-family: BBTreeGB;
 `;
-const ModalMainText = styled.div`
+export const ModalMainText = styled.div`
     font-size: 17px;
     text-align: center;
     margin-top: 1.4rem;
@@ -66,11 +71,16 @@ const ModalMainText = styled.div`
     }
 `;
 
-const SubmitBtn = styled.div`
+export const SubmitBtn = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 2.5rem;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     span {
         display: flex;
@@ -95,13 +105,3 @@ const SubmitBtn = styled.div`
     }
     
 `;
-
-export {
-    Main,
-    ModalMain,
-    ModalSort,
-    CloseBtn,
-    ModalHeader,
-    ModalMainText,
-    SubmitBtn
-}

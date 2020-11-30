@@ -16,8 +16,8 @@ const BorderInput = styled.div`
         background-color: #ffffff;
         outline: none;
         padding: .5rem 1rem;
-        font-size: 16px;
-        font-family: BBTreeGR;
+        font-size: 15px;
+        font-family: BBTreeGL;
     }
     span > img {
         width: 14px;
