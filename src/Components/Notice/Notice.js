@@ -14,12 +14,12 @@ const Notice = ({location}) => {
 
     const [ pageValue, setPageValue ] = useState(1);
     const [ page, setPage ] = useState(5);
-    const [ a, seta ] = useState(1);
+    const [ basicsPage, setBasicPage ] = useState(1);
     let page_arr = [];
     const limitdata = 7;
-    const p = 12;
+    const EndPage = 12;
 
-    for(let i = a; i <= page; i++) {
+    for(let i = basicsPage; i <= page; i++) {
         page_arr[i]=i;
     }
 
@@ -33,31 +33,28 @@ const Notice = ({location}) => {
     });
     
     const prev = () => {
-        if(a!==1){
+        if(basicsPage!==1){
             if(page%5 !== 0){
                 setPage(page-page%5)
-                seta(a-a%5-4)
+                setBasicPage(basicsPage-basicsPage%5-4)
             }else{
                 setPage(page-5)
-                seta(a-5)
-            }
-            
+                setBasicPage(basicsPage-5)
+            }   
         }
-        
     }
 
     const next = () => {
-        if(page < p){
-            if(p < page + 5){
-                setPage(p)
-                seta(a+5);
+        if(page < EndPage){
+            if(EndPage < page + 5){
+                setPage(EndPage)
+                setBasicPage(basicsPage+5);
             }
             else {
                 setPage(page+5);
-                seta(a+5);
+                setBasicPage(basicsPage+5);
             }
         }
-        
     }
 
     return(
@@ -69,7 +66,7 @@ const Notice = ({location}) => {
                     <S.NoticeSubBox>
 
                         <S.NoticeChoice>
-                            총 {p}페이지 중 {query.page} 페이지 입니다
+                            총 {EndPage}페이지 중 {query.page} 페이지 입니다
                         </S.NoticeChoice>
 
                         <S.NoticeContant>
