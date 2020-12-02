@@ -25,6 +25,7 @@ const ReportWritingModal = ({setOpen, setMyHei, open, myHei, opas}) => {
         setToggle(!toggle);
     }
 
+
     return (
         <S.Main visibility={open}>
             <S.ModalMain height={myHei} opas={opas}>

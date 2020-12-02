@@ -54,6 +54,7 @@ const ReportWriting = () => {
         setOpas('1');
     }
 
+
     const clickInputBox = (e) => {
         // if (!toggle) {
         //     setWid("15rem");
@@ -92,11 +93,13 @@ const ReportWriting = () => {
                                 </I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>{clickDivisionNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }
+
                             <S.ViewList>
                                 <I.ListTable data-id="개인" data-type="division" onClick={isIdClick}>개인</I.ListTable>
                                 <I.ListTable data-id="팀" data-type="division" onClick={isIdClick}>팀</I.ListTable>
                                 <I.ListTable data-id="동아리" data-type="division" onClick={isIdClick}>동아리</I.ListTable>
                             </S.ViewList>
+      
                             </S.Select>
                             <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
                             { 
@@ -106,6 +109,7 @@ const ReportWriting = () => {
                                 : <I.SelctFlexBox><span>{clickFieldNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }       
                             <S.ViewList>
+
                                 <I.ListTable data-id="소프트웨어" data-type="field" onClick={isIdClick}>소프트웨어</I.ListTable>
                                 <I.InList data-id="웹" data-type="field" onClick={isIdClick}>- 웹</I.InList>
                                 <I.InList data-id="앱" data-type="field" onClick={isIdClick}>- 앱</I.InList>
@@ -123,11 +127,13 @@ const ReportWriting = () => {
                                 </I.SelctFlexBox>
                                 : <I.SelctFlexBox><span>{clickScopeNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
                             }       
+
                             <S.ViewList>
                                 <I.ListTable data-id="전체 공개" data-type="scope" onClick={isIdClick}>전체 공개</I.ListTable>
                                 <I.ListTable data-id="학생 공개" data-type="scope" onClick={isIdClick}>학생 공개</I.ListTable>
                                 <I.ListTable data-id="비공개" data-type="scope" onClick={isIdClick}>비공개</I.ListTable>
                             </S.ViewList>
+
                             </S.Select>
                         </S.PaddingBox>
                     </S.SelectBoxs>
