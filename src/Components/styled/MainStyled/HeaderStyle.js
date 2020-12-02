@@ -1,12 +1,12 @@
 
 import styled from 'styled-components';
 
+
 export const HeaderBox = styled.div`
     padding-top: 40px;
     display: fixed;
-    margin-left: 150px;
-    margin-right: 222px;
     z-index: 10;
+    margin: auto;
     font-family: BBTreeGB;
     a{
         text-decoration: none;
@@ -17,10 +17,11 @@ export const HeaderBox = styled.div`
 export const HeaderSubBox = styled.div`
     display: flex;
     align-items: center;
+    margin: auto;
 `;
 
 export const Mainlogo = styled.div`
-    margin-right: 208px;
+    margin-right: 8vw;
     &:focus{
         border: none;
     }
@@ -34,7 +35,7 @@ export const SeachBar = styled.div`
     height: 38px;
     display: flex;
     border: none;
-    margin-right: 320px;
+    margin-right: 10vw;
     form{
         display: flex;
         font-family: BBTreeGB;
@@ -118,7 +119,7 @@ export const SeachBarButton = styled.button`
 
 
 export const MenuBar = styled.div`
-    width: 550px;
+    width: 500px;
 `;
 
 export const MenuUl = styled.ul`
