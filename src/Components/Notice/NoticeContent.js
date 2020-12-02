@@ -82,3 +82,24 @@ const NoticeContent = (props) => {
 }
 
 export default NoticeContent;
+
+/*
+const a = async () => {
+        try{
+            const res = await axios.get(`http://3.18.113.20:3000/file/13`);
+            if(res.status === 200){
+                setContentData(res.data)
+                console.log(res);
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        setLoading(false);
+        a()
+        setLoading(true);
+    },[])
+    */

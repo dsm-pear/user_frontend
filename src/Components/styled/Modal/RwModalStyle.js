@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const Main = styled.div`
+
+export const Main = styled.div`
     position: absolute;
     z-index: 99;
     display: flex;
@@ -18,7 +19,8 @@ const Main = styled.div`
     }
 `;
 
-const ModalMain = styled.div`
+
+export const ModalMain = styled.div`
     transition: all .8s;
     height: ${({height})=>height};
     opacity: ${({ opas }) => opas};
@@ -30,13 +32,13 @@ const ModalMain = styled.div`
     background-color: #ffffff;
 `;
 
-const ModalSort = styled.div`
+export const ModalSort = styled.div`
     width: 100%;
     height: 100%;
     padding: 1rem 1rem;
 `;
 
-const CloseBtn = styled.div`
+export const CloseBtn = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -49,14 +51,14 @@ const CloseBtn = styled.div`
     }
 `;
 
-const SearchInput = styled.div`
+export const SearchInput = styled.div`
     border: 2px solid #e4eef2;
     border-radius: 20px;
     background-color: #ffffff;
     margin: .5rem 1rem;
 `;
 
-const SearchResult = styled.div`
+export const SearchResult = styled.div`
     height: 72%;
     max-height: 72%;
     margin: 1.5rem 1rem 0;
@@ -87,7 +89,8 @@ const SearchResult = styled.div`
     }
 `;
 
-const TeamState = styled.div`
+
+export const TeamState = styled.div`
     -ms-user-select: none; 
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
@@ -102,14 +105,3 @@ const TeamState = styled.div`
         cursor: pointer;
     }
 `;
-
-
-export {
-    Main,
-    ModalMain,
-    ModalSort,
-    CloseBtn,
-    SearchInput,
-    SearchResult,
-    TeamState,
-}

@@ -5,9 +5,12 @@ import { Close } from "../../assets";
 import { searchImg } from "../../assets";
 import { NowTeam } from "../../assets";
 import { clickNT } from "../../assets";
+import { checked } from "../../assets";
+import { bfchecked } from "../../assets";
 
 const ReportWritingModal = ({setOpen, setMyHei, open, myHei, opas}) => {
     const [ toggled, setToggled ] = useState(false);
+    const [ toggle, setToggle ] = useState(false);
     
     const onClick = () => {
         setOpen("hidden")
@@ -17,6 +20,11 @@ const ReportWritingModal = ({setOpen, setMyHei, open, myHei, opas}) => {
     const btnClick = () => {
         setToggled(!toggled);
     }
+
+    const clickCheckBox = () => {
+        setToggle(!toggle);
+    }
+
 
     return (
         <S.Main visibility={open}>
@@ -36,9 +44,16 @@ const ReportWritingModal = ({setOpen, setMyHei, open, myHei, opas}) => {
                         <I.BorderResult>
                             <div>
                                 <form name="team-member" action="" method="post">
-                                    <div>
-                                        <span>전규현(201215jgh@dsm.hs.kr)</span><input type="checkbox" name="Teaminfo" value="member"/>
-                                    </div>
+                                    <I.BolderCheckBox>
+                                        <span>전규현(201215jgh@dsm.hs.kr)</span>
+                                        <div onClick={clickCheckBox}>
+                                        {
+                                            toggle === true ?
+                                            <img src={checked} alt="checked"/>
+                                            :<img src={bfchecked} alt="beforechecked"/>
+                                        }
+                                        </div>
+                                    </I.BolderCheckBox>
                                 </form>
                            </div>
                         </I.BorderResult>

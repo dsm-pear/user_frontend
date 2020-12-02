@@ -8,7 +8,9 @@ export const Background = styled.div`
     height: 100vh;
     background-repeat: no-repeat;
     font-family: BBTreeGB;
+
     min-width: 1320px;
+
     a{
         text-decoration: none;
         color: #000000;
@@ -184,6 +186,7 @@ export const ResultAddNumber = styled.div`
     align-items: center;
     a{
         padding: 0 10px;
+
         text-decoration: none;
         color: black;
     }

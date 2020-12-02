@@ -8,6 +8,7 @@ export const Background = styled.div`
     height: 100vh;
     background-repeat: no-repeat;
     min-width: 1320px;
+
     font-family: BBTreeGB;
     a{
         text-decoration: none;
