@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BorderInput = styled.div`
+export const BorderInput = styled.div`
     width: 100%;
 
     form > span {
@@ -16,15 +16,15 @@ const BorderInput = styled.div`
         background-color: #ffffff;
         outline: none;
         padding: .5rem 1rem;
-        font-size: 16px;
-        font-family: BBTreeGR;
+        font-size: 15px;
+        font-family: BBTreeGL;
     }
     span > img {
         width: 14px;
     }
 `;
 
-const BorderResult = styled.div`
+export const BorderResult = styled.div`
     width: 90%;
     height: 12%;
     display: flex;
@@ -39,22 +39,31 @@ const BorderResult = styled.div`
         font-size: 13px;
         font-family: BBTreeGL;
     }
+`;
 
-    form > div {
+export const BolderCheckBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    span {
+        margin-right: .7rem;
+    }
+    img {
+        margin-left: .7rem;
+        width: 12px;
+    }
+    div {
         display: flex;
         align-items: center;
     }
-
-    div > span {
-        margin-right: .6rem;
-    }
-
-    div > input {
-        margin-left: .6rem;
+    
+    &:hover {
+        cursor: pointer;
     }
 `;
 
-const BorderState = styled.div`
+export const BorderState = styled.div`
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -64,9 +73,3 @@ const BorderState = styled.div`
             margin-left: 1rem;
         }
 `;
-
-export {
-    BorderInput,
-    BorderResult,
-    BorderState
-}
