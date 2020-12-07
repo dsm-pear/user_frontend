@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 export const Questions = styled.div`
@@ -31,6 +30,10 @@ export const QuestExplain = styled.div`
     margin-bottom: 35.5px;
 `;
 
+export const QuestInputForm = styled.form`
+    font-family: 'BBTreeGB';
+`;
+
 export const EmailBox = styled.div`
     width: 1030px;
     height: 60px;
@@ -49,6 +52,7 @@ export const EmailInput = styled.input`
     align-items: center;
     padding: 18px 0 18px 55px;
     background-color: #e4eef2;
+    font-family: 'BBTreeGB';
     &:focus {
         outline: none;
     }
@@ -63,14 +67,14 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = styled.textarea`
+    font-family: 'BBTreeGB';
     width: 900px;
     font-size: 20px;
     line-height: 1.2;
     border: none;
     align-items: center;
     resize: none;
-    border-radius: 30px;
-    padding: 47px 55px 0 55px;
+    margin: 18px 0 0 55px;
     background-color: #e4eef2;
     color: #4d4d4d;
     &:focus {
