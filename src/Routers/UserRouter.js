@@ -33,7 +33,7 @@ function UserRouter() {
       <Switch>
         <Route path="/" component={Main} exact/>
         <Route path="/login" component={Login} exact />
-        <Route path="/sign-up" component={SignUp} exact />
+        <Route path="/signup" component={SignUp} exact />
         <Route path="/user-profile" component={UserProfile} exact />
         <Route path="/my-profile" component={MyProfile} exact />
         <Route path="/view-report" component={ViewReport} exact />
