@@ -2,11 +2,14 @@ import React from "react";
 import * as S from "../styled/Profile/style.js";
 import Profile from "./Profile";
 import Project from "./Project";
+import Header from "../Main/Header";
+
 
 function UserProfile() {
   return (
     <>
       <S.Main>
+        <Header></Header>
         <S.MainProfile>
           <S.Cover>
             <Profile

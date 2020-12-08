@@ -1,32 +1,80 @@
 //내가 보는 내 프로필 수정 하기 누르기
 
 import React, { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 import * as S from "../styled/Profile/style";
-//import UserProfile from "./UserProfile";
+import Header from '../Main/Header';
 import Project from "./Project";
 import Profile from "./Profile";
 
+
 function MyProfile({ props }) {
   const [text, setText] = useState("수정");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [github, setGithub] = useState("");
+  const [produce, setProduce] = useState("");
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
   const ProModify = () => {
     if (text === "저장") {
-      setText("수정");
+      profileonChange(github, produce);
     } else {
       setText("저장");
     }
   };
+  // 수정 하는 API FUNCTION
+  const profileonChange = async ({ github, produce }) => {
+    try {
+      const { data } = await axios.post(
+        "https://api.dsm-pear.hs.kr/user/profile/",
+        {
+          git_hub: github,
+          self_intro: produce,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+      setText("수정");
+    } catch (error) {}
+  };
+  // DATA 가져오는 API FUNCTION
+  const getProfile = async () => {
+    try {
+      const {
+        data: { email, name, git_hub, self_intro },
+      } = await axios.get("https://api.dsm-pear.hs.kr/user/profile", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      setEmail(email);
+      setName(name);
+      setGithub(git_hub);
+      setProduce(self_intro);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   return (
     <S.Main>
+      <Header></Header>
       <S.MainProfile>
         {/* 좌측 프로필 */}
         <S.Cover>
           <Profile
-            name="강은빈"
-            email="kub9722@gmaeil.com"
-            produce="안녕하세요"
-            github="https://github.com/silverbeen"
+            name={name}
+            email={email}
+            produce={produce}
+            setProduce={setProduce}
+            github={github}
+            setGithub={setGithub}
             text={text}
           />
 

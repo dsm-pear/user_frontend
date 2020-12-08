@@ -4,8 +4,25 @@ import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
 import ReportComment from "./ReportComment";
 import ReportLanguage from "./ReportLanguage";
+import axios from "axios";
 
 function MainReport() {
+  /* const reportonChangeHandlder = async () => {
+    try {
+      const { data } = await axios.get("https://api.dsm-pear.hs.kr/report/", {
+        title: "<title>",
+        description: "<description>",
+        path: "<path>",
+        language: "<language>",
+        grade: "<grade>",
+        type: "<type>",
+        access: "<access>",
+        user_id: "<user_id>",
+        created_at: "<created_at>",
+      });
+    } catch (error) {}
+  }; */
+
   return (
     <S.Main>
       <S.MainBox>
