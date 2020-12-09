@@ -47,15 +47,15 @@ const ProPhoto = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 88%;
+  height: 70%;
 
-  div {
+  & div {
     background-image: url(${StudentProfile});
     height: 150px;
     width: 150px;
     margin: 10px;
   }
-  input {
+  .input {
     background-color: white;
     padding: 0 20px;
     margin: 10px;
@@ -79,6 +79,21 @@ const ProPhoto = styled.div`
     }
   }
 `;
+const Git = styled.div`
+  background-color: white;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  width: 88%;
+  height: 47px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  box-shadow: 0 1px 4px #c3c7c7;
+  cursor: pointer;
+`;
 
 const Produce = styled.div`
   align-items: center;
@@ -89,7 +104,7 @@ const Produce = styled.div`
   font-family: "Noto Sans KR", sans-serif;
   box-shadow: 0 1px 4px #c3c7c7;
   cursor: pointer;
-  height: 160px;
+  height: 130px;
   width: 88%;
   padding: 20px;
 `;
@@ -110,7 +125,7 @@ const PreProject = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 30px;
-  width: 700px;
+  width: 80%;
 `;
 
 export const MainProject = styled.div`
@@ -118,7 +133,7 @@ export const MainProject = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 648px;
+  width: 100%;
   height: 49px;
   margin: 5px;
   border: 1.6px solid ${(props) => props.color};
@@ -200,6 +215,10 @@ const Modify = styled.button`
 
 const ProNum = styled.div``;
 
+const ProjectCover = styled.div`
+  width: 100%;
+`;
+
 export {
   MainProfile,
   Profile,
@@ -214,4 +233,6 @@ export {
   Produce,
   Modify,
   Cover,
+  Git,
+  ProjectCover,
 };

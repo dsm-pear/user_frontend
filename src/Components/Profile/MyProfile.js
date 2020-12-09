@@ -4,10 +4,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import * as S from "../styled/Profile/style";
-import Header from '../Main/Header';
+import Header from "../Main/Header";
 import Project from "./Project";
 import Profile from "./Profile";
-
 
 function MyProfile({ props }) {
   const [text, setText] = useState("수정");
@@ -15,16 +14,23 @@ function MyProfile({ props }) {
   const [email, setEmail] = useState("");
   const [github, setGithub] = useState("");
   const [produce, setProduce] = useState("");
+
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
-  const ProModify = () => {
+  const ModifyProfile = () => {
     if (text === "저장") {
-      profileonChange(github, produce);
+      ChangeProfile(github, produce);
+      alert("프로필이 변경되었습니다");
     } else {
       setText("저장");
     }
+
+    useEffect(()=>{
+      ModifyProfile();
+    },[]);
   };
+
   // 수정 하는 API FUNCTION
-  const profileonChange = async ({ github, produce }) => {
+  const ChangeProfile = async ({ github, produce }) => {
     try {
       const { data } = await axios.post(
         "https://api.dsm-pear.hs.kr/user/profile/",
@@ -38,21 +44,23 @@ function MyProfile({ props }) {
           },
         }
       );
-      setText("수정");
+
     } catch (error) {}
   };
+
   // DATA 가져오는 API FUNCTION
   const getProfile = async () => {
     try {
       const {
-        data: { email, name, git_hub, self_intro },
+        data: { name, email, git_hub, self_intro },
       } = await axios.get("https://api.dsm-pear.hs.kr/user/profile", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
       });
-      setEmail(email);
+
       setName(name);
+      setEmail(email);
       setGithub(git_hub);
       setProduce(self_intro);
     } catch (error) {}
@@ -110,7 +118,7 @@ function MyProfile({ props }) {
             </S.PreProject>
           </S.Project>
         </S.Cover>
-        <S.Modify onClick={ProModify}>{text}</S.Modify>
+        <S.Modify onClick={ChangeProfile}>{text}</S.Modify>
       </S.MainProfile>
     </S.Main>
   );

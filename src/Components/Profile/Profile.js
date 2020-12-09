@@ -1,13 +1,33 @@
 //프로필 컴포넌트
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "../styled/Profile/style";
+import axois from "axios";
 
-const Profile = (props) => {
-  const { name, email, produce, github, setProduce, setGithub, text } = props;
+const Profile = ({ text,  }) => {
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [github, setGithub] = useState("");
+  const [introduce, setIntroduce] = useState("");
 
-  const githunInputChangeHandler = (event) => {
-    setGithub(event.target.value);
+  const userProfileHandler = async () => {
+    try {
+      const { data } = await axois.get(
+        "https://api.dsm-pear.hs.kr/user/profile",
+        {
+          userName,
+          userEmail,
+          git_hub: "https://gibhub.com./syxxn",
+          self_intro: introduce,
+        }
+      );
+
+      setUserName(data.userName)
+    } catch {}
   };
+
+  useEffect(() => {
+    userProfileHandler();
+  }, []);
 
   return (
     <S.Profile>
@@ -16,23 +36,31 @@ const Profile = (props) => {
         <div></div>
         {/* 이름 / 깃허브 주소 / 자신 설명 */}
         <input
+          className="input"
           type="name"
-          placeholder={name}
+          placeholder={userName}
           disabled={text === "저장" ? false : true}
+          onChange={(e) => setUserName(e.target.value)}
         />
         <input
+          className="input"
           type="email"
-          placeholder={email}
+          placeholder={userEmail}
           disabled={text === "저장" ? false : true}
+          onChange={(e) => setUserEmail(e.target.value)}
         />
       </S.ProPhoto>
+      <S.Git>
+        <a href={github} onChange={(e) => setGithub(e.target.value)}>
+          깃허브
+        </a>
+      </S.Git>
       <S.Produce>
-        <a href={github}>깃허브</a>
         <inupt
           type="produce"
-          placeholder={produce}
+          placeholder={introduce}
           disabled={text === "저장" ? false : true}
-          onChange={githunInputChangeHandler}
+          onChange={(e) => setIntroduce(e.target.value)}
         />
       </S.Produce>
     </S.Profile>

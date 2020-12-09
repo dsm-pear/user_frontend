@@ -13,10 +13,10 @@ function UserProfile() {
         <S.MainProfile>
           <S.Cover>
             <Profile
-              name="강은빈"
+              /* name="강은빈"
               email="kub9722@gmaeil.com"
               produce="안녕하세요"
-              github="https://github.com/silverbeen"
+              github="https://github.com/silverbeen" */
             />
             {/* 프로젝트 보여주는 곳 */}
             <S.Project>
