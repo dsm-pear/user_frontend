@@ -53,7 +53,11 @@ function SignUp() {
       if (password === "") {
         setPwInput("#e3f0ff");
       }
-    } else if (password !== pwconfirm) {
+    } 
+    else if(password.length >= 8 && password.length <=13){
+      
+    }
+    else if (password !== pwconfirm) {
       /* 회원가입 조건중 비밀번호 확인 틀림 */
       console.log("달라요");
       setConInput("#ffeded");
