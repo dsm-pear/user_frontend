@@ -6,17 +6,19 @@ import { useHistory, Link } from "react-router-dom";
 function Login() {
   const history = useHistory("");
   //회원정보
-  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   //로그인 처리
   const loginCilckHeadler = async () => {
     try {
-      const { data } = await axios.post("https://api.dsm-pear.hs.kr/auth", {
-        id,
+      const { data } = await axios.post("http://20.55.121.118:8000/auth", {
+        email,
         password,
       });
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("access_token", data["access_token"]);
+      localStorage.setItem("refresh-token", data["refresh-token"]);
+      localStorage.setItem("refresh-exp", data["refresh-exp"]);
       history.push("/");
     } catch (error) {
       alert("정보를 다시 확인해주세요");
@@ -32,8 +34,8 @@ function Login() {
             <input
               type="id"
               placeholder="학교 이메일"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="pw"

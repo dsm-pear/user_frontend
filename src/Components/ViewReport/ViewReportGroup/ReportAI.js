@@ -3,10 +3,12 @@ import * as S from '../../styled/ViewReport/style';
 import ReportGrade from "../ReportGrade";
 import Categorybar from '../Category/Categorybar';
 import MainProject from '../MainProject';
+import Header from '../../Main/Header';
 
 function ReportAI() {
     return (
       <S.Main>
+        <Header></Header>
         <S.Cover>
           <div className="coverCategory">
             <ReportGrade grade="1" />

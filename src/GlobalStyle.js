@@ -1,37 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-    @font-face {
-      font-family: "BBTreeGB";
-      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff")
-      format("woff");
-      font-weight: normal;
-      font-style: normal;
-    }
 
-    @font-face {
-    font-family: 'BBTreeGL';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff')
-    format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-    @font-face {
-    font-family: 'BBTreeGO_R';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGO_R.woff')
-    format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-}
-
-@font-face {
-      font-family: "BBTreeGR";
-      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGR.woff")
-      format("woff");
-      font-weight: normal;
-      font-style: normal;
-    }
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
 
