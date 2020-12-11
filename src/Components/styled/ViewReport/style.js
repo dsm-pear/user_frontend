@@ -163,6 +163,10 @@ const Project = styled.div`
   font-size: 16px;
   text-align: center;
   cursor: pointer;
+  
+  :hover{
+    background-color :#E4EEF2;
+  }
 
   .project_team {
     width: 10%;

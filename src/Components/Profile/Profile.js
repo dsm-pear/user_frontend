@@ -27,7 +27,7 @@ const Profile = ({ text,  }) => {
 
   useEffect(() => {
     userProfileHandler();
-  }, []);
+  },[]);
 
   return (
     <S.Profile>

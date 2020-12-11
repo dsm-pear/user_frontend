@@ -31,6 +31,7 @@ function MyProfile({ props }) {
 
   // 수정 하는 API FUNCTION
   const ChangeProfile = async ({ github, produce }) => {
+    ModifyProfile();
     try {
       const { data } = await axios.post(
         "https://api.dsm-pear.hs.kr/user/profile/",
