@@ -1,25 +1,53 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import SearchResultTitle from './SearchResultTitle';
 import SearchResultProfile from './SearchResultProfile';
-import SearchResultLanguage from './SearchResultLanguage';
 import Header from '../Main/Header';
 import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const SearchResult = ({location}) => {
     const query = queryString.parse(location.search);
 
+    const [ Data, setData ] = useState("");
+    const [ error, setError ] = useState(null);
+
+    /* page 설정 */
+    const [ page, setPage ] = useState(5);
+    const [ nowPage, setNowPage ] = useState(1);
+    const [ basicsPage, setBasicPage ] = useState(1);
+    const [ EndPage, setEndPage ] = useState(5);
+    let page_arr = [];
+
+    useEffect(()=>{
+        DataApi();
+    }, []);
+    
+    const DataApi = async () => {
+        try{
+            setError(null)
+            setData(null);
+
+            const response = await axios.get(
+                //`https://api.dsm-pear.hs.kr/search?mode=${query.mode}&keyword=${query.keyword}&size=7&page=${nowPage}`
+                `https://jsonplaceholder.typicode.com/users`
+            );
+            setData(response.data);
+            //setEndPage(Data.totalPages)
+        }catch(e){
+            setError(e);
+        }
+    };
+
     const mode = () => {
         return (
 
             query.mode === "profile" ? 
-            <SearchResultProfile limit={limitdata} pageValue={pageValue}/>
+            <SearchResultProfile  data={Data}/>
             : query.mode === "title" ?
-            <SearchResultTitle limit={limitdata} pageValue={pageValue}/>
-            : query.mode === "language" ?
-            <SearchResultLanguage limit={limitdata}pageValue={pageValue}/>
+            <SearchResultTitle  data={Data}/>
             : null
 
         )
@@ -27,23 +55,24 @@ const SearchResult = ({location}) => {
 
     /* api 연동되면 수정할 것들 */
 
-    const [ pageValue, setPageValue ] = useState(1);
-    const [ page, setPage ] = useState(5);
-    const [ basicsPage, setBasicPage ] = useState(1);
-    let page_arr = [];
-    const limitdata = 7;
-    const EndPage = 12;
+        if(EndPage < 5){
+            for(let i = basicsPage; i <= EndPage; i++) {
+                page_arr[i] = i;
+            }
+        }
+        else{
+            for(let i = basicsPage; i <= page; i++) {
+            page_arr[i]=i;
+            }
+        }
 
-    for(let i = basicsPage; i <= page; i++) {
-        page_arr[i]=i;
-    }
 
     const processed = (querys) => page_arr.map((num)=>{
         if(Number(querys.page) !== num){
-            return <Link onClick={()=>setPageValue(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} key={num}> {page_arr[num]} </Link>
+            return <Link onClick={()=>setNowPage(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} key={num}> {page_arr[num]} </Link>
         }
         else {
-            return <Link onClick={()=>setPageValue(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </Link>
+            return <Link onClick={()=>setNowPage(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </Link>
         }
     });
     
@@ -71,6 +100,9 @@ const SearchResult = ({location}) => {
             }
         }
     }
+
+    if (error) return <div>{error}</div>;
+    if (!Data) return null;
     
     return(
         <>
