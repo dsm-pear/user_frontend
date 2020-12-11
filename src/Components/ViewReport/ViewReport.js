@@ -1,18 +1,20 @@
 import React from "react";
 import * as S from "../styled/ViewReport/style";
 import ReportGrade from "./ReportGrade";
-import Categorybar from './Category/Categorybar';
-import MainProject from './MainProject';
+import Categorybar from "./Category/Categorybar";
+import MainProject from "./MainProject";
+import Header from "../Main/Header";
 
 function ViewReport() {
   return (
     <S.Main>
+      <Header></Header>
       <S.Cover>
         <div className="coverCategory">
           <ReportGrade grade="1" />
-          <Categorybar/>
+          <Categorybar />
         </div>
-        <MainProject/>
+        <MainProject />
       </S.Cover>
     </S.Main>
   );

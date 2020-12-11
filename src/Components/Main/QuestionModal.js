@@ -5,7 +5,7 @@ import closeimg from '../../assets/closeimg.png';
 const QuestModal = ({
     visible,
     onClose,
-    closable,
+    message,
     }) => {
     
       const close = (e) => {
@@ -22,7 +22,7 @@ const QuestModal = ({
                             <img src={closeimg} alt="사진" className="modal-close" onClick={close}/>
                         </S.ModalClose>
                         <S.ModalContant>
-                            버그 & 문의 사항이 접수 되었습니다
+                            {message}
                         </S.ModalContant>
                     </S.Modal>
             </S.ModalBackground>

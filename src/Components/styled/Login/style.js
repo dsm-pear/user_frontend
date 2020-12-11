@@ -51,6 +51,7 @@ const Logininput = styled.div`
     }
   }
   & > button {
+    margin: 10px;
     width: 272px;
     height: 43px;
     border-radius: 4px;
@@ -62,8 +63,8 @@ const Logininput = styled.div`
     font-size: 18px;
   }
 
-  & p {
-    margin: 15px;
+  & a {
+    margin: 20px;
     font-family: "BBTreeGB";
     font-size: 15px;
     color: #5955d8;
