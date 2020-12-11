@@ -36,11 +36,6 @@ const Header = () => {
         setValue("title");
     }
 
-    const onLanguageSeach = () => {
-        setSearchtype("언어");
-        setValue("language");
-    }
-
     const onProfileSeach = () => {
         setSearchtype("프로필");
         setValue("profile");
@@ -84,7 +79,6 @@ const Header = () => {
                                 show &&
                                 <S.SeachList>
                                     <S.SeachType onClick={onTitleSeach}>제목</S.SeachType>
-                                    <S.SeachType onClick={onLanguageSeach}>언어</S.SeachType>
                                     <S.SeachType onClick={onProfileSeach}>프로필</S.SeachType>
                                 </S.SeachList>
                                 }
