@@ -75,7 +75,7 @@ export const SeachList = styled.div`
     margin-top: 20px;
     z-index: 5;
     width: 58px;
-    height: 65px;
+    height: 47px;
     border-radius: 6px;
     background-color: #e4eef2;
     padding-top: 12px;
