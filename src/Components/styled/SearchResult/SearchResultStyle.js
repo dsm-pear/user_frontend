@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import main from '../../../assets/MainBackground.png'
 
-
 export const Background = styled.div`
     background-image: url(${main});
-    background-size: 100% 100vh;
+    background-size: 100% 100%;
     height: 100vh;
     background-repeat: no-repeat;
     font-family: BBTreeGB;
@@ -16,8 +15,8 @@ export const Background = styled.div`
 `;
 
 export const ResultBox = styled.div`
-    width: 80%;
-    height: 720px;
+    width: 77%;
+    height: 73%;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #e4eef2;
     background-color: #ffffff;
@@ -148,21 +147,7 @@ export const ResultEmail = styled.div`
     font-size: 16px;
     line-height: 1.19;
     letter-spacing: 1.6px;
-    width: 600px;
-`;
-
-export const ResultGithub = styled.div`
-    margin-right: 50px;
-    font-size: 16px;
-    line-height: 1.19;
-    letter-spacing: 1.6px;
-    a{
-        text-decoration: none;
-        color: #000000;
-    }
-    a:hover{
-        color: #6192f3;
-    }
+    text-align: right;
 `;
 
 export const ResultAdd = styled.div`
