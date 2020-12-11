@@ -8,38 +8,32 @@ const SearchResultProfile = () => {
         {
             "id": 1,
             "name": "한준호",
-            "email": "oajh04@naver.com",
-            "link": "https://www.youtube.com/"
+            "email": "oajh04@naver.com"
         },
         {
             "id": 2,
             "name": "한준호",
-            "email": "oajh04@naver.com",
-            "link": "https://www.youtube.com/"
+            "email": "oajh04@naver.com"
         },
         {
             "id": 3,
             "name": "한준호",
-            "email": "oajh04@naver.com",
-            "link": "https://www.youtube.com/"
+            "email": "oajh04@naver.com"
         },
         {
             "id": 4,
             "name": "한준호",
-            "email": "oajh04@naver.com",
-            "link": "https://www.youtube.com/"
+            "email": "oajh04@naver.com"
         },
         {
             "id": 5,
             "name": "한준호",
-            "email": "oajh04@naver.com",
-            "link": "https://www.youtube.com/"
+            "email": "oajh04@naver.com"
         },
         {
             "id": 6,
             "name": "한준호",
-            "email": "oajh04@naver.com",
-            "link": "https://www.youtube.com/"
+            "email": "oajh04@naver.com"
         },
     ]
 
@@ -47,8 +41,8 @@ const SearchResultProfile = () => {
         (dataList) => {
             return dataList.map((data)=>{
                 return(
-                    <Link to={`/user-profile`}>
-                        <S.Container key={data.id} style={{color: "#6192f3"}} >
+                    <Link to={`/user-profile`} key={data.id}>
+                        <S.Container style={{color: "#6192f3"}} >
                             <S.ContainerContant >
                                 <S.ResultProfile>
                                     <img src={StudentProfile} alt="사진"/>
@@ -61,10 +55,6 @@ const SearchResultProfile = () => {
                                 <S.ResultEmail>
                                     {data.email}
                                 </S.ResultEmail>
-
-                                <S.ResultGithub>
-                                    <a href={data.link}>깃허브 링크</a>
-                                </S.ResultGithub>
                             </S.ContainerContant>
                         </S.Container>
                     </Link>
