@@ -2,9 +2,12 @@ import React, { useCallback } from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import { Link } from 'react-router-dom';
 
-const SearchResultTitle = () => {
+const SearchResultTitle = (props) => {
+    const Data = props.data;
+
+    console.log(Data);
     
-    const data = [
+    const testdata = [
         {
             "id": 1,
             "bdc": "개인",
@@ -66,8 +69,8 @@ const SearchResultTitle = () => {
             return dataList.map((data)=>{
                 const color = data.bdc === "팀" ? "#6192f3" : data.bdc === "개인" ? "#27d5b1" : "#5955d8";
                 return(
-                    <Link to={`/view-report/main-report`}>
-                        <S.Container bordercolor={color} key={data.id}>
+                    <Link to={`/view-report/main-report`} key={data.id}>
+                        <S.Container bordercolor={color} >
                             <S.ContainerContant>
                                 <S.ContainerBDC fontcolor={color}>
                                     [{data.bdc}]
@@ -89,7 +92,7 @@ const SearchResultTitle = () => {
     return (
         <>
             {
-                SearchTitle(data)
+                SearchTitle(testdata)
             }
         </>
     )
