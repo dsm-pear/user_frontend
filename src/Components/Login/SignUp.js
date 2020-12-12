@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { request } from "../../utils/axios/axios";
 import { useHistory } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import * as S from "../styled/Login/style";
 import InputCom from "./InputCom";
-import axios from "axios";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -33,15 +33,21 @@ function SignUp() {
   //회원가입 API 연동
   const buttonCilckHandler = async () => {
     try {
-      const { data } = await axios.post("https://api.dsm-pear.hs.kr/account", {
-        name,
-        email: post,
-        password,
-      });
+      const { data } = await request(
+        "post",
+        "/account",
+        {},
+        {
+          name,
+          email: post,
+          password,
+        }
+      );
       localStorage.setItem("token", data.token);
       history.push("/login");
-    } catch (error) {
+    } catch (e) {
       alert("이메일을 다시 확인해주세요");
+      console.log(e);
     }
 
     //비밀번호 확인
@@ -53,11 +59,8 @@ function SignUp() {
       if (password === "") {
         setPwInput("#e3f0ff");
       }
-    } 
-    else if(password.length >= 8 && password.length <=13){
-      
-    }
-    else if (password !== pwconfirm) {
+    } else if (password.length >= 8 && password.length <= 13) {
+    } else if (password !== pwconfirm) {
       /* 회원가입 조건중 비밀번호 확인 틀림 */
       console.log("달라요");
       setConInput("#ffeded");
