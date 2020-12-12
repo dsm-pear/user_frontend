@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { request } from "../../utils/axios/axios";
 import * as S from "../styled/Login/style";
-import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 
 function Login() {
@@ -12,16 +12,22 @@ function Login() {
   //로그인 처리
   const loginCilckHeadler = async () => {
     try {
-      const { data } = await axios.post("http://20.55.121.118:8000/auth", {
-        email,
-        password,
-      });
-      localStorage.setItem("access_token", data["access_token"]);
+      const { data } = await request(
+        "post",
+        "/auth",
+        {},
+        {
+          email,
+          password,
+        }
+      );
+      localStorage.setItem("access-token", data["access-token"]);
       localStorage.setItem("refresh-token", data["refresh-token"]);
       localStorage.setItem("refresh-exp", data["refresh-exp"]);
       history.push("/");
-    } catch (error) {
+    } catch (e) {
       alert("정보를 다시 확인해주세요");
+      console.log(e);
     }
   };
 
@@ -32,13 +38,13 @@ function Login() {
           <S.Title>LOGIN</S.Title>
           <S.Logininput>
             <input
-              type="id"
+              type="text"
               placeholder="학교 이메일"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              type="pw"
+              type="password"
               placeholder="비밀번호"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
