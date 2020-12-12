@@ -6,8 +6,9 @@ export const Background = styled.div`
     background-size: 100% 100%;
     height: 100vh;
     background-repeat: no-repeat;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
     min-width: 1320px;
+    min-height: 950px;
 `;
 
 export const NoticeContant = styled.div`
