@@ -31,7 +31,7 @@ export const QuestExplain = styled.div`
 `;
 
 export const QuestInputForm = styled.form`
-    font-family: 'BBTreeGB';
+    font-family: "Noto Sans KR", sans-serif;
 `;
 
 export const EmailBox = styled.div`
@@ -52,7 +52,7 @@ export const EmailInput = styled.input`
     align-items: center;
     padding: 18px 0 18px 55px;
     background-color: #e4eef2;
-    font-family: 'BBTreeGB';
+    font-family: "Noto Sans KR", sans-serif;
     &:focus {
         outline: none;
     }
@@ -67,7 +67,7 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = styled.textarea`
-    font-family: 'BBTreeGB';
+    font-family: "Noto Sans KR", sans-serif;
     width: 900px;
     font-size: 20px;
     line-height: 1.2;
