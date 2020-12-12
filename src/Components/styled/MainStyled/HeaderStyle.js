@@ -7,7 +7,7 @@ export const HeaderBox = styled.div`
     display: fixed;
     z-index: 10;
     margin: auto;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
     a{
         text-decoration: none;
         color: #000000;
@@ -38,7 +38,7 @@ export const SeachBar = styled.div`
     margin-right: 10vw;
     form{
         display: flex;
-        font-family: BBTreeGB;
+        font-family: "Noto Sans KR", sans-serif;
     }
     a{
         text-decoration: none;
@@ -52,7 +52,7 @@ export const SeachBarSelect = styled.div`
     border-radius: 21px 0 0 21px;
     background-color: #e4eef2;
     cursor: pointer;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
     &:focus {
         outline: none;
     }
@@ -65,13 +65,12 @@ export const SeachChoice = styled.div`
     img{
         width: 10px;
         margin-right: 3px;
-        font-family: BBTreeGB;
+        font-family: "Noto Sans KR", sans-serif;
     }
 `;
 
 export const SeachList = styled.div`
     cursor: pointer;
-    transition: all 0.3s;
     margin-top: 20px;
     z-index: 5;
     width: 58px;
@@ -80,7 +79,6 @@ export const SeachList = styled.div`
     background-color: #e4eef2;
     padding-top: 12px;
     padding-left: 10px;
-    transition: transform 0.5s;
 `;
 
 export const SeachType = styled.div`
@@ -113,7 +111,7 @@ export const SeachBarButton = styled.button`
     }
     img{
         width: 20px;
-        font-family: BBTreeGB;
+        font-family: "Noto Sans KR", sans-serif;
     }
 `;
 
@@ -150,6 +148,7 @@ export const MenuSee = styled.div`
     text-align: center;
     cursor: pointer;
     margin-top: 80px;
+    margin-left: 10px;
     z-index: 5;
     position: absolute;
     transition: all 0.3s;
