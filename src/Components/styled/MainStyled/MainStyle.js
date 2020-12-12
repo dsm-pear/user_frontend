@@ -8,5 +8,5 @@ export const MainBox = styled.div`
     background-repeat: no-repeat;
     min-width: 1320px;
     min-height: 845px;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
 `;
