@@ -35,6 +35,10 @@ export default createGlobalStyle`
     footer, header, hgroup, menu, nav, section {
       display: block;
     }
+    a{
+      text-decoration: none;  
+      color: black;
+    }
     body {
       line-height: 1;
     }
