@@ -1,33 +1,20 @@
 //프로필 컴포넌트
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import * as S from "../styled/Profile/style";
-import axois from "axios";
 
-const Profile = ({ text,  }) => {
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [github, setGithub] = useState("");
-  const [introduce, setIntroduce] = useState("");
-
-  const userProfileHandler = async () => {
-    try {
-      const { data } = await axois.get(
-        "https://api.dsm-pear.hs.kr/user/profile",
-        {
-          userName,
-          userEmail,
-          git_hub: "https://gibhub.com./syxxn",
-          self_intro: introduce,
-        }
-      );
-
-      setUserName(data.userName)
-    } catch {}
-  };
-
-  useEffect(() => {
-    userProfileHandler();
-  },[]);
+const Profile = ({
+  text,
+  name,
+  email,
+  produce,
+  github,
+  setGithub,
+}) => {
+  const [userName, setUserName] = useState(name);
+  const [userEmail, setUserEmail] = useState(email);
+ // const [github, setGithub] = useState(github);
+  const [introduce, setIntroduce] = useState(produce);
 
   return (
     <S.Profile>
@@ -51,9 +38,9 @@ const Profile = ({ text,  }) => {
         />
       </S.ProPhoto>
       <S.Git>
-        <a href={github} onChange={(e) => setGithub(e.target.value)}>
+        <Link to={github} onChange={(e) => setGithub(e.target.value)}>
           깃허브
-        </a>
+        </Link>
       </S.Git>
       <S.Produce>
         <inupt
