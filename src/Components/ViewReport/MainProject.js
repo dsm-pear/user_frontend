@@ -12,7 +12,7 @@ function MainProject() {
     try {
       const { data } = await request(
         "get",
-        "/report?size=6&page=10",
+        "/report?size=6&page=1",
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         ""
       );

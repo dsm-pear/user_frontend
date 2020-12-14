@@ -1,7 +1,9 @@
 import React from "react";
+
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = ({ title, text, git, file}) => {
+
   return (
     <S.Contents>
       <S.Title>
@@ -15,7 +17,7 @@ const ReportView = ({ title, text, git, file}) => {
         <a href={git}>프로젝트 깃허브 구경하기</a>
       </S.Linkimg>
       <S.Linkimg>
-      <div className="img"></div>
+        <div className="img"></div>
         <p>{file}</p>
       </S.Linkimg>
     </S.Contents>
