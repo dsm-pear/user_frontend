@@ -7,6 +7,12 @@ export function request(method, url, header, data) {
     headers: header,
     data: data,
   })
-    .then((res) => res.json())
-    .catch((e) => console.error(e));
+    .then((res) => {
+      console.log("다 받기 성공");
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log("에러");
+      console.error(e);
+    });
 }
