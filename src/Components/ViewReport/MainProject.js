@@ -1,34 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { request } from "../../utils/axios/axios";
+import { Link } from "react-router-dom";
 import * as S from "../styled/ViewReport/style";
 import ProjectHeader from "./ProjectHeader";
 import Project from "./Project";
 
 function MainProject() {
+  const [ReportListResponses, setReportListResponses] = useState([]);
+
+  const getProjectList = async () => {
+    try {
+      const { data } = await request(
+        "get",
+        "/report?size=6&page=1",
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+
+      setReportListResponses(data.ReportListResponses);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    getProjectList();
+  }, []);
+
   return (
     <>
       <S.MainProject>
         <ProjectHeader />
         <S.MainCover>
-          <Project
-            team="개인"
-            title="안녕하세요 강은빈입니다."
-            date="20.20.20"
-          />
-          <Project team="팀" title="안녕하세요 강은빈입니다." date="20.20.20" />
-          <Project
-            team="동아리"
-            title="안녕하세요 강은빈입니다."
-            date="20.20.20"
-          />
-          <Project
-            team="동아리"
-            title="안녕하세요 강은빈입니다."
-            date="20.20.20"
-          />
-          <Project team="팀" title="안녕하세요 강은빈입니다." date="20.20.20" />
-
-          <Project team="팀" title="안녕하세요 강은빈입니다." date="20.20.20" />
+          {ReportListResponses.map(({ id, team, title, data }) => (
+            <Project id={id} team={team} title={title} date={data} />
+          ))}
         </S.MainCover>
+        <S.Number>
+          <Link>1</Link>
+          <Link>2</Link>
+          <Link>3</Link>
+          <Link>4</Link>
+          <Link>5</Link>
+        </S.Number>
       </S.MainProject>
     </>
   );

@@ -1,8 +1,7 @@
 //내가 보는 내 프로필 수정 하기 누르기
-
 import React, { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
+import { request } from "../../utils/axios/axios";
 import * as S from "../styled/Profile/style";
 import Header from "../Main/Header";
 import Project from "./Project";
@@ -15,60 +14,74 @@ function MyProfile({ props }) {
   const [github, setGithub] = useState("");
   const [produce, setProduce] = useState("");
 
+  const [team, setTeam] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [date, setDate] = useState(null);
+
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
-  const ModifyProfile = () => {
-    if (text === "저장") {
-      ChangeProfile(github, produce);
-      alert("프로필이 변경되었습니다");
-    } else {
-      setText("저장");
-    }
-
-    useEffect(()=>{
-      ModifyProfile();
-    },[]);
-  };
-
-  // 수정 하는 API FUNCTION
   const ChangeProfile = async ({ github, produce }) => {
-    try {
-      const { data } = await axios.post(
-        "https://api.dsm-pear.hs.kr/user/profile/",
-        {
-          git_hub: github,
-          self_intro: produce,
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      );
-
-    } catch (error) {}
+    if (text === "수정") {
+      setText("저장");
+    } else {
+      try {
+        const { data } = await request(
+          "put",
+          "/user/profile/",
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          {
+            git_hub: github,
+            self_intro: produce,
+          }
+        );
+      } catch (e) {
+        console.error(e);
+      }
+      setText("수정");
+      alert("프로필이 변경되었습니다.");
+    }
   };
 
-  // DATA 가져오는 API FUNCTION
   const getProfile = async () => {
     try {
-      const {
-        data: { name, email, git_hub, self_intro },
-      } = await axios.get("https://api.dsm-pear.hs.kr/user/profile", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
+      const { data: name, email, github, self_intro } = await request(
+        "get",
+        "/user/profile",
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
 
       setName(name);
       setEmail(email);
-      setGithub(git_hub);
+      setGithub(github);
       setProduce(self_intro);
-    } catch (error) {}
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   useEffect(() => {
     getProfile();
   }, []);
+
+  const getMyProject = async () => {
+    try {
+      const { data } = await request(
+        "get",
+        "/user/profile/report?size=6&page=0",
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+      setTeam(team);
+      setTitle(title);
+      setDate(date);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    getMyProject();
+  });
 
   return (
     <S.Main>
@@ -89,30 +102,7 @@ function MyProfile({ props }) {
           {/* 프로젝트 보여주는 곳 */}
           <S.Project>
             <S.PreProject>
-              <Project team="개인" title="1301 강은빈입니다" date="20.10.26" />
-              <Project team="팀" title="1301 강은빈입니다" date="20.10.26" />
-              <Project
-                team="팀"
-                title="1301 강은빈입니다"
-                date="20.10.26"
-                save="[임시저장]"
-              />
-              <Project
-                team="개인"
-                title="1301 강은빈입니다"
-                date="20.10.26"
-                save="[요청 중]"
-              />
-              <Project
-                team="동아리"
-                title="1301 강은빈입니다"
-                date="20.10.26"
-              />
-              <Project
-                team="동아리"
-                title="1301 강은빈입니다"
-                date="20.10.26"
-              />
+              <Project team={team} title={title} date={date} />
               {/* 밑에 더보기 / 숫자 */}
               <S.ProNum></S.ProNum>
             </S.PreProject>

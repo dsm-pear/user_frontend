@@ -6,14 +6,12 @@ const Main = styled.div`
   background-image: url(${MainBackground});
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
-
 `;
 
 const Cover = styled.div`
   margin: auto;
   margin-top: 80px;
   display: flex;
-  flex-direction: row;
   width: 77%;
   height: 73%;
   .coverCategory {
@@ -107,6 +105,9 @@ const MainProject = styled.div`
   border: solid 1px #e4eef2;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ProjectHeader = styled.nav`
@@ -164,6 +165,10 @@ const Project = styled.div`
   text-align: center;
   cursor: pointer;
 
+  :hover {
+    background-color: #e4eef2;
+  }
+
   .project_team {
     width: 10%;
     color: ${({ color }) => color};
@@ -198,6 +203,15 @@ const Project = styled.div`
 
 const MainCover = styled.div`
   margin: 40px;
+  height: 70%;
+`;
+
+const Number = styled.div`
+  
+  a {
+    margin: 10px;
+    font-family: "Noto Sans KR", sans-serif;
+  }
 `;
 
 export {
@@ -212,4 +226,5 @@ export {
   MainPro,
   Project,
   MainCover,
+  Number,
 };

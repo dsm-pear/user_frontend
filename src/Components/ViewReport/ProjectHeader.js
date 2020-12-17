@@ -1,14 +1,8 @@
 import React from "react";
 import * as S from "../styled/ViewReport/style";
 import ProHeader from "./ProHeader";
-import { select } from "../../assets";
 
 function ProjectHeader() {
- /*  const filterHandler = () => {
-    if(name === "팀"){
-
-    }
-  } */
   return (
     <S.ProjectHeader>
       <div className="nav">
