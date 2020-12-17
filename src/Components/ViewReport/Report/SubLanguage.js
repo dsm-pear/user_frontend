@@ -1,10 +1,10 @@
 import React from "react";
 import * as S from "../../styled/ViewReport/MainStyle";
 
-const SubLanguage = ({ language }) => {
+const SubLanguage = ({ Language }) => {
   return (
     <S.Language>
-      <span>{language}</span>
+      <span>{Language}</span>
     </S.Language>
   );
 };
