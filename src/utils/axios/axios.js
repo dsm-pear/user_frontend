@@ -12,7 +12,6 @@ export function request(method, url, header, data) {
       console.log(res);
     })
     .catch((e) => {
-      console.log("에러");
       console.error(e);
     });
 }
