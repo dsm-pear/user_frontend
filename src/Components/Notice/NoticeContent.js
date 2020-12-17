@@ -4,10 +4,11 @@ import * as S from '../styled/NoticeStyled/NoticeContentStyle';
 import Leave from '../../assets/ArrowImg/Leave.png';
 import link from '../../assets/link.svg';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { request, fileRequest, FileURL } from '../../utils/axios/axios'
 
 
 const NoticeContent = (props) => {
+
     const { params } = props.match;
     const pvalue = params.data;
 
@@ -17,8 +18,6 @@ const NoticeContent = (props) => {
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(null);
 
-    
-
     useEffect(() => {
         const DataApi = async () => {
           try {
@@ -27,9 +26,13 @@ const NoticeContent = (props) => {
             setContentData(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
-            const response = await axios.get(
+            const response = await request(
               //`http://smoothbear.eastus.cloudapp.azure.com:8000/notice/${pvalue}`
-              `https://jsonplaceholder.typicode.com/users`
+              //`https://jsonplaceholder.typicode.com/users`
+              "get",
+              "/notice-content",
+              {},
+              "", 
             );
             setContentData(response.data);
             
@@ -41,8 +44,11 @@ const NoticeContent = (props) => {
 
         const FileApi = async () => {
             try{
-                const response = await axios.get(
-                    `http://3.15.177.120:3000/notice/files/1`
+                const response = await fileRequest(
+                    "get",
+                    "/notice/files/5",
+                    {},
+                    "",
                 );
                 setFileData(response.data);
             }catch(e){
@@ -55,7 +61,7 @@ const NoticeContent = (props) => {
       }, []);
 
       const FileDownload = () => {
-        window.open(`http://3.15.177.120:3000/notice/1`);
+        window.open(FileURL + `/notice/5`);
       }
 
       if (loading) return <div>로딩중..</div>;
