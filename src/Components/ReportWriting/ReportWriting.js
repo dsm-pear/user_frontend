@@ -10,6 +10,7 @@ import { link } from "../../assets";
 
 const ReportWriting = () => {
     const [ hoverNumber, setHoverNumber ] = useState(0);
+    const [ clickGradeNumber, setClickGradeNumber ] = useState('학년 선택');
     const [ clickDivisionNumber, setClickDivisionNumber ] = useState('구분 선택');
     const [ clickFieldNumber, setClickFieldNumber ] = useState('개발 분야');
     const [ clickScopeNumber, setClickScopeNumber ] = useState('공개 범위');
@@ -33,7 +34,9 @@ const ReportWriting = () => {
     const isIdClick = (e) => {
         console.log(e.target.dataset.type)
         
-        if(e.target.dataset.type === 'division'){ 
+        if (e.target.dataset.type === 'grade') {
+            setClickGradeNumber((e.currentTarget.dataset.id))
+        } else if(e.target.dataset.type === 'division'){ 
             setClickDivisionNumber((e.currentTarget.dataset.id))
         } else if(e.target.dataset.type === 'field'){
             setClickFieldNumber((e.currentTarget.dataset.id))
@@ -79,55 +82,61 @@ const ReportWriting = () => {
                     </S.ReportLogo>
                     <S.SelectBoxs>
                         <S.PaddingBox>
-                        { /*<S.Select> 
-                                <div><span>학년선택</span><img src={select}  alt="grade-select" /></div>
-                            </S.Select>
-                            <S.Select>
-                                <div><span>팀 선택</span><img src={select} alt="team-select" /></div>
-                            </S.Select>*/ }
                             <S.Select data-id="1" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-                            { 
-                                hoverNumber === 1 ?
-                                <I.SelctFlexBox><span>{clickDivisionNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
-                                </I.SelctFlexBox>
-                                : <I.SelctFlexBox><span>{clickDivisionNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
-                            }
-                            <S.ViewList>
-                                <I.ListTable data-id="개인" data-type="division" onClick={isIdClick}>개인</I.ListTable>
-                                <I.ListTable data-id="팀" data-type="division" onClick={isIdClick}>팀</I.ListTable>
-                                <I.ListTable data-id="동아리" data-type="division" onClick={isIdClick}>동아리</I.ListTable>
-                            </S.ViewList>
+                                { 
+                                    hoverNumber === 1 ?
+                                    <I.SelctFlexBox><span>{clickGradeNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                    </I.SelctFlexBox>
+                                    : <I.SelctFlexBox><span>{clickGradeNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
+                                }
+                                <S.ViewList>
+                                    <I.ListTable data-id="1학년" data-type="grade" onClick={isIdClick}>1학년</I.ListTable>
+                                    <I.ListTable data-id="2학년" data-type="grade" onClick={isIdClick}>2학년</I.ListTable>
+                                    <I.ListTable data-id="3학년" data-type="grade" onClick={isIdClick}>3학년</I.ListTable>
+                                </S.ViewList>
                             </S.Select>
-                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
-                            { 
-                                hoverNumber === 2 ?
-                                <I.SelctFlexBox><span>{clickFieldNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
-                                </I.SelctFlexBox>
-                                : <I.SelctFlexBox><span>{clickFieldNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
-                            }       
-                            <S.ViewList>
-                                <I.ListTable data-id="소프트웨어" data-type="field" onClick={isIdClick}>소프트웨어</I.ListTable>
-                                <I.InList data-id="웹" data-type="field" onClick={isIdClick}>- 웹</I.InList>
-                                <I.InList data-id="앱" data-type="field" onClick={isIdClick}>- 앱</I.InList>
-                                <I.InList data-id="게임" data-type="field" onClick={isIdClick}>- 게임</I.InList>
-                                <I.ListTable data-id="임베디드" data-type="field" onClick={isIdClick}>임베디드</I.ListTable>
-                                {/* 임베디드 시스템, 임베디드 소프트웨어 */}
-                                <I.ListTable data-id="정보보안" data-type="field" onClick={isIdClick}>정보보안</I.ListTable>
-                                <I.ListTable data-id="융합" data-type="field" onClick={isIdClick}>융합</I.ListTable>
-                            </S.ViewList>
+                            <S.Select data-id="2" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+                                { 
+                                    hoverNumber === 2 ?
+                                    <I.SelctFlexBox><span>{clickDivisionNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                    </I.SelctFlexBox>
+                                    : <I.SelctFlexBox><span>{clickDivisionNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
+                                }
+                                <S.ViewList>
+                                    <I.ListTable data-id="개인" data-type="division" onClick={isIdClick}>개인</I.ListTable>
+                                    <I.ListTable data-id="팀" data-type="division" onClick={isIdClick}>팀</I.ListTable>
+                                    <I.ListTable data-id="동아리" data-type="division" onClick={isIdClick}>동아리</I.ListTable>
+                                </S.ViewList>
                             </S.Select>
-                            <S.Select data-id="3" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-                            { 
-                                hoverNumber === 3 ?
-                                <I.SelctFlexBox><span>{clickScopeNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
-                                </I.SelctFlexBox>
-                                : <I.SelctFlexBox><span>{clickScopeNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
-                            }       
-                            <S.ViewList>
-                                <I.ListTable data-id="전체 공개" data-type="scope" onClick={isIdClick}>전체 공개</I.ListTable>
-                                <I.ListTable data-id="학생 공개" data-type="scope" onClick={isIdClick}>학생 공개</I.ListTable>
-                                <I.ListTable data-id="비공개" data-type="scope" onClick={isIdClick}>비공개</I.ListTable>
-                            </S.ViewList>
+                            <S.Select data-id="3" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={150}>
+                                { 
+                                    hoverNumber === 3 ?
+                                    <I.SelctFlexBox><span>{clickFieldNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                    </I.SelctFlexBox>
+                                    : <I.SelctFlexBox><span>{clickFieldNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
+                                }       
+                                <S.ViewList>
+                                    <I.ListTable data-id="소프트웨어" data-type="field" onClick={isIdClick}>소프트웨어</I.ListTable>
+                                    <I.InList data-id="웹" data-type="field" onClick={isIdClick}>- 웹</I.InList>
+                                    <I.InList data-id="앱" data-type="field" onClick={isIdClick}>- 앱</I.InList>
+                                    <I.InList data-id="게임" data-type="field" onClick={isIdClick}>- 게임</I.InList>
+                                    <I.ListTable data-id="임베디드" data-type="field" onClick={isIdClick}>임베디드</I.ListTable>
+                                    {/* 임베디드 시스템, 임베디드 소프트웨어 */}
+                                    <I.ListTable data-id="정보보안" data-type="field" onClick={isIdClick}>정보보안</I.ListTable>
+                                    <I.ListTable data-id="융합" data-type="field" onClick={isIdClick}>융합</I.ListTable>
+                                </S.ViewList>
+                            </S.Select>
+                            <S.Select data-id="4" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} height={52}>
+                                { 
+                                    hoverNumber === 4 ?
+                                    <I.SelctFlexBox><span>{clickScopeNumber}</span><img src={selecthover} style={{width:'11px'}} alt="language"/>
+                                    </I.SelctFlexBox>
+                                    : <I.SelctFlexBox><span>{clickScopeNumber}</span><img src={select} alt="language"/></I.SelctFlexBox>
+                                }       
+                                <S.ViewList>
+                                    <I.ListTable data-id="전체 공개" data-type="scope" onClick={isIdClick}>전체 공개</I.ListTable>
+                                    <I.ListTable data-id="비공개" data-type="scope" onClick={isIdClick}>비공개</I.ListTable>
+                                </S.ViewList>
                             </S.Select>
                         </S.PaddingBox>
                     </S.SelectBoxs>
