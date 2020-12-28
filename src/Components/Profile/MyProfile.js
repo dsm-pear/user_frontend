@@ -1,24 +1,23 @@
 //내가 보는 내 프로필 수정 하기 누르기
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { request } from "../../utils/axios/axios";
 import * as S from "../styled/Profile/style";
+import * as M from "../styled/ViewReport/style";
 import Header from "../Main/Header";
 import Project from "./Project";
 import Profile from "./Profile";
 
 function MyProfile({ props }) {
   const [text, setText] = useState("수정");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [github, setGithub] = useState("");
-  const [produce, setProduce] = useState("");
+  const [profileReportListResponses, setProfileReportListResponses] = useState(
+    []
+  );
 
-  const [team, setTeam] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [date, setDate] = useState(null);
+  const [profileData, setProfileData] = useState(null);
 
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
+  //프로필 수정 API
   const ChangeProfile = async ({ github, produce }) => {
     if (text === "수정") {
       setText("저장");
@@ -41,19 +40,16 @@ function MyProfile({ props }) {
     }
   };
 
+  //내 프로필 가져오기
   const getProfile = async () => {
     try {
-      const { data: name, email, github, self_intro } = await request(
+      const { data } = await request(
         "get",
         "/user/profile",
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         ""
       );
-
-      setName(name);
-      setEmail(email);
-      setGithub(github);
-      setProduce(self_intro);
+      setProfileData(data.data);
     } catch (e) {
       console.error(e);
     }
@@ -63,6 +59,7 @@ function MyProfile({ props }) {
     getProfile();
   }, []);
 
+  //내 프로젝트 가져오기
   const getMyProject = async () => {
     try {
       const { data } = await request(
@@ -71,9 +68,8 @@ function MyProfile({ props }) {
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         ""
       );
-      setTeam(team);
-      setTitle(title);
-      setDate(date);
+
+      setProfileReportListResponses(data.ProfileReportListResponses);
     } catch (e) {
       console.error(e);
     }
@@ -90,21 +86,33 @@ function MyProfile({ props }) {
         {/* 좌측 프로필 */}
         <S.Cover>
           <Profile
-            name={name}
-            email={email}
-            produce={produce}
-            setProduce={setProduce}
-            github={github}
-            setGithub={setGithub}
+            name={profileData.name}
+            email={profileData.email}
+            produce={profileData.produce}
+            setProduce={profileData.setProduce}
+            github={profileData.github}
+            setGithub={profileData.setGithub}
             text={text}
           />
 
           {/* 프로젝트 보여주는 곳 */}
           <S.Project>
             <S.PreProject>
-              <Project team={team} title={title} date={date} />
+              {profileReportListResponses.map(({ team, title, date }) => (
+                <Project
+                  team={profileReportListResponses.team}
+                  title={profileReportListResponses.title}
+                  date={profileReportListResponses.date}x
+                />
+              ))}
               {/* 밑에 더보기 / 숫자 */}
-              <S.ProNum></S.ProNum>
+              <M.Number>
+                <Link>1</Link>
+                <Link>2</Link>
+                <Link>3</Link>
+                <Link>4</Link>
+                <Link>5</Link>
+              </M.Number>
             </S.PreProject>
           </S.Project>
         </S.Cover>

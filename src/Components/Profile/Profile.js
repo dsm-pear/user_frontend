@@ -3,17 +3,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "../styled/Profile/style";
 
-const Profile = ({
-  text,
-  name,
-  email,
-  produce,
-  github,
-  setGithub,
-}) => {
+const Profile = ({ text, name, email, produce, github, setGithub }) => {
   const [userName, setUserName] = useState(name);
   const [userEmail, setUserEmail] = useState(email);
- // const [github, setGithub] = useState(github);
+  // const [github, setGithub] = useState(github);
   const [introduce, setIntroduce] = useState(produce);
 
   return (
