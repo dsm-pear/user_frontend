@@ -1,9 +1,7 @@
 import React from "react";
-
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
-
   return (
     <S.Contents>
       <S.Title>
@@ -18,7 +16,10 @@ const ReportView = (props) => {
       </S.Linkimg>
       <S.Linkimg>
         <div className="img"></div>
-        <p >{props.file}</p>
+        <p>{props.file}</p>
+        <div className="downimg" onClick={props.downlodehandler}>
+          다운로드
+        </div>
       </S.Linkimg>
     </S.Contents>
   );
