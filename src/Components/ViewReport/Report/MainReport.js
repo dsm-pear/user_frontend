@@ -1,45 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { request } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
 import ReportComment from "./ReportComment";
 import ReportLanguage from "./ReportLanguage";
-import axios from "axios";
+import Header from "../../Main/Header";
+import ReportTeam from "./ReportTeam";
 
-function MainReport() {
-  /* const reportonChangeHandlder = async () => {
+function MainReport({ match }) {
+  const [reportData, setReportData] = useState(null);
+  const [loding, setLoding] = useState(null);
+  const [error, setError] = useState(null);
+
+  const getReportView = async () => {
     try {
-      const { data } = await axios.get("https://api.dsm-pear.hs.kr/report/", {
-        title: "<title>",
-        description: "<description>",
-        path: "<path>",
-        language: "<language>",
-        grade: "<grade>",
-        type: "<type>",
-        access: "<access>",
-        user_id: "<user_id>",
-        created_at: "<created_at>",
-      });
-    } catch (error) {}
+      loding(true);
+      const data = await request(
+        "get",
+        `/report/${match.params.reportid}`,
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        0
+      );
+
+      setReportData(data.data);
+      console.log(reportData);
+    } catch (e) {
+      console.log(e);
+    }
+    setLoding(false);
+    setError(null);
   };
- */
+
+  useEffect(() => {
+    getReportView();
+  }, []);
+
+  if (loding) return <div>로딩중</div>;
+  if (error) return <div>에러입니다</div>;
+  if (!reportData) return <div>서버좀 줘라</div>;
+
   return (
     <S.Main>
+      <Header></Header>
       <S.MainBox>
         <ReportHeader
-          team="동아리"
-          grade="1학년"
-          subject="웹 개발 보고서"
-          title="보고서 관리 페이지"
+          team={reportData.type}
+          grade={reportData.grade}
+          subject={reportData.field}
+          title={reportData.title}
+          date={reportData.createdAt}
         />
         <ReportView
-          title="보고서 관리 페이지"
-          text="안녕하세요 아보켓 입니다. 저희는 보고서 관리 페이지를 제작하게 되어 본교 학생들이 직접 개발하고 만든 보고서들을 보관하는 시스템으로 만들게 되었습니다. 깃허브 주소로 들어가게 되면 어떤식으로 진행 되었는지 나와있으니 보고서 관리 페이지 PEAR 많이 이용해주시길 바랍니다. "
-          git="https://github.com/silverbeen"
-          file="보고서 pdf"
+          title={reportData.title}
+          text={reportData.description}
+          git="{reportData.github}"
+          file={reportData.fileName}
         />
-        <ReportLanguage />
-        <ReportComment />
+        <ReportTeam />
+        <ReportLanguage languages={reportData.languages} />
+        <ReportComment
+          name={reportData.userName}
+          content={reportData.content}
+          commentId={reportData.commentId}
+        />
       </S.MainBox>
     </S.Main>
   );
