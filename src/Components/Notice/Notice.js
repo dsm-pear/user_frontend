@@ -14,7 +14,6 @@ const Notice = ({location}) => {
     /* api 연동되면 수정할 것들 */
 
     const [ containerData,setContainerData ] = useState(null);
-    const [ fileData, setFileData ] = useState(null);
 
     const [ error, setError] = useState(null)
     const [ nowPage, setNowPage] = useState(1);
