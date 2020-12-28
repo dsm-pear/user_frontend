@@ -6,6 +6,10 @@ const LoginBody = styled.div`
   align-items: center;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
 `;
 
 const Loginbg = styled.div`
@@ -136,7 +140,7 @@ const Button = styled.div`
   font-family: BBTreeGl;
   width: 110px;
   border-radius: 13px;
-  background-color: ${({ background }) => background };
+  background-color: ${({ background }) => background};
 `;
 
 export {
