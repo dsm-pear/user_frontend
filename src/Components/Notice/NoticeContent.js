@@ -30,7 +30,7 @@ const NoticeContent = (props) => {
               //`http://smoothbear.eastus.cloudapp.azure.com:8000/notice/${pvalue}`
               //`https://jsonplaceholder.typicode.com/users`
               "get",
-              "/notice-content",
+              `/notice/`,
               {},
               "", 
             );
@@ -46,7 +46,7 @@ const NoticeContent = (props) => {
             try{
                 const response = await fileRequest(
                     "get",
-                    "/notice/files/5",
+                    `/notice/files/${contentData.id}`,
                     {},
                     "",
                 );
@@ -61,12 +61,12 @@ const NoticeContent = (props) => {
       }, []);
 
       const FileDownload = () => {
-        window.open(FileURL + `/notice/5`);
+        window.open(FileURL + `/notice/${fileData.id}`);
       }
 
       if (loading) return <div>로딩중..</div>;
       if (error) return <div>에러가 발생했습니다</div>;
-      if (!contentData) return null;
+      if (!contentData) return <div>보고서가 없습니다!</div>;
     return(
         <>
                 <S.Background>
