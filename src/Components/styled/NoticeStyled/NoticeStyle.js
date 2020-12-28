@@ -7,7 +7,8 @@ export const Background = styled.div`
     background-size: 100% 100vh;
     height: 100vh;
     background-repeat: no-repeat;
-    min-width: 1820px;
+    min-width: 1320px;
+
     font-family: BBTreeGB;
     a{
         text-decoration: none;
@@ -16,7 +17,7 @@ export const Background = styled.div`
 `;
 
 export const NoticeBox = styled.div`
-    width: 1483px;
+    width: 80%;
     height: 720px;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #e4eef2;
@@ -33,49 +34,10 @@ export const NoticeSubBox = styled.div`
 `;
 
 export const NoticeChoice = styled.div`
+    margin-bottom: 11px;
+    margin-right: 12px;
+    font-size: 21px;
     float: right;
-    margin-bottom: 20px;
-`;
-
-export const Noticearr = styled.div`
-    font-size: 13px;
-    line-height: 1.17;
-    letter-spacing: 1.2px;
-    width: 79px;
-    height: 15px;
-    padding: 6px 10px;
-    margin-right: 27px;
-    border: solid 1px #4d4d4d;
-    background-color: #ffffff;
-    cursor: pointer;
-    img{
-        width: 10px;
-        float: right;
-        margin-top: 3px;
-    }
-`;
-
-export const NoticeRange = styled.div`
-    width: 99px;
-    height: 60px;
-    font-size: 13px;
-    line-height: 1.23;
-    z-index: 2;
-    position: absolute;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    border: solid 1px #4d4d4d;
-    border-top: none;
-    background-color: white;
-    transition-duration: 0.3s;
-`;
-
-export const NoticeC = styled.div`
-    color: #000000;
-    padding: 10px 13px 0 13px;
-    cursor: pointer;
-    &:hover{
-        color: #5955d8;
-    }
 `;
 
 export const NoticeContant = styled.div`
@@ -99,8 +61,8 @@ export const NoticeContant = styled.div`
 `;
 
 export const Container = styled.div`
+    width: 99.4%;
     margin-bottom: 20px;
-    width: 960px;
     height: 55px;
     border-radius: 6px;
     border: solid 1.6px #6192f3;
@@ -141,16 +103,24 @@ export const NoticeAdd = styled.div`
 `;
 
 export const NoticeAddNumber = styled.div`
-    display: flex;
-    width: 200px;
+    width: 300px;
     justify-content: space-between;
     position: relative;
     left: 50%;
     transform: translate(-50%,0);
+    display: flex;
+    align-items: center;
     a{
-        padding: 5px;
+        padding: 0 10px;
+        text-decoration: none;
+        color: black;
     }
     a:hover{
         color: #6192f3;
+    }
+    img{
+        padding: 0 10px;
+        width: 15px;
+        height: 15px;
     }
 `;

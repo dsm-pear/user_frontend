@@ -57,6 +57,7 @@ const ReportWriting = () => {
         setOpas('1');
     }
 
+
     const clickInputBox = (e) => {
         // if (!toggle) {
         //     setWid("15rem");

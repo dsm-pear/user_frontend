@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Main = styled.div`
     position: absolute;
     z-index: 99;
@@ -17,6 +18,7 @@ export const Main = styled.div`
         box-sizing: border-box;
     }
 `;
+
 
 export const ModalMain = styled.div`
     transition: all .8s;
@@ -86,6 +88,7 @@ export const SearchResult = styled.div`
         /* 스크롤바의 전체 */
     }
 `;
+
 
 export const TeamState = styled.div`
     -ms-user-select: none; 

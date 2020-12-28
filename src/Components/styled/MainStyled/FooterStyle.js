@@ -8,11 +8,12 @@ export const FooterBox = styled.div`
 `;
 
 export const FooterSubBox = styled.div`
-    width: 1500px;
+    width: 90vw;
     height: 74px;
     margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 38px;
 `;
 
@@ -34,14 +35,13 @@ export const Develop = styled.div`
 `;
 
 export const Intro = styled.div`
-    width: 103px;
-    flex: 2;
-    margin-left: 60px;
+    width: 10VW;
+    text-align: center;
 `;
 
 export const Title = styled.div`
     text-align: center;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.24;
     letter-spacing: 0.34px;
     margin-bottom: 8px;
@@ -50,7 +50,8 @@ export const Title = styled.div`
 
 export const People = styled.div`
     height: 60px;
+    font-size: 17px;
     div{
-        padding: 2px 6px;
+        padding: 3px 6px;
     }
 `;
