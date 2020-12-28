@@ -12,6 +12,7 @@ function MainReport({ match }) {
   const [reportData, setReportData] = useState(null);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
+  const [fileId, setFileId] = useState(null);
 
   const getReportView = async () => {
     try {
@@ -36,6 +37,15 @@ function MainReport({ match }) {
     getReportView();
   }, []);
 
+  const downlodehandler = async () => {
+    try {
+      const data = await request("get", `/report/${match.params.fileid}`);
+      setFileId(data.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
   if (!reportData) return <div>서버좀 줘라</div>;
@@ -56,6 +66,7 @@ function MainReport({ match }) {
           text={reportData.description}
           git="{reportData.github}"
           file={reportData.fileName}
+          onClick={downlodehandler}
         />
         <ReportTeam />
         <ReportLanguage languages={reportData.languages} />
