@@ -5,14 +5,15 @@ import SearchResultProfile from './SearchResultProfile';
 import Header from '../Main/Header';
 import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
-import axios from 'axios';
+import { request } from '../../utils/axios/axios';
 import { Link } from 'react-router-dom';
 
 const SearchResult = ({location}) => {
     const query = queryString.parse(location.search);
 
-    const [ Data, setData ] = useState("");
+    const [ Data, setData ] = useState(null);
     const [ error, setError ] = useState(null);
+    const [ loading, setLoading ] = useState(null);
 
     /* page 설정 */
     const [ page, setPage ] = useState(5);
@@ -21,36 +22,41 @@ const SearchResult = ({location}) => {
     const [ EndPage, setEndPage ] = useState(5);
     let page_arr = [];
 
-    useEffect(()=>{
-        DataApi();
-    }, []);
-    
-    const DataApi = async () => {
+    const DataApi = async (type) => {
         try{
-            setError(null)
+            setError(null);
             setData(null);
-
-            const response = await axios.get(
-                //`https://api.dsm-pear.hs.kr/search?mode=${query.mode}&keyword=${query.keyword}&size=7&page=${nowPage}`
-                `https://jsonplaceholder.typicode.com/users`
+            setLoading(true);
+            const response = await request(
+                "get",
+                `/search/${type}?keyword=${query.keyword}&size=7&page=${nowPage}`,
+                {},
+                "",
             );
             setData(response.data);
-            //setEndPage(Data.totalPages)
-        }catch(e){
-            setError(e);
+        } catch(e) {
+        setError(e);
         }
-    };
+    setLoading(false);
+    }
 
     const mode = () => {
-        return (
-
-            query.mode === "profile" ? 
-            <SearchResultProfile  data={Data}/>
-            : query.mode === "title" ?
-            <SearchResultTitle  data={Data}/>
-            : null
-
-        )
+        switch(query.mode){
+            case "profile" : 
+                DataApi("profile")
+                return(
+                    <SearchResultProfile  data={Data}/>
+                )
+            case "title" : 
+                DataApi("report")
+                return(
+                    <SearchResultTitle  data={Data}/>
+                )
+            default : 
+                return(
+                    <div>없는 타입</div>
+                )
+        }
     }
 
     /* api 연동되면 수정할 것들 */
@@ -102,7 +108,8 @@ const SearchResult = ({location}) => {
     }
 
     if (error) return <div>{error}</div>;
-    if (!Data) return null;
+    if (loading) return <div>Loading...</div>
+    if (Data) return <div>검색결과가 없습니다!</div>;
     
     return(
         <>
