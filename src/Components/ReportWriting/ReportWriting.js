@@ -8,6 +8,7 @@ import { select } from "../../assets";
 import { selecthover } from "../../assets";
 import { link } from "../../assets";
 import { github } from "../../assets";
+import { useEffect } from 'react';
 
 const ReportWriting = () => {
     const [ hoverNumber, setHoverNumber ] = useState(0);
@@ -21,6 +22,8 @@ const ReportWriting = () => {
     const [ open, setOpen ] = useState("hidden");
     const [ myHei, setMyHei ] = useState("0");
     const [ opas, setOpas ] = useState('1');
+    const [ tags, setTags ] = useState([]);
+    const [ files, setFiles ] = useState([]);
 
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
@@ -55,6 +58,41 @@ const ReportWriting = () => {
         setMyHei("450px");
         setOpas('1');
     }
+
+    const onLanguageChange = (e) => {
+        if (e.key === 'Enter' && e.target.value.trim()) {
+            const newTags = [...tags];
+            newTags[tags.length] = e.target.value;
+            setTags(newTags)
+            e.target.value = ''
+        }
+    }
+    
+    const onLanguageClick = (index) => {
+        const delTags = [...tags];
+        delTags.splice(index, 1);
+        setTags(delTags);
+    }
+
+    const onClickFile = () => {
+        const inputElement = document.createElement('input')
+        inputElement.setAttribute('type','file');
+        inputElement.setAttribute('multiple', '')
+        inputElement.click()
+        console.log(inputElement.value);
+        inputElement.onchange = () => {
+            const prevFiles = [...files];
+            for (const file of inputElement.files) {
+                prevFiles.push(file)
+            }
+            setFiles(prevFiles)
+            console.log(inputElement.value, inputElement.files[0].name); 
+        }
+    }
+
+    useEffect(() => {
+        console.log(files)
+    }, [files])
 
     return (
         <>
@@ -128,10 +166,16 @@ const ReportWriting = () => {
                     </S.SelectBoxs>
                     <S.ReportMain>
                         <S.ReportHeader>
-                            <input type={Text} placeholder="개발 보고서의 제목을 입력해주세요" />
+                            <input type="text" placeholder="개발 보고서의 제목을 입력해주세요" />
                         </S.ReportHeader>
                         <S.UseLang>
-                            <input type={Text} placeholder="개발에 사용한 언어들을 입력해주세요" />
+                            {
+                                tags.map((tag, i) => {
+                                    console.log(tag)
+                                    return <S.Tag onClick={() => onLanguageClick(i)} index={i}>{tag}</S.Tag>
+                                }) 
+                            }
+                            <input type="text" placeholder="개발에 사용한 언어들을 입력해주세요" onKeyPress={onLanguageChange} />
                         </S.UseLang>
                         <S.ReprotWriteBox>
                             <textarea name="writingbox" rows="15" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요" style={{resize:"none"}}></textarea>
@@ -139,12 +183,20 @@ const ReportWriting = () => {
                         <S.LinkBox>
                             <span>
                                 <div>
-                                    <img src={github} alt="gitgub-link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
+                                    <img src={github} alt="gitgub-link"/><input type="text" placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />                 
                                 </div>
                             </span>
                         </S.LinkBox>
                         <S.AttachFile>
-                            <span><img src={link} alt="attachfile"/></span>
+                            <S.inAttachFile>
+                                <img src={link} alt="attachfile" onClick={onClickFile}/>
+                                {
+                                    files.length !== 0 ? files.map((file, i) => {
+                                        return <div>{file.name}{i === files.length -1 ? '' : ' / '}</div>;
+                                    })
+                                    : <span>팀이 작성한 개발 보고서의 파일을 올려주세요.</span>
+                                }
+                            </S.inAttachFile>
                         </S.AttachFile>
                     </S.ReportMain>
                     <S.SubmitBox>
