@@ -149,18 +149,31 @@ export const UseLang = styled.div`
     width: 100%;
     height: 100%;
     margin-top: .8rem;
+    display: flex;
+    background: #F8F8F8;
+    border: 1px solid #F8F8F8;
+    padding: .8rem .8rem;
 
     input {
         width: 100%;
-        background: #F8F8F8;
         border: 1px solid #F8F8F8;
+        background: #F8F8F8;
         outline: none;
-        padding: .8rem .8rem;
         font-family: BBTreeGL;
         font-weight: normal;
         font-size: 14px;
         text-align: left;
     }
+`;
+
+export const colors = ['red','yellow','green','kahki']
+
+export const Tag = styled.div`
+    
+    border: 1px solid;
+    white-space: nowrap;
+    background-color: ${({ index }) => colors[index % colors.length]};
+    
 `;
 
 export const ReprotWriteBox = styled.div`
@@ -223,19 +236,38 @@ export const AttachFile = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+`;
 
-    span {
-        display: flex;
-        width: 100%;
-        border: none;
-        outline: none;
-        padding: .4rem .4rem;
-        background: #F8F8F8;
-        
+export const inAttachFile = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: .4rem .4rem;
+    background: #F8F8F8;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
         img {
             width: 20px;
+            margin-right: 8px;
         }
-    }
+
+        div {
+            font-size: 13px;
+            font-family: BBTreeGL;
+            color: gray;
+        }
+
+        span {
+            font-size: 13px;
+            font-family: BBTreeGL;
+            color: gray;
+        }
 `;
 
 export const SubmitBox = styled.div`
