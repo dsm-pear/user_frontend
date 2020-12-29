@@ -37,7 +37,6 @@ const Questions = () => {
         
     }
 
-    
 
     return(
         <>

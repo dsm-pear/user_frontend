@@ -36,24 +36,15 @@ export const InList = styled.div`
     } 
 `;
 
-export const TeamLeftBox = styled.div`
-    width: 60%;
+export const MTbtn = styled.div`
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5rem;
-`;
-
-export const TeamRightBox = styled.div`
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5rem;
+    justify-content: flex-end;
 
     div {
         text-align: center;
         width: 5.5rem;
+        height: 24px;
         border: 1px solid #6192f3;
         border-radius: 18px;
         outline: none;
@@ -92,8 +83,7 @@ export const TeamName = styled.div`
 `;
         
 export const SaveBtn = styled.div`
-    padding-left: 2rem;   
-    margin-left: 1rem;
+    margin-right: 1rem;
     
     div {
         text-align: center;
@@ -113,7 +103,6 @@ export const SaveBtn = styled.div`
 `;
 
 export const SubBtn = styled.div`
-    padding-left: 2rem;   
     margin-left: 1rem;
     
     div {

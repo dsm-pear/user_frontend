@@ -30,8 +30,8 @@ export const BorderBox = styled.div`
     width: 68%;
     min-width: 950px;
     max-width: 68%;
-    height: 730px;
-    min-height: 730px;
+    height: 715px;
+    min-height: 715px;
     max-height: 100%;
     margin: 15rem 0 3rem;
     padding: 2rem 2.5rem 0;
@@ -145,8 +145,27 @@ export const ReportHeader = styled.div`
     }
 `;
 
-export const ReprotWriteBox = styled.div`
+export const UseLang = styled.div`
     width: 100%;
+    height: 100%;
+    margin-top: .8rem;
+
+    input {
+        width: 100%;
+        background: #F8F8F8;
+        border: 1px solid #F8F8F8;
+        outline: none;
+        padding: .8rem .8rem;
+        font-family: BBTreeGL;
+        font-weight: normal;
+        font-size: 14px;
+        text-align: left;
+    }
+`;
+
+export const ReprotWriteBox = styled.div`
+    width: 100%;    
+    height: 100%;
     margin-top: .8rem;
 
     textarea {
@@ -222,19 +241,17 @@ export const AttachFile = styled.div`
 export const SubmitBox = styled.div`
     width:100%;
     display: flex;
-    margin: .8rem 0 3rem;
+    margin: 3rem 0 3rem;
 `;
     
-
 export const MakeTeam = styled.div`
     -ms-user-select: none; 
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    width: 70%;
+    width: 73%;
     height: 145px;
-    border: 1px solid;
 
     span {
         width:100%;
@@ -249,8 +266,7 @@ export const SaveSubBtn = styled.div`
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    width: 30%;
+    width: 27%;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: flex-end;
 `;
