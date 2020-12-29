@@ -7,6 +7,7 @@ import { RWlogo } from "../../assets";
 import { select } from "../../assets";
 import { selecthover } from "../../assets";
 import { link } from "../../assets";
+import { github } from "../../assets";
 
 const ReportWriting = () => {
     const [ hoverNumber, setHoverNumber ] = useState(0);
@@ -20,8 +21,6 @@ const ReportWriting = () => {
     const [ open, setOpen ] = useState("hidden");
     const [ myHei, setMyHei ] = useState("0");
     const [ opas, setOpas ] = useState('1');
-    const [ wid, setWid ] = useState("11.5rem");
-    const [ toggle, setToggle ] = useState(false);
 
     const onMouseOver = (e) => {
         setHoverNumber(Number(e.currentTarget.dataset.id))
@@ -55,20 +54,6 @@ const ReportWriting = () => {
         setOpen("visible");
         setMyHei("450px");
         setOpas('1');
-    }
-
-
-    const clickInputBox = (e) => {
-        // if (!toggle) {
-        //     setWid("15rem");
-        // } else {
-        //     setWid("12rem");
-        // }
-
-        // 페이지 접속시 toggle: false
-        // 인풋 클릭을 한다: -> 이떄 toggle: false
-        setWid(toggle ? "12rem" : "15rem");
-        setToggle(!toggle);
     }
 
     return (
@@ -143,15 +128,18 @@ const ReportWriting = () => {
                     </S.SelectBoxs>
                     <S.ReportMain>
                         <S.ReportHeader>
-                            <input type={Text} placeholder="개발 보고서의 제목을 입력해주세요." />
+                            <input type={Text} placeholder="개발 보고서의 제목을 입력해주세요" />
                         </S.ReportHeader>
+                        <S.UseLang>
+                            <input type={Text} placeholder="개발에 사용한 언어들을 입력해주세요" />
+                        </S.UseLang>
                         <S.ReprotWriteBox>
-                            <textarea name="writingbox" rows="15" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요." style={{resize:"none"}}></textarea>
+                            <textarea name="writingbox" rows="15" cols="40" minLength="10" placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요" style={{resize:"none"}}></textarea>
                         </S.ReprotWriteBox>
                         <S.LinkBox>
                             <span>
                                 <div>
-                                    <img src={link} alt="gitgub-link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
+                                    <img src={github} alt="gitgub-link"/><input type={Text} placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)" />
                                 </div>
                             </span>
                         </S.LinkBox>
@@ -162,17 +150,9 @@ const ReportWriting = () => {
                     <S.SubmitBox>
                         <S.MakeTeam>
                             <span>
-                                <I.TeamLeftBox>
-                                    <I.TeamName onClick={clickInputBox} width={wid}>
-                                        {
-                                            toggle
-                                        }
-                                        <span><input type={Text} placeholder="팀의 이름을 입력해주세요."/></span>
-                                    </I.TeamName>
-                                </I.TeamLeftBox>
-                                <I.TeamRightBox>
+                                <I.MTbtn>
                                     <div onClick={teamBtnClick}>팀 만들기</div>
-                                </I.TeamRightBox>
+                                </I.MTbtn>
                             </span>
                         </S.MakeTeam>
                         <S.SaveSubBtn>
