@@ -90,6 +90,12 @@ const ReportWriting = () => {
         }
     }
 
+    const onDelClickFile = (index) => {
+        const delFile = [...files];
+        delFile.splice(index, 1);
+        setFiles(delFile);
+    }
+
     useEffect(() => {
         console.log(files)
     }, [files])
@@ -192,7 +198,7 @@ const ReportWriting = () => {
                                 <img src={link} alt="attachfile" onClick={onClickFile}/>
                                 {
                                     files.length !== 0 ? files.map((file, i) => {
-                                        return <div>{file.name}{i === files.length -1 ? '' : ' / '}</div>;
+                                        return <div onClick={() => onDelClickFile(i)}>{file.name}{i === files.length -1 ? '' : ' / '}</div>;
                                     })
                                     : <span>팀이 작성한 개발 보고서의 파일을 올려주세요.</span>
                                 }
