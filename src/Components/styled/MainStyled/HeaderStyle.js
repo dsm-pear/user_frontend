@@ -17,7 +17,7 @@ export const HeaderBox = styled.div`
 export const HeaderSubBox = styled.div`
     display: flex;
     align-items: center;
-    margin: auto;
+    margin: 0 auto;
 `;
 
 export const Mainlogo = styled.div`
