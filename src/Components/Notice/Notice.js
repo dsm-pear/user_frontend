@@ -6,7 +6,6 @@ import * as S from '../styled/NoticeStyled/NoticeStyle';
 import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
 import { request } from '../../utils/axios/axios';
-import axios from 'axios';
 
 const Notice = ({location}) => {
 
@@ -17,6 +16,8 @@ const Notice = ({location}) => {
     const [ containerData,setContainerData ] = useState(null);
 
     const [ error, setError] = useState(null)
+    const [ loading, setLoading ] = useState(false);
+
     const [ nowPage, setNowPage] = useState(1);
     const [ EndPage, setEndPage ] = useState(1);
     const [ page, setPage ] = useState(5);
@@ -25,41 +26,26 @@ const Notice = ({location}) => {
 
     useEffect(()=>{
         const DataApi = async () => {
-            /*
             try{
                 setError(null);
                 setContainerData(null);
+                setLoading(true);
                 const response = await request(
                     "get",
-                    `/notice?size=7&page=${nowPage}`,
+                    `/notice?size=7&page=${nowPage-1}`,
                     {},
                     ""
                 );
-                console.log(response)
                 setContainerData(response.data);
                 setEndPage(response.data.totalPages)
             }catch(e){
-                //setError(e);
+                setError(e);
             }
-            */
-            try {
-                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-                setError(null);
-                setContainerData(null);
-                const response = await axios.get(
-                `http://10.156.147.50:8081/notice?size=7&page=${nowPage-1}`
-                );
-                setContainerData(response.data); // 데이터는 response.data 안에 들어있습니다.
-                setEndPage(response.data.totalPages);
-                
-            } catch (e) {
-                //setError(e);
-            }
+            setLoading(false);
         };
 
         DataApi();
     }, [nowPage]);
-    //const EndPage = containerData.totalPages;
 
     if(EndPage < 5){
         for(let i = basicsPage; i <= EndPage; i++) {
@@ -108,7 +94,7 @@ const Notice = ({location}) => {
     }
 
     if(error) return <div>{error}</div>
-    if(!containerData) return <div>데이터가 없습니다</div>
+    if(loading) return <div>Loading...</div>
 
     return(
         <>
