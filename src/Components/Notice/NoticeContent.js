@@ -5,12 +5,12 @@ import Leave from '../../assets/ArrowImg/Leave.png';
 import link from '../../assets/link.svg';
 import { Link } from 'react-router-dom';
 import { request, fileRequest, FileURL } from '../../utils/axios/axios'
-
+import axios from 'axios';
 
 const NoticeContent = (props) => {
 
     const { params } = props.match;
-    const pvalue = params.data;
+    const ContentId = params.data;
 
     const [ contentData, setContentData ] = useState(null);
     const [ fileData , setFileData] = useState(null);
@@ -20,6 +20,7 @@ const NoticeContent = (props) => {
 
     useEffect(() => {
         const DataApi = async () => {
+            /*
           try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
@@ -30,7 +31,7 @@ const NoticeContent = (props) => {
               //`http://smoothbear.eastus.cloudapp.azure.com:8000/notice/${pvalue}`
               //`https://jsonplaceholder.typicode.com/users`
               "get",
-              `/notice/`,
+              `/notice/${pvalue}`,
               {},
               "", 
             );
@@ -39,6 +40,20 @@ const NoticeContent = (props) => {
           } catch (e) {
             setError(e);
           }
+          */
+          try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setContentData(null);
+            const response = await axios.get(
+            `http://10.156.147.50:8081/notice/${ContentId}`
+            );
+            setContentData(response.data); // 데이터는 response.data 안에 들어있습니다.
+            
+        } catch (e) {
+            //setError(e);
+        }
+
           setLoading(false);
         };
 
@@ -58,15 +73,18 @@ const NoticeContent = (props) => {
     
         DataApi();
         FileApi()
-      }, []);
+      }, [ContentId]);
 
       const FileDownload = () => {
         window.open(FileURL + `/notice/${fileData.id}`);
       }
 
       if (loading) return <div>로딩중..</div>;
-      if (error) return <div>에러가 발생했습니다</div>;
+      //if (error) return <div>에러가 발생했습니다</div>;
       if (!contentData) return <div>보고서가 없습니다!</div>;
+
+      const createTime = contentData.createdAt.split(" ")
+
     return(
         <>
                 <S.Background>
@@ -75,17 +93,17 @@ const NoticeContent = (props) => {
                     <S.NoticeContant key={contentData.id}>
                         <S.NoticeHeader>
                             <S.NoLeave>
-                                <Link to={'/notice'}>
+                                <Link to={'/notice?page=1'}>
                                     <img src={Leave} alt="사진"/>
                                 </Link>
                             </S.NoLeave>
 
                             <S.NoTitle>
-                                {contentData.createdAt}
+                                {contentData.title}
                             </S.NoTitle>
 
                             <S.NoDay>
-                                {contentData.username}
+                                {createTime[0]}
                             </S.NoDay>
                         </S.NoticeHeader>
 
@@ -99,7 +117,7 @@ const NoticeContent = (props) => {
                             </S.FileLink>
                             <S.FileTitle>
                                 <div onClick={FileDownload}>
-                                    파일이름
+                                    {contentData.fileName}
                                 </div>
                             </S.FileTitle>
                         </S.NoticeFile>
