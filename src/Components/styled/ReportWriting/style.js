@@ -226,6 +226,11 @@ export const LinkBox = styled.div`
     }
     div > img {
         width: 20px; 
+        -ms-user-select: none; 
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
     div > input {
         width: 100%;
@@ -264,6 +269,10 @@ export const inAttachFile = styled.div`
         img {
             width: 20px;
             margin-right: 8px;
+            
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         div {
