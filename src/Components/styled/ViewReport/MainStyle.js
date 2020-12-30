@@ -100,6 +100,11 @@ const Linkimg = styled(Title)`
     background-size: 20px;
     background-image: url(${Link});
   }
+  .downimg{
+    margin : 10px 20px;
+    background-color : blue;
+    
+  }
 
   a,
   p {

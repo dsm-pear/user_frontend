@@ -1,5 +1,5 @@
 import Axios from "axios";
-const URL = "https://api.dsm-pear.hs.kr";
+const URL = "http://20.55.121.118:8000";
 export function request(method, url, header, data) {
   return Axios({
     method,
