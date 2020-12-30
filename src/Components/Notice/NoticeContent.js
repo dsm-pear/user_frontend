@@ -5,13 +5,12 @@ import Leave from '../../assets/ArrowImg/Leave.png';
 import link from '../../assets/link.svg';
 import { Link } from 'react-router-dom';
 import { request, fileRequest, FileURL } from '../../utils/axios/axios'
-import axios from 'axios';
+
 
 const NoticeContent = (props) => {
 
     const { params } = props.match;
     const ContentId = params.data;
-
     const [ contentData, setContentData ] = useState(null);
     const [ fileData , setFileData] = useState(null);
 
@@ -20,41 +19,27 @@ const NoticeContent = (props) => {
 
     useEffect(() => {
         const DataApi = async () => {
-            /*
-          try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setContentData(null);
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-            const response = await request(
-              //`http://smoothbear.eastus.cloudapp.azure.com:8000/notice/${pvalue}`
-              //`https://jsonplaceholder.typicode.com/users`
-              "get",
-              `/notice/${pvalue}`,
-              {},
-              "", 
-            );
-            setContentData(response.data);
-            
-          } catch (e) {
-            setError(e);
-          }
-          */
-          try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setContentData(null);
-            const response = await axios.get(
-            `http://10.156.147.50:8081/notice/${ContentId}`
-            );
-            setContentData(response.data); // 데이터는 response.data 안에 들어있습니다.
-            
-        } catch (e) {
-            //setError(e);
-        }
-
-          setLoading(false);
+            try {
+                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+                setError(null);
+                setContentData(null);
+                // loading 상태를 true 로 바꿉니다.
+                setLoading(true);
+                const response = await request(
+                //`http://smoothbear.eastus.cloudapp.azure.com:8000/notice/${pvalue}`
+                //`https://jsonplaceholder.typicode.com/users`
+                "get",
+                `/notice/${ContentId}`,
+                {},
+                "", 
+                );
+                console.log(response)
+                setContentData(response.data);
+                
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
         };
 
         const FileApi = async () => {
@@ -73,14 +58,14 @@ const NoticeContent = (props) => {
     
         DataApi();
         FileApi()
-      }, [ContentId]);
+      }, [ContentId, contentData.id]);
 
       const FileDownload = () => {
         window.open(FileURL + `/notice/${fileData.id}`);
       }
 
       if (loading) return <div>로딩중..</div>;
-      //if (error) return <div>에러가 발생했습니다</div>;
+      if (error) return <div>에러가 발생했습니다</div>;
       if (!contentData) return <div>보고서가 없습니다!</div>;
 
       const createTime = contentData.createdAt.split(" ")
@@ -110,6 +95,7 @@ const NoticeContent = (props) => {
                         <S.NoticeContain>
                             {contentData.description}
                         </S.NoticeContain>
+
 
                         <S.NoticeFile>
                             <S.FileLink>
