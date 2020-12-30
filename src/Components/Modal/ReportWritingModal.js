@@ -15,6 +15,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const onClick = () => {
     setOpen("hidden");
     setMyHei("0");
+    setToggled(false);
   };
 
   const btnClick = () => {
@@ -79,7 +80,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           <S.RightModalSort>
             <S.RightCloseBtn>
               <span>
-                <img src={Close} alt="Close" />
+                <img src={Close} alt="Close" onClick={onClick} />
               </span>
             </S.RightCloseBtn>
             <S.ClickMember>
