@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import * as S from "../../styled/ViewReport/MainStyle";
 
-const ReportHeader = ({ team, grade, subject, title }) => {
+const ReportHeader = ({ team, grade, subject, title, date }) => {
   const color =
     team === "동아리" ? "#5955d8" : team === "팀" ? "#6192f3" : "#27d5b1";
   /* 헤더  */
@@ -20,7 +20,7 @@ const ReportHeader = ({ team, grade, subject, title }) => {
       </S.Name> 
       <S.Year>
         <span>게시일</span>
-        <span>2020년 7월 19일</span>
+        <span>{date}</span>
       </S.Year>
     </S.Header>
   );

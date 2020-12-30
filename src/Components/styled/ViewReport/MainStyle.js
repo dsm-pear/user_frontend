@@ -5,7 +5,7 @@ import { StudentProfile, Comment, Link, github } from "../../../assets/index";
 const Main = styled.body`
   height: 182vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   background-image: url(${MainScrollBackground_1});
   /* background-size: 100vw 100vh; */
@@ -13,6 +13,7 @@ const Main = styled.body`
 `;
 
 const MainBox = styled.div`
+  margin-top: 80px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -99,6 +100,11 @@ const Linkimg = styled(Title)`
     background-size: 20px;
     background-image: url(${Link});
   }
+  .downimg{
+    margin : 10px 20px;
+    background-color : blue;
+    
+  }
 
   a,
   p {
@@ -112,7 +118,7 @@ const Linkimg = styled(Title)`
 
 const CommentMain = styled.div`
   width: 90%;
-  max-height: 35%;
+  max-height: 25%;
   border: solid 1px #e4eef2;
   height: 30%;
 `;
@@ -150,9 +156,8 @@ const Search = styled.input`
 `;
 
 const MainCom = styled.div`
-  width: 90%;
-  height: 80%;
-  margin: 10px 20px 10px 90px;
+  height: 70%;
+  margin: 20px;
   overflow: auto;
   overflow-y: scroll;
 
@@ -258,6 +263,7 @@ const Language = styled.div`
     transition: all 0.8s;
   }
 `;
+const Member = styled(Language)``;
 
 const Year = styled.div`
   width: 20%;
@@ -265,6 +271,10 @@ const Year = styled.div`
     margin: 0 20px;
     font-family: BBTreeGl;
   }
+`;
+
+const Teambox = styled(CoverLang)`
+  height: 7%;
 `;
 
 export {
@@ -286,4 +296,6 @@ export {
   CoverLang,
   Language,
   Year,
+  Member,
+  Teambox,
 };

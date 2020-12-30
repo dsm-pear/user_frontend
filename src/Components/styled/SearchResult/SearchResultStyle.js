@@ -4,10 +4,13 @@ import main from '../../../assets/MainBackground.png'
 
 export const Background = styled.div`
     background-image: url(${main});
-    background-size: 100vw 100vh;
+    background-size: 100% 100vh;
     height: 100vh;
     background-repeat: no-repeat;
     font-family: BBTreeGB;
+
+    min-width: 1320px;
+
     a{
         text-decoration: none;
         color: #000000;
@@ -15,7 +18,7 @@ export const Background = styled.div`
 `;
 
 export const ResultBox = styled.div`
-    width: 1483px;
+    width: 80%;
     height: 720px;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #e4eef2;
@@ -28,58 +31,35 @@ export const ResultSubBox = styled.div`
     width: 990px;
     height: 520px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 40px;
 `;
 
 export const ResultChoice = styled.div`
-    float: right;
-    margin-bottom: 20px;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
 `;
 
-export const Resultarr = styled.div`
-    font-size: 13px;
-    line-height: 1.17;
-    letter-spacing: 1.2px;
-    width: 79px;
-    height: 15px;
-    padding: 6px 10px;
-    margin-right: 27px;
-    border: solid 1px #4d4d4d;
-    background-color: #ffffff;
-    cursor: pointer;
-    img{
-        width: 10px;
-        float: right;
-        margin-top: 3px;
+export const ResultKeyword = styled.div`
+    width: 50%;
+    font-size: 19px;
+    span{
+        font-size: 30px;
     }
-`;
+`
 
-export const ResultRange = styled.div`
-    width: 99px;
-    height: 60px;
-    font-size: 13px;
-    line-height: 1.23;
-    z-index: 2;
-    position: absolute;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    border: solid 1px #4d4d4d;
-    border-top: none;
-    background-color: white;
-`;
-
-export const ResultC = styled.div`
-    color: #000000;
-    padding: 10px 13px 0 13px;
-    cursor: pointer;
-    &:hover{
-        color: #5955d8;
-    }
+export const ResultPage = styled.div`
+    width: 50%;
+    margin-right: 12px;
+    font-size: 21px;
+    text-align: right;
+    
 `;
 
 export const ResultContant = styled.div`
     width: 984px;
     height: 530px;
-    overflow-y: auto;
+    overflow-y: hidden;
 
     &::-webkit-scrollbar { 
         width: 10px; 
@@ -99,8 +79,8 @@ export const ResultContant = styled.div`
 `;
 
 export const Container = styled.div`
+    width: 99.4%;
     margin-bottom: 20px;
-    width: 960px;
     height: 55px;
     border-radius: 6px;
     background-color: #ffffff;
@@ -197,18 +177,25 @@ export const ResultAdd = styled.div`
 `;
 
 export const ResultAddNumber = styled.div`
-    width: 200px;
+    width: 300px;
     justify-content: space-between;
     position: relative;
     left: 50%;
     transform: translate(-50%,0);
     display: flex;
+    align-items: center;
     a{
-        padding: 5px;
+        padding: 0 10px;
+
         text-decoration: none;
         color: black;
     }
     a:hover{
         color: #6192f3;
+    }
+    img{
+        padding: 0 10px;
+        width: 15px;
+        height: 15px;
     }
 `;
