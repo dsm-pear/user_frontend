@@ -15,7 +15,7 @@ const Header = () => {
     const [ report, setReport ] = useState(false);
     const [ profile, setProfile ] = useState(false);
     const [ img, setImg ] = useState(DownArrow);
-    const [ value, setValue ] = useState("title");
+    const [ value, setValue ] = useState("report");
     const [ keyword, setKeyword ] = useState("");
 
     const onlist = () => {
@@ -32,8 +32,8 @@ const Header = () => {
     }
 
     const onTitleSeach = () => {
-        setSearchtype("제목");
-        setValue("title");
+        setSearchtype("보고서");
+        setValue("report");
     }
 
     const onProfileSeach = () => {
@@ -101,14 +101,15 @@ const Header = () => {
                                 {
                                     report &&
                                     <S.MenuSee>
-                                        <S.ReportSee>1학년</S.ReportSee>
-                                        <S.ReportSee>2학년</S.ReportSee>
-                                        <S.ReportSee>3학년</S.ReportSee>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=1`}><S.ReportSee>1학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=2`}><S.ReportSee>2학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=3`}><S.ReportSee>3학년</S.ReportSee></Link>
                                     </S.MenuSee>
                                 }
-                                </S.MenuList>
+                            </S.MenuList>
 
                             {     /*토큰 여부에 따라 출력*/
+                            //token ??
                             <S.MenuList onMouseEnter={onProfileUp} onMouseLeave={onProfileDown}>
                                 <S.Profile>프로필</S.Profile>
                                 {
