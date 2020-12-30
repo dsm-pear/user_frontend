@@ -6,6 +6,7 @@ import * as S from '../styled/NoticeStyled/NoticeStyle';
 import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
 import { request } from '../../utils/axios/axios';
+import axios from 'axios';
 
 const Notice = ({location}) => {
 
@@ -24,34 +25,52 @@ const Notice = ({location}) => {
 
     useEffect(()=>{
         const DataApi = async () => {
+            /*
             try{
+                setError(null);
+                setContainerData(null);
                 const response = await request(
                     "get",
-                    `notice?size=7&page=${nowPage}`,
+                    `/notice?size=7&page=${nowPage}`,
                     {},
                     ""
                 );
+                console.log(response)
                 setContainerData(response.data);
-                //setEndPage(containerData.totalPages)
+                setEndPage(response.data.totalPages)
             }catch(e){
-                setError(e);
+                //setError(e);
+            }
+            */
+            try {
+                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+                setError(null);
+                setContainerData(null);
+                const response = await axios.get(
+                `http://10.156.147.50:8081/notice?size=7&page=${nowPage-1}`
+                );
+                setContainerData(response.data); // 데이터는 response.data 안에 들어있습니다.
+                setEndPage(response.data.totalPages);
+                
+            } catch (e) {
+                //setError(e);
             }
         };
 
         DataApi();
-    }, []);
+    }, [nowPage]);
     //const EndPage = containerData.totalPages;
 
-        if(EndPage < 5){
-            for(let i = basicsPage; i <= EndPage; i++) {
-                page_arr[i]=i;
-            }
-        }
-        else{
-            for(let i = basicsPage; i <= page; i++) {
+    if(EndPage < 5){
+        for(let i = basicsPage; i <= EndPage; i++) {
             page_arr[i]=i;
-            }
         }
+    }
+    else{
+        for(let i = basicsPage; i <= page; i++) {
+        page_arr[i]=i;
+        }
+    }
 
 
     const processed = (querys) => page_arr.map((num)=>{
@@ -87,6 +106,9 @@ const Notice = ({location}) => {
             }
         }
     }
+
+    if(error) return <div>{error}</div>
+    if(!containerData) return <div>데이터가 없습니다</div>
 
     return(
         <>
