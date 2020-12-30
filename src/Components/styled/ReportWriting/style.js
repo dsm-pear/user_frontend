@@ -166,14 +166,23 @@ export const UseLang = styled.div`
     }
 `;
 
-export const colors = ['red','yellow','green','kahki']
+export const colors = ['navajowhite','lavender','mistyrose','lightgreen','lavenderblush','honeydew','oldlace','ivory']
 
 export const Tag = styled.div`
-    
     border: 1px solid;
     white-space: nowrap;
+    color: darkslategray;
     background-color: ${({ index }) => colors[index % colors.length]};
-    
+    border: 1px solid ${({ index }) => colors[index % colors.length]};
+    border-radius: 5px;
+    padding: .1rem .3rem;
+    font-family: BBTreeGL;
+    font-size: 14px;
+    margin-right: .4rem;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 export const ReprotWriteBox = styled.div`
