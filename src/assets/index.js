@@ -20,3 +20,5 @@ export { default as Comment } from './Comment.svg';
 export { default as Link } from './link.svg';
 export { default as github } from './github.svg';
 export { default as clickNT } from './clickNT.svg';
+export { default as checked } from './checked.svg';
+export { default as bfchecked } from './bfchecked.svg';
