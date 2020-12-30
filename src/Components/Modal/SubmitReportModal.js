@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import SubmitSuccess from './SubmitSuccess';
 import * as S from '../styled/Modal/SrModalStyle';
 import { Close } from "../../assets";
+import axios from 'axios';
 
-const SubmitReportModal = ({setState, setHei, state, hei, myopa, setMyOpa}) => {
+const SubmitReportModal = ({setState, setHei, state, hei, myopa, setMyOpa, files}) => {
     const [ view, setView ] = useState("hidden");
     const [ opa, setOpa ] = useState("0");
 
@@ -17,8 +18,20 @@ const SubmitReportModal = ({setState, setHei, state, hei, myopa, setMyOpa}) => {
         setState("hidden");
         setMyOpa('0');
         setOpa("1");
-    }
+        const data = new FormData();
+        data.append('reportFile', files[0]); // append = 기존의 것 + @
+        // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
+        axios.post(`${baseUrl}:3000/report/files/1`, data,{
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+        }).then(res => console.log(res)).catch(err => console.log(err))
 
+    }
+    
+    const baseUrl = 'http://10.156.147.50'
+
+    
     return (
         <>
         <SubmitSuccess setView={setView} setOpa={setOpa} view={view} opa={opa} />
