@@ -1,6 +1,7 @@
 import React, {useState}from 'react';
 import QuestionModal from './QuestionModal';
 import * as S from '../styled/MainStyled/QuestionsStyle';
+import { request } from '../../utils/axios/axios';
 
 const Questions = () => {
 
@@ -8,7 +9,7 @@ const Questions = () => {
     const [ email, setEmail ] = useState("");
     const [ content, setContent ] = useState("");
 
-    const [ questdata, setQuestdata ] = useState(null);
+    //const [ questdata, setQuestdata ] = useState(null);
     const [ message, setMessage ] = useState("버그 & 문의 사항이 접수 되었습니다")
 
     const closeModal = () => {
@@ -23,19 +24,31 @@ const Questions = () => {
     }
 
     const send = (e) => {
+
         e.preventDefault();
         if([email, content].includes("")){
             setMessage("빈 칸을 입력해주세요")
             setModalVisible(true);
         }else{
             QuestApi()
-            setMessage("버그 & 문의 사항이 접수 되었습니다")
             setModalVisible(true);
         }
         
     }
 
-    const QuestApi = () => {
+    const QuestApi = async () => {
+        const quest = {
+            email: email,
+            description: content
+        }
+        const response = await request(
+            "post",
+            "question",
+            {},
+            quest
+        )
+        console.log(response.status)
+        Number(response.status) === 200 ? setMessage("버그 & 문의 사항이 접수 되었습니다") : setMessage("오류가 발생햇습니다")
         
     }
 
