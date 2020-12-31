@@ -6,7 +6,7 @@ import Nextpage from '../../assets/nextpageimg.png';
 const Body = () => {
 
     const onclick = () => {
-        window.scrollTo({top: 938, behavior: "smooth"});
+        window.scrollTo({top: window.innerHeight+2, behavior: "smooth"});
     }
 
     return (
