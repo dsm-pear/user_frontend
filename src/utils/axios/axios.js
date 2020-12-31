@@ -6,6 +6,7 @@ export function request(method, url, header, data) {
   return Axios({
     method,
     url: MainURL + url,
+
     headers: header,
     data: data,
   })

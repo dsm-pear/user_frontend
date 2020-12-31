@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { request } from "../../utils/axios/axios";
 import { useHistory } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import * as S from "../styled/Login/style";
@@ -14,20 +15,93 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function SignUp() {
+function SignUp({ Data }) {
   const history = useHistory();
   //모든 창이 입력 되면 버튼색 바뀐
   const [button, setButton] = useState("#e1e1e1");
   const [bcolor, setBcolor] = useState("#777777");
   /* 이름, 이메일, 이메일 확인, 비밀번호, 비밀번호 확인 */
-  const [name, setName] = useState("");
-  const [post, setPost] = useState("");
-  const [check, setCheck] = useState("");
-  const [password, setPassword] = useState("");
-  const [pwconfirm, setPwconfirm] = useState("");
-  //비밀번호 재 확인
+  const [name, setName] = useState(null);
+  const [post, setPost] = useState(null);
+  //인증번호 확인
+  const [check, setCheck] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [pwconfirm, setPwconfirm] = useState(null);
+  //비밀번호 재 확인 색 변경
   const [pwInput, setPwInput] = useState("#e3f0ff");
   const [conInput, setConInput] = useState("#e3f0ff");
+
+  const postSignup = async () => {
+    try {
+      const { data } = await request(
+        "post",
+        "/account",
+        {},
+        {
+          name,
+          email: post,
+          password,
+        }
+      );
+      localStorage.setItem("token", data.token);
+      history.push("/login");
+    } catch (e) {
+      alert("이메일을 다시 확인해주세요");
+      console.log(e);
+    }
+  };
+
+  //회원가입 API 연동
+  const buttonCilckHandler = async () => {
+    //비밀번호 확인
+    if (password.length < 8 || password.length >= 14) {
+      alert("비밀번호를 8자 이상 16자 이하로 입력해주세요");
+      setPwInput("#ffeded");
+      setConInput("#e3f0ff");
+
+      /* 비밀번호의 값이 없으면 초기화 */
+      if (password === null) {
+        setPwInput("#e3f0ff");
+      }
+    } else if (password.length >= 8 && password.length <= 14) {
+
+      if (password !== pwconfirm) {
+        /* 회원가입 조건중 비밀번호 확인 틀림 */
+        console.log("달라요");
+        setConInput("#ffeded");
+        setPwInput("#e3f0ff");
+        alert("비밀번호를 다시 확인해주세요");
+        if (pwconfirm === "") {
+          setConInput("#e3f0ff");
+        }
+      } 
+      else if (password.length >= 8 && password.length <= 14) {
+        /* 회원가입 조건 모두 만족 */
+        postSignup();
+  
+        if (password === pwconfirm) {
+          
+          alert("회원가입에 성공하셨습니다.");
+          history.push("/");
+        }
+      }
+    } 
+  };
+  //버튼 색 바뀌게 비교
+  const compare = (e) => {
+    //만약 이름이 널이면~
+    if (
+      name !== "" &&
+      post !== "" &&
+      check !== "" &&
+      password !== "" &&
+      pwconfirm !== ""
+    ) {
+      console.log("check");
+      setButton("#5955d8");
+      setBcolor("#ffffff");
+    }
+  };
 
   const inputs = [
     {
@@ -36,7 +110,7 @@ function SignUp() {
       setData: setName,
       data: null,
       button: null,
-      
+      value: "name",
     },
     {
       type: "text",
@@ -47,14 +121,14 @@ function SignUp() {
       disabled: false,
     },
     {
-      type: "password",
+      type: "text",
       placeholder: "인증번호를 입력해주세요",
       setData: setCheck,
       data: check,
       button: "인증번호 확인",
     },
     {
-      type: "password",
+      type: "text",
       placeholder: "비밀번호를 입력해주세요",
       setData: setPassword,
       data: null,
@@ -72,62 +146,28 @@ function SignUp() {
     },
   ];
 
-  //버튼 색 바뀌게 비교
-  const compare = (e) => {
-    //만약 이름이 널이면~
-    if (
-      name !== "" &&
-      post !== "" &&
-      check !== "" &&
-      password !== "" &&
-      pwconfirm !== ""
-    ) {
-      console.log("check");
-      setButton("#5955d8");
-      setBcolor("#ffffff");
-    }
-  };
-
-  //비밀번호 재 확인
-  const submit = (e) => {
-    /* 그냥 조건이 안맞음 */
-    if (password.length < 8 || password.length >= 13) {
-      alert("비밀번호를 8자 이상 13자 이하로 입력해주세요");
-      setPwInput("#ffeded");
-      setConInput("#e3f0ff");
-      /* 비밀번호의 값이 없으면 초기화 */
-      if (password === "") {
-        setPwInput("#e3f0ff");
-      }
-    } else if (password !== pwconfirm) {
-      /* 회원가입 조건중 비밀번호 확인 틀림 */
-      console.log("달라요");
-      setConInput("#ffeded");
-      setPwInput("#e3f0ff");
-      alert("비밀번호를 다시 확인해주세요");
-      if (pwconfirm === "") {
-        setConInput("#e3f0ff");
-      }
-    } else if (password.length >= 8 && password.length <= 13) {
-      /* 회원가입 조건 모두 만족 */
-      if (password === pwconfirm) {
-        alert("회원가입에 성공하셨습니다.");
-        history.push("/");
-      }
-    }
-  };
-
   return (
     <>
       <GlobalStyle />
       <form onChange={compare}>
         <S.SignMain>
           <div className="h1Name">
-            <h1>SIGN UP</h1>
+            <h1>SIGNUP</h1>
           </div>
           <div className="InputCover">
             {inputs.map(
-              ({ type, button, background, data, placeholder, setData, disabled }, i) => (
+              (
+                {
+                  type,
+                  button,
+                  background,
+                  data,
+                  placeholder,
+                  setData,
+                  disabled,
+                },
+                i
+              ) => (
                 <InputCom
                   key={i}
                   type={type}
@@ -140,7 +180,11 @@ function SignUp() {
                 />
               )
             )}
-            <S.SignUpButton onClick={submit} background={button} color={bcolor}>
+            <S.SignUpButton
+              onClick={buttonCilckHandler}
+              background={button}
+              color={bcolor}
+            >
               회원가입
             </S.SignUpButton>
           </div>
