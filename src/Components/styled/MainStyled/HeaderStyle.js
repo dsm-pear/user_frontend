@@ -73,7 +73,7 @@ export const SeachList = styled.div`
     cursor: pointer;
     margin-top: 20px;
     z-index: 5;
-    width: 58px;
+    width: 52px;
     height: 47px;
     border-radius: 6px;
     background-color: #e4eef2;
@@ -147,7 +147,7 @@ export const MenuSee = styled.div`
     background-color: #ffffff;
     text-align: center;
     cursor: pointer;
-    margin-top: 80px;
+    margin-top: 78px;
     margin-left: 10px;
     z-index: 5;
     position: absolute;
