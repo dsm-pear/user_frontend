@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
 
-    const [ searchtype, setSearchtype ] = useState("제목");
+    const [ searchtype, setSearchtype ] = useState("보고서");
     const [ color, setColor ] = useState("#000000");
     const [ show, setShow ] = useState(false);
     const [ report, setReport ] = useState(false);
@@ -78,7 +78,7 @@ const Header = () => {
                                 { 
                                 show &&
                                 <S.SeachList>
-                                    <S.SeachType onClick={onTitleSeach}>제목</S.SeachType>
+                                    <S.SeachType onClick={onTitleSeach}>보고서</S.SeachType>
                                     <S.SeachType onClick={onProfileSeach}>프로필</S.SeachType>
                                 </S.SeachList>
                                 }
