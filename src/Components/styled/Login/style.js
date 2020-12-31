@@ -6,6 +6,10 @@ const LoginBody = styled.div`
   align-items: center;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
 `;
 
 const Loginbg = styled.div`
@@ -51,6 +55,7 @@ const Logininput = styled.div`
     }
   }
   & > button {
+    margin: 10px;
     width: 272px;
     height: 43px;
     border-radius: 4px;
@@ -62,8 +67,8 @@ const Logininput = styled.div`
     font-size: 18px;
   }
 
-  & p {
-    margin: 15px;
+  & a {
+    margin: 20px;
     font-family: "BBTreeGB";
     font-size: 15px;
     color: #5955d8;
@@ -135,7 +140,7 @@ const Button = styled.div`
   font-family: BBTreeGl;
   width: 110px;
   border-radius: 13px;
-  background-color: ${({ background }) => background };
+  background-color: ${({ background }) => background};
 `;
 
 export {
