@@ -26,6 +26,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     setToggle(!toggle);
   };
 
+  const onSearchChange = (e) => {
+    if (e.key === "Enter") {
+    }
+  };
+
   return (
     <S.Div visibility={open}>
       <S.LeftModalMain height={myHei} opas={opas}>
@@ -34,13 +39,13 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             <span>{toggled === !true && <img src={Close} alt="Close" />}</span>
           </S.LeftCloseBtn>
           <S.SearchInput>
-            <I.BorderInput>
-              <form name="input-name" action="" method="post">
+            <I.BorderInput onChange={onSearchChange}>
+              <div>
                 <span>
                   <input type={Text} />
                   <img src={searchImg} alt="search" />
                 </span>
-              </form>
+              </div>
             </I.BorderInput>
           </S.SearchInput>
           <S.SearchResult>
