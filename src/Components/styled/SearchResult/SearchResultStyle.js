@@ -170,6 +170,7 @@ export const ResultAddNumber = styled.div`
     align-items: center;
     a{
         padding: 0 10px;
+
         text-decoration: none;
         color: black;
     }

@@ -13,18 +13,10 @@ export const Main = styled.div`
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     overflow-y: scroll;
-
     &::-webkit-scrollbar { 
         width: 10px;
         /* 스크롤바의 width */
     }
-
-    &::-webkit-scrollbar-thumb { 
-        background: linear-gradient(135deg,#81bcff,#56D4E2);
-        border-radius: 10px;
-        /* 스크롤바 색 */
-    }
-
     * {
         box-sizing: border-box;
         margin: 0;
@@ -44,6 +36,7 @@ export const BorderBox = styled.div`
     margin: 15rem 0 3rem;
     padding: 2rem 2.5rem 0;
 `;
+
 
 export const InlineBox = styled.div`
     width: 100%;
@@ -201,7 +194,6 @@ export const LinkBox = styled.div`
         margin-left: .4rem;
         font-family: BBTreeGL;
         font-size: 13px;
-        
     }
 `;
 

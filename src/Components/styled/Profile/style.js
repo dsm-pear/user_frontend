@@ -1,24 +1,22 @@
 //프로필 스타일
-
 import styled from "styled-components";
-import { MainBackground, StudentProfile} from "../../../assets";
+import { MainBackground, StudentProfile } from "../../../assets";
 
 const Main = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background-image: url(${MainBackground});
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
 `;
 const MainProfile = styled.div`
+  margin: auto;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1400px;
-  height: 680px;
+  width: 77%;
+  height: 73%;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
   border: solid 1px #e4eef2;
   background-color: #ffffff;
@@ -29,6 +27,7 @@ const Cover = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 86%;
   height: 580px;
 `;
 
@@ -37,8 +36,8 @@ const Profile = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 340px;
-  height: 580px;
+  width: 28%;
+  height: 88%;
   margin: 20px;
 `;
 
@@ -47,27 +46,29 @@ const ProPhoto = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  height: 70%;
 
-  div {
+  & div {
     background-image: url(${StudentProfile});
     height: 150px;
     width: 150px;
     margin: 10px;
   }
-  input {
+  .input {
     background-color: white;
     padding: 0 20px;
     margin: 10px;
     display: flex;
     align-items: center;
     margin: 10px 0;
-    width: 300px;
+    width: 88%;
     height: 40px;
     border-radius: 10px;
     outline: none;
     border: none;
     font-size: 15px;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
     box-shadow: 0 1px 4px #c3c7c7;
     cursor: pointer;
 
@@ -78,6 +79,21 @@ const ProPhoto = styled.div`
     }
   }
 `;
+const Git = styled.div`
+  background-color: white;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  width: 88%;
+  height: 47px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  box-shadow: 0 1px 4px #c3c7c7;
+  cursor: pointer;
+`;
 
 const Produce = styled.div`
   align-items: center;
@@ -85,11 +101,11 @@ const Produce = styled.div`
   border-radius: 10px;
   outline: none;
   font-size: 15px;
-  font-family: BBTreeGB;
+  font-family: "Noto Sans KR", sans-serif;
   box-shadow: 0 1px 4px #c3c7c7;
   cursor: pointer;
-  height: 160px;
-  width: 300px;
+  height: 130px;
+  width: 88%;
   padding: 20px;
 `;
 const Project = styled.div`
@@ -98,7 +114,7 @@ const Project = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 20px;
-  width: 800px;
+  width: 76%;
   height: 490px;
   border-radius: 10px;
   box-shadow: 0 1px 4px #c3c7c7;
@@ -109,7 +125,7 @@ const PreProject = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 30px;
-  width: 700px;
+  width: 80%;
 `;
 
 export const MainProject = styled.div`
@@ -117,13 +133,13 @@ export const MainProject = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 648px;
+  width: 100%;
   height: 49px;
   margin: 5px;
   border: 1.6px solid ${(props) => props.color};
   border-radius: 6px;
   background-color: #ffffff;
-  font-family: BBTreeGB;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
@@ -158,7 +174,6 @@ export const MainProject = styled.div`
       width: 15%;
     }
   }
-
 `;
 
 const MainProjectSolo = styled(MainProject)`
@@ -200,6 +215,10 @@ const Modify = styled.button`
 
 const ProNum = styled.div``;
 
+const ProjectCover = styled.div`
+  width: 100%;
+`;
+
 export {
   MainProfile,
   Profile,
@@ -214,4 +233,6 @@ export {
   Produce,
   Modify,
   Cover,
+  Git,
+  ProjectCover,
 };
