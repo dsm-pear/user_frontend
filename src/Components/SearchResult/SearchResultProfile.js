@@ -3,45 +3,17 @@ import { StudentProfile } from '../../assets';
 import React, {useCallback} from 'react';
 import { Link } from 'react-router-dom';
 
-const SearchResultProfile = () => {
-    const data = [
-        {
-            "id": 1,
-            "name": "한준호",
-            "email": "oajh04@naver.com"
-        },
-        {
-            "id": 2,
-            "name": "한준호",
-            "email": "oajh04@naver.com"
-        },
-        {
-            "id": 3,
-            "name": "한준호",
-            "email": "oajh04@naver.com"
-        },
-        {
-            "id": 4,
-            "name": "한준호",
-            "email": "oajh04@naver.com"
-        },
-        {
-            "id": 5,
-            "name": "한준호",
-            "email": "oajh04@naver.com"
-        },
-        {
-            "id": 6,
-            "name": "한준호",
-            "email": "oajh04@naver.com"
-        },
-    ]
+const SearchResultProfile = (props) => {
+    const searchData = props.data;
+
+    console.log(props)
 
     const SearchPropfile = useCallback(
         (dataList) => {
+            console.log(searchData)
             return dataList.map((data)=>{
                 return(
-                    <Link to={`/user-profile`} key={data.id}>
+                    <Link to={`/user-profile`} key={data.user_id}>
                         <S.Container style={{color: "#6192f3"}} >
                             <S.ContainerContant >
                                 <S.ResultProfile>
@@ -61,12 +33,14 @@ const SearchResultProfile = () => {
                 )
             })
         }
-    ,[]);
+    ,[searchData]);
 
     return (
         <>
             {
-                SearchPropfile(data)
+                
+                SearchPropfile(searchData.userResponses)
+                
             }
         </>
     )
