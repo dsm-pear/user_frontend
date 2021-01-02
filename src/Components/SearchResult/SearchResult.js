@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import SearchResultTitle from './SearchResultTitle';
 import SearchResultProfile from './SearchResultProfile';
@@ -10,8 +10,9 @@ import { Link } from 'react-router-dom';
 
 const SearchResult = ({location}) => {
     const query = queryString.parse(location.search);
+    console.log(query);
 
-    const [ Data, setData ] = useState(null);
+    const [ searchData, setSearchData ] = useState(null);
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(null);
 
@@ -22,35 +23,43 @@ const SearchResult = ({location}) => {
     const [ EndPage, setEndPage ] = useState(5);
     let page_arr = [];
 
-    const DataApi = async (type) => {
-        try{
-            setError(null);
-            setData(null);
-            setLoading(true);
-            const response = await request(
-                "get",
-                `/search/${type}?keyword=${query.keyword}&size=7&page=${nowPage}`,
-                {},
-                "",
-            );
-            setData(response.data);
-        } catch(e) {
-        setError(e);
+    useEffect(()=>{
+        const DataApi = async () => {
+            try{
+                setError(null);
+                setSearchData(null);
+                setLoading(true);
+                const response = await request(
+                    "get",
+                    `/search/${query.mode}?keyword=${query.keyword}&size=7&page=${nowPage-1}`,
+                    {},
+                    "",
+                );
+                setSearchData(response.data);
+                setEndPage(response.data.totalPages);
+            } catch(e) {
+                //setError(e);
+            }
+    
+            setLoading(false);
         }
-    setLoading(false);
-    }
+
+        DataApi();
+    }, [nowPage, query.mode, query.keyword]);
+    console.log(query.mode)
 
     const mode = () => {
+
         switch(query.mode){
-            case "profile" : 
-                DataApi("profile")
+            case "profile" :
+                console.log("1")
                 return(
-                    <SearchResultProfile  data={Data}/>
+                    <SearchResultProfile data={searchData}/>
                 )
-            case "title" : 
-                DataApi("report")
+            case "report" :
+                console.log("2")
                 return(
-                    <SearchResultTitle  data={Data}/>
+                    <SearchResultTitle data={searchData}/>
                 )
             default : 
                 return(
@@ -108,47 +117,47 @@ const SearchResult = ({location}) => {
     }
 
     if (error) return <div>{error}</div>;
-    if (loading) return <div>Loading...</div>
-    if (Data) return <div>검색결과가 없습니다!</div>;
+    if (loading) return <div>Loading...</div>;
+    if(!searchData) return <div>검색결과가 없습니다</div>
     
     return(
         <>
-        <S.Background>
-        <Header/>
-        
-            <S.ResultBox>
-                <S.ResultSubBox>
+            <S.Background>
+            <Header/>
+            
+                <S.ResultBox>
+                    <S.ResultSubBox>
 
-                    <S.ResultChoice>
-                        <S.ResultKeyword>
-                            <span>{query.keyword}</span> 에 대한 검색결과입니다.
-                        </S.ResultKeyword>
-                        <S.ResultPage>
-                            총 {EndPage}페이지 중 {query.page} 페이지 입니다
-                        </S.ResultPage>
-                    </S.ResultChoice>
+                        <S.ResultChoice>
+                            <S.ResultKeyword>
+                                <span>{query.keyword}</span> 에 대한 검색결과입니다.
+                            </S.ResultKeyword>
+                            <S.ResultPage>
+                                총 {EndPage}페이지 중 {query.page} 페이지 입니다
+                            </S.ResultPage>
+                        </S.ResultChoice>
 
-                    <S.ResultContant>
+                        <S.ResultContant>
 
-                        {
-                            mode()
-                        }
+                            {
+                                mode()
+                            }
 
-                    </S.ResultContant>
+                        </S.ResultContant>
 
-                    <S.ResultAdd>
-                        <S.ResultAddNumber>
-                                <img src={LeftArrow} alt="사진" onClick={prev}/>
-                                {
-                                    processed(query)
-                                }
-                                <img src={RightArrow} alt="사진" onClick={next}/>
-                        </S.ResultAddNumber>
-                    </S.ResultAdd>
-                    
-                </S.ResultSubBox>
-            </S.ResultBox>
-        </S.Background>
+                        <S.ResultAdd>
+                            <S.ResultAddNumber>
+                                    <img src={LeftArrow} alt="사진" onClick={prev}/>
+                                    {
+                                        processed(query)
+                                    }
+                                    <img src={RightArrow} alt="사진" onClick={next}/>
+                            </S.ResultAddNumber>
+                        </S.ResultAdd>
+                        
+                    </S.ResultSubBox>
+                </S.ResultBox>
+            </S.Background>
         </>
     )
 }
