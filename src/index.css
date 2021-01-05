@@ -25,3 +25,10 @@ code {
   border-radius: 10px;
   /* 스크롤바 색 */
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  list-style: none;
+}
