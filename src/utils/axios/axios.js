@@ -1,4 +1,5 @@
 import Axios from "axios";
+
 export const MainURL = "http://10.156.147.50:8081";
 export const FileURL = "http://3.15.177.120:3000";
 
@@ -6,7 +7,6 @@ export function request(method, url, header, data) {
   return Axios({
     method,
     url: MainURL + url,
-
     headers: header,
     data: data,
   })
