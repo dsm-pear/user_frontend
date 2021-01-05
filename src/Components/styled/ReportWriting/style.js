@@ -30,8 +30,8 @@ export const BorderBox = styled.div`
     width: 68%;
     min-width: 950px;
     max-width: 68%;
-    height: 730px;
-    min-height: 730px;
+    height: 715px;
+    min-height: 715px;
     max-height: 100%;
     margin: 15rem 0 3rem;
     padding: 2rem 2.5rem 0;
@@ -145,8 +145,49 @@ export const ReportHeader = styled.div`
     }
 `;
 
-export const ReprotWriteBox = styled.div`
+export const UseLang = styled.div`
     width: 100%;
+    height: 100%;
+    margin-top: .8rem;
+    display: flex;
+    background: #F8F8F8;
+    border: 1px solid #F8F8F8;
+    padding: .8rem .8rem;
+
+    input {
+        width: 100%;
+        border: 1px solid #F8F8F8;
+        background: #F8F8F8;
+        outline: none;
+        font-family: BBTreeGL;
+        font-weight: normal;
+        font-size: 14px;
+        text-align: left;
+    }
+`;
+
+export const colors = ['navajowhite','lavender','mistyrose','lightgreen','lavenderblush','honeydew','oldlace','ivory']
+
+export const Tag = styled.div`
+    border: 1px solid;
+    white-space: nowrap;
+    color: darkslategray;
+    background-color: ${({ index }) => colors[index % colors.length]};
+    border: 1px solid ${({ index }) => colors[index % colors.length]};
+    border-radius: 5px;
+    padding: .1rem .3rem;
+    font-family: BBTreeGL;
+    font-size: 14px;
+    margin-right: .4rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+export const ReprotWriteBox = styled.div`
+    width: 100%;    
+    height: 100%;
     margin-top: .8rem;
 
     textarea {
@@ -185,6 +226,11 @@ export const LinkBox = styled.div`
     }
     div > img {
         width: 20px; 
+        -ms-user-select: none; 
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
     div > input {
         width: 100%;
@@ -204,37 +250,58 @@ export const AttachFile = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+`;
 
-    span {
-        display: flex;
-        width: 100%;
-        border: none;
-        outline: none;
-        padding: .4rem .4rem;
-        background: #F8F8F8;
-        
+export const inAttachFile = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: .4rem .4rem;
+    background: #F8F8F8;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
         img {
             width: 20px;
+            margin-right: 8px;
+            
+            &:hover {
+                cursor: pointer;
+            }
         }
-    }
+
+        div {
+            font-size: 13px;
+            font-family: BBTreeGL;
+            color: gray;
+        }
+
+        span {
+            font-size: 13px;
+            font-family: BBTreeGL;
+            color: gray;
+        }
 `;
 
 export const SubmitBox = styled.div`
     width:100%;
     display: flex;
-    margin: .8rem 0 3rem;
+    margin: 3rem 0 3rem;
 `;
     
-
 export const MakeTeam = styled.div`
     -ms-user-select: none; 
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    width: 70%;
+    width: 73%;
     height: 145px;
-    border: 1px solid;
 
     span {
         width:100%;
@@ -249,8 +316,7 @@ export const SaveSubBtn = styled.div`
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    width: 30%;
+    width: 27%;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: flex-end;
 `;
