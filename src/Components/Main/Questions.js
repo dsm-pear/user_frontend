@@ -10,7 +10,7 @@ const Questions = () => {
     const [ content, setContent ] = useState("");
 
     //const [ questdata, setQuestdata ] = useState(null);
-    const [ message, setMessage ] = useState("버그 & 문의 사항이 접수 되었습니다")
+    const [ message, setMessage ] = useState(null)
 
     const closeModal = () => {
         setModalVisible(false);
@@ -24,16 +24,13 @@ const Questions = () => {
     }
 
     const send = (e) => {
-
         e.preventDefault();
         if([email, content].includes("")){
             setMessage("빈 칸을 입력해주세요")
-            setModalVisible(true);
         }else{
             QuestApi()
-            setModalVisible(true);
         }
-        
+        setModalVisible(true);
     }
 
     const QuestApi = async () => {
@@ -47,8 +44,14 @@ const Questions = () => {
             {},
             quest
         )
-        console.log(response.status)
-        Number(response.status) === 200 ? setMessage("버그 & 문의 사항이 접수 되었습니다") : setMessage("오류가 발생햇습니다")
+        
+        const statusNumber = Number(response.status)
+
+        if(statusNumber === 200){
+            setMessage("버그 & 문의 사항이 접수 되었습니다")
+        }else if(statusNumber === 400){
+            setMessage("에러발생! 내용을 확인해주세요")
+        }
         
     }
 
