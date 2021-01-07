@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NoticeContainer from './NoticeContainer';
 import {Link} from 'react-router-dom';
 import Header  from '../Main/Header';
 import * as S from '../styled/NoticeStyled/NoticeStyle';
 import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
+import { request } from '../../utils/axios/axios';
 
 const Notice = ({location}) => {
 
@@ -12,23 +13,58 @@ const Notice = ({location}) => {
 
     /* api 연동되면 수정할 것들 */
 
-    const [ pageValue, setPageValue ] = useState(1);
+    const [ containerData,setContainerData ] = useState(null);
+
+    const [ error, setError] = useState(null)
+    const [ loading, setLoading ] = useState(false);
+
+    const [ nowPage, setNowPage] = useState(1);
+    const [ EndPage, setEndPage ] = useState(1);
     const [ page, setPage ] = useState(5);
     const [ basicsPage, setBasicPage ] = useState(1);
     let page_arr = [];
-    const limitdata = 7;
-    const EndPage = 12;
 
-    for(let i = basicsPage; i <= page; i++) {
-        page_arr[i]=i;
+    useEffect(()=>{
+        const DataApi = async () => {
+            try{
+                setError(null);
+                setContainerData(null);
+                setLoading(true);
+                const response = await request(
+                    "get",
+                    `/notice?size=7&page=${nowPage-1}`,
+                    {},
+                    ""
+                );
+                setContainerData(response.data);
+                setEndPage(response.data.totalPages)
+            }catch(e){
+                setError(e);
+            }
+            setLoading(false);
+        };
+
+        DataApi();
+    }, [nowPage]);
+
+    if(EndPage < 5){
+        for(let i = basicsPage; i <= EndPage; i++) {
+            page_arr[i]=i;
+        }
     }
+    else{
+        for(let i = basicsPage; i <= page; i++) {
+        page_arr[i]=i;
+        }
+    }
+
 
     const processed = (querys) => page_arr.map((num)=>{
         if(Number(querys.page) !== num){
-            return <Link onClick={()=>setPageValue(num)} to={`/notice?page=${page_arr[num]}`} key={num}> {page_arr[num]} </Link>
+            return <Link onClick={()=>setNowPage(num)} to={`/notice?page=${page_arr[num]}`} key={num}> {page_arr[num]} </Link>
         }
         else {
-            return <Link onClick={()=>setPageValue(num)} to={`/notice?page=${page_arr[num]}`} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </Link>
+            return <Link onClick={()=>setNowPage(num)} to={`/notice?page=${page_arr[num]}`} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </Link>
         }
     });
     
@@ -57,6 +93,9 @@ const Notice = ({location}) => {
         }
     }
 
+    if(error) return <div>{error}</div>
+    if(loading) return <div>Loading...</div>
+
     return(
         <>
             <S.Background>
@@ -71,7 +110,7 @@ const Notice = ({location}) => {
 
                         <S.NoticeContant>
 
-                            <NoticeContainer limit={limitdata} page={pageValue}/>
+                            <NoticeContainer data={containerData}/>
 
                         </S.NoticeContant>
 

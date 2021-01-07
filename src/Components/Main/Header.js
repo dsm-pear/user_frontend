@@ -9,13 +9,13 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
 
-    const [ searchtype, setSearchtype ] = useState("제목");
+    const [ searchtype, setSearchtype ] = useState("보고서");
     const [ color, setColor ] = useState("#000000");
     const [ show, setShow ] = useState(false);
     const [ report, setReport ] = useState(false);
     const [ profile, setProfile ] = useState(false);
     const [ img, setImg ] = useState(DownArrow);
-    const [ value, setValue ] = useState("title");
+    const [ value, setValue ] = useState("report");
     const [ keyword, setKeyword ] = useState("");
 
     const onlist = () => {
@@ -32,13 +32,8 @@ const Header = () => {
     }
 
     const onTitleSeach = () => {
-        setSearchtype("제목");
-        setValue("title");
-    }
-
-    const onLanguageSeach = () => {
-        setSearchtype("언어");
-        setValue("language");
+        setSearchtype("보고서");
+        setValue("report");
     }
 
     const onProfileSeach = () => {
@@ -83,8 +78,7 @@ const Header = () => {
                                 { 
                                 show &&
                                 <S.SeachList>
-                                    <S.SeachType onClick={onTitleSeach}>제목</S.SeachType>
-                                    <S.SeachType onClick={onLanguageSeach}>언어</S.SeachType>
+                                    <S.SeachType onClick={onTitleSeach}>보고서</S.SeachType>
                                     <S.SeachType onClick={onProfileSeach}>프로필</S.SeachType>
                                 </S.SeachList>
                                 }
@@ -107,14 +101,15 @@ const Header = () => {
                                 {
                                     report &&
                                     <S.MenuSee>
-                                        <S.ReportSee>1학년</S.ReportSee>
-                                        <S.ReportSee>2학년</S.ReportSee>
-                                        <S.ReportSee>3학년</S.ReportSee>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=1`}><S.ReportSee>1학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=2`}><S.ReportSee>2학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=3`}><S.ReportSee>3학년</S.ReportSee></Link>
                                     </S.MenuSee>
                                 }
-                                </S.MenuList>
+                            </S.MenuList>
 
                             {     /*토큰 여부에 따라 출력*/
+                            //token ??
                             <S.MenuList onMouseEnter={onProfileUp} onMouseLeave={onProfileDown}>
                                 <S.Profile>프로필</S.Profile>
                                 {
