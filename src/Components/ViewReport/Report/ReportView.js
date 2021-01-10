@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FileRequest, FileURL } from "../../../utils/axios/axios";
+import { fileRequest, FileURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
@@ -9,7 +9,7 @@ const ReportView = (props) => {
     //파일 상태
     const FileApi = async () => {
       try {
-        const data = await FileRequest(
+        const data = await fileRequest(
           "get",
           `/report/files/${props.match.params.reportid}`,
           {},
