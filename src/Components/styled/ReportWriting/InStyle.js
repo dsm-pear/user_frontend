@@ -43,7 +43,7 @@ export const MTbtn = styled.div`
 
   div {
     text-align: center;
-    width: 5.5rem;
+    width: 5.7rem;
     height: 24px;
     border: 1px solid #6192f3;
     border-radius: 18px;
