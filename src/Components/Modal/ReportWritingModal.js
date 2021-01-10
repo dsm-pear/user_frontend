@@ -64,9 +64,9 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       setError(e);
       // switch (e.data.status) {
       //   case 400:
-      //     alert("");
-      //     break;
-      //   case 403:
+      //    alert("");
+      //    break;
+      //   case 401:
       //     refreshHandler().then(() => {
       //       ViewApi();
       //     });

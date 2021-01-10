@@ -12,7 +12,6 @@ export { default as TeacherProfile } from "./TeacherProfile.svg";
 export { default as PearLogo } from "./PEARlogo.svg";
 export { default as MainScrollBackground } from "./MainScrollBackground.svg";
 export { default as MainScrollBackground_1 } from "./MainScrollBackground-1.svg";
-export { default as MainScrollBackground_2  } from './MainScrollBackground-2.svg';
 export { default as MainScrollBackground_3 } from "./MainScrollBackground-3.svg";
 export { default as MainScrollBackground_4 } from "./MainScrollBackground-4.svg";
 export { default as MainSmallLogo } from "./MainSmallLogo.svg";
