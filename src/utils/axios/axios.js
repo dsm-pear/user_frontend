@@ -53,6 +53,6 @@ export function useRefresh(method, url, data) {
     .catch(() => {
       localStorage.removeItem("access-token");
       localStorage.removeItem("refresh-token");
-      history.push("/");
+      // history.push("/");
     });
 }
