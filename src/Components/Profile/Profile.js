@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "../styled/Profile/style";
 
-const Profile = ({ text, name, email, produce, github, setGithub }) => {
-  const [userName, setUserName] = useState(name);
-  const [userEmail, setUserEmail] = useState(email);
-  // const [github, setGithub] = useState(github);
-  const [introduce, setIntroduce] = useState(produce);
+const Profile = (props) => {
+  const [userName, setUserName] = useState(props.name);
+  const [userEmail, setUserEmail] = useState(props.email);
+  const [introduce, setIntroduce] = useState(props.produce);
 
   return (
     <S.Profile>
@@ -19,32 +18,42 @@ const Profile = ({ text, name, email, produce, github, setGithub }) => {
           className="input"
           type="name"
           placeholder={userName}
-          disabled={text === "저장" ? false : true}
+          disabled="false"
+          //disabled={props.text === "저장" ? false : true}
           onChange={(e) => setUserName(e.target.value)}
         />
         <input
           className="input"
           type="email"
           placeholder={userEmail}
-          disabled={text === "저장" ? false : true}
+          disabled="false"
+          //disabled={props.text === "저장" ? false : true}
           onChange={(e) => setUserEmail(e.target.value)}
+        />
+        <input
+          className="input introduce"
+          type="text"
+          placeholde={introduce}
+          disabled={props.text === "저장" ? false : true}
+          onChange={(e) => setIntroduce(e.target.value)}
         />
       </S.ProPhoto>
       <S.Git>
-        <Link to={github} onChange={(e) => setGithub(e.target.value)}>
-          깃허브
+        <Link to={props.github} onChange={(e) => props.setGithub(e.target.value)}>
+          {userName} 님의 GITHUB 구경하기
         </Link>
       </S.Git>
-      <S.Produce>
+{/*       <S.Produce>
         <inupt
           type="produce"
           placeholder={introduce}
-          disabled={text === "저장" ? false : true}
+          disabled={props.text === "저장" ? false : true}
           onChange={(e) => setIntroduce(e.target.value)}
         />
-      </S.Produce>
+      </S.Produce> */}
     </S.Profile>
   );
 };
 
 export default Profile;
+

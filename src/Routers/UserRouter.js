@@ -71,7 +71,6 @@ function UserRouter() {
         <Route path="/view-report/main-report" component={MainReport} exact />
 
         <Route path="/search-result/:data" component={SearchResult} exact />
-
         <Route path="/view-report/:data" component={ReportWeb} exact />
 
       </Switch>

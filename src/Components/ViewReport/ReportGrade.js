@@ -1,8 +1,7 @@
 import React from "react";
 import * as S from "../styled/ViewReport/style";
 
-const  ReportGrade = (props) => {
-  const { grade } = props;
+const  ReportGrade = ({grade}) => {
 
   return (
     <S.Box>

@@ -1,12 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { request } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import Comments from "./Comments";
 
 const ReportComment = ({ match, content, userName, email, reportId }) => {
   //코멘트 버튼 클릭시
-  const [reportComment, setReportComment] = useState(null);
+  const [reportComment, setReportComment] = useState([]);
 
   const postReportComment = async () => {
     try {
