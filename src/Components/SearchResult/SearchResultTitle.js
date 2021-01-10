@@ -2,72 +2,18 @@ import React, { useCallback } from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import { Link } from 'react-router-dom';
 
-const SearchResultTitle = () => {
-    
-    const data = [
-        {
-            "id": 1,
-            "bdc": "개인",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 2,
-            "bdc": "팀",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 3,
-            "bdc": "동아리",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 4,
-            "bdc": "개인",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 5,
-            "bdc": "팀",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 6,
-            "bdc": "동아리",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 7,
-            "bdc": "개인",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 8,
-            "bdc": "팀",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 9,
-            "bdc": "동아리",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-    ]
+const SearchResultTitle = (props) => {
+    const searchData = props.data;
 
     const SearchTitle = useCallback(
         (dataList) => {
+            console.log(searchData)
             return dataList.map((data)=>{
                 const color = data.bdc === "팀" ? "#6192f3" : data.bdc === "개인" ? "#27d5b1" : "#5955d8";
+                const createTime = data.createdAt.split("T")
                 return(
-                    <Link to={`/view-report/main-report`}>
-                        <S.Container bordercolor={color} key={data.id}>
+                    <Link to={`/view-report/main-report`} key={data.reportId}>
+                        <S.Container bordercolor={color} >
                             <S.ContainerContant>
                                 <S.ContainerBDC fontcolor={color}>
                                     [{data.bdc}]
@@ -76,7 +22,7 @@ const SearchResultTitle = () => {
                                     {data.title}
                                 </S.ContainerTitle>
                                 <S.ContainerDay>
-                                    {data.day}
+                                    {createTime[0]}
                                 </S.ContainerDay>
                             </S.ContainerContant>
                         </S.Container>
@@ -86,10 +32,12 @@ const SearchResultTitle = () => {
         }
     ,[]);
 
+    if(!searchData) return <div>검색결과가 없습니다</div>
+
     return (
         <>
             {
-                SearchTitle(data)
+                SearchTitle(searchData.reportResponses)
             }
         </>
     )

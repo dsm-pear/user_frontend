@@ -4,12 +4,12 @@ import main from '../../../assets/MainBackground.png'
 
 export const Background = styled.div`
     background-image: url(${main});
-    background-size: 100% 100vh;
+    background-size: 100% 100%;
     height: 100vh;
     background-repeat: no-repeat;
     min-width: 1320px;
-
-    font-family: BBTreeGB;
+    min-height: 950px;
+    font-family: "Noto Sans KR", sans-serif;
     a{
         text-decoration: none;
         color: #000000;
@@ -17,8 +17,8 @@ export const Background = styled.div`
 `;
 
 export const NoticeBox = styled.div`
-    width: 80%;
-    height: 720px;
+    width: 77%;
+    height: 73%;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #e4eef2;
     background-color: #ffffff;

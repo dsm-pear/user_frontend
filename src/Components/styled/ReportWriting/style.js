@@ -30,8 +30,8 @@ export const BorderBox = styled.div`
   width: 68%;
   min-width: 950px;
   max-width: 68%;
-  height: 715px;
-  min-height: 715px;
+  height: 780px;
+  min-height: 780px;
   max-height: 100%;
   margin: 15rem 0 3rem;
   padding: 2rem 2.5rem 0;
