@@ -78,7 +78,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   };
 
   if (error) {
-<<<<<<< HEAD
     return <div>{error}</div>;
   }
   if (data) {
@@ -86,10 +85,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   }
   if (loading) {
     return <div>로딩중..</div>;
-=======
-  } else if (data) {
-  } else if (loading) {
->>>>>>> main
   }
 
   return (
