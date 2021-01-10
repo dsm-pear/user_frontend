@@ -78,8 +78,13 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   };
 
   if (error) {
-  } else if (data) {
-  } else if (loading) {
+    return <div>{error}</div>;
+  }
+  if (data) {
+    return <div>data없음</div>;
+  }
+  if (loading) {
+    return <div>로딩중..</div>;
   }
 
   return (
