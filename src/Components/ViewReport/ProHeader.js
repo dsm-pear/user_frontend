@@ -4,11 +4,13 @@ const Header = (props) => {
   const { name } = props;
   const [color, setColor] = useState("");
   const [font, setFont] = useState("");
+
   const handler = (e) => {
     console.log(e.target.checked);
     if (e.target.checked === true) {
       setColor("#5955d8");
       setFont("#ffffff");
+      
     } else {
       setColor("#efefef");
       setFont("");

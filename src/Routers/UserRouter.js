@@ -49,8 +49,8 @@ function UserRouter() {
         <Route path="/submit-succes-modal" component={SubmitSuccess} exact />
         {/*검색 조건에 따라 제목, 언어, 프로필*/}
         <Route path="/search-result/:data" component={SearchResult} exact />
-
         <Route path="/view-report/:data" component={ReportWeb} exact />
+        
       </Switch>
     </>
   );
