@@ -37,6 +37,8 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const onSearchSubmit = (e) => {
     e.preventDefault();
     console.log(users);
+
+    ViewApi();
   };
 
   const onInputChange = (e) => {
@@ -62,9 +64,9 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       setError(e);
       // switch (e.data.status) {
       //   case 400:
-      //    alert("");
-      //    break;
-      //   case 401:
+      //     alert("");
+      //     break;
+      //   case 403:
       //     refreshHandler().then(() => {
       //       ViewApi();
       //     });
@@ -74,6 +76,21 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       // }
     }
   };
+
+  if (error) {
+<<<<<<< HEAD
+    return <div>{error}</div>;
+  }
+  if (data) {
+    return <div>data없음</div>;
+  }
+  if (loading) {
+    return <div>로딩중..</div>;
+=======
+  } else if (data) {
+  } else if (loading) {
+>>>>>>> main
+  }
 
   return (
     <S.Div visibility={open}>
