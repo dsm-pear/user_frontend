@@ -32,6 +32,18 @@ function MyProfile(props) {
         );
       } catch (e) {
         console.error(e);
+        switch (e.data.status) {
+          case 400:
+            alert("프로필 불러오기를 실패했습니다.");
+            break;
+          case 401:
+            refreshHandler().then(() => {
+             ChangeProfile();
+            });
+            break;
+          default:
+            break;
+        }
       }
       setText("수정");
       alert("프로필이 변경되었습니다.");
@@ -57,7 +69,7 @@ function MyProfile(props) {
           case 400:
             alert("프로필 불러오기를 실패했습니다.");
             break;
-          case 403:
+          case 401:
             refreshHandler().then(()=>{
               getProfile();
             })
@@ -83,6 +95,18 @@ function MyProfile(props) {
         setProfileReportListResponses(data.MyReportListResponses.ProfileReportListResponses);
       } catch (e) {
         console.error(e);
+        switch (e.data.status) {
+          case 400:
+            alert("프로젝트 불러오기를 실패했습니다.");
+            break;
+          case 401:
+            refreshHandler().then(() => {
+              getMyProject();
+            });
+            break;
+          default:
+            break;
+        }
       }
     };
     getMyProject();

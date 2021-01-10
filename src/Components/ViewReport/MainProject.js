@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { request } from "../../utils/axios/axios";
+import { request, useRefresh } from "../../utils/axios/axios";
 import { Link } from "react-router-dom";
 import queryString from 'query-string';
 import * as N from '../styled/NoticeStyled/NoticeStyle';
@@ -17,6 +17,7 @@ function MainProject({/*  page, */ type, field, grade }, location) {
   let page_arr = [];
 
   const query = queryString.parse(location.search);
+  const refreshHandler = useRefresh();
   
   useEffect(() => {
     //프로젝트 목록 리스트 얻어오기
@@ -33,6 +34,18 @@ function MainProject({/*  page, */ type, field, grade }, location) {
       setReportListResponses(data.ReportListResponses);
     } catch (e) {
       console.error(e);
+      switch (e.data.status) {
+        case 400:
+          alert("프로필 불러오기를 실패했습니다.");
+          break;
+        case 401:
+          refreshHandler().then(() => {
+           getProjectList();
+          });
+          break;
+        default:
+          break;
+      }
     }
   };
 

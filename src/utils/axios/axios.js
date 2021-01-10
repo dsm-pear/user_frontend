@@ -22,7 +22,7 @@ export function request(method, url, header, data) {
     });
 }
 
-export function FileRequest(method, url, header, data) {
+export function fileRequest(method, url, header, data) {
   return Axios({
     method,
     url: FileURL + url,
@@ -41,11 +41,11 @@ export function FileRequest(method, url, header, data) {
 }
 
 
-export function useRefresh(method, url, data) {
+export function useRefresh(data) {
   const history = useHistory();
   return Axios({
-    method,
-    url : MainURL+url,
+    method : "put",
+    url : MainURL + "/auth",
     headers: {Authorization: localStorage.getItem('refresh-token')},
     data : data,
   })
