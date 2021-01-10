@@ -11,6 +11,7 @@ import { bfchecked } from "../../assets";
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [users, setUsers] = useState("");
 
   const onClick = () => {
     setOpen("hidden");
@@ -26,9 +27,13 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     setToggle(!toggle);
   };
 
-  const onSearchChange = (e) => {
-    if (e.key === "Enter") {
-    }
+  const onSearchSubmit = (e) => {
+    e.preventDefault();
+    console.log(users);
+  };
+
+  const onInputChange = (e) => {
+    setUsers(e.target.value);
   };
 
   return (
@@ -39,19 +44,19 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             <span>{toggled === !true && <img src={Close} alt="Close" />}</span>
           </S.LeftCloseBtn>
           <S.SearchInput>
-            <I.BorderInput onChange={onSearchChange}>
-              <div>
+            <I.BorderInput>
+              <form onSubmit={onSearchSubmit}>
                 <span>
-                  <input type={Text} />
+                  <input type={Text} onChange={onInputChange} />
                   <img src={searchImg} alt="search" />
                 </span>
-              </div>
+              </form>
             </I.BorderInput>
           </S.SearchInput>
           <S.SearchResult>
             <I.BorderResult>
               <div>
-                <form name="team-member" action="" method="post">
+                {
                   <I.BolderCheckBox>
                     <span>전규현(201215jgh@dsm.hs.kr)</span>
                     <div onClick={clickCheckBox}>
@@ -62,7 +67,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
                       )}
                     </div>
                   </I.BolderCheckBox>
-                </form>
+                }
               </div>
             </I.BorderResult>
           </S.SearchResult>
