@@ -37,6 +37,8 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const onSearchSubmit = (e) => {
     e.preventDefault();
     console.log(users);
+
+    ViewApi();
   };
 
   const onInputChange = (e) => {
@@ -74,6 +76,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       // }
     }
   };
+
+  if (error) {
+  } else if (data) {
+  } else if (loading) {
+  }
 
   return (
     <S.Div visibility={open}>
