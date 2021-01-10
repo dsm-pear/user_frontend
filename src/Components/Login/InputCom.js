@@ -11,7 +11,6 @@ const Input = ({
   background,
   post, //이메일
   check, //인증번호 확인
-  setPost, //이메일 발송
 }) => {
   //버튼 색 변경
   const [bcolor, setBcolor] = useState("#e1e1e1");
@@ -34,10 +33,11 @@ const Input = ({
         alert("올바른 이메일을 입력해주세요");
       } else {
         alert("이메일이 발신 되었습니다.");
+
         //인증번호 발송 하기 위해 이메일 보내기
+        console.log(post);
         try {
-          const data = await request("get", "/email/auth", "", {});
-          setPost(post);
+          await request("get", `/email/auth?email=${post}`, "", {});
         } catch (e) {
           console.error(e);
         }
@@ -45,10 +45,11 @@ const Input = ({
       }
     } else if (button === "인증번호 확인") {
       //인증번호 확인 값 보내기
+      console.log(check);
       try {
-        const { data } = await request("put", "/email/auth", "", {
-          number: check,
+        await request("put", "/email/auth", "", {
           email: post,
+          number: check,
         });
         alert("인증번호가 확인 되었습니다.");
       } catch (e) {

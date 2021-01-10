@@ -57,19 +57,27 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
         },
         ""
       );
+      setData(response.data);
     } catch (e) {
-      switch (e.data.status) {
-        case 400:
-          alert("프로필 불러오기를 실패했습니다.");
-          break;
-        case 403:
-          refreshHandler().then(() => {
-            getReportView();
-          });
-          break;
-        default:
-          break;
-      }
+<<<<<<< HEAD
+      // switch (e.data.status) {
+      //   case 400:
+      //     alert("프로필 불러오기를 실패했습니다.");
+=======
+      setError(e);
+      // switch (e.data.status) {
+      //   case 400:
+      //     alert("");
+>>>>>>> main
+      //     break;
+      //   case 403:
+      //     refreshHandler().then(() => {
+      //       ViewApi();
+      //     });
+      //     break;
+      //   default:
+      //     break;
+      // }
     }
   };
 

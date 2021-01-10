@@ -5,8 +5,8 @@ import Categorybar from "./Category/Categorybar";
 import MainProject from "./MainProject";
 import Header from "../Main/Header";
 
-
 function ViewReport() {
+
   return (
     <S.Main>
       <Header></Header>
@@ -16,7 +16,6 @@ function ViewReport() {
           <Categorybar />
         </div>
         <MainProject />
-        
       </S.Cover>
     </S.Main>
   );

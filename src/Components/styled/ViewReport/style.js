@@ -74,26 +74,26 @@ const ReportKindOf = styled.div`
   display: flex;
   flex-direction: column;
 
-  > ul > a {
-    color: black;
-    font-weight: 300px;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    padding: 10px 0 10px 50px;
-    width: 85%;
-    font-size: 15px;
-    font-family: "Noto Sans KR", sans-serif;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    &.active {
-      color: white;
-
-      background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  > ul {
+    & a {
+      color: black;
+      font-weight: 300px;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      padding: 10px 0 10px 50px;
+      width: 85%;
+      font-size: 15px;
+      font-family: "Noto Sans KR", sans-serif;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
-
+  &.active {
+    color: white;
+    background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  }
   a:hover {
     color: #5a5edc;
   }
@@ -207,7 +207,6 @@ const MainCover = styled.div`
 `;
 
 const Number = styled.div`
-  
   a {
     margin: 10px;
     font-family: "Noto Sans KR", sans-serif;
