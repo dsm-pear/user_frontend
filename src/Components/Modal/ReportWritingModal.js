@@ -60,11 +60,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     } catch (e) {
       switch (e.data.status) {
         case 400:
-          alert("프로필 불러오기를 실패했습니다.");
+          alert("");
           break;
         case 403:
           refreshHandler().then(() => {
-            getReportView();
+            ViewApi();
           });
           break;
         default:
