@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { useHistory } from 'react-router-dom';
 
+
 export const MainURL = "http://10.156.147.50:8081";
 export const FileURL = "http://10.156.147.50:3000";
 
@@ -17,7 +18,7 @@ export function request(method, url, header, data) {
       return res;
     })
     .catch((e) => {
-      console.log(MainURL + url)
+      console.log(MainURL + url);
       console.error(e);
     });
 }
@@ -58,3 +59,4 @@ export function useRefresh(data) {
     history.push('/');
   })
 }
+

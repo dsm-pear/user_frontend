@@ -7,8 +7,7 @@ import UpArrow from '../../assets/ArrowImg/UpArrow.png';
 import SearchImg from '../../assets/searchImg.png';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
-
+const Header = (props) => {
     const [ searchtype, setSearchtype ] = useState("보고서");
     const [ color, setColor ] = useState("#000000");
     const [ show, setShow ] = useState(false);
@@ -57,7 +56,11 @@ const Header = () => {
     const onSearch = (e) => {
         setKeyword(e.target.value);
     }
-
+    const onSubmit = (e) => {
+        e.preventDefault();
+        //props.history.replace(`/search-result?mode=${value}&keyword=${keyword}&page=1`);
+        window.location.href=`/search-result?mode=${value}&keyword=${keyword}&page=1`
+    }
     
     return (
         <>
@@ -72,7 +75,7 @@ const Header = () => {
 
                     {/* 검색창 */}
                     <S.SeachBar>
-                        <form>
+                        <form onSubmit={onSubmit}>
                             <S.SeachBarSelect onClick={onlist}>
                                 <S.SeachChoice style={{color: color}}><img src={img} alt="검색"/>{searchtype}</S.SeachChoice>
                                 { 
@@ -86,7 +89,7 @@ const Header = () => {
 
                             <S.SeachBarInput name="search" placeholder="검색창" onChange={onSearch}/>
 
-                            <Link to={`/search-result?mode=${value}&keyword=${keyword}&page=1`}><S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton></Link>
+                            <S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton>
                         </form>
                     </S.SeachBar>
 
