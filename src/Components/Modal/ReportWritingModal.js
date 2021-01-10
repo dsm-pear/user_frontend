@@ -57,19 +57,21 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
         },
         ""
       );
+      setData(response.data);
     } catch (e) {
-      switch (e.data.status) {
-        case 400:
-          alert("");
-          break;
-        case 403:
-          refreshHandler().then(() => {
-            ViewApi();
-          });
-          break;
-        default:
-          break;
-      }
+      setError(e);
+      // switch (e.data.status) {
+      //   case 400:
+      //     alert("");
+      //     break;
+      //   case 403:
+      //     refreshHandler().then(() => {
+      //       ViewApi();
+      //     });
+      //     break;
+      //   default:
+      //     break;
+      // }
     }
   };
 

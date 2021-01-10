@@ -29,11 +29,6 @@ function UserRouter() {
         <Route path="/view-report" component={ViewReport} exact />
         <Route path="/view-report/:reportid" component={MainReport} exact />
         <Route path="/report-writing" component={ReportWriting} exact />
-
-        <Route path="/notice" component={Notice} exact />
-        <Route path="/notice-content/:data" component={NoticeContent} exact />
-        <Route path="/search-result" component={SearchResult} exact />
-
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
         {/*검색 조건에 따라 제목, 언어, 프로필*/}
