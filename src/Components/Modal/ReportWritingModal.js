@@ -59,18 +59,12 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       );
       setData(response.data);
     } catch (e) {
-<<<<<<< HEAD
-      // switch (e.data.status) {
-      //   case 400:
-      //     alert("프로필 불러오기를 실패했습니다.");
-=======
       setError(e);
       // switch (e.data.status) {
       //   case 400:
-      //     alert("");
->>>>>>> main
-      //     break;
-      //   case 403:
+      //    alert("");
+      //    break;
+      //   case 401:
       //     refreshHandler().then(() => {
       //       ViewApi();
       //     });
