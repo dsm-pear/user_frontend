@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import * as S from "../styled/Modal/RwModalStyle";
 import * as I from "../styled/Modal/RwModalInStyle";
-import { Close } from "../../assets";
-import { searchImg } from "../../assets";
-import { NowTeam } from "../../assets";
-import { clickNT } from "../../assets";
-import { checked } from "../../assets";
-import { bfchecked } from "../../assets";
+import { request, useRefresh } from "../../utils/axios/axios";
+import {
+  Close,
+  searchImg,
+  NowTeam,
+  clickNT,
+  checked,
+  bfchecked,
+} from "../../assets";
 
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [users, setUsers] = useState("");
-
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const isAccessToken = localStorage.getItem("access-token");
+  const refreshHandler = useRefresh();
   const onClick = () => {
     setOpen("hidden");
     setMyHei("0");
@@ -34,6 +41,36 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
   const onInputChange = (e) => {
     setUsers(e.target.value);
+  };
+
+  const ViewApi = async () => {
+    try {
+      setError(null);
+      setData(null);
+      setLoading(null);
+
+      const response = await request(
+        "get",
+        `/account?name=${users}&size=6&page=0`,
+        {
+          Authorization: `Bearer ${isAccessToken}`,
+        },
+        ""
+      );
+    } catch (e) {
+      switch (e.data.status) {
+        case 400:
+          alert("프로필 불러오기를 실패했습니다.");
+          break;
+        case 403:
+          refreshHandler().then(() => {
+            getReportView();
+          });
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   return (
