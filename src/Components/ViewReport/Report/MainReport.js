@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { request } from "../../../utils/axios/axios";
+import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
@@ -9,46 +9,51 @@ import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
 
 function MainReport({ match }) {
-  const [reportData, setReportData] = useState(null);
+  const [reportData, setReportData] = useState([]);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
-  const [fileId, setFileId] = useState(null);
-
-  const getReportView = async () => {
-    try {
-      loding(true);
-      const data = await request(
-        "get",
-        `/report/${match.params.reportid}`,
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        0
-      );
-
-      setReportData(data.data);
-      console.log(reportData);
-    } catch (e) {
-      console.log(e);
-    }
-    setLoding(false);
-    setError(null);
-  };
+  //토큰 검사
+  const refreshHandler = useRefresh();
 
   useEffect(() => {
+    const getReportView = async () => {
+      try {
+        loding(true);
+        const data = await request(
+          "get",
+          `/report/${match.params.reportid}`,
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          0
+        );
+
+        setReportData(data.reportData);
+        console.log(reportData);
+        console.log(data);
+      } catch (e) {
+        console.error(e);
+        switch (e.data.status) {
+          case 400:
+            alert("프로필 불러오기를 실패했습니다.");
+            break;
+          case 403:
+            refreshHandler().then(() => {
+              getReportView();
+            });
+            break;
+          default:
+            break;
+        }
+      }
+      setLoding(false);
+      setError(null);
+    };
+
     getReportView();
   }, []);
 
-  const downlodehandler = async () => {
-    try {
-      const data = await request("get", `/report/${match.params.fileid}`);
-      setFileId(data.data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  if (!reportData) return <div>서버좀 줘라</div>;
+  //if (!reportData) return <div>서버좀 줘라</div>;
 
   return (
     <S.Main>
@@ -66,9 +71,9 @@ function MainReport({ match }) {
           text={reportData.description}
           git="{reportData.github}"
           file={reportData.fileName}
-          onClick={downlodehandler}
+          //onClick={downlodehandler}
         />
-        <ReportTeam />
+        <ReportTeam />j
         <ReportLanguage languages={reportData.languages} />
         <ReportComment
           name={reportData.userName}

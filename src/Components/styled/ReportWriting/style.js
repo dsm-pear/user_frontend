@@ -30,11 +30,38 @@ export const BorderBox = styled.div`
     width: 68%;
     min-width: 950px;
     max-width: 68%;
+<<<<<<< HEAD
+    height: 78%;
+    max-height: 78%;
+    margin-top: 5rem;
+    padding: 1.5rem 2.5rem 0;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { 
+        width: 10px; 
+        /* 스크롤바의 width */
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #f0f0f0; 
+        /* 스크롤바의 전체 */
+    }
+    &::-webkit-scrollbar-thumb { 
+        background: linear-gradient(135deg,#81bcff,#56D4E2);
+        border-radius: 10px;
+        /* 스크롤바 색 */
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        width: 20px;
+        
+    }
+=======
     height: 715px;
     min-height: 715px;
     max-height: 100%;
     margin: 15rem 0 3rem;
     padding: 2rem 2.5rem 0;
+>>>>>>> develop
 `;
 
 
