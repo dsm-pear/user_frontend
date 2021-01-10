@@ -3,15 +3,17 @@ import background from '../../../assets/MainBackground.png';
 
 export const Background = styled.div`
     background-image: url(${background});
-    background-size: 100vw 100vh;
+    background-size: 100% 100%;
     height: 100vh;
     background-repeat: no-repeat;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
+    min-width: 1320px;
+    min-height: 950px;
 `;
 
 export const NoticeContant = styled.div`
-    width: 1483px;
-    height: 720px;
+    width: 77%;
+    height: 73%;
     box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
     border: solid 1px #e4eef2;
     background-color: #ffffff;
@@ -49,8 +51,8 @@ export const NoDay = styled.div`
 `
 
 export const NoticeContain = styled.div`
-    width: 990px;
-    height: 480px;
+    width: 970px;
+    height: 460px;
     margin: auto;
     margin-top: 50px;
     font-size: 18px;

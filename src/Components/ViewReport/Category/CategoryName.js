@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import * as S from "../../styled/ViewReport/style";
 
+
 const CategoryName = ({ SwName, Ele, field, grade, page, type, to }) => {
   const [backgroundColor, setBackgroundColor] = useState("");
   const [color, setColor] = useState("none");

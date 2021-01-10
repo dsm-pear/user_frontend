@@ -17,6 +17,7 @@ export function request(method, url, header, data) {
       return res;
     })
     .catch((e) => {
+      console.log(MainURL + url)
       console.error(e);
     });
 }
@@ -36,6 +37,7 @@ export function FileRequest(method, url, header, data) {
     .catch((e) => {
       console.error(e);
     });
+
 }
 
 
@@ -55,5 +57,4 @@ export function useRefresh(method, url, data) {
     localStorage.removeItem('refresh-token');
     history.push('/');
   })
-
 }
