@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function SignUp({ Data }) {
+function SignUp() {
   const history = useHistory();
   //모든 창이 입력 되면 버튼색 바뀐
   const [button, setButton] = useState("#e1e1e1");
@@ -33,7 +33,7 @@ function SignUp({ Data }) {
 
   const postSignup = async () => {
     try {
-      const { data } = await request(
+      /* const { data } = */ await request(
         "post",
         "/account",
         {},
@@ -43,7 +43,7 @@ function SignUp({ Data }) {
           password,
         }
       );
-      localStorage.setItem("token", data.token);
+      //localStorage.setItem("token", data.token);
       history.push("/login");
     } catch (e) {
       alert("이메일을 다시 확인해주세요");
@@ -170,6 +170,8 @@ function SignUp({ Data }) {
               ) => (
                 <InputCom
                   key={i}
+                  post={post}
+                  check={check}
                   type={type}
                   placeholder={placeholder}
                   setData={setData}

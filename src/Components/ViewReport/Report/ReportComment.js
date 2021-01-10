@@ -1,12 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import { request } from "../../../utils/axios/axios";
+import React, { useState } from "react";
+import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import Comments from "./Comments";
 
 const ReportComment = ({ match, content, userName, email, reportId }) => {
   //코멘트 버튼 클릭시
-  const [reportComment, setReportComment] = useState(null);
+  const [reportComment, setReportComment] = useState([]);
+  const refreshHandler = useRefresh();
 
   const postReportComment = async () => {
     try {
@@ -26,6 +26,18 @@ const ReportComment = ({ match, content, userName, email, reportId }) => {
     } catch (e) {
       console.log('에러');
       console.error(e);
+      switch (e.data.status) {
+        case 400:
+          alert("프로필 불러오기를 실패했습니다.");
+          break;
+        case 401:
+          refreshHandler().then(() => {
+           postReportComment();
+          });
+          break;
+        default:
+          break;
+      }
     }
   };
 
