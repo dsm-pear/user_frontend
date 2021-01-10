@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BorderInput = styled.div`
   width: 100%;
 
-  div > span {
+  form > span {
     width: 100%;
     display: flex;
     justify-content: left;
