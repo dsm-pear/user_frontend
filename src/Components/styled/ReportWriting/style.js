@@ -1,15 +1,22 @@
-import styled from "styled-components";
+import styled, { } from "styled-components";
 import { MainBackground } from "../../../assets";
 
-const Main = styled.div`
+export const Main = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100%;
+    min-width: 1045px;
+    min-height: 650px;
     background-image: url(${MainBackground});
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
-
+    overflow-y: scroll;
+    &::-webkit-scrollbar { 
+        width: 10px;
+        /* 스크롤바의 width */
+    }
     * {
         box-sizing: border-box;
         margin: 0;
@@ -17,11 +24,13 @@ const Main = styled.div`
     }
 `;
 
-const BorderBox = styled.div`
+export const BorderBox = styled.div`
     background-color: #ffffff;
     border: 1px solid #4d4d4d;
     width: 68%;
+    min-width: 950px;
     max-width: 68%;
+<<<<<<< HEAD
     height: 78%;
     max-height: 78%;
     margin-top: 5rem;
@@ -46,14 +55,27 @@ const BorderBox = styled.div`
         width: 20px;
         
     }
+=======
+    height: 715px;
+    min-height: 715px;
+    max-height: 100%;
+    margin: 15rem 0 3rem;
+    padding: 2rem 2.5rem 0;
+>>>>>>> develop
 `;
 
-const InlineBox = styled.div`
+
+export const InlineBox = styled.div`
     width: 100%;
     height: 100%;
 `;
 
-const ReportLogo = styled.div`
+export const ReportLogo = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -68,31 +90,32 @@ const ReportLogo = styled.div`
     }
 `;
 
-const SelectBoxs = styled.div`
+export const SelectBoxs = styled.div`
     width: 100%;
     margin-top: 1.5rem;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 `;
 
-const PaddingBox = styled.div`
+export const PaddingBox = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 0 1.5rem;
 `;
 
-const Select = styled.div`
-    width: 5.5rem;
+export const Select = styled.div`
+    position: relative;
+    width: 90px;
     border: 1px solid #4d4d4d;
     background: #ffffff;
     padding: .2rem .3rem;
     font-family: BBTreeGL;
     margin-left: 1.5rem;
-    div {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+
     span {
         font-size: 13px;
     }
@@ -102,13 +125,37 @@ const Select = styled.div`
     &:hover {
         cursor: pointer;
     }
+    &:hover > div ~ div {
+        visibility: visible;
+        height: ${({ height }) => height ? height: '74'}px;
+   }
+    & > div ~ div {
+        visibility: hidden;
+        height: 0px;
+    }
 `;
 
-const ReportMain = styled.div`
+export const ViewList = styled.div`
+    position: absolute;
+    min-width: 90px;
+    transition: all 0.3s;
+    background-color: #ffffff;
+    border: 1px solid #4d4d4d;
+    border-top: none;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    text-align: left;
+    cursor: pointer;
+    z-index: 1;
+    margin: 4.5px 10px 0 0;
+    left: -1px;
+    overflow: hidden;
+`;
+
+export const ReportMain = styled.div`
     margin-top: .8rem;
 `;
 
-const ReportHeader = styled.div`
+export const ReportHeader = styled.div`
     width: 100%;
     height: 100%;
 
@@ -118,14 +165,56 @@ const ReportHeader = styled.div`
         border: 1px solid #F8F8F8;
         outline: none;
         padding: .8rem .8rem;
-        font-family: BBTreeGB;
-        font-size: 15px;
+        font-family: BBTreeGL;
+        font-weight: normal;
+        font-size: 14px;
         text-align: left;
     }
 `;
 
-const ReprotWriteBox = styled.div`
+export const UseLang = styled.div`
     width: 100%;
+    height: 100%;
+    margin-top: .8rem;
+    display: flex;
+    background: #F8F8F8;
+    border: 1px solid #F8F8F8;
+    padding: .8rem .8rem;
+
+    input {
+        width: 100%;
+        border: 1px solid #F8F8F8;
+        background: #F8F8F8;
+        outline: none;
+        font-family: BBTreeGL;
+        font-weight: normal;
+        font-size: 14px;
+        text-align: left;
+    }
+`;
+
+export const colors = ['navajowhite','lavender','mistyrose','lightgreen','lavenderblush','honeydew','oldlace','ivory']
+
+export const Tag = styled.div`
+    border: 1px solid;
+    white-space: nowrap;
+    color: darkslategray;
+    background-color: ${({ index }) => colors[index % colors.length]};
+    border: 1px solid ${({ index }) => colors[index % colors.length]};
+    border-radius: 5px;
+    padding: .1rem .3rem;
+    font-family: BBTreeGL;
+    font-size: 14px;
+    margin-right: .4rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+export const ReprotWriteBox = styled.div`
+    width: 100%;    
+    height: 100%;
     margin-top: .8rem;
 
     textarea {
@@ -136,12 +225,12 @@ const ReprotWriteBox = styled.div`
         outline: none;
         padding: .8rem .8rem;
         font-family: BBTreeGL;
-        font-size: 13px;
+        font-size: 14px;
         text-align: left;
     }
 `;
 
-const LinkBox = styled.div`
+export const LinkBox = styled.div`
     width: 100%;
     height: 100%;
     margin-top: .8rem;
@@ -153,7 +242,7 @@ const LinkBox = styled.div`
         width: 100%;
         height: 100%;
     }
-    span > form {
+    span > div {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -162,92 +251,99 @@ const LinkBox = styled.div`
         border: 1px solid #F8F8F8;
         padding: .4rem .4rem;
     }
-    form > img {
+    div > img {
         width: 20px; 
+        -ms-user-select: none; 
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
-    form > input {
+    div > input {
         width: 100%;
         border: none;
         outline: none;
         background: #F8F8F8;
         margin-left: .4rem;
-        font-family: BBTreeGB;
+        font-family: BBTreeGL;
         font-size: 13px;
     }
 `;
 
-const AttachFile = styled.div`
+export const AttachFile = styled.div`
     width: 100%;
     height: 100%;
     margin-top: .8rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+`;
 
-    span {
-        display: flex;
-        width: 100%;
-        border: none;
-        outline: none;
-        padding: .4rem .4rem;
-        background: #F8F8F8;
-        
+export const inAttachFile = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: .4rem .4rem;
+    background: #F8F8F8;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
         img {
             width: 20px;
+            margin-right: 8px;
+            
+            &:hover {
+                cursor: pointer;
+            }
         }
-    }
-    span > input {
-        width: 100%;
-        border: none;
-        outline: none;
-        background: #F8F8F8;
-        margin-left: .5rem;
-        font-family: BBTreeGB;
-        font-size: 13px;
-    }
+
+        div {
+            font-size: 13px;
+            font-family: BBTreeGL;
+            color: gray;
+        }
+
+        span {
+            font-size: 13px;
+            font-family: BBTreeGL;
+            color: gray;
+        }
 `;
 
-const SubmitBox = styled.div`
+export const SubmitBox = styled.div`
     width:100%;
     display: flex;
-    margin: .8rem 0 3rem;
+    margin: 3rem 0 3rem;
 `;
     
-
-const MakeTeam = styled.div`
-    width: 70%;
+export const MakeTeam = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 73%;
     height: 145px;
-    border: 1px solid;
 
-    form {
+    span {
         width:100%;
         height: 100%;
         display: flex;
-        
     }
 `;
 
-const SaveSubBtn = styled.div`
-    width: 30%;
+export const SaveSubBtn = styled.div`
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 27%;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: flex-end;
 `;
-
-export {
-    Main,
-    BorderBox,
-    InlineBox,
-    ReportLogo,
-    SelectBoxs,
-    PaddingBox,
-    Select,
-    ReportMain,
-    ReportHeader,
-    ReprotWriteBox,
-    LinkBox,
-    AttachFile,
-    SubmitBox,
-    MakeTeam,
-    SaveSubBtn
-}

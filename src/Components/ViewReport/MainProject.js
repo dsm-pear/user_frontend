@@ -1,34 +1,124 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { request } from "../../utils/axios/axios";
+import { Link } from "react-router-dom";
+import queryString from 'query-string';
+import * as N from '../styled/NoticeStyled/NoticeStyle';
+//import {LeftArrow, RightArrow} from '../../assets/index';
 import * as S from "../styled/ViewReport/style";
 import ProjectHeader from "./ProjectHeader";
 import Project from "./Project";
 
-function MainProject() {
+function MainProject({/*  page, */ type, field, grade }, location) {
+  const [ReportListResponses, setReportListResponses] = useState([]);
+  const [nowPage, setNowPage] = useState(1);
+  const [EndPage, setEndPage] = useState(1);
+  const [page, setPage] = useState(5);
+  const [basicsPage, setBasicPage] = useState(1);
+  let page_arr = [];
+
+  const query = queryString.parse(location.search);
+  
+  useEffect(() => {
+    //프로젝트 목록 리스트 얻어오기
+  const getProjectList = async () => {
+    try {
+      const data = await request(
+        "get",
+        `/report/filter?size=6&page=0&type=${type}&field=${field}&grade=GRADE1`,
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+      //데이터 출력
+      console.log(data);
+      setReportListResponses(data.ReportListResponses);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+    getProjectList();
+  }, []);
+
+//페이지 넘버링
+  if (EndPage < 5) {
+    for (let i = basicsPage; i <= EndPage; i++) {
+      page_arr[i] = i;
+    }
+  } else {
+    for (let i = basicsPage; i <= page; i++) {
+      page_arr[i] = i;
+    }
+  }
+
+  const processed = (querys) =>
+    page_arr.map((num) => {
+      if (Number(querys.page) !== num) {
+        return (
+          <Link
+            onClick={() => setNowPage(num)}
+            to={`/report/filter?size=6page=${page_arr[num]}type=${type}&grade=GRADE1&field=${field}`}
+            key={num}
+          >
+            {" "}
+            {page_arr[num]}{" "}
+          </Link>
+        );
+      } else {
+        return (
+          <Link
+            onClick={() => setNowPage(num)}
+            to={`/view-report/report/filter?size=6page=${page_arr[num]}type=&grade=&field=`}
+            style={{ color: "#6192f3" }}
+            key={num}
+          >
+            {" "}
+            {page_arr[num]}{" "}
+          </Link>
+        );
+      }
+    });
+
+  const prev = () => {
+    if (basicsPage !== 1) {
+      if (page % 5 !== 0) {
+        setPage(page - (page % 5));
+        setBasicPage(basicsPage - (basicsPage % 5) - 4);
+      } else {
+        setPage(page - 5);
+        setBasicPage(basicsPage - 5);
+      }
+    }
+  };
+  const next = () => {
+    if(page < EndPage){
+        if(EndPage < page + 5){
+            setPage(EndPage)
+            setBasicPage(basicsPage+5);
+        }
+        else {
+            setPage(page+5);
+            setBasicPage(basicsPage+5);
+        }
+    }
+}
+
   return (
     <>
       <S.MainProject>
         <ProjectHeader />
         <S.MainCover>
-          <Project
-            team="개인"
-            title="안녕하세요 강은빈입니다."
-            date="20.20.20"
-          />
-          <Project team="팀" title="안녕하세요 강은빈입니다." date="20.20.20" />
-          <Project
-            team="동아리"
-            title="안녕하세요 강은빈입니다."
-            date="20.20.20"
-          />
-          <Project
-            team="동아리"
-            title="안녕하세요 강은빈입니다."
-            date="20.20.20"
-          />
-          <Project team="팀" title="안녕하세요 강은빈입니다." date="20.20.20" />
-
-          <Project team="팀" title="안녕하세요 강은빈입니다." date="20.20.20" />
+          {ReportListResponses.map(({ id, type, title, created_at }) => (
+            <Project id={id} team={type} title={title} date={created_at} />
+          ))}
         </S.MainCover>
+
+        <N.NoticeAdd>
+          <N.NoticeAddNumber>
+            <span onClick={prev} >이전</span>
+            {processed(query)}
+            <span onClick={next} >다음</span>
+          </N.NoticeAddNumber>
+        </N.NoticeAdd>
       </S.MainProject>
     </>
   );

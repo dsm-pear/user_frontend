@@ -1,77 +1,51 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const HeaderBox = styled.div`
-  margin-top: 51.5px;
-  display: flex;
-  margin-left: 177px;
-  margin-right: 222px;
-`;
+export const MainBody = styled.div`
+    height: 90.3%;
+    min-width: 1320px;
+`
+  
+export const LogoBox = styled.div`
+    width: 50%;
+    height: 80vh;
+`
 
-export const HeaderSubBox = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const Mainlogo = styled.div`
-  margin-right: 208px;
-  &:focus {
-    border: none;
-  }
-`;
-
-export const SeachBar = styled.div`
-  width: 399px;
-  height: 38px;
-  display: flex;
-  border: none;
-  margin-right: 320px;
-`;
-
-export const SeachBarSelect = styled.select`
-  font-size: 13px;
-  width: 70px;
-  border: none;
-  border-radius: 21px 0 0 21px;
-  background-color: #e4eef2;
-  cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-`;
-
-export const SeachBarInput = styled.input`
-  width: 269px;
-  border: none;
-  background-color: #e4eef2;
-  &:focus {
-    outline: none;
-  }
-`;
-
-export const SeachBarButton = styled.button`
-  width: 60px;
-  border: none;
-  border-radius: 0 21px 21px 0;
-  background-color: #e4eef2;
-  cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-`;
-
-export const MenuBar = styled.div`
-  width: 475px;
-`;
-
-export const MenuUl = styled.ul`
-  justify-content: space-between;
-  display: flex;
-`;
-
-export const MenuList = styled.li`
-  list-style: none;
-  cursor: pointer;
-  &:hover {
-    color: #5955d8;
-  }
-`;
+export const LogoSubBox = styled.div`
+    position: relative;
+    top: 37%;
+    left: 25%;
+`
+  
+export const Logo = styled.div`
+    padding-left: 100px;
+    img{
+        width: 300px;
+    }
+`
+  
+export const LogoText = styled.div`
+    font-size: 35px;
+    display: flex;
+    span{
+        color: #5955d8;
+    }
+`
+  
+export const NextBox = styled.div`
+    width: 100%;
+    img{
+        width: 100px;
+        cursor: pointer;
+        align-items: center;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+`
+  
+// export const MainBody = styled.div`
+// `
+  
+// export const MainBody = styled.div`
+// `
+  

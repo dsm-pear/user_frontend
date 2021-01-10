@@ -6,20 +6,16 @@ const Main = styled.div`
   background-image: url(${MainBackground});
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Cover = styled.div`
+  margin: auto;
+  margin-top: 80px;
   display: flex;
-  flex-direction: row;
-
-  width: 1500px;
-  height: 680px;
-
+  width: 77%;
+  height: 73%;
   .coverCategory {
-    width: 280px;
+    width: 20%;
     margin-right: 20px;
   }
 `;
@@ -28,15 +24,16 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 280px;
+  width: 100%;
   height: 80px;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
   background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  cursor: pointer;
 
   span {
     font-size: 23px;
     color: white;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
   }
 `;
 
@@ -46,8 +43,8 @@ const Categorybar = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 17px;
-  width: 280px;
-  height: 580px;
+  width: 100%;
+  height: 86%;
   border: solid 1px #e4eef2;
   background-color: white;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
@@ -66,7 +63,7 @@ const Category = styled.div`
   & > span {
     margin: 15px 0 0 30px;
     font-size: 20px;
-    font-family: BBTreeGl;
+    font-family: "Noto Sans KR", sans-serif;
     font-weight: 800;
   }
 `;
@@ -77,26 +74,26 @@ const ReportKindOf = styled.div`
   display: flex;
   flex-direction: column;
 
-  > ul > a {
-    color: black;
-    font-weight: 300px;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    padding: 10px 0 10px 50px;
-    width: 85%;
-    font-size: 15px;
-    font-family: BBTreeGL;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    &.active {
-      color: white;
-
-      background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  > ul {
+    & a {
+      color: black;
+      font-weight: 300px;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      padding: 10px 0 10px 50px;
+      width: 85%;
+      font-size: 15px;
+      font-family: "Noto Sans KR", sans-serif;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
-
+  &.active {
+    color: white;
+    background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  }
   a:hover {
     color: #5a5edc;
   }
@@ -108,6 +105,9 @@ const MainProject = styled.div`
   border: solid 1px #e4eef2;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ProjectHeader = styled.nav`
@@ -125,13 +125,14 @@ const ProjectHeader = styled.nav`
         text-align: center;
         cursor: pointer;
         margin: 0 10px;
+        padding-top: 5px;
         outline: none;
         border: none;
         width: 63px;
         height: 22px;
         display: inline-block;
         border-radius: 14px;
-        font-family: BBTreeGb;
+        font-family: "Noto Sans KR", sans-serif;
         background: #efefef;
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
       }
@@ -139,9 +140,6 @@ const ProjectHeader = styled.nav`
         display: none;
       }
     }
-  }
-  > select {
-    margin: 0 20px;
   }
 `;
 const MainPro = styled.div`
@@ -162,10 +160,14 @@ const Project = styled.div`
   border: 1.6px solid ${(props) => props.color};
   border-radius: 6px;
   background-color: #ffffff;
-  font-family: BBTreeGB;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
+
+  :hover {
+    background-color: #e4eef2;
+  }
 
   .project_team {
     width: 10%;
@@ -201,6 +203,14 @@ const Project = styled.div`
 
 const MainCover = styled.div`
   margin: 40px;
+  height: 70%;
+`;
+
+const Number = styled.div`
+  a {
+    margin: 10px;
+    font-family: "Noto Sans KR", sans-serif;
+  }
 `;
 
 export {
@@ -215,4 +225,5 @@ export {
   MainPro,
   Project,
   MainCover,
+  Number,
 };

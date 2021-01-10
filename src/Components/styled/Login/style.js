@@ -6,6 +6,10 @@ const LoginBody = styled.div`
   align-items: center;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
 `;
 
 const Loginbg = styled.div`
@@ -51,6 +55,7 @@ const Logininput = styled.div`
     }
   }
   & > button {
+    margin: 10px;
     width: 272px;
     height: 43px;
     border-radius: 4px;
@@ -62,8 +67,8 @@ const Logininput = styled.div`
     font-size: 18px;
   }
 
-  & p {
-    margin: 15px;
+  & a {
+    margin: 20px;
     font-family: "BBTreeGB";
     font-size: 15px;
     color: #5955d8;
@@ -74,21 +79,19 @@ const SignUpButton = styled.div`
   margin: 30px 10px;
   width: 500px;
   border-radius: 20px;
-  background-color: #e1e1e1;
+  background-color: ${({ background }) => background};
   & {
     padding: 15px 0;
     text-align: center;
     font-family: BBTreeGB;
     font-size: 23px;
-    color: #777777;
+    color: ${({ color }) => color};
   }
 `;
 
 const SignMain = styled.div`
   width: 600px;
   height: 60%;
-
-  border: 1px solid red;
   .InputCover {
     margin-top: 40px;
   }
@@ -103,7 +106,7 @@ const SignMain = styled.div`
   }
 `;
 
-const CoverInput = styled.div`
+const CoverInput = styled.label`
   margin: 10px;
   width: 500px;
   display: flex;
@@ -111,14 +114,15 @@ const CoverInput = styled.div`
   align-items: center;
   border-radius: 20px;
   height: 50px;
-  background-color: #e3f0ff;
+  background-color: ${({ background = "#e3f0ff" }) => background};
   & input {
     cursor: pointer;
+    padding-left: 10px;
     width: 350px;
     font-size: 15px;
     font-weight: 500;
     font-family: BBTreeGL;
-    background-color: #e3f0ff;
+    background-color: transparent;
     border: none;
     outline: none;
     border-radius: 20px;
@@ -135,12 +139,8 @@ const Button = styled.div`
   font-weight: 300;
   font-family: BBTreeGl;
   width: 110px;
-
   border-radius: 13px;
-  background-color: #5955d8;
-  .Number {
-    background-color: #e1e1e1;
-  }
+  background-color: ${({ background }) => background};
 `;
 
 export {

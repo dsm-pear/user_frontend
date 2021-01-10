@@ -10,20 +10,23 @@ const Categorybar = () => {
         SwName="소프트웨어 개발과"
         Ele={[
           {
-            text: "웹 개발 보고서",
-            link: "ReportWeb",
+            text: "웹 개발 ",
+            field: "WEB",
+            grade:"1",
+            to: '/view-report/1'
           },
           {
-            text: "앱 개발 보고서",
-            link: "ReportApp",
+            text: "앱 개발 ",
+            field: "APP",
+            to:'/view-report/2'
           },
           {
-            text: "게임 개발 보고서",
-            link: "ReportGame",
+            text: "게임 개발 ",
+            field: "GAME",
           },
           {
-            text: "인공지능 개발 보고서",
-            link: "ReportAi",
+            text: "인공지능 개발 ",
+            field: "AI",
           },
         ]}
       />
@@ -31,8 +34,8 @@ const Categorybar = () => {
         SwName="임베디드 개발과"
         Ele={[
           {
-            text: "임베디드 개발 보고서",
-            link: "ReportEmb",
+            text: "임베디드 개발 ",
+            field: "EMBEDDED",
           },
         ]}
       />
@@ -40,17 +43,17 @@ const Categorybar = () => {
         SwName="정보 보안"
         Ele={[
           {
-            text: "정보 보안 개발 보고서",
-            link: "ReportInfo",
+            text: "정보 보안 개발 ",
+            field: "SECURITY",
           },
         ]}
       />
       <CategoryName
-        SwName="융합 보고서"
+        SwName="융합 "
         Ele={[
           {
-            text: "융합 개발 보고서",
-            link: "ReportFus",
+            text: "융합 개발 ",
+            field: "report-fus",
           },
         ]}
       />

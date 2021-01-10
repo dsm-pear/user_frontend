@@ -1,9 +1,12 @@
 //프로필 컴포넌트
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import * as S from "../styled/Profile/style";
 
 const Profile = (props) => {
-  const { name, email, produce, github, text } = props;
+  const [userName, setUserName] = useState(props.name);
+  const [userEmail, setUserEmail] = useState(props.email);
+  const [introduce, setIntroduce] = useState(props.produce);
 
   return (
     <S.Profile>
@@ -12,26 +15,45 @@ const Profile = (props) => {
         <div></div>
         {/* 이름 / 깃허브 주소 / 자신 설명 */}
         <input
-          type="email"
-          placeholder={name}
-          disabled={text === "저장" ? false : true}
+          className="input"
+          type="name"
+          placeholder={userName}
+          disabled="false"
+          //disabled={props.text === "저장" ? false : true}
+          onChange={(e) => setUserName(e.target.value)}
         />
         <input
-          type="name"
-          placeholder={email}
-          disabled={text === "저장" ? false : true}
+          className="input"
+          type="email"
+          placeholder={userEmail}
+          disabled="false"
+          //disabled={props.text === "저장" ? false : true}
+          onChange={(e) => setUserEmail(e.target.value)}
+        />
+        <input
+          className="input introduce"
+          type="text"
+          placeholde={introduce}
+          disabled={props.text === "저장" ? false : true}
+          onChange={(e) => setIntroduce(e.target.value)}
         />
       </S.ProPhoto>
-      <S.Produce>
-        <a href={github}>깃허브</a>
+      <S.Git>
+        <Link to={props.github} onChange={(e) => props.setGithub(e.target.value)}>
+          {userName} 님의 GITHUB 구경하기
+        </Link>
+      </S.Git>
+{/*       <S.Produce>
         <inupt
-          type="text"
-          placeholder={produce}
-          disabled={text === "저장" ? false : true}
+          type="produce"
+          placeholder={introduce}
+          disabled={props.text === "저장" ? false : true}
+          onChange={(e) => setIntroduce(e.target.value)}
         />
-      </S.Produce>
+      </S.Produce> */}
     </S.Profile>
   );
 };
 
 export default Profile;
+

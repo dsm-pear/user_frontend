@@ -1,39 +1,44 @@
 import React, {useState} from 'react';
 import Pearlogo from '../../assets/PEARlogo.svg';
 import Profile from '../../assets/StudentProfile.svg'
-import * as S from '../../style/MainStyled/HeaderStyle'
+import * as S from '../styled/MainStyled/HeaderStyle'
 import DownArrow from '../../assets/ArrowImg/DownArrow.png';
 import UpArrow from '../../assets/ArrowImg/UpArrow.png';
 import SearchImg from '../../assets/searchImg.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-    const [ searchtype, setSearchtype ] = useState("제목");
-    const [ show, setShow ] = useState(false)
-    const [ report, setReport ] = useState(false)
-    const [ profile, setProfile ] = useState(false)
-    const [ img, setImg ] = useState(DownArrow)
+
+    const [ searchtype, setSearchtype ] = useState("보고서");
+    const [ color, setColor ] = useState("#000000");
+    const [ show, setShow ] = useState(false);
+    const [ report, setReport ] = useState(false);
+    const [ profile, setProfile ] = useState(false);
+    const [ img, setImg ] = useState(DownArrow);
+    const [ value, setValue ] = useState("report");
+    const [ keyword, setKeyword ] = useState("");
 
     const onlist = () => {
-        if(show === false){
+        if(!show){
             setShow(true);
             setImg(UpArrow);
+            setColor("#5955d8");
         }
         else{
             setShow(false);
             setImg(DownArrow);
+            setColor("#000000");
         }
     }
 
     const onTitleSeach = () => {
-        setSearchtype("제목");
-    }
-
-    const onLanguageSeach = () => {
-        setSearchtype("언어");
+        setSearchtype("보고서");
+        setValue("report");
     }
 
     const onProfileSeach = () => {
         setSearchtype("프로필");
+        setValue("profile");
     }
 
     const onReportUp = () => {
@@ -42,7 +47,6 @@ const Header = () => {
     const onReportDown = () => {
         setReport(false);
     }
-
     const onProfileUp = () => {
         setProfile(true);
     }
@@ -50,64 +54,70 @@ const Header = () => {
         setProfile(false);
     }
 
+    const onSearch = (e) => {
+        setKeyword(e.target.value);
+    }
+
+    
     return (
         <>
             <S.HeaderBox>
                 <S.HeaderSubBox>
                     {/* 로고 */}
                     <S.Mainlogo>
-                        <img src={Pearlogo} alt="Pearlogo"/>
+                        <Link to={'/'}>
+                            <img src={Pearlogo} alt="Pearlogo"/>
+                        </Link>
                     </S.Mainlogo>
 
                     {/* 검색창 */}
                     <S.SeachBar>
-                        <S.SeachBarSelect onClick={onlist}>
-                            <S.SeachChoice><img src={img} alt="검색"/>{searchtype}</S.SeachChoice>
-                            { 
-                            show ? 
-                            <S.SeachList>
-                                <S.SeachType onClick={()=>onTitleSeach()}>제목</S.SeachType>
-                                <S.SeachType onClick={()=>onLanguageSeach()}>언어</S.SeachType>
-                                <S.SeachType onClick={()=>onProfileSeach()}>프로필</S.SeachType>
-                            </S.SeachList>
-                            :null
-                            }
-                        </S.SeachBarSelect>
+                        <form>
+                            <S.SeachBarSelect onClick={onlist}>
+                                <S.SeachChoice style={{color: color}}><img src={img} alt="검색"/>{searchtype}</S.SeachChoice>
+                                { 
+                                show &&
+                                <S.SeachList>
+                                    <S.SeachType onClick={onTitleSeach}>보고서</S.SeachType>
+                                    <S.SeachType onClick={onProfileSeach}>프로필</S.SeachType>
+                                </S.SeachList>
+                                }
+                            </S.SeachBarSelect>
 
-                        <S.SeachBarInput placeholder="검색창"/>
+                            <S.SeachBarInput name="search" placeholder="검색창" onChange={onSearch}/>
 
-                        <S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton>
+                            <Link to={`/search-result?mode=${value}&keyword=${keyword}&page=1`}><S.SeachBarButton><img src={SearchImg} alt="검색"/></S.SeachBarButton></Link>
+                        </form>
                     </S.SeachBar>
 
                     {/* 메뉴 */}
                     <S.MenuBar>
                         <S.MenuUl>
-                            <S.MenuList>공지사항</S.MenuList>
-                            <S.MenuList>보고서 작성</S.MenuList>
-                            <S.MenuList onMouseEnter={()=>onReportUp()} onMouseLeave={()=>onReportDown()}>
-                                보고서 보기
+                            <S.MenuList><Link to={'/notice?page=1'}>공지사항</Link></S.MenuList>
+
+                            <S.MenuList><Link to={'/report-writing'}>보고서 등록</Link></S.MenuList>
+                            <S.MenuList onMouseEnter={onReportUp} onMouseLeave={onReportDown}>
+                                <Link to={'/view-report'}>보고서 보기</Link>
                                 {
-                                    report ?
+                                    report &&
                                     <S.MenuSee>
-                                        <S.ReportSee>1학년</S.ReportSee>
-                                        <S.ReportSee>2학년</S.ReportSee>
-                                        <S.ReportSee>3학년</S.ReportSee>
-                                        <S.ReportSee>공통</S.ReportSee>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=1`}><S.ReportSee>1학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=2`}><S.ReportSee>2학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=3`}><S.ReportSee>3학년</S.ReportSee></Link>
                                     </S.MenuSee>
-                                : null
                                 }
-                                </S.MenuList>
+                            </S.MenuList>
 
                             {     /*토큰 여부에 따라 출력*/
-                            <S.MenuList onMouseEnter={()=>onProfileUp()} onMouseLeave={()=>onProfileDown()}>
+                            //token ??
+                            <S.MenuList onMouseEnter={onProfileUp} onMouseLeave={onProfileDown}>
                                 <S.Profile>프로필</S.Profile>
                                 {
-                                    profile ?
+                                    profile &&
                                     <S.Mypage>
-                                        <S.Mypro>MYPAGE</S.Mypro>
+                                        <S.Mypro><Link to={"/my-profile"}>MYPAGE</Link></S.Mypro>
                                         <S.Mypro>로그아웃</S.Mypro>
                                     </S.Mypage>
-                                    :null
                                 }
                                 <S.Profile><img src={Profile} alt="Profile"/></S.Profile>
                                 

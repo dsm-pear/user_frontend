@@ -1,12 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
-//import background from '../../img/'
+import { main } from '../../../assets/index';
 
-export const Main = styled.div`
-    justify-content: center;
-    align-items: center;
+export const MainBox = styled.div`
+    background-image: url(${main});
+    background-size: 100% 100%;
     height: 100vh;
-    //background-image: 
-    background-size: 100vw 100vh;
     background-repeat: no-repeat;
+    min-width: 1320px;
+    min-height: 845px;
+    font-family: BBTreeGB;
 `;
