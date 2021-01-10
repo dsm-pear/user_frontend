@@ -23,7 +23,7 @@ export const ModalMain = styled.div`
   opacity: ${({ opacity }) => opacity};
   box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
   height: 210px;
-  width: 650px;
+  width: 670px;
   border: 1px solid #ffffff;
   border-radius: 20px;
   background-color: #ffffff;
