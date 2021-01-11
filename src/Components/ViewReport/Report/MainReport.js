@@ -13,9 +13,10 @@ function MainReport({ match }) {
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
   //토큰 검사
-  const refreshHandler = useRefresh();
+  //const refreshHandler = useRefresh();
 
   useEffect(() => {
+    //보고서 내용
     const getReportView = async () => {
       try {
         loding(true);
@@ -31,7 +32,7 @@ function MainReport({ match }) {
         console.log(data);
       } catch (e) {
         console.error(e);
-        switch (e.data.status) {
+        /* switch (e.data.status) {
           case 400:
             alert("프로필 불러오기를 실패했습니다.");
             break;
@@ -42,18 +43,18 @@ function MainReport({ match }) {
             break;
           default:
             break;
-        }
+        } */
       }
       setLoding(false);
       setError(null);
     };
 
     getReportView();
-  }, []);
+  });
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  //if (!reportData) return <div>서버좀 줘라</div>;
+  if (!reportData) return <div>서버좀 줘라</div>;
 
   return (
     <S.Main>
@@ -71,14 +72,16 @@ function MainReport({ match }) {
           text={reportData.description}
           git="{reportData.github}"
           file={reportData.fileName}
-          //onClick={downlodehandler}
         />
         <ReportTeam />j
         <ReportLanguage languages={reportData.languages} />
         <ReportComment
-          name={reportData.userName}
-          content={reportData.content}
-          commentId={reportData.commentId}
+          name={reportData.comment.userName}
+          email={reportData.comment.userEmail}
+          content={reportData.comment.content}
+          commentId={reportData.comment.commentId}
+          isMain={reportData.comment.isMain}
+          createdAt={reportData.comment.createdAt}
         />
       </S.MainBox>
     </S.Main>

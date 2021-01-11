@@ -7,16 +7,11 @@ const CategoryName = ({ SwName, Ele, field, grade, page, type, to }) => {
   const [backgroundColor, setBackgroundColor] = useState("");
   const [color, setColor] = useState("none");
 
-  const colorChangeHandler = (e) => {
+  const colorChangeHandler = () => {
     console.log("색 바뀐다");
-    console.log(e.target.checked);
-    if (e.target.checked === true) {
+    //console.log(e.target.checked);
       setColor("white");
       setBackgroundColor("linear-gradient(to bottom, #5955d8, #716dec)");
-    } else {
-      setColor("");
-      setBackgroundColor("");
-    }
   };
 
   return (
@@ -27,9 +22,12 @@ const CategoryName = ({ SwName, Ele, field, grade, page, type, to }) => {
           {Ele.map(({ text, field }, i) => {
             return (
               <NavLink
-                to= {`/view-report/report/filter?size=6&page=${page}&type=${type}&field=${field}&grade=${grade}`} 
+                to= "/view-report" 
                 key={i}
                 activeClassName="active"
+                onClick={colorChangeHandler}
+                setColor={color}
+                setBackgroundColor={backgroundColor}
               >
                 {text}
               </NavLink>
