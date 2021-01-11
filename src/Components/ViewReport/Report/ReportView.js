@@ -25,7 +25,8 @@ const ReportView = (props) => {
   });
 
   const fileDownloadHandler = () => {
-    window.open(FileURL + `/report/${fileId.id}`);
+    console.log(fileId)
+    window.open(FileURL + `/report/${fileId[0].id}`);
   };
 
   return (
