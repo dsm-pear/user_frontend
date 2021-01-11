@@ -64,9 +64,9 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       setError(e);
       // switch (e.data.status) {
       //   case 400:
-      //    alert("");
-      //    break;
-      //   case 401:
+      //     alert("");
+      //     break;
+      //   case 403:
       //     refreshHandler().then(() => {
       //       ViewApi();
       //     });
@@ -78,8 +78,13 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   };
 
   if (error) {
-  } else if (data) {
-  } else if (loading) {
+    return <div>{error}</div>;
+  }
+  if (data) {
+    return <div>data없음</div>;
+  }
+  if (loading) {
+    return <div>로딩중..</div>;
   }
 
   return (

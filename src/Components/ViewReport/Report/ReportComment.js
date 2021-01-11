@@ -3,7 +3,7 @@ import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import Comments from "./Comments";
 
-const ReportComment = ({ match, content, userName, email, reportId }) => {
+const ReportComment = ({ match, content, email, reportId }) => {
   //코멘트 버튼 클릭시
   const [reportComment, setReportComment] = useState([]);
   const refreshHandler = useRefresh();
@@ -21,7 +21,7 @@ const ReportComment = ({ match, content, userName, email, reportId }) => {
         }
       );
 
-      setReportComment(data.data);
+      setReportComment(data.reportComment);
 
     } catch (e) {
       console.log('에러');
@@ -41,14 +41,6 @@ const ReportComment = ({ match, content, userName, email, reportId }) => {
     }
   };
 
-  const comment = [
-    {
-      name: userName,
-      email,
-      content,
-    },
-  ];
-
   return (
     <S.CommentMain>
       <S.Add>
@@ -56,7 +48,7 @@ const ReportComment = ({ match, content, userName, email, reportId }) => {
         <div onClick={postReportComment}></div>
       </S.Add>
       <S.MainCom>
-        {comment.map(({ userName, email, content }, i) => (
+        {reportComment.map(({ userName, email, content }, i) => (
           <Comments key={i} name={userName} email={email} content={content} />
         ))}
       </S.MainCom>
