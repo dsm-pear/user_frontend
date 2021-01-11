@@ -121,7 +121,7 @@ const Header = (props) => {
                             </S.MenuList>
 
                             {     
-                            isAccessToken && isRefrechToken? 
+                            isAccessToken && isRefrechToken ? 
                             <S.MenuList onMouseEnter={onProfileUp} onMouseLeave={onProfileDown}>
 
                                 <S.Profile>프로필</S.Profile>
@@ -135,7 +135,7 @@ const Header = (props) => {
                                 <S.Profile><img src={Profile} alt="Profile"/></S.Profile>
                                 
                             </S.MenuList>
-                            : <Link to={`/login`}>로그인</Link>
+                            : null
                             }
                         </S.MenuUl>
                     </S.MenuBar>
