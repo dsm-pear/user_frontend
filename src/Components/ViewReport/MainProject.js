@@ -10,10 +10,10 @@ import Project from "./Project";
 
 function MainProject({ type, field, grade }, location) {
   const [ReportListResponses, setReportListResponses] = useState([]);
-  const [nowPage, setNowPage] = useState(1);
-  const [EndPage, setEndPage] = useState(1);
-  const [page, setPage] = useState(5);
-  const [basicsPage, setBasicPage] = useState(1);
+  const [nowPage, setNowPage] = useState(1);//현재페이지
+  const [EndPage, setEndPage] = useState(1);//마지막페이지
+  const [page, setPage] = useState(5); // 페이지 수 
+  const [basicsPage, setBasicPage] = useState(1); //5 , 10 끊어 지는 수 
   let page_arr = [];
 
   const query = queryString.parse(location.search);
@@ -25,7 +25,7 @@ function MainProject({ type, field, grade }, location) {
       try {
         const data = await request(
           "get",
-          `/report/filter?size=6&page=0&type=&field=&grade=${query}`,
+          `/report/filter?size=6&page=${nowPage}&type=&field=&grade=GRADE2`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           ""
         );
@@ -70,7 +70,7 @@ function MainProject({ type, field, grade }, location) {
         return (
           <Link
             onClick={() => setNowPage(num)}
-            to={`/report/filter?size=6page=${page_arr[num]}type=${type}&grade=${query}&field=${field}`}
+            to={`/report/filter?size=6page=${page_arr[num]}type=${type}&grade=GRADE2&field=${field}`}
             key={num}
           >
             {" "}
@@ -81,7 +81,7 @@ function MainProject({ type, field, grade }, location) {
         return (
           <Link
             onClick={() => setNowPage(num)}
-            to={`/view-report/report/filter?size=6page=${page_arr[num]}type=${type}&grade=${query}&field=${field}`}
+            to={`/report/filter?size=6page=${page_arr[num]}type=${type}&grade=GRADE2&field=${field}`}
             style={{ color: "#6192f3" }}
             key={num}
           >
