@@ -7,7 +7,7 @@ const Project = (props) => {
   const createdAt = props.date.split('T');
 
   const reportChilckHandler = () => {
-    history.push(`/view-report/report/${props.reportId}`);
+    history.push(`/view-report/:reportid`);
   };
 
   const color =
