@@ -75,8 +75,9 @@ const ReportKindOf = styled.div`
   flex-direction: column;
 
   > ul {
-    & a {
-      color: black;
+    & div {
+      //color: ${({color})=>color};
+      //background-image: ${({backgroundColor}) => backgroundColor};
       font-weight: 300px;
       font-size: 16px;
       display: flex;
@@ -154,7 +155,7 @@ const Project = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 960px;
+  width: 100%;
   height: 49px;
   margin: 10px;
   border: 1.6px solid ${(props) => props.color};
@@ -204,6 +205,7 @@ const Project = styled.div`
 const MainCover = styled.div`
   margin: 40px;
   height: 70%;
+  width: 94%;
 `;
 
 const Number = styled.div`
