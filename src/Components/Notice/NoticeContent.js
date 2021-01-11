@@ -11,6 +11,9 @@ const NoticeContent = (props) => {
 
     const { params } = props.match;
     const ContentId = params.data;
+
+    console.log(ContentId)
+
     const [ contentData, setContentData ] = useState(null);
     const [ fileData , setFileData] = useState(null);
 
@@ -26,8 +29,6 @@ const NoticeContent = (props) => {
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
                 const response = await request(
-                //`http://smoothbear.eastus.cloudapp.azure.com:8000/notice/${pvalue}`
-                //`https://jsonplaceholder.typicode.com/users`
                 "get",
                 `/notice/${ContentId}`,
                 {},
@@ -46,26 +47,27 @@ const NoticeContent = (props) => {
             try{
                 const response = await fileRequest(
                     "get",
-                    `/notice/files/${contentData.id}`,
+                    `/notice/files/${ContentId}`,
                     {},
                     "",
                 );
                 setFileData(response.data);
+                console.log(response.data)
             }catch(e){
-                setError(e);
+                console.log(e)
             }
         }
     
         DataApi();
         FileApi()
-      }, [ContentId, contentData.id]);
+      }, [ContentId]);
 
       const FileDownload = () => {
-        window.open(FileURL + `/notice/${fileData.id}`);
+        window.open(FileURL + `/notice/${fileData[0].id}`);
       }
 
       if (loading) return <div>로딩중..</div>;
-      if (error) return <div>에러가 발생했습니다</div>;
+      if (error) return <div>{error}</div>;
       if (!contentData) return <div>보고서가 없습니다!</div>;
 
       const createTime = contentData.createdAt.split(" ")
@@ -99,7 +101,7 @@ const NoticeContent = (props) => {
 
                         <S.NoticeFile>
                             <S.FileLink>
-                            <img src={link} alt="사진"/>
+                            <img onClick={FileDownload} src={link} alt="사진"/>
                             </S.FileLink>
                             <S.FileTitle>
                                 <div onClick={FileDownload}>
