@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { fileRequest, FileURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
+  const [fileId, setFileId] = useState(null);
+
+  useEffect(() => {
+    //파일 상태
+    const FileApi = async () => {
+      try {
+        const data = await fileRequest(
+          "get",
+          `/report/files/${props.match.params.reportid}`,
+          {},
+          ""
+        );
+        console.log(data);
+        setFileId(data.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    FileApi();
+  });
+
+  const fileDownloadHandler = () => {
+    window.open(FileURL + `/report/${fileId.id}`);
+  };
+
   return (
     <S.Contents>
       <S.Title>
@@ -17,7 +43,7 @@ const ReportView = (props) => {
       <S.Linkimg>
         <div className="img"></div>
         <p>{props.file}</p>
-        <div className="downimg" onClick={props.downlodehandler}>
+        <div className="downimg" onClick={fileDownloadHandler}>
           다운로드
         </div>
       </S.Linkimg>

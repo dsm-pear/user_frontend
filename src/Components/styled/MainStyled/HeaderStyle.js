@@ -6,7 +6,7 @@ export const HeaderBox = styled.div`
     padding-top: 40px;
     display: fixed;
     z-index: 10;
-    margin: auto;
+    margin: 0 auto;
     font-family: "Noto Sans KR", sans-serif;
     a{
         text-decoration: none;
@@ -61,7 +61,7 @@ export const SeachBarSelect = styled.div`
 export const SeachChoice = styled.div`
     cursor: pointer;
     text-align: center;
-    padding-top: 11px;
+    padding-top: 12px;
     img{
         width: 10px;
         margin-right: 3px;
@@ -148,7 +148,7 @@ export const MenuSee = styled.div`
     text-align: center;
     cursor: pointer;
     margin-top: 78px;
-    margin-left: 10px;
+    margin-left: 4px;
     z-index: 5;
     position: absolute;
     transition: all 0.3s;
