@@ -44,7 +44,7 @@ export function useRefresh(method, url, data) {
   return Axios({
     method,
     url: MainURL + url,
-    headers: { Authorization: localStorage.getItem("refresh-token") },
+    headers: { "X-Refresh-Token": localStorage.getItem("refresh-token") },
     data: data,
   })
     .then((res) => {
@@ -53,6 +53,6 @@ export function useRefresh(method, url, data) {
     .catch(() => {
       localStorage.removeItem("access-token");
       localStorage.removeItem("refresh-token");
-      // history.push("/");
+      history.push("/");
     });
 }
