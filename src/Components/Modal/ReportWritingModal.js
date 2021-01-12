@@ -14,12 +14,13 @@ import {
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [user, setUser] = useState([]);
   const [users, setUsers] = useState("");
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(null);
   const isAccessToken = localStorage.getItem("access-token");
-  const refreshHandler = useRefresh();
+  // const refreshHandler = useRefresh();
   const onClick = () => {
     setOpen("hidden");
     setMyHei("0");
@@ -34,9 +35,13 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     setToggle(!toggle);
   };
 
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log(users);
+  const onSearchChange = (e) => {
+    if (e.key === "Enter") {
+      const newUser = [...user];
+      newUser[user.length] = e.target.value;
+      setUser(newUser);
+      e.target.value = "";
+    }
 
     ViewApi();
   };
@@ -53,13 +58,13 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
       const response = await request(
         "get",
-        `/account?name=${users}&size=6&page=0`,
+        `/account?name=${data}&size=6&page=0`,
         {
           Authorization: `Bearer ${isAccessToken}`,
         },
         ""
       );
-      setData(response.data);
+      setData(response.data.userResponses);
     } catch (e) {
       setError(e);
       // switch (e.data.status) {
@@ -77,15 +82,15 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-  if (data) {
-    return <div>data없음</div>;
-  }
-  if (loading) {
-    return <div>로딩중..</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+  // if (data) {
+  //   return <div style={{ position: "absolute", color: "lightgray", fontSize: "12px" }}>data없음</div>;
+  // }
+  // if (loading) {
+  //   return <div>로딩중..</div>;
+  // }
 
   return (
     <S.Div visibility={open}>
@@ -96,29 +101,38 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           </S.LeftCloseBtn>
           <S.SearchInput>
             <I.BorderInput>
-              <form onSubmit={onSearchSubmit}>
+              <div>
                 <span>
-                  <input type={Text} onChange={onInputChange} />
+                  <input
+                    type="text"
+                    onKeyPress={onSearchChange}
+                    onChange={onInputChange}
+                  />
                   <img src={searchImg} alt="search" />
                 </span>
-              </form>
+              </div>
             </I.BorderInput>
           </S.SearchInput>
           <S.SearchResult>
             <I.BorderResult>
               <div>
-                {
-                  <I.BolderCheckBox>
-                    <span>전규현(201215jgh@dsm.hs.kr)</span>
-                    <div onClick={clickCheckBox}>
-                      {toggle === true ? (
-                        <img src={checked} alt="checked" />
-                      ) : (
-                        <img src={bfchecked} alt="beforechecked" />
-                      )}
-                    </div>
-                  </I.BolderCheckBox>
-                }
+                {data.map((users) => {
+                  console.log(users);
+                  return (
+                    <I.BolderCheckBox>
+                      <span>
+                        {users.name}({users.email})
+                      </span>
+                      <div onClick={clickCheckBox}>
+                        {toggle === true ? (
+                          <img src={checked} alt="checked" />
+                        ) : (
+                          <img src={bfchecked} alt="beforechecked" />
+                        )}
+                      </div>
+                    </I.BolderCheckBox>
+                  );
+                })}
               </div>
             </I.BorderResult>
           </S.SearchResult>

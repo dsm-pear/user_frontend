@@ -17,6 +17,9 @@ export const Main = styled.div`
     width: 10px;
     /* 스크롤바의 width */
   }
+  &:hover {
+    cursor: default;
+  }
   * {
     box-sizing: border-box;
     margin: 0;
@@ -35,11 +38,19 @@ export const BorderBox = styled.div`
   max-height: 100%;
   margin: 15rem 0 3rem;
   padding: 2rem 2.5rem 0;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const InlineBox = styled.div`
   width: 100%;
   height: 100%;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ReportLogo = styled.div`
@@ -141,6 +152,10 @@ export const ReportHeader = styled.div`
     font-weight: normal;
     font-size: 14px;
     text-align: left;
+
+    &:hover {
+      cursor: text;
+    }
   }
 `;
 
@@ -162,6 +177,10 @@ export const UseLang = styled.div`
     font-weight: normal;
     font-size: 14px;
     text-align: left;
+
+    &:hover {
+      cursor: text;
+    }
   }
 `;
 
@@ -208,6 +227,10 @@ export const ReprotWriteBox = styled.div`
     font-family: BBTreeGL;
     font-size: 14px;
     text-align: left;
+
+    &:hover {
+      cursor: text;
+    }
   }
 `;
 
@@ -248,6 +271,10 @@ export const LinkBox = styled.div`
     margin-left: 0.4rem;
     font-family: BBTreeGL;
     font-size: 13px;
+
+    &:hover {
+      cursor: text;
+    }
   }
 `;
 
@@ -274,6 +301,10 @@ export const inAttachFile = styled.div`
   -webkit-user-select: none;
   user-select: none;
 
+  &:hover {
+    cursor: default;
+  }
+
   img {
     width: 20px;
     margin-right: 8px;
@@ -293,6 +324,10 @@ export const inAttachFile = styled.div`
     font-size: 13px;
     font-family: BBTreeGL;
     color: gray;
+
+    &:hover {
+      cursor: default;
+    }
   }
 `;
 

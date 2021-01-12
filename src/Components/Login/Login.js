@@ -33,7 +33,6 @@ function Login() {
 
   return (
     <>
-      <S.LoginBody>
         <S.Loginbg>
           <S.Title>LOGIN</S.Title>
           <S.Logininput>
@@ -53,7 +52,6 @@ function Login() {
             <Link to="/signup">아직 계정이 없으신가요?</Link>
           </S.Logininput>
         </S.Loginbg>
-      </S.LoginBody>
     </>
   );
 }
