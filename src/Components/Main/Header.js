@@ -113,15 +113,15 @@ const Header = (props) => {
                                 {
                                     report &&
                                     <S.MenuSee>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=1`}><S.ReportSee>1학년</S.ReportSee></Link>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=2`}><S.ReportSee>2학년</S.ReportSee></Link>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=3`}><S.ReportSee>3학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE1`}><S.ReportSee>1학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE2`}><S.ReportSee>2학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE3`}><S.ReportSee>3학년</S.ReportSee></Link>
                                     </S.MenuSee>
                                 }
                             </S.MenuList>
 
                             {     
-                            isAccessToken && isRefrechToken? 
+                            isAccessToken && isRefrechToken ? 
                             <S.MenuList onMouseEnter={onProfileUp} onMouseLeave={onProfileDown}>
 
                                 <S.Profile>프로필</S.Profile>
@@ -135,7 +135,7 @@ const Header = (props) => {
                                 <S.Profile><img src={Profile} alt="Profile"/></S.Profile>
                                 
                             </S.MenuList>
-                            : <Link to={`/login`}>로그인</Link>
+                            : null
                             }
                         </S.MenuUl>
                     </S.MenuBar>
