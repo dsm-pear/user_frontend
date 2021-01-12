@@ -42,9 +42,13 @@ export function fileRequest(method, url, header, data) {
 export function useRefresh(method, url, data) {
   const history = useHistory();
   return Axios({
-    method,
-    url: MainURL + url,
-    headers: { Authorization: localStorage.getItem("refresh-token") },
+    method: "put",
+    url: MainURL + "/auth",
+    headers: {
+      "X-Refresh-Token":
+        /* "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTAzNjE1OTYsInN1YiI6IjIwMTIwMWtlYkBkc20uaHMua3IiLCJleHAiOjE2MTAzNjE3MTYsInR5cGUiOiJyZWZyZXNoX3Rva2VuIn0.8sq03qagvs3fV6zHYaa3XclEmRCnQ2vQd6LpryMjEUM", */
+      localStorage.getItem('refresh-token') 
+    },
     data: data,
   })
     .then((res) => {
@@ -53,6 +57,6 @@ export function useRefresh(method, url, data) {
     .catch(() => {
       localStorage.removeItem("access-token");
       localStorage.removeItem("refresh-token");
-      // history.push("/");
+      //history.push('/');
     });
 }

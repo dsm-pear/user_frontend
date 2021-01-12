@@ -17,6 +17,9 @@ const Header = (props) => {
     const [ value, setValue ] = useState("report");
     const [ keyword, setKeyword ] = useState("");
 
+    const isAccessToken = localStorage.getItem('access-token');
+    const isRefrechToken = localStorage.getItem('refresh-token');
+
     const onlist = () => {
         if(!show){
             setShow(true);
@@ -61,6 +64,12 @@ const Header = (props) => {
         //props.history.replace(`/search-result?mode=${value}&keyword=${keyword}&page=1`);
         window.location.href=`/search-result?mode=${value}&keyword=${keyword}&page=1`
     }
+
+    const LogOut = () => {
+        localStorage.removeItem("access-token");
+        localStorage.removeItem("refresh-token");
+        localStorage.removeItem("refresh-exp");
+    }
     
     return (
         <>
@@ -100,32 +109,33 @@ const Header = (props) => {
 
                             <S.MenuList><Link to={'/report-writing'}>보고서 등록</Link></S.MenuList>
                             <S.MenuList onMouseEnter={onReportUp} onMouseLeave={onReportDown}>
-                                <Link to={'/view-report'}>보고서 보기</Link>
+                                보고서 보기
                                 {
                                     report &&
                                     <S.MenuSee>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=1`}><S.ReportSee>1학년</S.ReportSee></Link>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=2`}><S.ReportSee>2학년</S.ReportSee></Link>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=3`}><S.ReportSee>3학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE1`}><S.ReportSee>1학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE2`}><S.ReportSee>2학년</S.ReportSee></Link>
+                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE3`}><S.ReportSee>3학년</S.ReportSee></Link>
                                     </S.MenuSee>
                                 }
                             </S.MenuList>
 
-                            {     /*토큰 여부에 따라 출력*/
-                            //token ??
+                            {     
+                            isAccessToken && isRefrechToken ? 
                             <S.MenuList onMouseEnter={onProfileUp} onMouseLeave={onProfileDown}>
+
                                 <S.Profile>프로필</S.Profile>
                                 {
                                     profile &&
                                     <S.Mypage>
                                         <S.Mypro><Link to={"/my-profile"}>MYPAGE</Link></S.Mypro>
-                                        <S.Mypro>로그아웃</S.Mypro>
+                                        <S.Mypro onClick={LogOut}>로그아웃</S.Mypro>
                                     </S.Mypage>
                                 }
                                 <S.Profile><img src={Profile} alt="Profile"/></S.Profile>
                                 
-                                
                             </S.MenuList>
+                            : null
                             }
                         </S.MenuUl>
                     </S.MenuBar>
