@@ -7,7 +7,7 @@ import { RWlogo } from "../../assets";
 import { select } from "../../assets";
 import { selecthover } from "../../assets";
 import { link } from "../../assets";
-import { github } from "../../assets";
+import { github as gitgubimg } from "../../assets";
 
 const ReportWriting = () => {
   const [hoverNumber, setHoverNumber] = useState(0);
@@ -23,6 +23,17 @@ const ReportWriting = () => {
   const [opas, setOpas] = useState("1");
   const [tags, setTags] = useState([]);
   const [files, setFiles] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [languages, setLanguages] = useState("");
+  const [type, setType] = useState("");
+  const [access, setAccess] = useState("");
+  const [field, setField] = useState("");
+  const [grade, setGrade] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(0);
+  const [fileName, setFileName] = useState();
+  const [github, setGithub] = useState("");
+  const [teamName, setTeamName] = useState([]);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -64,6 +75,11 @@ const ReportWriting = () => {
       newTags[tags.length] = e.target.value;
       setTags(newTags);
       e.target.value = "";
+    } else if (e.key === "," && e.target.value.trim()) {
+      const newTags = [...tags];
+      newTags[tags.length] = e.target.value;
+      setTags(newTags);
+      e.target.value = "";
     }
   };
 
@@ -99,6 +115,57 @@ const ReportWriting = () => {
     console.log(files);
   }, [files]);
 
+  const onTitleChange = (e) => {
+    setTitle(e.target.value);
+    console.log(e);
+  };
+
+  const onLanguagesChange = (e) => {
+    setLanguages(e.target.value);
+    console.log(e);
+  };
+
+  const onDescriptionChange = (e) => {
+    setDescription(e.target.value);
+    console.log(e);
+  };
+
+  const onGithubChange = (e) => {
+    setGithub(e.target.value);
+    console.log(e);
+  };
+
+  const onFileNameChage = (e) => {
+    setFileName();
+  };
+
+  const onIsSubmittedChange = (e) => {
+    setIsSubmitted();
+  };
+  const onTeamNameChange = (e) => {
+    setTeamName();
+  };
+
+  const onTypeClick = (e) => {
+    setType(e.target.value);
+    console.log(e);
+  };
+
+  const onGradeClick = (e) => {
+    setGrade(e.target.value);
+    console.log(e);
+  };
+
+  const onFieldClick = (e) => {
+    setField(e.target.value);
+    console.log(e);
+  };
+
+  const onAccessClick = (e) => {
+    setAccess(e.target.value);
+    console.log(e);
+  };
+
   return (
     <>
       <SubmitReportModal
@@ -109,6 +176,17 @@ const ReportWriting = () => {
         hei={hei}
         myopa={myopa}
         files={files}
+        title={title}
+        description={description}
+        languages={languages}
+        type={type}
+        access={access}
+        field={field}
+        grade={grade}
+        isSubmitted={isSubmitted}
+        fileName={fileName}
+        github={github}
+        teamName={teamName}
       />
       <ReportWritingModal
         setOpen={setOpen}
@@ -148,7 +226,7 @@ const ReportWriting = () => {
                       <img src={select} alt="language" />
                     </I.SelctFlexBox>
                   )}
-                  <S.ViewList>
+                  <S.ViewList onClick={onGradeClick}>
                     <I.ListTable
                       data-id="1학년"
                       data-type="grade"
@@ -192,7 +270,7 @@ const ReportWriting = () => {
                       <img src={select} alt="language" />
                     </I.SelctFlexBox>
                   )}
-                  <S.ViewList>
+                  <S.ViewList onClick={onTypeClick}>
                     <I.ListTable
                       data-id="개인"
                       data-type="division"
@@ -237,7 +315,7 @@ const ReportWriting = () => {
                       <img src={select} alt="language" />
                     </I.SelctFlexBox>
                   )}
-                  <S.ViewList>
+                  <S.ViewList onClick={onFieldClick}>
                     <I.ListTable
                       data-id="소프트웨어"
                       data-type="field"
@@ -311,7 +389,7 @@ const ReportWriting = () => {
                       <img src={select} alt="language" />
                     </I.SelctFlexBox>
                   )}
-                  <S.ViewList>
+                  <S.ViewList onClick={onAccessClick}>
                     <I.ListTable
                       data-id="전체 공개"
                       data-type="scope"
@@ -335,6 +413,7 @@ const ReportWriting = () => {
                 <input
                   type="text"
                   placeholder="개발 보고서의 제목을 입력해주세요"
+                  onChange={onTitleChange}
                 />
               </S.ReportHeader>
               <S.UseLang>
@@ -350,6 +429,7 @@ const ReportWriting = () => {
                   type="text"
                   placeholder="개발에 사용한 언어들을 입력해주세요"
                   onKeyPress={onLanguageChange}
+                  onChange={onLanguagesChange}
                 />
               </S.UseLang>
               <S.ReprotWriteBox>
@@ -359,16 +439,18 @@ const ReportWriting = () => {
                   cols="40"
                   minLength="10"
                   placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요"
+                  onChange={onDescriptionChange}
                   style={{ resize: "none" }}
                 ></textarea>
               </S.ReprotWriteBox>
               <S.LinkBox>
                 <span>
                   <div>
-                    <img src={github} alt="gitgub-link" />
+                    <img src={gitgubimg} alt="gitgub-link" />
                     <input
                       type="text"
                       placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)"
+                      onChange={onGithubChange}
                     />
                   </div>
                 </span>
