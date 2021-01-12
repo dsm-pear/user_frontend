@@ -2,7 +2,7 @@ import Axios from "axios";
 import { useHistory } from "react-router-dom";
 
 export const MainURL = "http://10.156.147.50:8081";
-export const FileURL = "http://10.156.147.50:3000";
+export const FileURL = "http://3.15.177.120:3000";
 
 export function request(method, url, header, data) {
   return Axios({
@@ -39,7 +39,7 @@ export function fileRequest(method, url, header, data) {
     });
 }
 
-export function useRefresh(data) {
+export function useRefresh(method, url, data) {
   const history = useHistory();
   return Axios({
     method: "put",
