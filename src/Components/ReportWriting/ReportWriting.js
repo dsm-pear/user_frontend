@@ -63,10 +63,11 @@ const ReportWriting = () => {
     setMyOpa("1");
   };
 
-  const teamBtnClick = () => {
+  const teamBtnClick = (e) => {
     setOpen("visible");
     setMyHei("450px");
     setOpas("1");
+    console.log(e);
   };
 
   const onLanguageChange = (e) => {
