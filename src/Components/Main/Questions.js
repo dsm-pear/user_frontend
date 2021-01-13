@@ -62,7 +62,7 @@ const Questions = () => {
     useEffect(() => {
         function handleTouchMove(e) {
         if (modalVisible) {
-            e.preventDefault(); // 여기가 핵심
+            e.preventDefault();
             e.stopPropagation()
 
             return false;
