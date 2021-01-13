@@ -1,6 +1,7 @@
-import React, {useState}from 'react';
+import React, {useState,useEffect}from 'react';
 import QuestionModal from './QuestionModal';
 import * as S from '../styled/MainStyled/QuestionsStyle';
+import { request } from '../../utils/axios/axios';
 
 const Questions = () => {
 
@@ -8,11 +9,7 @@ const Questions = () => {
     const [ email, setEmail ] = useState("");
     const [ content, setContent ] = useState("");
 
-    /*
-    const [questdata, setQuestdata] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);*/
-    const [ message, setMessage ] = useState("버그 & 문의 사항이 접수 되었습니다")
+    const [ message, setMessage ] = useState(null)
 
     const closeModal = () => {
         setModalVisible(false);
@@ -31,12 +28,51 @@ const Questions = () => {
             setMessage("빈 칸을 입력해주세요")
             setModalVisible(true);
         }else{
-            setMessage("버그 & 문의 사항이 접수 되었습니다")
-            setModalVisible(true);
+            QuestApi()
         }
         
     }
 
+    const QuestApi = async () => {
+        const questData = {
+            email: email,
+            description: content
+        }
+        const response = await request(
+            "post",
+            "/question",
+            {},
+            questData
+        )
+
+        console.log(response)
+        
+        const statusNumber = Number(response.status)
+
+        if(statusNumber === 200){
+            setMessage("버그 & 문의 사항이 접수 되었습니다")
+        }else if(statusNumber === 400){
+            setMessage("에러발생! 내용을 확인해주세요")
+        }
+        setModalVisible(true);
+    }
+
+    
+
+    useEffect(() => {
+        function handleTouchMove(e) {
+        if (modalVisible) {
+            e.preventDefault();
+            e.stopPropagation()
+
+            return false;
+        }
+      }
+        window.addEventListener("mousewheel", handleTouchMove, {
+            passive: false
+        });
+        return ()=> window.removeEventListener("mousewheel", handleTouchMove);
+      }, [modalVisible]);
 
     return(
         <>
@@ -48,7 +84,7 @@ const Questions = () => {
                             버그, 문의사항을 적어주시면 메일 또는 공지사항으로 안내해드리겠습니다.
                         </S.QuestExplain>
 
-                    <form onSubmit={send}>
+                    <S.QuestInputForm onSubmit={send}>
                         <S.EmailBox>
                             <S.EmailInput
                                 type="email"
@@ -59,21 +95,19 @@ const Questions = () => {
 
                         <S.ContentBox>
                             <S.Content
-                                rows="6"
+                                rows="8"
                                 placeholder="버그 & 문의사항을 입력해주세요"
                                 onChange={onContent}
                             />
                         </S.ContentBox>
 
                         <S.QuestButton>버그 & 문의 보내기</S.QuestButton>
-                    </form>
-                </S.QuestionBox>
+                    </S.QuestInputForm>
+                </S.QuestionBox>        
                 {
                     modalVisible && 
                     <QuestionModal
                         visible={modalVisible}
-                        closable={true}
-                        maskClosable={true}
                         onClose={closeModal}
                         message={message}
                     />
