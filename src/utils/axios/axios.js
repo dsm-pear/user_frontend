@@ -37,7 +37,6 @@ export function fileRequest(method, url, header, data) {
     .catch((e) => {
       console.error(e);
     });
-
 }
 
 
