@@ -17,6 +17,7 @@ const QuestModal = ({
     return (
         <S.ModalBox visible={visible}>
             <S.ModalBackground>
+
                     <S.Modal>
                         <S.ModalClose>
                             <img src={closeimg} alt="사진" className="modal-close" onClick={close}/>
