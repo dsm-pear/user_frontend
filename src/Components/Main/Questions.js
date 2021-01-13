@@ -1,4 +1,4 @@
-import React, {useState}from 'react';
+import React, {useState,useEffect}from 'react';
 import QuestionModal from './QuestionModal';
 import * as S from '../styled/MainStyled/QuestionsStyle';
 import { request } from '../../utils/axios/axios';
@@ -9,7 +9,6 @@ const Questions = () => {
     const [ email, setEmail ] = useState("");
     const [ content, setContent ] = useState("");
 
-    //const [ questdata, setQuestdata ] = useState(null);
     const [ message, setMessage ] = useState(null)
 
     const closeModal = () => {
@@ -27,23 +26,26 @@ const Questions = () => {
         e.preventDefault();
         if([email, content].includes("")){
             setMessage("빈 칸을 입력해주세요")
+            setModalVisible(true);
         }else{
             QuestApi()
         }
-        setModalVisible(true);
+        
     }
 
     const QuestApi = async () => {
-        const quest = {
+        const questData = {
             email: email,
             description: content
         }
         const response = await request(
             "post",
-            "question",
+            "/question",
             {},
-            quest
+            questData
         )
+
+        console.log(response)
         
         const statusNumber = Number(response.status)
 
@@ -52,8 +54,25 @@ const Questions = () => {
         }else if(statusNumber === 400){
             setMessage("에러발생! 내용을 확인해주세요")
         }
-        
+        setModalVisible(true);
     }
+
+    
+
+    useEffect(() => {
+        function handleTouchMove(e) {
+        if (modalVisible) {
+            e.preventDefault(); // 여기가 핵심
+            e.stopPropagation()
+
+            return false;
+        }
+      }
+        window.addEventListener("mousewheel", handleTouchMove, {
+            passive: false
+        });
+        return ()=> window.removeEventListener("mousewheel", handleTouchMove);
+      }, [modalVisible]);
 
     return(
         <>
@@ -84,13 +103,11 @@ const Questions = () => {
 
                         <S.QuestButton>버그 & 문의 보내기</S.QuestButton>
                     </S.QuestInputForm>
-                </S.QuestionBox>
+                </S.QuestionBox>        
                 {
                     modalVisible && 
                     <QuestionModal
                         visible={modalVisible}
-                        closable={true}
-                        maskClosable={true}
                         onClose={closeModal}
                         message={message}
                     />
