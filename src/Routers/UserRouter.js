@@ -39,6 +39,7 @@ function UserRouter() {
 
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
+
         <Route
           path="/report-writing-modal"
           component={ReportWritingModal}
@@ -61,7 +62,7 @@ function UserRouter() {
 
         {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/view-report/main-report" component={MainReport} exact />
-
+    
         <Route path="/search-result/:data" component={SearchResult} exact />
 
         <Route path="/view-report/:data" component={ReportWeb} exact />
