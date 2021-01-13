@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 
 const SearchResult = ({location}) => {
     const query = queryString.parse(location.search);
-    console.log(query);
 
     const [ searchData, setSearchData ] = useState(null);
     const [ error, setError ] = useState(null);
@@ -20,15 +19,17 @@ const SearchResult = ({location}) => {
     const [ page, setPage ] = useState(5);
     const [ nowPage, setNowPage ] = useState(1);
     const [ basicsPage, setBasicPage ] = useState(1);
-    const [ EndPage, setEndPage ] = useState(5);
+    const [ EndPage, setEndPage ] = useState(1);
     let page_arr = [];
 
     useEffect(()=>{
         const DataApi = async () => {
+
+            setLoading(true);
+
             try{
                 setError(null);
                 setSearchData(null);
-                setLoading(true);
                 const response = await request(
                     "get",
                     `/search/${query.mode}?keyword=${query.keyword}&size=7&page=${nowPage-1}`,
@@ -38,7 +39,7 @@ const SearchResult = ({location}) => {
                 setSearchData(response.data);
                 setEndPage(response.data.totalPages);
             } catch(e) {
-                //setError(e);
+                setError(e);
             }
     
             setLoading(false);
@@ -46,25 +47,27 @@ const SearchResult = ({location}) => {
 
         DataApi();
     }, [nowPage, query.mode, query.keyword]);
-    console.log(query.mode)
 
     const mode = () => {
-
-        switch(query.mode){
-            case "profile" :
-                console.log("1")
-                return(
-                    <SearchResultProfile data={searchData}/>
-                )
-            case "report" :
-                console.log("2")
-                return(
-                    <SearchResultTitle data={searchData}/>
-                )
-            default : 
-                return(
-                    <div>없는 타입</div>
-                )
+        
+        if(!loading){
+            switch(query.mode){
+                case "profile" :
+                    return(
+                        <SearchResultProfile data={searchData}/>
+                    )
+                case "report" :
+                    return(
+                        <SearchResultTitle data={searchData}/>
+                    )
+                default : 
+                    return(
+                        <div>없는 타입</div>
+                    )
+            }
+        }
+        else{
+            return <div>Loading...</div>
         }
     }
 
@@ -116,9 +119,7 @@ const SearchResult = ({location}) => {
         }
     }
 
-    if (error) return <div>{error}</div>;
-    if (loading) return <div>Loading...</div>;
-    if(!searchData) return <div>검색결과가 없습니다</div>
+    if (error) return <div>{error}</div>
     
     return(
         <>
@@ -147,11 +148,11 @@ const SearchResult = ({location}) => {
 
                         <S.ResultAdd>
                             <S.ResultAddNumber>
-                                    <img src={LeftArrow} alt="사진" onClick={prev}/>
-                                    {
-                                        processed(query)
-                                    }
-                                    <img src={RightArrow} alt="사진" onClick={next}/>
+                                <img src={LeftArrow} alt="사진" onClick={prev}/>
+                                {
+                                    processed(query)
+                                }
+                                <img src={RightArrow} alt="사진" onClick={next}/>
                             </S.ResultAddNumber>
                         </S.ResultAdd>
                         
