@@ -106,9 +106,8 @@ export const QuestButton = styled.button`
 
 /* 모달 스타일 */
 
-
-
 export const ModalBox = styled.div`
+    overflow: hidden;
     width: 100%;
     display: ${(props) => (props.visible ? 'block' : 'none')};
 `;
@@ -122,6 +121,7 @@ export const ModalBackground = styled.div `
     justify-content: center;
     align-items : center;
     z-index: 3;
+    overflow: hidden;
 `
 
 export const Modal = styled.div`
