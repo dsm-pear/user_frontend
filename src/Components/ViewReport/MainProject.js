@@ -20,6 +20,7 @@ function MainProject({ type, field, grade }, location) {
   const refreshHandler = useRefresh();
 
   useEffect(() => {
+    
     //프로젝트 목록 리스트 얻어오기
     const getProjectList = async () => {
       try {
