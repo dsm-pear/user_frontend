@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { request } from "../../utils/axios/axios.js";
+import { request, useRefresh } from "../../utils/axios/axios.js";
 import * as S from "../styled/Profile/style.js";
 import * as M from "../styled/ViewReport/style";
 import Profile from "./Profile";
@@ -13,6 +13,7 @@ function UserProfile({ match }) {
   const [userProfile, setUserProfile] = useState([]);
   const [github, setGithub] = useState("");
   const [produce, setProduce] = useState("");
+  const refreshHandler = useRefresh();
 
   useEffect(() => {
     //유저 프로필 API
@@ -20,13 +21,25 @@ function UserProfile({ match }) {
       try {
         const data = await request(
           "get",
-          `/profile?user-email=${match.params.email}`,
+          `/profile?user-email=dummyemail@dsm.hs.kr`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           ""
         );
         setUserProfile(data.userProfile);
       } catch (e) {
         console.error(e);
+        switch(e.data.status){
+          case 400:
+            alert("프로필 불러오기를 실패했습니다.");
+            break;
+          case 401:
+            refreshHandler().then(()=>{
+              getProfile();
+            })
+            break;
+          default:
+            break;
+        }
       }
     };
     //유저 프로젝트 API
@@ -34,12 +47,12 @@ function UserProfile({ match }) {
       try {
         const data = await request(
           "get",
-          `/profile/report?user-email?=${match.params.email}&size=6&page=0`,
+          `/profile/report?user-email=dummyemail@dsm.hs.kr&size=6&page=0`,
           "",
           ""
         );
 
-        setMyReportListResponses(data.MyReportListResponses);
+        setMyReportListResponses(data.data.profileReportResponses);
       } catch (e) {
         console.error(e);
       }
@@ -64,9 +77,9 @@ function UserProfile({ match }) {
             />}
             {/* 프로젝트 보여주는 곳 */}
             <S.Project>
-              {MyReportListResponses.map(({ team, title, createdAt }) => (
+              {MyReportListResponses.map(({ type, title, createdAt }) => (
                 <S.PreProject>
-                  <Project team={team} title={title} date={createdAt} />
+                  <Project team={type} title={title} date={createdAt} />
                 </S.PreProject>
               ))}
             {/*   <M.Number>

@@ -21,7 +21,7 @@ function MyProfile(props) {
       setText("저장");
     } else {
       try {
-        const { data } = await request(
+        await request(
           "put",
           "/user/profile/",
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
@@ -32,14 +32,14 @@ function MyProfile(props) {
         );
       } catch (e) {
         console.error(e);
-        switch (e.data.status) {
+        switch(e.data.status){
           case 400:
             alert("프로필 불러오기를 실패했습니다.");
             break;
           case 401:
-            refreshHandler().then(() => {
-             ChangeProfile();
-            });
+            refreshHandler().then(()=>{
+              ChangeProfile();
+            })
             break;
           default:
             break;
@@ -92,12 +92,12 @@ function MyProfile(props) {
           ""
         );
 
-        setProfileReportListResponses(data.MyReportListResponses.ProfileReportListResponses);
+        setProfileReportListResponses(data.data.profileReportListResponses);
       } catch (e) {
         console.error(e);
         switch (e.data.status) {
           case 400:
-            alert("프로젝트 불러오기를 실패했습니다.");
+            alert("프로필 불러오기를 실패했습니다.");
             break;
           case 401:
             refreshHandler().then(() => {

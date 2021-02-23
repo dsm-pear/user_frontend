@@ -6,9 +6,7 @@ function ProjectHeader() {
   return (
     <S.ProjectHeader>
       <div className="nav">
-        <ProHeader name="팀" />
-        <ProHeader name="개인" />
-        <ProHeader name="동아리" />
+        <ProHeader />
       </div>
     </S.ProjectHeader>
   );
