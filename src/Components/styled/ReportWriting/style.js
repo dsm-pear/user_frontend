@@ -136,6 +136,10 @@ export const ViewList = styled.div`
 
 export const ReportMain = styled.div`
   margin-top: 0.8rem;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ReportHeader = styled.div`
@@ -181,6 +185,10 @@ export const UseLang = styled.div`
     &:hover {
       cursor: text;
     }
+  }
+
+  &:hover {
+    cursor: text;
   }
 `;
 
@@ -245,6 +253,10 @@ export const LinkBox = styled.div`
   span {
     width: 100%;
     height: 100%;
+
+    &:hover {
+      cursor: text;
+    }
   }
   span > div {
     display: flex;
@@ -254,6 +266,10 @@ export const LinkBox = styled.div`
     background: #f8f8f8;
     border: 1px solid #f8f8f8;
     padding: 0.4rem 0.4rem;
+
+    &:hover {
+      cursor: text;
+    }
   }
   div > img {
     width: 20px;
