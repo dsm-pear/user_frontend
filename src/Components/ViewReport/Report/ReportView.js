@@ -5,7 +5,7 @@ import * as S from "../../styled/ViewReport/MainStyle";
 const ReportView = (props) => {
   const [fileId, setFileId] = useState(null);
 
-  useEffect(() => {
+/*   useEffect(() => {
     //파일 상태
     const FileApi = async () => {
       try {
@@ -22,7 +22,7 @@ const ReportView = (props) => {
       }
     };
     FileApi();
-  });
+  }); */
 
   const fileDownloadHandler = () => {
     console.log(fileId)
