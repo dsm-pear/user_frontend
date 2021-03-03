@@ -11,13 +11,11 @@ export const HeaderBox = styled.div`
     color: #000000;
   }
 `;
-
 export const HeaderSubBox = styled.div`
   display: flex;
   align-items: center;
   margin: 0 auto;
 `;
-
 export const Mainlogo = styled.div`
   margin-right: 8vw;
   &:focus {
@@ -27,7 +25,6 @@ export const Mainlogo = styled.div`
     cursor: pointer;
   }
 `;
-
 export const SeachBar = styled.div`
   width: 399px;
   height: 38px;
@@ -42,7 +39,6 @@ export const SeachBar = styled.div`
     text-decoration: none;
   }
 `;
-
 export const SeachBarSelect = styled.div`
   font-size: 13px;
   width: 70px;
@@ -55,7 +51,6 @@ export const SeachBarSelect = styled.div`
     outline: none;
   }
 `;
-
 export const SeachChoice = styled.div`
   cursor: pointer;
   text-align: center;
@@ -66,12 +61,10 @@ export const SeachChoice = styled.div`
     font-family: "Noto Sans KR", sans-serif;
   }
 `;
-
 export const SeachList = styled.div`
   cursor: pointer;
-  position: absolute;
   margin-top: 20px;
-  z-index: 1000;
+  z-index: 5;
   width: 52px;
   height: 47px;
   border-radius: 6px;
@@ -79,17 +72,13 @@ export const SeachList = styled.div`
   padding-top: 12px;
   padding-left: 10px;
 `;
-
 export const SeachType = styled.div`
-  cursor: pointer;
   font-size: 13px;
   margin-bottom: 8px;
-  z-index: 100;
   &:hover {
     color: #5955d8;
   }
 `;
-
 export const SeachBarInput = styled.input`
   width: 269px;
   border: none;
@@ -98,7 +87,6 @@ export const SeachBarInput = styled.input`
     outline: none;
   }
 `;
-
 export const SeachBarButton = styled.button`
   width: 60px;
   height: 38px;
@@ -114,17 +102,14 @@ export const SeachBarButton = styled.button`
     font-family: "Noto Sans KR", sans-serif;
   }
 `;
-
 export const MenuBar = styled.div`
   width: 500px;
 `;
-
 export const MenuUl = styled.ul`
   justify-content: space-between;
   display: flex;
   font-size: 20px;
 `;
-
 export const MenuList = styled.li`
   list-style: none;
   align-items: center;
@@ -137,7 +122,6 @@ export const MenuList = styled.li`
     color: #5955d8;
   }
 `;
-
 export const MenuSee = styled.div`
   width: 85px;
   height: 100px;
@@ -146,13 +130,12 @@ export const MenuSee = styled.div`
   background-color: #ffffff;
   text-align: center;
   cursor: pointer;
-  margin-top: 74.5px;
+  margin-top: 78px;
   margin-left: 4px;
   z-index: 5;
   position: absolute;
   transition: all 0.3s;
 `;
-
 export const ReportSee = styled.div`
   font-size: 18px;
   margin-bottom: 14px;
@@ -169,7 +152,6 @@ export const Profile = styled.div`
     width: 31px;
   }
 `;
-
 export const Mypage = styled.div`
   width: 80px;
   height: 63px;
@@ -182,7 +164,6 @@ export const Mypage = styled.div`
   margin-left: 5px;
   z-index: 5;
 `;
-
 export const Mypro = styled.div`
   font-size: 17px;
   margin-bottom: 10px;
