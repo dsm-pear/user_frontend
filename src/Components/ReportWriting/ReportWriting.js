@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// import { alert } from "lodash";
 import ReportWritingModal from "../Modal/ReportWritingModal";
 import SubmitReportModal from "../Modal/SubmitReportModal";
 import * as S from "../styled/ReportWriting/style";
@@ -34,6 +35,21 @@ const ReportWriting = () => {
   const [fileName, setFileName] = useState();
   const [github, setGithub] = useState("");
   const [teamName, setTeamName] = useState([]);
+  const [autoSave, setAutoSave] = useState(
+    localStorage.getItem("userTextData")
+  );
+
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("userTextData")) || {
+      title: "",
+      tags: [],
+      description: "",
+    };
+    setTitle(savedData.title);
+    setTags(savedData.tags);
+    setDescription(savedData.description);
+    console.log(savedData);
+  }, []);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -136,16 +152,16 @@ const ReportWriting = () => {
     console.log(e);
   };
 
-  const onFileNameChage = (e) => {
-    setFileName();
-  };
+  // const onFileNameChage = (e) => {
+  //   setFileName();
+  // };
 
-  const onIsSubmittedChange = (e) => {
-    setIsSubmitted();
-  };
-  const onTeamNameChange = (e) => {
-    setTeamName();
-  };
+  // const onIsSubmittedChange = (e) => {
+  //   setIsSubmitted();
+  // };
+  // const onTeamNameChange = (e) => {
+  //   setTeamName();
+  // };
 
   const onTypeClick = (e) => {
     setType(e.target.value);
@@ -165,6 +181,18 @@ const ReportWriting = () => {
   const onAccessClick = (e) => {
     setAccess(e.target.value);
     console.log(e);
+  };
+
+  const onSaveLocalStorage = (e) => {
+    window.localStorage.setItem(
+      "userTextData",
+      JSON.stringify({
+        title: title,
+        tags: tags,
+        description: description,
+      })
+    );
+    setAutoSave(e);
   };
 
   return (
@@ -415,6 +443,7 @@ const ReportWriting = () => {
                   type="text"
                   placeholder="개발 보고서의 제목을 입력해주세요"
                   onChange={onTitleChange}
+                  value={title}
                 />
               </S.ReportHeader>
               <S.UseLang>
@@ -442,6 +471,7 @@ const ReportWriting = () => {
                   placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요"
                   onChange={onDescriptionChange}
                   style={{ resize: "none" }}
+                  value={description}
                 ></textarea>
               </S.ReprotWriteBox>
               <S.LinkBox>
@@ -484,7 +514,7 @@ const ReportWriting = () => {
               </S.MakeTeam>
               <S.SaveSubBtn>
                 <I.SaveBtn>
-                  <div>임시저장</div>
+                  <div onClick={onSaveLocalStorage}>임시저장</div>
                 </I.SaveBtn>
                 <I.SubBtn onClick={onClick}>
                   <div>제출하기</div>

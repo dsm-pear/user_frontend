@@ -55,24 +55,24 @@ const SubmitReportModal = ({
           "Contect-Type": "application/json",
         },
         data: {
-          title: title,
-          description: description,
-          languages: languages,
-          type: type,
-          access: access,
-          field: field,
-          grade: grade,
-          isSubmitted: isSubmitted,
-          fileName: fileName,
-          github: github,
-          teamName: teamName,
+          title: `${title}`,
+          description: `${description}`,
+          languages: `${languages}`,
+          type: `${type}`,
+          access: `${access}`,
+          field: `${field}`,
+          grade: `${grade}`,
+          isSubmitted: `${isSubmitted}`,
+          fileName: `${fileName}`,
+          github: `${github}`,
+          teamName: `${teamName}`,
         },
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
-  const baseUrl = "http://10.156.147.50";
+  const baseUrl = "http://15.164.102.79";
 
   return (
     <>
