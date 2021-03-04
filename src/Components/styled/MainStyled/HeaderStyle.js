@@ -72,7 +72,7 @@ export const SeachList = styled.div`
     cursor: pointer;
     transition: all 0.3s;
     margin-top: 20px;
-    z-index: 5;
+    z-index: 6;
     width: 58px;
     height: 65px;
     border-radius: 6px;
