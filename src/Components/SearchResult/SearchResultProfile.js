@@ -10,10 +10,9 @@ const SearchResultProfile = (props) => {
 
     const SearchPropfile = useCallback(
         (dataList) => {
-            console.log(searchData)
             return dataList.map((data)=>{
                 return(
-                    <Link to={`/user-profile`} key={data.user_id}>
+                    <Link to={`/user-profile`} key={data.email}>
                         <S.Container style={{color: "#6192f3"}} >
                             <S.ContainerContant >
                                 <S.ResultProfile>
@@ -38,9 +37,9 @@ const SearchResultProfile = (props) => {
     return (
         <>
             {
-                
+                searchData ?
                 SearchPropfile(searchData.userResponses)
-                
+                : <S.noneData>검색결과가 없습니다.</S.noneData>
             }
         </>
     )

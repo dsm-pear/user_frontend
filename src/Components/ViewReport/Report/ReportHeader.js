@@ -6,6 +6,8 @@ const ReportHeader = ({ team, grade, subject, title, date }) => {
   const color =
     team === "동아리" ? "#5955d8" : team === "팀" ? "#6192f3" : "#27d5b1";
   /* 헤더  */
+
+
   return (
     <S.Header>
       <S.Name color={color}>

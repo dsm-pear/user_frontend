@@ -4,23 +4,46 @@ import * as S from '../styled/MainStyled/QuestionsStyle';
 import { request } from '../../utils/axios/axios';
 
 const Questions = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [email, setEmail] = useState("");
+  const [content, setContent] = useState("");
 
-    const [ modalVisible, setModalVisible] = useState(false);
-    const [ email, setEmail ] = useState("");
-    const [ content, setContent ] = useState("");
+  const [message, setMessage] = useState(null);
 
     const [ message, setMessage ] = useState(null)
 
-    const closeModal = () => {
-        setModalVisible(false);
-    }
+  const onEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const onContent = (e) => {
+    setContent(e.target.value);
+  };
 
-    const onEmail = (e) => {
-        setEmail(e.target.value);
+  const send = (e) => {
+    e.preventDefault();
+    if ([email, content].includes("")) {
+      setMessage("빈 칸을 입력해주세요");
+    } else {
+      QuestApi();
     }
-    const onContent = (e) => {
-        setContent(e.target.value);
+    setModalVisible(true);
+  };
+
+  const QuestApi = async () => {
+    const questData = {
+      email: email,
+      description: content,
+    };
+    const response = await request("post", "/question", {}, questData);
+
+    const statusNumber = Number(response.status);
+
+    if (statusNumber === 200) {
+      setMessage("버그 & 문의 사항이 접수 되었습니다");
+    } else if (statusNumber === 400) {
+      setMessage("에러발생! 내용을 확인해주세요");
     }
+  };
 
     const send = (e) => {
         e.preventDefault();
@@ -32,6 +55,11 @@ const Questions = () => {
         }
         
     }
+    window.addEventListener("mousewheel", handleTouchMove, {
+      passive: false,
+    });
+    return () => window.removeEventListener("mousewheel", handleTouchMove);
+  }, [modalVisible]);
 
     const QuestApi = async () => {
         const questData = {
