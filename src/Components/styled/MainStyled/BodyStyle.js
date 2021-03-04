@@ -43,8 +43,8 @@ export const NextBox = styled.div`
   }
 `;
 
-export const LoginBox = styled.div``;
+// export const MainBody = styled.div`
+// `
 
-export const LoginSubBox = styled.div``;
-
-export const MainBox = styled.div``;
+// export const MainBody = styled.div`
+// `
