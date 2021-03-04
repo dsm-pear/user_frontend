@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import Comments from "./Comments";
@@ -21,7 +21,7 @@ const ReportComment = (props) => {
     } catch (e) {
       console.log('에러');
       console.error(e);
-      switch (e.mapdata.status) {
+      switch (e.data.status) {
         case 400:
           alert("프로필 불러오기를 실패했습니다.");
           break;

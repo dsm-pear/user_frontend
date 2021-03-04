@@ -8,12 +8,12 @@ import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
 
-function MainReport({ match }) {
+function MainReport(props) {
   const [reportData, setReportData] = useState([]);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
   //토큰 검사
-  //const refreshHandler = useRefresh();
+  const refreshHandler = useRefresh();
 
   useEffect(() => {
     //보고서 내용
@@ -22,17 +22,16 @@ function MainReport({ match }) {
         loding(true);
         const data = await request(
           "get",
-          `/report/${match.params.reportid}`,
+          `/report/${props.reportId}`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           0
         );
 
         setReportData(data.reportData);
-        console.log(reportData);
-        console.log(data);
+        
       } catch (e) {
         console.error(e);
-        /* switch (e.data.status) {
+        switch (e.data.status) {
           case 400:
             alert("프로필 불러오기를 실패했습니다.");
             break;
@@ -43,7 +42,7 @@ function MainReport({ match }) {
             break;
           default:
             break;
-        } */
+        }
       }
       setLoding(false);
       setError(null);

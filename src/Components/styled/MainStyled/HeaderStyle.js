@@ -10,9 +10,21 @@ export const HeaderBox = styled.div`
     text-decoration: none;
     color: #000000;
   }
+  padding-top: 40px;
+  display: fixed;
+  z-index: 10;
+  margin: 0 auto;
+  font-family: "Noto Sans KR", sans-serif;
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
 `;
 
 export const HeaderSubBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   margin: 0 auto;
@@ -46,13 +58,18 @@ export const SeachBar = styled.div`
 export const SeachBarSelect = styled.div`
   font-size: 13px;
   width: 70px;
-  border: none;
-  border-radius: 21px 0 0 21px;
-  background-color: #e4eef2;
-  cursor: pointer;
-  font-family: "Noto Sans KR", sans-serif;
+  margin-right: 8vw;
   &:focus {
-    outline: none;
+    border: none;
+    border-radius: 21px 0 0 21px;
+    background-color: #e4eef2;
+  }
+  img {
+    cursor: pointer;
+    font-family: "Noto Sans KR", sans-serif;
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
