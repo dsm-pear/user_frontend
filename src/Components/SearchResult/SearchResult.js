@@ -74,7 +74,9 @@ const SearchResult = ({location}) => {
     }
 
     const onPage = (num) => {
-        history.push(`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`)
+        history.push(
+            `search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`
+        )
     }
 
     /* api 연동되면 수정할 것들 */
