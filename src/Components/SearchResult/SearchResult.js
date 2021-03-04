@@ -66,11 +66,9 @@ const SearchResult = ({ location }) => {
     }
   };
 
-  const onPage = () => {
-    history.push(
-      `search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`
-    );
-  };
+    const onPage = (num) => {
+        history.push(`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`)
+    }
 
   /* api 연동되면 수정할 것들 */
 
@@ -84,27 +82,14 @@ const SearchResult = ({ location }) => {
     }
   }
 
-  const processed = (querys) =>
-    page_arr.map((num) => {
-      if (Number(querys.page) !== num) {
-        return (
-          <div onClick={(() => setNowPage(num), onPage)} key={num}>
-            {" "}
-            {page_arr[num]}{" "}
-          </div>
-        );
-      } else {
-        return (
-          <div
-            onClick={(() => setNowPage(num), onPage)}
-            style={{ color: "#6192f3" }}
-            key={num}
-          >
-            {" "}
-            {page_arr[num]}{" "}
-          </div>
-        );
-      }
+
+    const processed = (querys) => page_arr.map((num)=>{
+        if(Number(querys.page) !== num){
+            return <div onClick={()=>setNowPage(num), () => onPage(num)} key={num}> {page_arr[num]} </div>
+        }
+        else {
+            return <div onClick={()=>setNowPage(num), () => onPage(num)} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </div>
+        }
     });
 
   const prev = () => {
