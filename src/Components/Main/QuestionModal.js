@@ -9,23 +9,21 @@ const QuestModal = ({ visible, onClose, message }) => {
     }
   };
 
-  return (
-    <S.ModalBox visible={visible}>
-      <S.ModalBackground id="asd">
-        <S.Modal>
-          <S.ModalClose>
-            <img
-              src={closeimg}
-              alt="사진"
-              className="modal-close"
-              onClick={close}
-            />
-          </S.ModalClose>
-          <S.ModalContant>{message}</S.ModalContant>
-        </S.Modal>
-      </S.ModalBackground>
-    </S.ModalBox>
-  );
-};
+    return (
+        <S.ModalBox visible={visible}>
+            <S.ModalBackground>
+
+                    <S.Modal>
+                        <S.ModalClose>
+                            <img src={closeimg} alt="사진" className="modal-close" onClick={close}/>
+                        </S.ModalClose>
+                        <S.ModalContant>
+                            {message}
+                        </S.ModalContant>
+                    </S.Modal>
+            </S.ModalBackground>
+        </S.ModalBox>
+    )
+}
 
 export default QuestModal;
