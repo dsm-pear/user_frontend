@@ -136,6 +136,7 @@ export const ResultProfile = styled.div`
 `;
 
 export const ResultName = styled.div`
+    width: 580px;
     color: #000000;
     font-size: 16px;
     line-height: 1.19;

@@ -6,7 +6,7 @@ import Header from '../Main/Header';
 import {LeftArrow, RightArrow} from '../../assets/ArrowImg/index';
 import queryString from 'query-string';
 import { request } from '../../utils/axios/axios';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const SearchResult = ({location}) => {
     const query = queryString.parse(location.search);
@@ -14,6 +14,8 @@ const SearchResult = ({location}) => {
     const [ searchData, setSearchData ] = useState(null);
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(null);
+
+    const history = useHistory()
 
     /* page 설정 */
     const [ page, setPage ] = useState(5);
@@ -71,26 +73,30 @@ const SearchResult = ({location}) => {
         }
     }
 
+    const onPage = () => {
+        history.push(`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`)
+    }
+
     /* api 연동되면 수정할 것들 */
 
-        if(EndPage < 5){
-            for(let i = basicsPage; i <= EndPage; i++) {
-                page_arr[i] = i;
-            }
+    if(EndPage < 5){
+        for(let i = basicsPage; i <= EndPage; i++) {
+            page_arr[i] = i;
         }
-        else{
-            for(let i = basicsPage; i <= page; i++) {
-            page_arr[i]=i;
-            }
+    }
+    else{
+        for(let i = basicsPage; i <= page; i++) {
+        page_arr[i]=i;
         }
+    }
 
 
     const processed = (querys) => page_arr.map((num)=>{
         if(Number(querys.page) !== num){
-            return <Link onClick={()=>setNowPage(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} key={num}> {page_arr[num]} </Link>
+            return <div onClick={()=>setNowPage(num), onPage} key={num}> {page_arr[num]} </div>
         }
         else {
-            return <Link onClick={()=>setNowPage(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </Link>
+            return <div onClick={()=>setNowPage(num), onPage} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </div>
         }
     });
     
