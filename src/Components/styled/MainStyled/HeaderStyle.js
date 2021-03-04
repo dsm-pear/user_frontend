@@ -64,7 +64,7 @@ export const SeachChoice = styled.div`
 export const SeachList = styled.div`
   cursor: pointer;
   margin-top: 20px;
-  z-index: 5;
+  z-index: 6;
   width: 52px;
   height: 47px;
   border-radius: 6px;
