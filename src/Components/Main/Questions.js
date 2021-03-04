@@ -4,28 +4,34 @@ import * as S from '../styled/MainStyled/QuestionsStyle';
 import { request } from '../../utils/axios/axios';
 
 const Questions = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [email, setEmail] = useState("");
-  const [content, setContent] = useState("");
 
-  const [message, setMessage] = useState(null);
+    const [ modalVisible, setModalVisible] = useState(false);
+    const [ email, setEmail ] = useState("");
+    const [ content, setContent ] = useState("");
 
-  const onEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const onContent = (e) => {
-    setContent(e.target.value);
-  };
+    const [ message, setMessage ] = useState(null)
 
-  const send = (e) => {
-    e.preventDefault();
-    if ([email, content].includes("")) {
-      setMessage("빈 칸을 입력해주세요");
-    } else {
-      QuestApi();
+    const closeModal = () => {
+        setModalVisible(false);
     }
-    setModalVisible(true);
-  };
+
+    const onEmail = (e) => {
+        setEmail(e.target.value);
+    }
+    const onContent = (e) => {
+        setContent(e.target.value);
+    }
+
+    const send = (e) => {
+        e.preventDefault();
+        if([email, content].includes("")){
+            setMessage("빈 칸을 입력해주세요")
+            setModalVisible(true);
+        }else{
+            QuestApi()
+        }
+        
+    }
 
     const QuestApi = async () => {
         const questData = {
