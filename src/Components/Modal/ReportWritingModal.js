@@ -53,7 +53,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const ViewApi = async () => {
     try {
       setError(null);
-      setData(null);
+      setData([]);
       setLoading(null);
 
       const response = await request(
@@ -117,7 +117,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             <I.BorderResult>
               <div>
                 {data.map(() => {
-                  console.log(users);
                   return (
                     <I.BolderCheckBox>
                       <span>

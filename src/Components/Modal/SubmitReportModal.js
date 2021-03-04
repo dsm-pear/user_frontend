@@ -50,11 +50,9 @@ const SubmitReportModal = ({
       .catch((err) => console.log(err));
 
     axios
-      .post(`${baseUrl}:8081/report`, {
-        headers: {
-          "Contect-Type": "application/json",
-        },
-        data: {
+      .post(
+        `${baseUrl}:8081/report`,
+        {
           title: `${title}`,
           description: `${description}`,
           languages: `${languages}`,
@@ -67,7 +65,12 @@ const SubmitReportModal = ({
           github: `${github}`,
           teamName: `${teamName}`,
         },
-      })
+        {
+          headers: {
+            "Contect-Type": "application/json",
+          },
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

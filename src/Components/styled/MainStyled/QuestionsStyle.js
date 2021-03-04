@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Questions = styled.div`
   height: 100%;
@@ -31,7 +31,7 @@ export const QuestExplain = styled.div`
 `;
 
 export const QuestInputForm = styled.form`
-    font-family: "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 `;
 
 export const EmailBox = styled.div`
@@ -43,19 +43,19 @@ export const EmailBox = styled.div`
 `;
 
 export const EmailInput = styled.input`
-    width: 900px;
-    font-size: 20px;
-    line-height: 1.2;
-    color: #4d4d4d;
-    border-radius: 30px;
-    border: none;
-    align-items: center;
-    padding: 18px 0 18px 55px;
-    background-color: #e4eef2;
-    font-family: "Noto Sans KR", sans-serif;
-    &:focus {
-        outline: none;
-    }
+  width: 900px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #4d4d4d;
+  border-radius: 30px;
+  border: none;
+  align-items: center;
+  padding: 18px 0 18px 55px;
+  background-color: #e4eef2;
+  font-family: "Noto Sans KR", sans-serif;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ContentBox = styled.div`
@@ -67,19 +67,19 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = styled.textarea`
-    font-family: "Noto Sans KR", sans-serif;
-    width: 900px;
-    font-size: 20px;
-    line-height: 1.2;
-    border: none;
-    align-items: center;
-    resize: none;
-    margin: 18px 0 0 55px;
-    background-color: #e4eef2;
-    color: #4d4d4d;
-    &:focus {
-        outline: none;
-    }
+  font-family: "Noto Sans KR", sans-serif;
+  width: 900px;
+  font-size: 20px;
+  line-height: 1.2;
+  border: none;
+  align-items: center;
+  resize: none;
+  margin: 18px 0 0 55px;
+  background-color: #e4eef2;
+  color: #4d4d4d;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const QuestButton = styled.button`
@@ -106,22 +106,23 @@ export const QuestButton = styled.button`
 /* 모달 스타일 */
 
 export const ModalBox = styled.div`
-    overflow: hidden;
-    width: 100%;
-    display: ${(props) => (props.visible ? 'block' : 'none')};
+  overflow: hidden;
+  width: 100%;
+  display: ${(props) => (props.visible ? "block" : "none")};
 `;
 
-export const ModalBackground = styled.div `
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; 
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items : center;
-    z-index: 3;
-    overflow: hidden;
-`
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  overflow: hidden;
+`;
 
 export const Modal = styled.div`
   width: 660px;
@@ -159,4 +160,4 @@ export const NoticeAdd = styled.div`
   text-align: center;
 `;
 
-export const QuestInputForm = styled.div``;
+// export const QuestInputForm = styled.div``;
