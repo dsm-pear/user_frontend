@@ -1,18 +1,22 @@
 import * as S from '../styled/SearchResult/SearchResultStyle';
 import { StudentProfile } from '../../assets';
 import React, {useCallback} from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const SearchResultProfile = (props) => {
     const searchData = props.data;
 
-    console.log(props)
+    const history = useHistory();
+
+    const onLink = () => {
+        history.push(`/user-profile`)
+    }
 
     const SearchPropfile = useCallback(
         (dataList) => {
             return dataList.map((data)=>{
                 return(
-                    <Link to={`/user-profile`} key={data.email}>
+                    <div onClick={onLink} key={data.email}>
                         <S.Container style={{color: "#6192f3"}} >
                             <S.ContainerContant >
                                 <S.ResultProfile>
@@ -28,7 +32,7 @@ const SearchResultProfile = (props) => {
                                 </S.ResultEmail>
                             </S.ContainerContant>
                         </S.Container>
-                    </Link>
+                    </div>
                 )
             })
         }
