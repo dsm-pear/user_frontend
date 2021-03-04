@@ -172,4 +172,5 @@ export const Mypro = styled.div`
     font-size: 18px;
     color: #5955d8;
   }
+
 `;
