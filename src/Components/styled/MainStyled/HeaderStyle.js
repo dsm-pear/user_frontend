@@ -173,3 +173,4 @@ export const Mypro = styled.div`
     color: #5955d8;
   }
 `;
+
