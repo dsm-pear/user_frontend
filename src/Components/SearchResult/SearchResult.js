@@ -73,7 +73,7 @@ const SearchResult = ({location}) => {
         }
     }
 
-    const onPage = () => {
+    const onPage = (num) => {
         history.push(`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`)
     }
 
@@ -93,10 +93,10 @@ const SearchResult = ({location}) => {
 
     const processed = (querys) => page_arr.map((num)=>{
         if(Number(querys.page) !== num){
-            return <div onClick={()=>setNowPage(num), onPage} key={num}> {page_arr[num]} </div>
+            return <div onClick={()=>setNowPage(num), () => onPage(num)} key={num}> {page_arr[num]} </div>
         }
         else {
-            return <div onClick={()=>setNowPage(num), onPage} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </div>
+            return <div onClick={()=>setNowPage(num), () => onPage(num)} style={{color: "#6192f3"}} key={num}> {page_arr[num]} </div>
         }
     });
     
