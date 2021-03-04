@@ -66,11 +66,11 @@ const SearchResult = ({ location }) => {
     }
   };
 
-  const onPage = () => {
-    history.push(
-      `search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`
-    );
-  };
+    const onPage = (num) => {
+        history.push(
+            `search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`
+        )
+    }
 
   /* api 연동되면 수정할 것들 */
 
