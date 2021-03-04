@@ -10,8 +10,6 @@ const Questions = () => {
 
   const [message, setMessage] = useState(null);
 
-    const [ message, setMessage ] = useState(null)
-
   const onEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -28,38 +26,6 @@ const Questions = () => {
     }
     setModalVisible(true);
   };
-
-  const QuestApi = async () => {
-    const questData = {
-      email: email,
-      description: content,
-    };
-    const response = await request("post", "/question", {}, questData);
-
-    const statusNumber = Number(response.status);
-
-    if (statusNumber === 200) {
-      setMessage("버그 & 문의 사항이 접수 되었습니다");
-    } else if (statusNumber === 400) {
-      setMessage("에러발생! 내용을 확인해주세요");
-    }
-  };
-
-    const send = (e) => {
-        e.preventDefault();
-        if([email, content].includes("")){
-            setMessage("빈 칸을 입력해주세요")
-            setModalVisible(true);
-        }else{
-            QuestApi()
-        }
-        
-    }
-    window.addEventListener("mousewheel", handleTouchMove, {
-      passive: false,
-    });
-    return () => window.removeEventListener("mousewheel", handleTouchMove);
-  }, [modalVisible]);
 
     const QuestApi = async () => {
         const questData = {
