@@ -37,6 +37,7 @@ const Notice = ({location}) => {
                     ""
                 );
                 setContainerData(response.data);
+                console.log(response.data)
                 setEndPage(response.data.totalPages)
             }catch(e){
                 setError(e);

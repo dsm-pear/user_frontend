@@ -12,6 +12,17 @@ const SubmitReportModal = ({
   myopa,
   setMyOpa,
   files,
+  title,
+  description,
+  languages,
+  type,
+  access,
+  field,
+  grade,
+  isSubmitted,
+  fileName,
+  github,
+  teamName,
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
@@ -39,29 +50,32 @@ const SubmitReportModal = ({
       .catch((err) => console.log(err));
 
     axios
-      .post(`${baseUrl}:8081/report`, {
-        headers: {
-          "Contect-Type": "application/json",
+      .post(
+        `${baseUrl}:8081/report`,
+        {
+          title: `${title}`,
+          description: `${description}`,
+          languages: `${languages}`,
+          type: `${type}`,
+          access: `${access}`,
+          field: `${field}`,
+          grade: `${grade}`,
+          isSubmitted: `${isSubmitted}`,
+          fileName: `${fileName}`,
+          github: `${github}`,
+          teamName: `${teamName}`,
         },
-        data: {
-          title: "<title>",
-          description: "<description>",
-          languages: "<languages>",
-          type: "<type>",
-          access: "<access>",
-          field: "<field>",
-          grade: "<grade>",
-          isSubmitted: "<isSubmitted>",
-          fileName: "<fileName>",
-          github: "<github>",
-          teamName: "<teamName>",
-        },
-      })
+        {
+          headers: {
+            "Contect-Type": "application/json",
+          },
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
-  const baseUrl = "http://10.156.147.50";
+  const baseUrl = "http://15.164.102.79";
 
   return (
     <>
