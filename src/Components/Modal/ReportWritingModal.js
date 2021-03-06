@@ -20,7 +20,9 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(null);
   const isAccessToken = localStorage.getItem("access-token");
-  //const refreshHandler = useRefresh();
+  const refreshHandler = useRefresh();
+
+  const [search, setSearch] = useState("");
   const onClick = () => {
     setOpen("hidden");
     setMyHei("0");
@@ -40,13 +42,25 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       const newUser = [...user];
       newUser[user.length] = e.target.value;
       setUser(newUser);
-      e.target.value = "";
+      // e.target.value = "";
     }
+    console.log(e.target.value);
+    setSearch(e.target.value);
 
-    ViewApi();
+    //  axios.get({
+    //     hedears: {
+    //       "Content-type": "application/json",
+    //       Authorization: "Bearer <access-token>",
+    //     },
+    //     params: {
+    //       name: "",
+    //     },
+    //   });
+
+    if (e.target.value === "김") ViewApi(e.target.value);
   };
 
-  const ViewApi = async () => {
+  const ViewApi = async (search) => {
     try {
       setError(null);
       setData([]);
@@ -54,7 +68,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
       const response = await request(
         "get",
-        `/account?name=${user}&size=6&page=0`,
+        `/account?name=${search}&size=6&page=0`,
         {
           Authorization: `Bearer ${isAccessToken}`,
         },
@@ -63,18 +77,18 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       setData(response.data.userResponses);
     } catch (e) {
       setError(e);
-      // switch (e.data.status) {
-      //   case 400:
-      //     alert("");
-      //     break;
-      //   case 403:
-      //     refreshHandler().then(() => {
-      //       ViewApi();
-      //     });
-      //     break;
-      //   default:
-      //     break;
-      // }
+      switch (e.data.status) {
+        case 400:
+          alert("");
+          break;
+        case 403:
+          // refreshHandler().then(() => {
+          //   ViewApi();
+          // });
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -99,7 +113,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             <I.BorderInput>
               <div>
                 <span>
-                  <input type="text" onKeyPress={onSearchChange} />
+                  <input type="text" onKeyUp={onSearchChange} />
                   <img src={searchImg} alt="search" />
                 </span>
               </div>
@@ -108,11 +122,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           <S.SearchResult>
             <I.BorderResult>
               <div>
-                {data.map(() => {
+                {data.map(({ name, email }) => {
                   return (
                     <I.BolderCheckBox>
                       <span>
-                        {user.name}({user.email})
+                        {name}({email})
                       </span>
                       <div onClick={clickCheckBox}>
                         {toggle === true ? (
