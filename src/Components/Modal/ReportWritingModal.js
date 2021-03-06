@@ -10,12 +10,12 @@ import {
   checked,
   bfchecked,
 } from "../../assets";
+import axios from "axios";
 
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [user, setUser] = useState([]);
-  const [users, setUsers] = useState("");
+  const [user, setUser] = useState("");
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(null);
@@ -46,10 +46,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     ViewApi();
   };
 
-  const onInputChange = (e) => {
-    setUsers(e.target.value);
-  };
-
   const ViewApi = async () => {
     try {
       setError(null);
@@ -58,7 +54,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
       const response = await request(
         "get",
-        `/account?name=${data}&size=6&page=0`,
+        `/account?name=${user}&size=6&page=0`,
         {
           Authorization: `Bearer ${isAccessToken}`,
         },
@@ -103,11 +99,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             <I.BorderInput>
               <div>
                 <span>
-                  <input
-                    type="text"
-                    onKeyPress={onSearchChange}
-                    onChange={onInputChange}
-                  />
+                  <input type="text" onKeyPress={onSearchChange} />
                   <img src={searchImg} alt="search" />
                 </span>
               </div>
@@ -120,7 +112,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
                   return (
                     <I.BolderCheckBox>
                       <span>
-                        {users.name}({users.email})
+                        {user.name}({user.email})
                       </span>
                       <div onClick={clickCheckBox}>
                         {toggle === true ? (
