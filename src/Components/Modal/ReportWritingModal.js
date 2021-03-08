@@ -19,9 +19,8 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(null);
-  const isAccessToken = localStorage.getItem("access-token");
+  const isAccessToken = localStorage.getItem("<access-token>");
   const refreshHandler = useRefresh();
-
   const [search, setSearch] = useState("");
   const onClick = () => {
     setOpen("hidden");
@@ -46,17 +45,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
     console.log(e.target.value);
     setSearch(e.target.value);
-
-    //  axios.get({
-    //     hedears: {
-    //       "Content-type": "application/json",
-    //       Authorization: "Bearer <access-token>",
-    //     },
-    //     params: {
-    //       name: "",
-    //     },
-    //   });
-
     if (e.target.value === "김") ViewApi(e.target.value);
   };
 
@@ -91,16 +79,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       }
     }
   };
-
-  // if (error) {
-  //   return <div>{error}</div>;
-  // }
-  // if (data) {
-  //   return <div style={{ position: "absolute", color: "lightgray", fontSize: "12px" }}>data없음</div>;
-  // }
-  // if (loading) {
-  //   return <div>로딩중..</div>;
-  // }
 
   return (
     <S.Div visibility={open}>

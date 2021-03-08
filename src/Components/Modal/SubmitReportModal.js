@@ -26,6 +26,7 @@ const SubmitReportModal = ({
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
+  const isAccessToken = localStorage.getItem("<access-token>");
 
   const onClick = () => {
     setState("hidden");
@@ -41,7 +42,7 @@ const SubmitReportModal = ({
     data1.append("reportFile", files[0]); // append = 기존의 것 + @
     // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
     axios
-      .post(`${baseUrl}:3000/report/files/1`, data1, {
+      .post(`https://10.156.147.50:3000/report/files/1`, data1, {
         headers: {
           "Content-Type": "multipart/form-data", // multipart = 파일 업로드
         },
@@ -51,7 +52,7 @@ const SubmitReportModal = ({
 
     axios
       .post(
-        `${baseUrl}:8081/report`,
+        `${baseUrl}:8080/report`,
         {
           title: `${title}`,
           description: `${description}`,
@@ -68,6 +69,7 @@ const SubmitReportModal = ({
         {
           headers: {
             "Contect-Type": "application/json",
+            Authorization: `Bearer ${isAccessToken}`,
           },
         }
       )

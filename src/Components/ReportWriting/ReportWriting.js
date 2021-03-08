@@ -31,10 +31,7 @@ const ReportWriting = () => {
   const [access, setAccess] = useState("");
   const [field, setField] = useState("");
   const [grade, setGrade] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(0);
-  const [fileName, setFileName] = useState();
   const [github, setGithub] = useState("");
-  const [teamName, setTeamName] = useState([]);
   const [autoSave, setAutoSave] = useState(
     localStorage.getItem("userTextData")
   );
@@ -152,17 +149,6 @@ const ReportWriting = () => {
     console.log(e);
   };
 
-  // const onFileNameChage = (e) => {
-  //   setFileName();
-  // };
-
-  // const onIsSubmittedChange = (e) => {
-  //   setIsSubmitted();
-  // };
-  // const onTeamNameChange = (e) => {
-  //   setTeamName();
-  // };
-
   const onTypeClick = (e) => {
     setType(e.target.value);
     console.log(e);
@@ -212,10 +198,7 @@ const ReportWriting = () => {
         access={access}
         field={field}
         grade={grade}
-        isSubmitted={isSubmitted}
-        fileName={fileName}
         github={github}
-        teamName={teamName}
       />
       <ReportWritingModal
         setOpen={setOpen}
