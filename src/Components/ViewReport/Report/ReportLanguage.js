@@ -1,11 +1,28 @@
 import React from "react";
 import * as S from "../../styled/ViewReport/MainStyle";
-import SubLanguage from "./SubLanguage";
 
-const ReportLanguage = ({ language }) => {
+const SubLanguage = ({ languages }) => {
+  return (
+    <S.Language>
+      <span>{languages}</span>
+    </S.Language>
+  );
+};
+
+const ReportLanguage = (props) => {
+  //const language = props.languages;
   const LangCount = [
     {
-      language,
+      id: 1,
+      language: "JAVA",
+    },
+    {
+      id: 2,
+      language: "JAVA",
+    },
+    {
+      id: 2,
+      language: "Jsfsjfhlskhfsfhkjlsh",
     },
   ];
 
@@ -13,8 +30,10 @@ const ReportLanguage = ({ language }) => {
     <S.CoverLang>
       <h2>개발에 사용한 언어</h2>
       <S.TableCover>
-        {LangCount.map((language, i) => (
-          <SubLanguage key={i} language={language} />
+        {LangCount.map((language) => (
+          <S.Language key={language.id}>
+            <span>{language.language}</span>
+          </S.Language>
         ))}
       </S.TableCover>
     </S.CoverLang>

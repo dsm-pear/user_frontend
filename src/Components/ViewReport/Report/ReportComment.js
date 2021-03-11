@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
-import Comments from "./Comments";
 
 const ReportComment = (props) => {
   //코멘트 버튼 클릭시
@@ -22,20 +22,7 @@ const ReportComment = (props) => {
         }
       );
     } catch (e) {
-      console.log("에러");
       console.error(e);
-      /* switch (e.data.status) {
-        case 400:
-          alert("프로필 불러오기를 실패했습니다.");
-          break;
-        case 401:
-          refreshHandler().then(() => {
-            postReportComment();
-          });
-          break;
-        default:
-          break;
-      } */
     }
   };
 
@@ -46,13 +33,20 @@ const ReportComment = (props) => {
         <div onClick={postReportComment}></div>
       </S.Add>
       <S.MainCom>
-        {/*  {props.comment.map(({ name, email, content, commentId }) => (
-          <Comments
-            commentId={commentId}
-            name={name}
-            email={email}
-            content={content}
-          />
+{/*         {props.comment.map(({ name, email, content, commentId }) => (
+          <S.CommentBox>
+            <S.Info>
+              <div></div>
+              <Link to="/user-profile" className="Name">
+                {name}
+              </Link>
+              <Link to="/user-profile" className="Email">
+                {email}
+              </Link>
+              <span className="Comment">{comment}</span>
+            </S.Info>
+            <S.Date />
+          </S.CommentBox>
         ))} */}
       </S.MainCom>
     </S.CommentMain>

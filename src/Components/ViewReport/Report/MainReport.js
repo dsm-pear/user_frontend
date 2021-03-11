@@ -17,20 +17,18 @@ function MainReport(props) {
   //토큰 검사
   const refreshHandler = useRefresh();
 
-  useEffect(() => {
-    //보고서 내용
-
+  const report = async () => {
     try {
       //loding(true);
-      const data = request(
+      const { data } = await request(
         "get",
         `/report/52`,
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         0
       );
       setReportData(data);
-      setComment(data.data.comments);
-      console.log(reportData);
+      setComment(data.comment);
+      console.log(data.title);
     } catch (e) {
       console.error(e);
       /* switch (e.data.status) {
@@ -48,8 +46,14 @@ function MainReport(props) {
     }
     setLoding(false);
     setError(null);
-  }, []);
+  };
 
+  useEffect(() => {
+    report();
+  }, []);
+  useEffect(() => {
+    console.log(reportData);
+  }, [reportData]);
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
   if (!reportData) return <div>서버좀 줘라</div>;
@@ -71,7 +75,7 @@ function MainReport(props) {
           git="{reportData.github}"
           file={reportData.fileName}
         />
-        <ReportTeam />
+        <ReportTeam teamName={reportData.teamName} />
         <ReportLanguage languages={reportData.languages} />
         <ReportComment reportId={props.reportId} comment={comment} />
       </S.MainBox>
