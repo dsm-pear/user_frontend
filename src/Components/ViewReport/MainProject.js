@@ -11,12 +11,12 @@ import { useHistory } from "react-router-dom";
 //위에 카테고리 개인, 팀, 동아리
 function MainProject(props) {
   const history = useHistory();
-/*   const [reportId, setReportId] = useState("");
+  const [reportId, setReportId] = useState("");
   console.log(props.ReportListResponses);
 
   const reportMain = () => {
     history.push(`/view-report/${reportId}`);
-  }; */
+  };
 
   return (
     <>

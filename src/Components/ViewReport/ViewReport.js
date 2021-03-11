@@ -21,8 +21,11 @@ function ViewReport() {
           ""
         );
         //데이터 출력
-        console.log(data);
+        //console.log(data);
         setReportListResponses(data.data.reportResponses);
+
+        //값이 안담김 ㄹㅇ 
+        console.log(data.title);
       } catch (e) {
         console.error(e);
       }

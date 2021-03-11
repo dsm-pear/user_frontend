@@ -13,9 +13,9 @@ const Project = (props) => {
   };
 
   const color =
-    props.team === "동아리"
+    props.team === "CIRCLES"
       ? "#5955d8"
-      : props.team === "팀"
+      : props.team === "TEAM"
       ? "#6192f3"
       : "#27d5b1";
 
