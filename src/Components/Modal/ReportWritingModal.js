@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "../styled/Modal/RwModalStyle";
 import * as I from "../styled/Modal/RwModalInStyle";
 import { request, useRefresh } from "../../utils/axios/axios";
@@ -10,18 +10,17 @@ import {
   checked,
   bfchecked,
 } from "../../assets";
-import axios from "axios";
 
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState("");
-  const [error, setError] = useState(null);
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(null);
-  const isAccessToken = localStorage.getItem("<access-token>");
-  const refreshHandler = useRefresh();
   const [search, setSearch] = useState("");
+
+  // const refreshHandler = useRefresh();
+  const isAccessToken = localStorage.getItem("access-token");
+
   const onClick = () => {
     setOpen("hidden");
     setMyHei("0");
@@ -41,7 +40,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       const newUser = [...user];
       newUser[user.length] = e.target.value;
       setUser(newUser);
-      // e.target.value = "";
     }
     console.log(e.target.value);
     setSearch(e.target.value);
@@ -50,22 +48,18 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
   const ViewApi = async (search) => {
     try {
-      setError(null);
       setData([]);
-      setLoading(null);
 
       const response = await request(
         "get",
         `/account?name=${search}&size=6&page=0`,
         {
           Authorization: `Bearer ${isAccessToken}`,
-        },
-        ""
+        }
       );
       setData(response.data.userResponses);
     } catch (e) {
-      setError(e);
-      switch (e.data.status) {
+      switch (e.data) {
         case 400:
           alert("");
           break;
@@ -91,33 +85,35 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             <I.BorderInput>
               <div>
                 <span>
-                  <input type="text" onKeyUp={onSearchChange} />
+                  <input type="text" onChange={onSearchChange} />
                   <img src={searchImg} alt="search" />
                 </span>
               </div>
             </I.BorderInput>
           </S.SearchInput>
           <S.SearchResult>
-            <I.BorderResult>
-              <div>
-                {data.map(({ name, email }) => {
-                  return (
-                    <I.BolderCheckBox>
-                      <span>
-                        {name}({email})
-                      </span>
-                      <div onClick={clickCheckBox}>
-                        {toggle === true ? (
-                          <img src={checked} alt="checked" />
-                        ) : (
-                          <img src={bfchecked} alt="beforechecked" />
-                        )}
-                      </div>
-                    </I.BolderCheckBox>
-                  );
-                })}
-              </div>
-            </I.BorderResult>
+            {
+              <I.BorderResult>
+                <div>
+                  {data.map(({ name, email }, index) => {
+                    return (
+                      <I.BolderCheckBox>
+                        <span key={index}>
+                          {name}({email})
+                        </span>
+                        <div onClick={clickCheckBox}>
+                          {toggle === true ? (
+                            <img src={checked} alt="checked" />
+                          ) : (
+                            <img src={bfchecked} alt="beforechecked" />
+                          )}
+                        </div>
+                      </I.BolderCheckBox>
+                    );
+                  })}
+                </div>
+              </I.BorderResult>
+            }
           </S.SearchResult>
           <S.TeamState>
             <I.BorderState onClick={btnClick}>
