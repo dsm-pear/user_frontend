@@ -2,7 +2,7 @@ import Axios from "axios";
 import { useHistory } from "react-router-dom";
 
 export const MainURL = "http://15.164.102.79:8080";
-export const FileURL = "http://3.15.177.120:3000";
+export const FileURL = "http://15.164.102.79:3000";
 
 export function request(method, url, header, data) {
   return Axios({
@@ -43,22 +43,21 @@ export function useRefresh(method, url, data) {
   const history = useHistory();
 
   return true;
-  // return Axios({
-  //   method: "put",
-  //   url: MainURL + "/auth",
-  //   headers: {
-  //     "X-Refresh-Token":
-  //       /* "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTAzNjE1OTYsInN1YiI6IjIwMTIwMWtlYkBkc20uaHMua3IiLCJleHAiOjE2MTAzNjE3MTYsInR5cGUiOiJyZWZyZXNoX3Rva2VuIn0.8sq03qagvs3fV6zHYaa3XclEmRCnQ2vQd6LpryMjEUM", */
-  //       localStorage.getItem("refresh-token"),
-  //   },
-  //   data: data,
-  // })
-  //   .then((res) => {
-  //     localStorage.setItem("access-token", res.data.access_token);
+  //   return Axios({
+  //     method: "put",
+  //     url: MainURL + "/auth",
+  //     headers: {
+  //       "X-Refresh-Token": localStorage.getItem("refresh-token"),
+  //     },
+  //     data: data,
   //   })
-  //   .catch(() => {
-  //     localStorage.removeItem("access-token");
-  //     localStorage.removeItem("refresh-token");
-  //     history.push("/");
-  //   });
+  //     .then((res) => {
+  //       localStorage.setItem("access-token", res.data.access_token);
+  //     })
+  //     .catch(() => {
+  //       localStorage.removeItem("access-token");
+  //       localStorage.removeItem("refresh-token");
+  //       history.push("/");
+  //     });
+  //
 }
