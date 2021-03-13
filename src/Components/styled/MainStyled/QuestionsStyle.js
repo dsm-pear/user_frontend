@@ -1,33 +1,33 @@
 import styled from 'styled-components';
 
 export const Questions = styled.div`
-  height: 100%;
-  background-color: #ffffff;
-`;
+    height: 100%;
+    background-color: #ffffff;  
+`
 
 export const QuestionBox = styled.div`
-  width: 1032px;
-  float: center;
-  position: relative;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    width: 1032px;
+    float : center;
+    position: relative;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 export const QuestionText = styled.div`
-  text-decoration: underline;
-  text-decoration-color: #6192f3;
-  font-size: 38px;
-  line-height: 1.21;
-  letter-spacing: 6.08px;
-  margin-bottom: 37px;
+    text-decoration: underline;
+    text-decoration-color: #6192f3;
+    font-size: 38px;
+    line-height: 1.21;
+    letter-spacing: 6.08px;
+    margin-bottom: 37px;
 `;
 
 export const QuestExplain = styled.div`
-  font-size: 24px;
-  line-height: 1.21;
-  letter-spacing: 3.84px;
-  margin-bottom: 35.5px;
+    font-size: 24px;
+    line-height: 1.21;
+    letter-spacing: 3.84px;
+    margin-bottom: 35.5px;
 `;
 
 export const QuestInputForm = styled.form`
@@ -35,11 +35,11 @@ export const QuestInputForm = styled.form`
 `;
 
 export const EmailBox = styled.div`
-  width: 1030px;
-  height: 60px;
-  border-radius: 28px;
-  margin-bottom: 38px;
-  background-color: #e4eef2;
+    width: 1030px;
+    height: 60px;
+    border-radius: 28px;
+    margin-bottom: 38px;
+    background-color: #e4eef2;
 `;
 
 export const EmailInput = styled.input`
@@ -59,11 +59,11 @@ export const EmailInput = styled.input`
 `;
 
 export const ContentBox = styled.div`
-  width: 1031px;
-  height: 229px;
-  border-radius: 27px;
-  margin-bottom: 71px;
-  background-color: #e4eef2;
+    width: 1031px;
+    height: 229px;
+    border-radius: 27px;
+    margin-bottom: 71px;
+    background-color: #e4eef2;
 `;
 
 export const Content = styled.textarea`
@@ -83,25 +83,26 @@ export const Content = styled.textarea`
 `;
 
 export const QuestButton = styled.button`
-  width: 243px;
-  height: 44px;
-  border-radius: 30px;
-  line-height: 1.21;
-  font-size: 19px;
-  background-color: #6192f3;
-  color: #ffffff;
-  border: none;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    background-color: #548af5;
-  }
+    width: 243px;
+    height: 44px;
+    border-radius: 30px;
+    line-height: 1.21;
+    font-size: 19px;
+    background-color: #6192f3;
+    color: #ffffff;
+    border: none;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+    &:hover{
+        background-color: #548af5;
+    }
 `;
+
 
 /* 모달 스타일 */
 
@@ -124,39 +125,37 @@ export const ModalBackground = styled.div `
 `
 
 export const Modal = styled.div`
-  width: 660px;
-  height: 200px;
-  border-radius: 20px;
-  box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ffffff;
+    width: 660px;
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
 `;
 
 export const ModalClose = styled.div`
-  float: right;
-  width: 15.3px;
-  height: 15.1px;
-  font-size: 30px;
-  margin-right: 15px;
-  img {
-    width: 20px;
-    cursor: pointer;
-  }
+    float: right;
+    width: 15.3px;
+    height: 15.1px;
+    font-size: 30px;
+    margin-right: 15px;
+    img{
+        width: 20px;
+        cursor: pointer;
+    }
 `;
 
 export const ModalContant = styled.div`
-  line-height: 1.2;
-  letter-spacing: 2.4px;
-  font-size: 28px;
-  text-align: center;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    line-height: 1.2;
+    letter-spacing: 2.4px;
+    font-size: 28px;
+    text-align: center;
+    align-items : center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
-export const NoticeAdd = styled.div`
-  text-align: center;
+export const NoticeAdd =styled.div`
+    text-align: center;
 `;
-
-export const QuestInputForm = styled.div``;
