@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "../styled/Modal/ScModalStyle";
-import { Close } from "../../assets";
+import * as S from "../../styled/ReportWriting/Modal/ScModalStyle";
+import { Close } from "../../../assets";
 
 const SubmitSuccess = ({ setView, setOpa, view, opa }) => {
   const onClick = () => {

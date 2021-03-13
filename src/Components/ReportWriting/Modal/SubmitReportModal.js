@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SubmitSuccess from "./SubmitSuccess";
-import * as S from "../styled/Modal/SrModalStyle";
-import { Close } from "../../assets";
+import * as S from "../../styled/ReportWriting/Modal/SrModalStyle";
+import { Close } from "../../../assets";
 import axios from "axios";
 
 const SubmitReportModal = ({

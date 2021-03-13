@@ -24,49 +24,6 @@ export const BorderInput = styled.div`
   }
 `;
 
-export const BorderResult = styled.div`
-  width: 90%;
-  height: 12%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 0.4rem 0.8rem;
-  padding: 0px 10px;
-  border: 1px solid #ffffff;
-  border-radius: 7px;
-  background-color: #ffffff;
-
-  div {
-    width: 100%;
-    font-size: 13px;
-    font-family: BBTreeGL;
-  }
-`;
-
-export const BolderCheckBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  img {
-    width: 12px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  & > span {
-    width: 95%;
-  }
-
-  & > div {
-    width: 5%;
-    display: flex;
-    justify-content: flex-end;
-  }
-`;
-
 export const BorderState = styled.div`
   display: flex;
   align-items: center;

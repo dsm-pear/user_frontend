@@ -12,8 +12,6 @@ export const Div = styled.div`
   visibility: ${({ visibility }) => visibility};
 
   * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
 `;
@@ -60,7 +58,6 @@ export const SearchResult = styled.div`
   height: 72%;
   max-height: 72%;
   margin: 1.5rem 1rem 0;
-  padding: 0.8rem 0;
   border: 1px solid #e4eef2;
   border-radius: 7px;
   background-color: #e4eef2;
