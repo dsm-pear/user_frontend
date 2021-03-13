@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { alert } from "lodash";
 import ReportWritingModal from "../ReportWriting/Modal/ReportWritingModal";
 import SubmitReportModal from "../ReportWriting/Modal/SubmitReportModal";
 import * as S from "../styled/ReportWriting/style";
@@ -11,6 +10,10 @@ import { link } from "../../assets";
 import { github as gitgubimg } from "../../assets";
 
 const ReportWriting = () => {
+  const [type, setType] = useState("");
+  const [access, setAccess] = useState("");
+  const [field, setField] = useState("");
+  const [grade, setGrade] = useState("");
   const [hoverNumber, setHoverNumber] = useState(0);
   const [clickGradeNumber, setClickGradeNumber] = useState("학년 선택");
   const [clickDivisionNumber, setClickDivisionNumber] = useState("구분 선택");
@@ -27,16 +30,11 @@ const ReportWriting = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [languages, setLanguages] = useState("");
-  const [type, setType] = useState("");
-  const [access, setAccess] = useState("");
-  const [field, setField] = useState("");
-  const [grade, setGrade] = useState("");
   const [github, setGithub] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [autoSave, setAutoSave] = useState(
     localStorage.getItem("userTextData")
   );
-
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("userTextData")) || {
       title: "",
@@ -156,13 +154,13 @@ const ReportWriting = () => {
     console.log(e);
   };
 
-  const onTypeClick = (e) => {
-    setType(e.target.value);
+  const onGradeClick = (e) => {
+    setGrade(e.target.value);
     console.log(e);
   };
 
-  const onGradeClick = (e) => {
-    setGrade(e.target.value);
+  const onDivisionClick = (e) => {
+    setType(e.target.value);
     console.log(e);
   };
 
@@ -171,7 +169,7 @@ const ReportWriting = () => {
     console.log(e);
   };
 
-  const onAccessClick = (e) => {
+  const onScopeClick = (e) => {
     setAccess(e.target.value);
     console.log(e);
   };
@@ -186,6 +184,15 @@ const ReportWriting = () => {
       })
     );
     setAutoSave(e);
+  };
+
+  const checkAutoSave = (e) => {
+    console.log(e.target.value);
+    if (autoSave === true) {
+      setIsSubmitted(true);
+    } else {
+      setIsSubmitted(false);
+    }
   };
 
   return (
@@ -215,6 +222,10 @@ const ReportWriting = () => {
         open={open}
         myHei={myHei}
         opas={opas}
+        type={type}
+        access={access}
+        field={field}
+        grade={grade}
       />
       <S.Main>
         <S.BorderBox>
@@ -290,7 +301,7 @@ const ReportWriting = () => {
                       <img src={select} alt="language" />
                     </I.SelctFlexBox>
                   )}
-                  <S.ViewList onClick={onTypeClick}>
+                  <S.ViewList onClick={onDivisionClick}>
                     <I.ListTable
                       data-id="개인"
                       data-type="division"
@@ -348,21 +359,21 @@ const ReportWriting = () => {
                       data-type="field"
                       onClick={isIdClick}
                     >
-                      - 웹
+                      웹
                     </I.InList>
                     <I.InList
                       data-id="앱"
                       data-type="field"
                       onClick={isIdClick}
                     >
-                      - 앱
+                      앱
                     </I.InList>
                     <I.InList
                       data-id="게임"
                       data-type="field"
                       onClick={isIdClick}
                     >
-                      - 게임
+                      게임
                     </I.InList>
                     <I.ListTable
                       data-id="임베디드"
@@ -409,7 +420,7 @@ const ReportWriting = () => {
                       <img src={select} alt="language" />
                     </I.SelctFlexBox>
                   )}
-                  <S.ViewList onClick={onAccessClick}>
+                  <S.ViewList onClick={onScopeClick}>
                     <I.ListTable
                       data-id="전체 공개"
                       data-type="scope"
@@ -504,7 +515,9 @@ const ReportWriting = () => {
               </S.MakeTeam>
               <S.SaveSubBtn>
                 <I.SaveBtn>
-                  <div onClick={onSaveLocalStorage}>임시저장</div>
+                  <div onClick={onSaveLocalStorage && checkAutoSave}>
+                    임시저장
+                  </div>
                 </I.SaveBtn>
                 <I.SubBtn onClick={onClick}>
                   <div>제출하기</div>

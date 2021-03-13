@@ -7,7 +7,6 @@ import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState("");
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
