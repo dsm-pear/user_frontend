@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import * as S from "../styled/Modal/RwModalStyle";
 import * as I from "../styled/Modal/RwModalInStyle";
 import { request, useRefresh } from "../../utils/axios/axios";
@@ -14,10 +14,12 @@ import {
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState("");
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
 
+  const checkBox = useRef(null);
   // const refreshHandler = useRefresh();
   const isAccessToken = localStorage.getItem("access-token");
 
@@ -52,7 +54,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
       const response = await request(
         "get",
-        `/account?name=${search}&size=6&page=0`,
+        `/account?name=${search}&size=&page=0`,
         {
           Authorization: `Bearer ${isAccessToken}`,
         }

@@ -31,11 +31,13 @@ export const BorderResult = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 0 0.4rem 0.8rem;
+  padding: 0px 10px;
   border: 1px solid #ffffff;
   border-radius: 7px;
   background-color: #ffffff;
 
   div {
+    width: 100%;
     font-size: 13px;
     font-family: BBTreeGL;
   }
@@ -43,23 +45,25 @@ export const BorderResult = styled.div`
 
 export const BolderCheckBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
-  span {
-    margin-right: 0.7rem;
-  }
   img {
-    margin-left: 0.7rem;
     width: 12px;
-  }
-  div {
-    display: flex;
-    align-items: center;
   }
 
   &:hover {
     cursor: pointer;
+  }
+
+  & > span {
+    width: 95%;
+  }
+
+  & > div {
+    width: 5%;
+    display: flex;
+    justify-content: flex-end;
   }
 `;
 
