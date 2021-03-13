@@ -10,7 +10,7 @@ export const Result = styled.div`
 
 export const BorderResult = styled.div`
   width: 90%;
-  height: 95%;
+  height: 92%;
   display: flex;
   justify-content: center;
   align-items: center;
