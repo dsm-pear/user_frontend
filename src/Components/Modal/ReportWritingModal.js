@@ -43,7 +43,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
     console.log(e.target.value);
     setSearch(e.target.value);
-    if (e.target.value === "김") ViewApi(e.target.value);
+    ViewApi(e.target.value);
   };
 
   const ViewApi = async (search) => {
@@ -92,28 +92,26 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             </I.BorderInput>
           </S.SearchInput>
           <S.SearchResult>
-            {
-              <I.BorderResult>
-                <div>
-                  {data.map(({ name, email }, index) => {
-                    return (
-                      <I.BolderCheckBox>
-                        <span key={index}>
-                          {name}({email})
-                        </span>
-                        <div onClick={clickCheckBox}>
-                          {toggle === true ? (
-                            <img src={checked} alt="checked" />
-                          ) : (
-                            <img src={bfchecked} alt="beforechecked" />
-                          )}
-                        </div>
-                      </I.BolderCheckBox>
-                    );
-                  })}
-                </div>
-              </I.BorderResult>
-            }
+            {data.map(({ name, email }, index) => {
+              return (
+                <I.BorderResult>
+                  <div>
+                    <I.BolderCheckBox>
+                      <span key={index}>
+                        {name}({email})
+                      </span>
+                      <div onClick={clickCheckBox}>
+                        {toggle === true ? (
+                          <img src={checked} alt="checked" />
+                        ) : (
+                          <img src={bfchecked} alt="beforechecked" />
+                        )}
+                      </div>
+                    </I.BolderCheckBox>
+                  </div>
+                </I.BorderResult>
+              );
+            })}
           </S.SearchResult>
           <S.TeamState>
             <I.BorderState onClick={btnClick}>

@@ -28,8 +28,9 @@ export const Main = styled.div`
 `;
 
 export const BorderBox = styled.div`
-  background-color: #ffffff;
-  border: 1px solid #4d4d4d;
+  background-color: white;
+  border: 1px solid #e4eef2;
+  box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 16%);
   width: 68%;
   min-width: 950px;
   max-width: 68%;
