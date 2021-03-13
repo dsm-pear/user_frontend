@@ -11,26 +11,33 @@ const SubmitReportModal = ({
   hei,
   myopa,
   setMyOpa,
+  clickFieldNumber,
+  clickGradeNumber,
+  clickDivisionNumber,
+  clickScopeNumber,
   files,
   title,
   description,
   languages,
-  type,
-  access,
-  field,
-  grade,
   isSubmitted,
-  fileName,
   github,
   teamName,
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
-
+  const isAccessToken = localStorage.getItem("access-token");
   const onClick = () => {
     setState("hidden");
     setHei("0");
   };
+
+  // const onCloseChange = (e) => {
+  //   if (e.key === "escape") {
+  //     setState("hidden");
+  //     setHei("0");
+  //   }
+  //   console.log(e.target.value);
+  // };
 
   const btnClick = () => {
     setView("visible");
@@ -41,33 +48,38 @@ const SubmitReportModal = ({
     data1.append("reportFile", files[0]); // append = 기존의 것 + @
     // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
     axios
-      .post(`${baseUrl}:3000/report/files/1`, data1, {
+      .post(`http://15.164.102.79:3000/report/files/1`, data1, {
         headers: {
           "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+          Authorization: `Bearer ${isAccessToken}`,
         },
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
     axios
-      .post(`${baseUrl}:8081/report`, {
-        headers: {
-          "Contect-Type": "application/json",
-        },
-        data: {
+      .post(
+        `${baseUrl}:8080/report`,
+        {
           title: `${title}`,
           description: `${description}`,
           languages: `${languages}`,
-          type: `${type}`,
-          access: `${access}`,
-          field: `${field}`,
-          grade: `${grade}`,
+          type: `${clickDivisionNumber}`,
+          access: `${clickScopeNumber}`,
+          field: `${clickFieldNumber}`,
+          grade: `${clickGradeNumber}`,
           isSubmitted: `${isSubmitted}`,
-          fileName: `${fileName}`,
+          fileName: `${files}`,
           github: `${github}`,
           teamName: `${teamName}`,
         },
-      })
+        {
+          headers: {
+            "Contect-Type": "application/json",
+            Authorization: `Bearer ${isAccessToken}`,
+          },
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

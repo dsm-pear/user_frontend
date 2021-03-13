@@ -31,10 +31,8 @@ const ReportWriting = () => {
   const [access, setAccess] = useState("");
   const [field, setField] = useState("");
   const [grade, setGrade] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(0);
-  const [fileName, setFileName] = useState();
   const [github, setGithub] = useState("");
-  const [teamName, setTeamName] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [autoSave, setAutoSave] = useState(
     localStorage.getItem("userTextData")
   );
@@ -60,16 +58,22 @@ const ReportWriting = () => {
   };
 
   const isIdClick = (e) => {
-    console.log(e.target.dataset.type);
-
-    if (e.target.dataset.type === "grade") {
-      setClickGradeNumber(e.currentTarget.dataset.id);
-    } else if (e.target.dataset.type === "division") {
-      setClickDivisionNumber(e.currentTarget.dataset.id);
-    } else if (e.target.dataset.type === "field") {
-      setClickFieldNumber(e.currentTarget.dataset.id);
-    } else if (e.target.dataset.type === "scope") {
-      setClickScopeNumber(e.currentTarget.dataset.id);
+    console.log(e.target);
+    switch (e.target.dataset.type) {
+      case "grade":
+        setClickGradeNumber(e.target.innerHTML);
+        break;
+      case "division":
+        setClickDivisionNumber(e.target.innerHTML);
+        break;
+      case "field":
+        setClickFieldNumber(e.target.innerHTML);
+        break;
+      case "scope":
+        setClickScopeNumber(e.target.innerHTML);
+        break;
+      default:
+        console.log("err");
     }
   };
 
@@ -152,17 +156,6 @@ const ReportWriting = () => {
     console.log(e);
   };
 
-  // const onFileNameChage = (e) => {
-  //   setFileName();
-  // };
-
-  // const onIsSubmittedChange = (e) => {
-  //   setIsSubmitted();
-  // };
-  // const onTeamNameChange = (e) => {
-  //   setTeamName();
-  // };
-
   const onTypeClick = (e) => {
     setType(e.target.value);
     console.log(e);
@@ -208,14 +201,12 @@ const ReportWriting = () => {
         title={title}
         description={description}
         languages={languages}
-        type={type}
-        access={access}
-        field={field}
-        grade={grade}
-        isSubmitted={isSubmitted}
-        fileName={fileName}
+        clickGradeNumber={clickGradeNumber}
+        clickDivisionNumber={clickDivisionNumber}
+        clickFieldNumber={clickFieldNumber}
+        clickScopeNumber={clickScopeNumber}
         github={github}
-        teamName={teamName}
+        isSubmitted={isSubmitted}
       />
       <ReportWritingModal
         setOpen={setOpen}
@@ -448,7 +439,6 @@ const ReportWriting = () => {
               </S.ReportHeader>
               <S.UseLang>
                 {tags.map((tag, i) => {
-                  console.log(tag);
                   return (
                     <S.Tag onClick={() => onLanguageClick(i)} index={i}>
                       {tag}

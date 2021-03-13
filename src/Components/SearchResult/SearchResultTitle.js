@@ -1,9 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const SearchResultTitle = (props) => {
     const searchData = props.data;
+
+    const history = useHistory();
+
+    const onLink = () => {
+        history.push(`/view-report/main-report`)
+    }
 
     const [ type, setType ] = useState("")
 
@@ -15,7 +21,7 @@ const SearchResultTitle = (props) => {
                 const createTime = data.createdAt.split("T")
                 return(
                     <>
-                        <Link to={`/view-report/main-report`} key={data.reportId}>
+                        <div onClick={onLink} key={data.reportId}>
                             <S.Container bordercolor={color} >
                                 <S.ContainerContant>
                                     <S.ContainerBDC fontcolor={color}>
@@ -29,7 +35,7 @@ const SearchResultTitle = (props) => {
                                     </S.ContainerDay>
                                 </S.ContainerContant>
                             </S.Container>
-                        </Link>
+                        </div>
                     </>
                 )
             })

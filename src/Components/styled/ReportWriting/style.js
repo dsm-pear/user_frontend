@@ -71,6 +71,9 @@ export const ReportLogo = styled.div`
   img {
     width: 10rem;
   }
+  &.hover {
+    cursor: default;
+  }
 `;
 
 export const SelectBoxs = styled.div`
@@ -81,6 +84,10 @@ export const SelectBoxs = styled.div`
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+
+  &.hover {
+    cursor: default;
+  }
 `;
 
 export const PaddingBox = styled.div`
@@ -88,6 +95,10 @@ export const PaddingBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 0 1.5rem;
+
+  &.hover {
+    cursor: default;
+  }
 `;
 
 export const Select = styled.div`
@@ -106,7 +117,7 @@ export const Select = styled.div`
     width: 8px;
   }
   &:hover {
-    cursor: pointer;
+    cursor: default;
   }
   &:hover > div ~ div {
     visibility: visible;
@@ -351,6 +362,10 @@ export const SubmitBox = styled.div`
   width: 100%;
   display: flex;
   margin: 3rem 0 3rem;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const MakeTeam = styled.div`
@@ -361,6 +376,10 @@ export const MakeTeam = styled.div`
   user-select: none;
   width: 73%;
   height: 145px;
+
+  &:hover {
+    cursor: default;
+  }
 
   span {
     width: 100%;
@@ -378,4 +397,8 @@ export const SaveSubBtn = styled.div`
   width: 27%;
   display: flex;
   justify-content: flex-end;
+
+  &:hover {
+    cursor: default;
+  }
 `;

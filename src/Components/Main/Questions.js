@@ -1,7 +1,7 @@
-import React, {useState,useEffect}from 'react';
-import QuestionModal from './QuestionModal';
-import * as S from '../styled/MainStyled/QuestionsStyle';
-import { request } from '../../utils/axios/axios';
+import React, { useState, useEffect } from "react";
+import QuestionModal from "./QuestionModal";
+import * as S from "../styled/MainStyled/QuestionsStyle";
+import { request } from "../../utils/axios/axios";
 
 const Questions = () => {
 
@@ -45,77 +45,74 @@ const Questions = () => {
             questData
         )
 
-        console.log(response)
-        
-        const statusNumber = Number(response.status)
+    console.log(response);
 
-        if(statusNumber === 200){
-            setMessage("버그 & 문의 사항이 접수 되었습니다")
-        }else if(statusNumber === 400){
-            setMessage("에러발생! 내용을 확인해주세요")
-        }
-        setModalVisible(true);
+    const statusNumber = Number(response.status);
+
+    if (statusNumber === 200) {
+      setMessage("버그 & 문의 사항이 접수 되었습니다");
+    } else if (statusNumber === 400) {
+      setMessage("에러발생! 내용을 확인해주세요");
     }
+    setModalVisible(true);
+  };
 
-    
+  useEffect(() => {
+    function handleTouchMove(e) {
+      if (modalVisible) {
+        e.preventDefault();
+        e.stopPropagation();
 
-    useEffect(() => {
-        function handleTouchMove(e) {
-        if (modalVisible) {
-            e.preventDefault();
-            e.stopPropagation()
-
-            return false;
-        }
+        return false;
       }
-        window.addEventListener("mousewheel", handleTouchMove, {
-            passive: false
-        });
-        return ()=> window.removeEventListener("mousewheel", handleTouchMove);
-      }, [modalVisible]);
+    }
+    window.addEventListener("mousewheel", handleTouchMove, {
+      passive: false,
+    });
+    return () => window.removeEventListener("mousewheel", handleTouchMove);
+  }, [modalVisible]);
 
-    return(
-        <>
-            <S.Questions>
-                <S.QuestionBox>
-                    <S.QuestionText>문의사항</S.QuestionText>
-                    
-                        <S.QuestExplain>
-                            버그, 문의사항을 적어주시면 메일 또는 공지사항으로 안내해드리겠습니다.
-                        </S.QuestExplain>
+  return (
+    <>
+      <S.Questions>
+        <S.QuestionBox>
+          <S.QuestionText>문의사항</S.QuestionText>
 
-                    <S.QuestInputForm onSubmit={send}>
-                        <S.EmailBox>
-                            <S.EmailInput
-                                type="email"
-                                placeholder="이메일을 입력해주세요."
-                                onChange={onEmail}
-                            />
-                        </S.EmailBox>
+          <S.QuestExplain>
+            버그, 문의사항을 적어주시면 메일 또는 공지사항으로
+            안내해드리겠습니다.
+          </S.QuestExplain>
 
-                        <S.ContentBox>
-                            <S.Content
-                                rows="8"
-                                placeholder="버그 & 문의사항을 입력해주세요"
-                                onChange={onContent}
-                            />
-                        </S.ContentBox>
+          <S.QuestInputForm onSubmit={send}>
+            <S.EmailBox>
+              <S.EmailInput
+                type="email"
+                placeholder="이메일을 입력해주세요."
+                onChange={onEmail}
+              />
+            </S.EmailBox>
 
-                        <S.QuestButton>버그 & 문의 보내기</S.QuestButton>
-                    </S.QuestInputForm>
-                </S.QuestionBox>        
-                {
-                    modalVisible && 
-                    <QuestionModal
-                        visible={modalVisible}
-                        onClose={closeModal}
-                        message={message}
-                    />
-                }
-                
-            </S.Questions>
-        </>
-    )
-}
+            <S.ContentBox>
+              <S.Content
+                rows="8"
+                placeholder="버그 & 문의사항을 입력해주세요"
+                onChange={onContent}
+              />
+            </S.ContentBox>
+
+            <S.QuestButton>버그 & 문의 보내기</S.QuestButton>
+          </S.QuestInputForm>
+        </S.QuestionBox>
+        {modalVisible && (
+          <QuestionModal
+            visible={modalVisible}
+            // onClose={closeModal}
+            message={message}
+          />
+        )}
+      </S.Questions>
+    </>
+  );
+};
 
 export default Questions;

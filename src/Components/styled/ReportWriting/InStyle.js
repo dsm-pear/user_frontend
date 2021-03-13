@@ -4,6 +4,9 @@ export const SelctFlexBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ListTable = styled.div`
@@ -49,6 +52,7 @@ export const MTbtn = styled.div`
     border-radius: 18px;
     outline: none;
     background: #6192f3;
+    transition: 0.3s;
     padding: 0.3rem 1rem;
     color: white;
     font-family: BBTreeGL;
@@ -56,10 +60,12 @@ export const MTbtn = styled.div`
 
     &:hover {
       cursor: pointer;
+      background: #719cf0;
+      transition: 0.3s;
     }
   }
-  button:hover {
-    cursor: pointer;
+  &:hover {
+    cursor: default;
   }
 `;
 
@@ -92,6 +98,7 @@ export const SaveBtn = styled.div`
     border-radius: 18px;
     outline: none;
     background: #6192f3;
+    transition: 0.3s;
     padding: 0.3rem 1rem;
     color: white;
     font-family: BBTreeGL;
@@ -99,6 +106,12 @@ export const SaveBtn = styled.div`
   }
   div:hover {
     cursor: pointer;
+    background: #719cf0;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    cursor: default;
   }
 `;
 
@@ -112,6 +125,7 @@ export const SubBtn = styled.div`
     border-radius: 18px;
     outline: none;
     background: #6192f3;
+    transition: 0.3s;
     padding: 0.3rem 1rem;
     color: white;
     font-family: BBTreeGL;
@@ -119,5 +133,11 @@ export const SubBtn = styled.div`
   }
   div:hover {
     cursor: pointer;
+    background: #719cf0;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    cursor: default;
   }
 `;
