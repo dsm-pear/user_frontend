@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import UserMapping from "../Modal/UserMapping";
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
-import * as I from "../../styled/ReportWriting/Modal/RwModalInStyle";
-import { request, useRefresh } from "../../../utils/axios/axios";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
+import { request, useRefresh } from "../../../utils/axios/axios";
 
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
@@ -14,7 +13,16 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   // const refreshHandler = useRefresh();
   const isAccessToken = localStorage.getItem("access-token");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    async function getUsers() {
+      let getUsers = await fetch(
+        "https://api.dsm-pear.hs.kr/account?name=String&size=Integer&page=Integer"
+      ).then((res) => console.log(res));
+
+      setData(getUsers);
+    }
+    getUsers();
+  }, []);
 
   const ViewApi = async (search) => {
     try {
@@ -44,7 +52,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  const onClick = () => {
+  const onClose = () => {
     setOpen("hidden");
     setMyHei("0");
     setToggled(false);
@@ -70,20 +78,20 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       <S.Div visibility={open}>
         <S.LeftModalMain height={myHei} opas={opas}>
           <S.LeftModalSort>
-            <S.LeftCloseBtn onClick={onClick}>
+            <S.LeftCloseBtn onClick={onClose}>
               <span>
                 {toggled === !true && <img src={Close} alt="Close" />}
               </span>
             </S.LeftCloseBtn>
             <S.SearchInput>
-              <I.BorderInput>
+              <S.BorderInput>
                 <div>
                   <span>
                     <input type="text" onChange={onSearchChange} />
                     <img src={searchImg} alt="search" />
                   </span>
                 </div>
-              </I.BorderInput>
+              </S.BorderInput>
             </S.SearchInput>
             <S.SearchResult>
               {data.map(({ name, email }) => {
@@ -91,7 +99,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
               })}
             </S.SearchResult>
             <S.TeamState>
-              <I.BorderState onClick={btnClick}>
+              <S.BorderState onClick={btnClick}>
                 <span>현재 팀 상태</span>
                 {toggled === true ? (
                   <div>
@@ -100,7 +108,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
                 ) : (
                   <img src={NowTeam} alt="NowTeam" />
                 )}
-              </I.BorderState>
+              </S.BorderState>
             </S.TeamState>
           </S.LeftModalSort>
         </S.LeftModalMain>
@@ -109,16 +117,16 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             <S.RightModalSort>
               <S.RightCloseBtn>
                 <span>
-                  <img src={Close} alt="Close" onClick={onClick} />
+                  <img src={Close} alt="Close" onClick={onClose} />
                 </span>
               </S.RightCloseBtn>
               <S.ClickMember>
-                <I.MemberBox>
+                <S.MemberBox>
                   <div>
                     <span>전규현(201215jgh@dsm.hs.kr)</span>
                     <input type="checkbox" name="Teaminfo" value="member" />
                   </div>
-                </I.MemberBox>
+                </S.MemberBox>
               </S.ClickMember>
             </S.RightModalSort>
           </S.RightModalMain>
