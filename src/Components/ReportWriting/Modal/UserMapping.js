@@ -9,9 +9,17 @@ const CheckBoxToggle = ({ name, email }) => {
     setToggle(!toggle);
   };
 
+  const onClick = () => {
+    setToggle(!toggle);
+  };
+
+  // const onChoiceUserClick = () => {
+
+  // }
+
   return (
     <>
-      <S.Result>
+      <S.Result onClick={onClick}>
         <S.BorderResult>
           <div>
             <S.BolderCheckBox>
