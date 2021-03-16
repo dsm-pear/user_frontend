@@ -10,6 +10,9 @@ export const Div = styled.div`
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   visibility: ${({ visibility }) => visibility};
+  &:hover {
+    cursor: default;
+  }
 
   * {
     box-sizing: border-box;
@@ -32,12 +35,18 @@ export const LeftModalSort = styled.div`
   width: 100%;
   height: 100%;
   padding: 1rem 1rem;
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const LeftCloseBtn = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  &:hover {
+    cursor: default;
+  }
 
   span > img {
     width: 13px;
@@ -52,6 +61,10 @@ export const SearchInput = styled.div`
   border-radius: 20px;
   background-color: #ffffff;
   margin: 0.5rem 1rem;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const SearchResult = styled.div`
@@ -62,6 +75,10 @@ export const SearchResult = styled.div`
   border-radius: 7px;
   background-color: #e4eef2;
   overflow-y: scroll;
+
+  &:hover {
+    cursor: default;
+  }
 
   &::-webkit-scrollbar {
     width: 20px;
@@ -118,6 +135,7 @@ export const BorderInput = styled.div`
     padding: 0.5rem 1rem;
     font-size: 15px;
     font-family: BBTreeGL;
+    cursor: text;
   }
   span > img {
     width: 14px;

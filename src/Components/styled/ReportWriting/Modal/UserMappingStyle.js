@@ -6,6 +6,10 @@ export const Result = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const BorderResult = styled.div`

@@ -1,8 +1,8 @@
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 
-export const MainURL = "http://15.164.102.79:8080";
-export const FileURL = "http://15.164.102.79:3000";
+export const MainURL = "http://13.209.70.220:8080";
+export const FileURL = "http://13.209.70.220:3000";
 
 export function request(method, url, header, data) {
   return Axios({
