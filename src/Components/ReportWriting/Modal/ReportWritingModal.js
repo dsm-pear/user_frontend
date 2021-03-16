@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserMapping from "../Modal/UserMapping";
+import LoadingPage from "../LoadingPage";
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 import { request, useRefresh } from "../../../utils/axios/axios";
@@ -8,33 +9,37 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
   const [user, setUser] = useState("");
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
   // const refreshHandler = useRefresh();
   const isAccessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    async function getUsers() {
-      let getUsers = await fetch(
-        "https://api.dsm-pear.hs.kr/account?name=String&size=Integer&page=Integer"
-      ).then((res) => console.log(res));
-
-      setData(getUsers);
+    async function getUsers(getUser) {
+      try {
+        getUser = await request("get", `/account?name=`, {
+          Authorization: `Bearer ${isAccessToken}`,
+        });
+        setToggled(false);
+      } catch (e) {
+        alert(e);
+      }
+      setData(getUser.data.userResponses);
+      setLoading(false);
     }
     getUsers();
   }, []);
+
+  if (loading) return <LoadingPage />;
 
   const ViewApi = async (search) => {
     try {
       setData([]);
 
-      const response = await request(
-        "get",
-        `/account?name=${search}&size=&page=0`,
-        {
-          Authorization: `Bearer ${isAccessToken}`,
-        }
-      );
+      const response = await request("get", `/account?name=${search}`, {
+        Authorization: `Bearer ${isAccessToken}`,
+      });
       setData(response.data.userResponses);
     } catch (e) {
       switch (e.data) {
@@ -63,12 +68,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   };
 
   const onSearchChange = (e) => {
-    if (e.key === "Enter") {
-      const newUser = [...user];
-      newUser[user.length] = e.target.value;
-      setUser(newUser);
-    }
-    console.log(e.target.value);
+    const newUser = [...user];
+    newUser[user.length] = e.target.value;
+    setUser(newUser);
+
+    console.log(search);
     setSearch(e.target.value);
     ViewApi(e.target.value);
   };
@@ -94,9 +98,10 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
               </S.BorderInput>
             </S.SearchInput>
             <S.SearchResult>
-              {data.map(({ name, email }) => {
-                return <UserMapping name={name} email={email} />;
-              })}
+              {data &&
+                data.map(({ name, email, index }) => {
+                  return <UserMapping key={index} name={name} email={email} />;
+                })}
             </S.SearchResult>
             <S.TeamState>
               <S.BorderState onClick={btnClick}>
@@ -122,10 +127,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
               </S.RightCloseBtn>
               <S.ClickMember>
                 <S.MemberBox>
-                  <div>
-                    <span>전규현(201215jgh@dsm.hs.kr)</span>
-                    <input type="checkbox" name="Teaminfo" value="member" />
-                  </div>
+                  <div></div>
                 </S.MemberBox>
               </S.ClickMember>
             </S.RightModalSort>
