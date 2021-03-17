@@ -12,9 +12,6 @@ function MyProfile(props) {
 
   const [profileReport, setProfileReport] = useState([]);
   const [profileData, setProfileData] = useState("");
-/*   const [userName, setUserName] = useState(null);
-  const [userEmail, setUserEmail] = useState(null);
-  const [introduce, setIntroduce] = useState(null); */
 
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
   //프로필 수정 API
@@ -65,7 +62,6 @@ function MyProfile(props) {
         ""
       );
 
-      console.log(data.myPageReportResponses.title);
       setProfileReport(data.myPageReportResponses);
     } catch (e) {
       console.error(e);
@@ -76,7 +72,6 @@ function MyProfile(props) {
     getProfile();
     getMyProject();
   }, []);
-
   return (
     <S.Main>
       <Header></Header>
@@ -87,7 +82,7 @@ function MyProfile(props) {
             name={profileData.userName}
             email={profileData.userEmail}
             produce={profileData.self_intro}
-            setProduce={profileData.setProduce}
+            //setProduce={profileData.setProduce}
             github={profileData.git_hub}
             //setGithub={setGithub}
             text={text}
@@ -96,25 +91,22 @@ function MyProfile(props) {
           {/* 프로젝트 보여주는 곳 */}
           <S.Project>
             <S.PreProject>
-              {profileReport.map(() => (
+              {profileReport.map((myPageReportResponses, index) => (
                 <Project
-                  team={profileReport.team}
-                  title={profileReport.title}
-                  date={profileReport.createdAt}
+                  key={index}
+                  team={myPageReportResponses.team}
+                  title={myPageReportResponses.title}
+                  date={myPageReportResponses.createdAt.split("T")[0]}
                 />
               ))}
+
               {/* 밑에 더보기 / 숫자 */}
-              {/* <M.Number>
-                <Link>1</Link>
-                <Link>2</Link>
-                <Link>3</Link>
-                <Link>4</Link>
-                <Link>5</Link>
-              </M.Number> */}
             </S.PreProject>
           </S.Project>
         </S.Cover>
-        <S.Modify onClick={ChangeProfile}>{text}</S.Modify>
+        <S.Modify type="submit" onClick={ChangeProfile}>
+          {text}
+        </S.Modify>
       </S.MainProfile>
     </S.Main>
   );
