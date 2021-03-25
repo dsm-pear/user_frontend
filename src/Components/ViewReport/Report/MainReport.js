@@ -10,7 +10,9 @@ import ReportTeam from "./ReportTeam";
 
 function MainReport(props) {
   const [reportData, setReportData] = useState("");
-  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [languages, setLanguages] = useState("");
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
 
@@ -22,13 +24,14 @@ function MainReport(props) {
       //loding(true);
       const { data } = await request(
         "get",
-        `/report/52`,
+        `/report/77`,
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         0
       );
       setReportData(data);
-      setComment(data.comment);
-      console.log(data.title);
+      setComments(data.comments);
+      setMembers(data.member);
+      setLanguages(data.languages);
     } catch (e) {
       console.error(e);
       /* switch (e.data.status) {
@@ -51,9 +54,7 @@ function MainReport(props) {
   useEffect(() => {
     report();
   }, []);
-  useEffect(() => {
-    console.log(reportData);
-  }, [reportData]);
+
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
   if (!reportData) return <div>서버좀 줘라</div>;
@@ -75,9 +76,9 @@ function MainReport(props) {
           git="{reportData.github}"
           file={reportData.fileName}
         />
-        <ReportTeam teamName={reportData.teamName} />
-        <ReportLanguage languages={reportData.languages} />
-        <ReportComment reportId={props.reportId} comment={comment} />
+        <ReportTeam teamName={reportData.teamName} members={members} />
+        <ReportLanguage languages={languages} />
+        <ReportComment reportId={props.reportId} comments={comments} />
       </S.MainBox>
     </S.Main>
   );
