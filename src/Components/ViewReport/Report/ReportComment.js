@@ -1,24 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportComment = (props) => {
+  const [value, setValue] = useState("");
   //코멘트 버튼 클릭시
+  const comments = props.comments;
 
-  const comment = props.comment;
-  console.log(comment);
   const refreshHandler = useRefresh();
+
+  const onChange = (e) => {
+    console.log(e.target.value);
+    setValue(e.target.value);
+  };
 
   //댓글 작성
   const postReportComment = async (e) => {
     try {
       await request(
         "post",
-        `/report/comment/${props.reportId}`,
+        `/comment/77`,
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         {
-          content: e.target.value,
+          content: value,
         }
       );
     } catch (e) {
@@ -29,25 +34,25 @@ const ReportComment = (props) => {
   return (
     <S.CommentMain>
       <S.Add>
-        <S.Search placeholder="댓글을 입력해주세요" value={props.content} />
+        <S.Search placeholder="댓글을 입력해주세요" onChange={onChange} />
         <div onClick={postReportComment}></div>
       </S.Add>
       <S.MainCom>
-{/*         {props.comment.map(({ name, email, content, commentId }) => (
-          <S.CommentBox>
+        {comments.map(({ userName, userEmail, content, commentId }) => (
+          <S.CommentBox key={commentId}>
             <S.Info>
               <div></div>
               <Link to="/user-profile" className="Name">
-                {name}
+                {userName}
               </Link>
               <Link to="/user-profile" className="Email">
-                {email}
+                {userEmail}
               </Link>
-              <span className="Comment">{comment}</span>
+              <span className="Comment">{content}</span>
             </S.Info>
             <S.Date />
           </S.CommentBox>
-        ))} */}
+        ))}
       </S.MainCom>
     </S.CommentMain>
   );
