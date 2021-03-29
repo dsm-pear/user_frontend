@@ -5,6 +5,7 @@ import * as S from "../styled/Profile/style";
 import Header from "../Main/Header";
 import Project from "./Project";
 import Profile from "./Profile";
+import { Mypage } from "../styled/MainStyled/HeaderStyle";
 
 function MyProfile(props) {
   const [text, setText] = useState("수정");
@@ -12,6 +13,10 @@ function MyProfile(props) {
 
   const [profileReport, setProfileReport] = useState([]);
   const [profileData, setProfileData] = useState("");
+  const [reportId, setReportId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [produce, setProduce] = useState("");
 
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
   //프로필 수정 API
@@ -47,6 +52,9 @@ function MyProfile(props) {
       );
 
       setProfileData(data);
+      setName(data.userName);
+      setEmail(data.userEmail);
+      setProduce(data.self_intro);
     } catch (e) {
       //토큰 만료
       console.error(e);
@@ -57,12 +65,13 @@ function MyProfile(props) {
     try {
       const { data } = await request(
         "get",
-        "/user/profile/report?size=6&page=0",
+        "/user/profile/report?size=20&page=0",
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         ""
       );
-
+      console.log(data.myPageReportResponses.reportId);
       setProfileReport(data.myPageReportResponses);
+      setReportId(data.myPageReportResponses.reportId);
     } catch (e) {
       console.error(e);
     }
@@ -72,6 +81,9 @@ function MyProfile(props) {
     getProfile();
     getMyProject();
   }, []);
+
+  console.log(name);
+
   return (
     <S.Main>
       <Header></Header>
@@ -79,12 +91,13 @@ function MyProfile(props) {
         {/* 좌측 프로필 */}
         <S.Cover>
           <Profile
-            name={profileData.userName}
-            email={profileData.userEmail}
-            produce={profileData.self_intro}
-            //setProduce={profileData.setProduce}
+            name={name}
+            setNeme={setName}
+            setEmail={setEmail}
+            setProduce={setProduce}
+            email={email}
+            produce={produce}
             github={profileData.git_hub}
-            //setGithub={setGithub}
             text={text}
           />
 
@@ -94,9 +107,11 @@ function MyProfile(props) {
               {profileReport.map((myPageReportResponses, index) => (
                 <Project
                   key={index}
-                  team={myPageReportResponses.team}
+                  type={myPageReportResponses.type}
                   title={myPageReportResponses.title}
                   date={myPageReportResponses.createdAt.split("T")[0]}
+                  //임시저장되었나 확인
+                  isSubmitted={myPageReportResponses.isSubmitted[index]}
                 />
               ))}
 

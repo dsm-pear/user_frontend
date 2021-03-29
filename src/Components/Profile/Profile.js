@@ -5,7 +5,7 @@ import { request } from "../../utils/axios/axios";
 import * as S from "../styled/Profile/style";
 
 const Profile = (props) => {
-  const [inputs, setInputs] = useState({
+  /* const [inputs, setInputs] = useState({
     name: "",
     email: "",
     produce: "",
@@ -31,77 +31,47 @@ const Profile = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    /*  try {
-      await request(
-        
-      );
-    } catch (e) {
-      console.log(e);
-    }
- */
-
     setInputs({
       name: name,
       email: email,
       produce: produce,
     });
+  }; */
+
+  const setName = (e) => {
+    const name = e.target.value;
+    console.log(name);
   };
 
   return (
     <S.Profile>
-      <S.ProPhoto onSubmit={handleSubmit}>
+      <S.ProPhoto>
         {/* 프로필 사진 */}
         <div></div>
         {/* 이름 / 깃허브 주소 / 자신 설명 */}
         <input
-          onChange={onChange}
-          name="name"
-          value={name}
           className="input"
-          type="name"
+          type="text"
           placeholder={props.name}
-       
           disabled={props.text === "저장" ? false : true}
-          //onChange={(e) => props.setUserName(e.target.value)}
+          onChange={(e) => setName()}
         />
+
         <input
-          onChange={onChange}
-          name="email"
-          value={email}
+          type="text"
           className="input"
-          type="email"
           placeholder={props.email}
-          
           disabled={props.text === "저장" ? false : true}
-          //onChange={(e) => setUserEmail(e.target.value)}
+          onChange={(e) => setName()}
         />
         <input
-          onChange={onChange}
-          name="produce"
-          value={produce}
           className="input introduce"
           type="text"
           placeholde={props.produce}
           disabled={props.text === "저장" ? false : true}
-          //onChange={(e) => setIntroduce(e.target.value)}
+          onChange={(e) => setName()}
         />
       </S.ProPhoto>
-      <S.Git>
-        <Link
-          to={props.github}
-          onChange={(e) => props.setGithub(e.target.value)}
-        >
-          {props.userName} 님의 GITHUB 구경하기
-        </Link>
-      </S.Git>
-      {/*       <S.Produce>
-        <inupt
-          type="produce"
-          placeholder={introduce}
-          disabled={props.text === "저장" ? false : true}
-          onChange={(e) => setIntroduce(e.target.value)}
-        />
-      </S.Produce> */}
     </S.Profile>
   );
 };

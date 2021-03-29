@@ -1,10 +1,16 @@
 //프로젝트 리스트 컴포넌트
 import React from "react";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import * as S from "../styled/Profile/style";
 
 const Project = (props) => {
   const location = useLocation();
+  const history = useHistory();
+
+  const reportChilckHandler = () => {
+    history.push(`/view-report/${props.reportId}`);
+    console.log(props.reportId);
+  };
 
   const color =
     props.team === "동아리"
@@ -15,8 +21,8 @@ const Project = (props) => {
 
   return (
     <S.ProjectCover>
-      <S.MainProject color={color}>
-        <span className="project_team">[{props.team}]</span>
+      <S.MainProject color={color} onClick={reportChilckHandler}>
+        <span className="project_team">[{props.type}]</span>
         <p className="project_title">{props.title}</p>
         <span className="project_date">{props.date}</span>
         {location.pathname === "/MyProfile" && (
