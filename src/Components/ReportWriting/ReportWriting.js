@@ -130,10 +130,6 @@ const ReportWriting = () => {
     setFiles(delFile);
   };
 
-  useEffect(() => {
-    console.log(files);
-  }, [files]);
-
   const onTitleChange = (e) => {
     setTitle(e.target.value);
     console.log(e);
