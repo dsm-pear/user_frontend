@@ -48,7 +48,7 @@ const SubmitReportModal = ({
     data1.append("reportFile", files[0]); // append = 기존의 것 + @
     // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
     axios
-      .post(`http://13.209.70.220:3000/report/files/1`, data1, {
+      .post(`http://54.180.224.67:3000/report/files/1`, data1, {
         headers: {
           "Content-Type": "multipart/form-data", // multipart = 파일 업로드
           Authorization: `Bearer ${isAccessToken}`,
@@ -84,7 +84,7 @@ const SubmitReportModal = ({
       .catch((err) => console.log(err));
   };
 
-  const baseUrl = "http://13.209.70.220";
+  const baseUrl = "http://54.180.224.67";
 
   return (
     <>
