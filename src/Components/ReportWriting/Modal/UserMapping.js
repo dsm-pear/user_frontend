@@ -1,44 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { checked, bfchecked } from "../../../assets";
 import * as S from "../../styled/ReportWriting/Modal/UserMappingStyle";
 
-const CheckBoxToggle = ({ name, email }) => {
-  const [toggle, setToggle] = useState(false);
-
-  const clickCheckBox = () => {
-    setToggle(!toggle);
-  };
-
-  const onClick = () => {
-    setToggle(!toggle);
-  };
-
-  // const onChoiceUserClick = () => {
-
-  // }
-
+const UserMapping = ({ data, onUserClick }) => {
   return (
     <>
-      <S.Result onClick={onClick}>
+      <S.LeftResult onClick={() => onUserClick(data.id)}>
         <S.BorderResult>
-          <div>
+          <S.LeftSideBox>
             <S.BolderCheckBox>
               <span>
-                {name}({email})
+                {data.user.name} ({data.user.email})
               </span>
-              <div onClick={clickCheckBox}>
-                {toggle === true ? (
+              <div>
+                {data.isSelected ? (
                   <img src={checked} alt="checked" />
                 ) : (
                   <img src={bfchecked} alt="beforechecked" />
                 )}
               </div>
             </S.BolderCheckBox>
-          </div>
+          </S.LeftSideBox>
         </S.BorderResult>
-      </S.Result>
+      </S.LeftResult>
     </>
   );
 };
 
-export default CheckBoxToggle;
+export default UserMapping;

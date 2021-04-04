@@ -67,7 +67,7 @@ export const SearchInput = styled.div`
   }
 `;
 
-export const SearchResult = styled.div`
+export const LeftSearchResult = styled.div`
   height: 72%;
   max-height: 72%;
   margin: 1.5rem 1rem 0;
@@ -193,7 +193,7 @@ export const ClickMember = styled.div`
 
 export const MemberBox = styled.div`
   width: 90%;
-  height: 12%;
+  height: 15%;
   display: flex;
   justify-content: center;
   align-items: center;

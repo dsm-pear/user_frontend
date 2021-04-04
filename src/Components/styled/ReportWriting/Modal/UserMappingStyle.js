@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Result = styled.div`
+export const LeftResult = styled.div`
   height: 14%;
   margin: 8px 0;
   width: 100%;
@@ -22,12 +22,12 @@ export const BorderResult = styled.div`
   border: 1px solid #ffffff;
   border-radius: 7px;
   background-color: #ffffff;
+`;
 
-  div {
-    width: 100%;
-    font-size: 13px;
-    font-family: BBTreeGL;
-  }
+export const LeftSideBox = styled.div`
+  width: 100%;
+  font-size: 13px;
+  font-family: BBTreeGL;
 `;
 
 export const BolderCheckBox = styled.div`
