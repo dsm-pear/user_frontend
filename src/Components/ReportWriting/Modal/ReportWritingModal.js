@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserMapping from "../Modal/UserMapping";
 import LoadingPage from "../LoadingPage";
+import RightModal from "../Modal/RightModal";
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 import { request, useRefresh } from "../../../utils/axios/axios";
@@ -10,9 +11,8 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [user, setUser] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
 
-  // const refreshHandler = useRefresh();
+  const refreshHandler = useRefresh();
   const isAccessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
@@ -25,7 +25,14 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       } catch (e) {
         alert(e);
       }
-      setData(getUser.data.userResponses);
+      console.log(getUser);
+      setData(
+        getUser.data.userResponses.map((user, index) => ({
+          id: index + 1,
+          isSelected: false,
+          user,
+        }))
+      );
       setLoading(false);
     }
     getUsers();
@@ -40,21 +47,46 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       const response = await request("get", `/account?name=${search}`, {
         Authorization: `Bearer ${isAccessToken}`,
       });
-      setData(response.data.userResponses);
+      setData(
+        response.data.userResponses.map((user, index) => ({
+          id: index + 1,
+          isSelected: false,
+          user,
+        }))
+      );
     } catch (e) {
       switch (e.data) {
         case 400:
           alert("");
           break;
         case 403:
-          // refreshHandler().then(() => {
-          //   ViewApi();
-          // });
+          refreshHandler().then(() => {
+            ViewApi();
+          });
           break;
         default:
           break;
       }
     }
+  };
+
+  const onUserClick = (index) => {
+    setData(
+      data.map(({ id, user, isSelected }, i) => {
+        // [{ id:1, user, isSelected: false }]
+        // return data;
+        // return {
+        //   id: data.id,
+        //   user: data.user,
+        //   isSelected: true,
+        // const id = 1;
+        return {
+          id,
+          user,
+          isSelected: index === i + 1 ? !isSelected : isSelected,
+        };
+      })
+    );
   };
 
   const onClose = () => {
@@ -72,8 +104,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     newUser[user.length] = e.target.value;
     setUser(newUser);
 
-    console.log(search);
-    setSearch(e.target.value);
     ViewApi(e.target.value);
   };
 
@@ -97,12 +127,19 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
                 </div>
               </S.BorderInput>
             </S.SearchInput>
-            <S.SearchResult>
+            <S.LeftSearchResult>
               {data &&
-                data.map(({ name, email, index }) => {
-                  return <UserMapping key={index} name={name} email={email} />;
+                data.map((data) => {
+                  // data -> { id: 1, user: { name: 'sdf', email: 'sdf' }, isSelected: false }
+                  return (
+                    <UserMapping
+                      key={data.id}
+                      data={data}
+                      onUserClick={onUserClick}
+                    />
+                  );
                 })}
-            </S.SearchResult>
+            </S.LeftSearchResult>
             <S.TeamState>
               <S.BorderState onClick={btnClick}>
                 <span>현재 팀 상태</span>
@@ -118,20 +155,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           </S.LeftModalSort>
         </S.LeftModalMain>
         {toggled === true && (
-          <S.RightModalMain>
-            <S.RightModalSort>
-              <S.RightCloseBtn>
-                <span>
-                  <img src={Close} alt="Close" onClick={onClose} />
-                </span>
-              </S.RightCloseBtn>
-              <S.ClickMember>
-                <S.MemberBox>
-                  <div></div>
-                </S.MemberBox>
-              </S.ClickMember>
-            </S.RightModalSort>
-          </S.RightModalMain>
+          <RightModal toggled={toggled} setToggled={setToggled} data={data} />
         )}
       </S.Div>
     </>
