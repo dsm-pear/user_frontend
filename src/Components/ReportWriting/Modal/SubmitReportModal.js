@@ -25,7 +25,7 @@ const SubmitReportModal = ({
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
-  const isAccessToken = localStorage.getItem("access-token");
+  const ACCESS_TOKEN = localStorage.getItem("access-token");
   const onClick = () => {
     setState("hidden");
     setHei("0");
@@ -51,7 +51,7 @@ const SubmitReportModal = ({
       .post(`http://54.180.224.67:3000/report/files/1`, data1, {
         headers: {
           "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-          Authorization: `Bearer ${isAccessToken}`,
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
       })
       .then((res) => console.log(res))
@@ -76,7 +76,7 @@ const SubmitReportModal = ({
         {
           headers: {
             "Contect-Type": "application/json",
-            Authorization: `Bearer ${isAccessToken}`,
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
           },
         }
       )
