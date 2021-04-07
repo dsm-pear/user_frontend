@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Close, checked, bfchecked } from "../../../assets";
 import * as S from "../../styled/ReportWriting/Modal/RightModalStyle";
 
@@ -24,7 +24,7 @@ const RightModal = ({ toggled, setToggled, data }) => {
               .map((data) => {
                 console.log(data);
                 return (
-                  <S.RightResult>
+                  <S.RightResult key={data.id}>
                     <S.MemberBox>
                       <S.RightSideBox>
                         <S.RightBolderCheckBox>
