@@ -8,18 +8,17 @@ import { request, useRefresh } from "../../../utils/axios/axios";
 
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
-  const [user, setUser] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const refreshHandler = useRefresh();
-  const isAccessToken = localStorage.getItem("access-token");
+  const ACCESS_TOKEN = localStorage.getItem("access-token");
 
   useEffect(() => {
     async function getUsers(getUser) {
       try {
         getUser = await request("get", `/account?name=`, {
-          Authorization: `Bearer ${isAccessToken}`,
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
         });
         setToggled(false);
       } catch (e) {
@@ -36,16 +35,14 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       setLoading(false);
     }
     getUsers();
-  }, []);
+  }, [ACCESS_TOKEN]);
 
   if (loading) return <LoadingPage />;
 
-  const ViewApi = async (search) => {
+  const loadUserData = async (search) => {
     try {
-      setData([]);
-
       const response = await request("get", `/account?name=${search}`, {
-        Authorization: `Bearer ${isAccessToken}`,
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
       });
       setData(
         response.data.userResponses.map((user, index) => ({
@@ -61,7 +58,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           break;
         case 403:
           refreshHandler().then(() => {
-            ViewApi();
+            loadUserData();
           });
           break;
         default:
@@ -100,11 +97,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   };
 
   const onSearchChange = (e) => {
-    const newUser = [...user];
-    newUser[user.length] = e.target.value;
-    setUser(newUser);
-
-    ViewApi(e.target.value);
+    loadUserData(e.target.value);
   };
 
   return (
