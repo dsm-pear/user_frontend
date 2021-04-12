@@ -1,19 +1,19 @@
 import React from "react";
-import { checked, bfchecked } from "../../../assets";
-import * as S from "../../styled/ReportWriting/Modal/UserMappingStyle";
+import { checked, bfchecked } from "../../../../assets";
+import * as S from "../../../styled/ReportWriting/Modal/UserMappingStyle";
 
-const UserMapping = ({ data, onUserClick }) => {
+const UserMapping = ({ searchList, onClickLeft }) => {
   return (
     <>
-      <S.LeftResult onClick={() => onUserClick() }>
+      <S.LeftResult onClick={() => onClickLeft(searchList.id)}>
         <S.BorderResult>
           <S.LeftSideBox>
             <S.BolderCheckBox>
               <span>
-                {data.user.name} ({data.user.email})
+                {searchList.user.name} ({searchList.user.email})
               </span>
               <div>
-                {data.isSelected ? (
+                {searchList.isSelected ? (
                   <img src={checked} alt="checked" />
                 ) : (
                   <img src={bfchecked} alt="beforechecked" />
