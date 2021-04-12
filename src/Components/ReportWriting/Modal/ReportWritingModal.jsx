@@ -1,74 +1,73 @@
 import React, { useState, useEffect } from "react";
-import UserMapping from "./UserMapping";
+import UserMapping from "./UserList/UserMapping";
 import LoadingPage from "../LoadingPage";
-import RightModal from "./RightModal";
+import RightModal from "./UserList/RightModal";
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 import { request, useRefresh } from "../../../utils/axios/axios";
 
 const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   const [toggled, setToggled] = useState(false);
-  const [data, setData] = useState([]);
+  const [searchList, setSearchList] = useState([]);
+  const [selectedUserList, setSelectedUserList] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [test, setTest] = useState([]);
   const refreshHandler = useRefresh();
   const ACCESS_TOKEN = localStorage.getItem("access-token");
-  
-  // async function getData(){
-  //   const { data } = await request("get", `/account?name=`, {Authorization: `Bearer ${ACCESS_TOKEN}`})
-  //   setData(data);
-  // }
-  
-  // useEffect(()=>{
-  //   getData();
-  // },[]);
 
   useEffect(() => {
-    
     async function getUsers(getUser) {
       try {
         getUser = await request("get", `/account?name=`, {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         });
-        setToggled(false);
+        setLoading(false);
       } catch (e) {
         alert(e);
       }
-      console.log(getUser);
-      setData(
+      setSearchList(
         getUser.data.userResponses.map((user, index) => ({
           id: index + 1,
-          isSelected: false,
           user,
         }))
       );
-      setLoading(false);
+      setSelectedUserList(
+        getUser.data.userResponses.map((user, index) => ({
+          id: index + 1,
+          user,
+        }))
+      );
+      console.log(getUser);
     }
     getUsers();
   }, [ACCESS_TOKEN]);
 
   if (loading) return <LoadingPage />;
 
-  const loadUserData = async (search) => {
+  const loadUserSearchList = async (search) => {
     try {
-      const response = await request("get", `/account?name=${search}`, {
+      let response = await request("get", `/account?name=${search}`, {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
       });
-      setData(
+      setSearchList(
         response.data.userResponses.map((user, index) => ({
           id: index + 1,
-          isSelected: false,
+          user,
+        }))
+      );
+      setSelectedUserList(
+        response.data.userResponses.map((user, index) => ({
+          id: index + 1,
           user,
         }))
       );
     } catch (e) {
-      switch (e.data) {
+      switch (e.searchList) {
         case 400:
           alert("");
           break;
         case 403:
           refreshHandler().then(() => {
-            loadUserData();
+            loadUserSearchList();
           });
           break;
         default:
@@ -77,25 +76,24 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  const onUserClick = (index) => {
-    // setTest([...test, data]);
-    setData(
-      data.map(({ id, user, isSelected }, i) => {
-        // [{ id:1, user, isSelected: false }]
-        // return data;
-        // return {
-        //   id: data.id,
-        //   user: data.user,
-        //   isSelected: true,
-        // const id = 1;
+  const onClickLeft = (e) => {
+    // const FIND_IDX = selectedUserList.findIndex();
+    // if (selectedUserList) {
+    setSelectedUserList(
+      selectedUserList.map(({ user, id }) => {
         return {
-          id,
           user,
-          isSelected: index === i + 1 ? !isSelected : isSelected,
+          id,
         };
       })
     );
+    console.log(e.target);
+    // } else {
+    //   setSelectedUserList();
+    // }
   };
+
+  const onClickRight = () => {};
 
   const onClose = () => {
     setOpen("hidden");
@@ -108,7 +106,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
   };
 
   const onSearchChange = (e) => {
-    loadUserData(e.target.value);
+    loadUserSearchList(e.target.value);
   };
 
   return (
@@ -132,15 +130,14 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
               </S.BorderInput>
             </S.SearchInput>
             <S.LeftSearchResult>
-              {data &&
-                data.map((data) => {
-                  // data -> { id: 1, user: { name: 'sdf', email: 'sdf' }, isSelected: false }
+              {searchList &&
+                searchList.map((searchList) => {
+                  // searchList -> { id: 1, user: { name: 'sdf', email: 'sdf' }, isSelected: false }
                   return (
                     <UserMapping
-                      key={data.id}
-                      // test={test}
-                      data={data}
-                      onUserClick={onUserClick}
+                      key={searchList.id}
+                      searchList={searchList}
+                      onClickLeft={onClickLeft}
                     />
                   );
                 })}
@@ -160,8 +157,10 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           </S.LeftModalSort>
         </S.LeftModalMain>
         {toggled === true && (
-          <RightModal toggled={toggled} setToggled={setToggled} data={data} 
-          // test={test}
+          <RightModal
+            toggled={toggled}
+            setToggled={setToggled}
+            selectedUserList={selectedUserList}
           />
         )}
       </S.Div>
