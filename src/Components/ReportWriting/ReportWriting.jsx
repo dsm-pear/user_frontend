@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ReportWritingModal from "../ReportWriting/Modal/ReportWritingModal";
-import SubmitReportModal from "../ReportWriting/Modal/SubmitReportModal";
+import ReportWritingModal from "./Modal/ReportWritingModal";
+import SubmitReportModal from "./Modal/SubmitReportModal";
 import * as S from "../styled/ReportWriting/style";
 import * as I from "../styled/ReportWriting/InStyle";
 import { RWlogo } from "../../assets";
