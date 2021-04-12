@@ -1,8 +1,13 @@
 import React from "react";
-import { Close, checked, bfchecked } from "../../../assets";
-import * as S from "../../styled/ReportWriting/Modal/RightModalStyle";
+import { Close, checked, bfchecked } from "../../../../assets";
+import * as S from "../../../styled/ReportWriting/Modal/RightModalStyle";
 
-const RightModal = ({ toggled, setToggled, data }) => {
+const RightModal = ({
+  toggled,
+  setToggled,
+  selectedUserList,
+  onClickRight,
+}) => {
   const onClose = () => {
     setToggled(!toggled);
   };
@@ -17,22 +22,23 @@ const RightModal = ({ toggled, setToggled, data }) => {
             </span>
           </S.RightCloseBtn>
           <S.RightSearchResult>
-            {data
-              .filter((data) => {
-                return data.isSelected === true;
+            {selectedUserList
+              .filter((selectedUserList) => {
+                return selectedUserList;
               })
-              .map((data) => {
-                console.log(data);
+              .map((selectedUserList) => {
+                console.log(selectedUserList);
                 return (
-                  <S.RightResult key={data.id}>
+                  <S.RightResult key={selectedUserList.id}>
                     <S.MemberBox>
                       <S.RightSideBox>
                         <S.RightBolderCheckBox>
                           <S.UserInfo>
-                            {data.user.name} ({data.user.email})
+                            {selectedUserList.user.name} (
+                            {selectedUserList.user.email})
                           </S.UserInfo>
                           <S.MemberSelect>
-                            {data.isSelected ? (
+                            {selectedUserList.isSelected ? (
                               <img src={checked} alt="checked" />
                             ) : (
                               <img src={bfchecked} alt="checked" />
