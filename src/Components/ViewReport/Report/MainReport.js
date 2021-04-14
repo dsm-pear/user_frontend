@@ -34,18 +34,6 @@ function MainReport(props) {
       setLanguages(data.languages);
     } catch (e) {
       console.error(e);
-      /* switch (e.data.status) {
-          case 400:
-            alert("프로필 불러오기를 실패했습니다.");
-            break;
-          case 403:
-            refreshHandler().then(() => {
-              getReportView();
-            });
-            break;
-          default:
-            break;
-        } */
     }
     setLoding(false);
     setError(null);
@@ -75,6 +63,7 @@ function MainReport(props) {
           text={reportData.description}
           git="{reportData.github}"
           file={reportData.fileName}
+          fileId={reportData.fileId}
         />
         <ReportTeam teamName={reportData.teamName} members={members} />
         <ReportLanguage languages={languages} />
