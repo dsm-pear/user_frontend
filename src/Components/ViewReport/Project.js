@@ -9,7 +9,6 @@ const Project = (props) => {
 
   const reportChilckHandler = () => {
     history.push(`/view-report/${reportId}`);
-    console.log(reportId);
   };
 
   const color =

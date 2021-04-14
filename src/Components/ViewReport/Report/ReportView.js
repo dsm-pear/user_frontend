@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { fileRequest, FileURL } from "../../../utils/axios/axios";
+import React, { useState } from "react";
+import { FileURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
-  const [fileId, setFileId] = useState(null);
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     //파일 상태
     const FileApi = async () => {
       try {
@@ -25,8 +24,7 @@ const ReportView = (props) => {
   }); */
 
   const fileDownloadHandler = () => {
-    console.log(fileId)
-    window.open(FileURL + `/report/${fileId[0].id}`);
+    window.open(FileURL + `/report/${props.fileId}`);
   };
 
   return (

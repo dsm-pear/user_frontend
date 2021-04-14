@@ -16,25 +16,18 @@ function ViewReport() {
       try {
         const data = await request(
           "get",
-          `/report/filter?size=6&page=0&type=${type}&field=${field}&grade=GRADE1`,
+          `/report/filter?size=&page=0&type=${type}&field=${field}&grade=GRADE1`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           ""
         );
         //데이터 출력
-        //console.log(data);
         setReportListResponses(data.data.reportResponses);
-
-        //값이 안담김 ㄹㅇ 
-        console.log(data.title);
       } catch (e) {
         console.error(e);
       }
     };
 
     getProjectList();
-
-    console.log(type);
-    console.log(field);
   }, [type, field]);
 
   return (
