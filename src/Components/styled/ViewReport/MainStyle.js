@@ -36,8 +36,8 @@ const Header = styled.div`
 /* 헤더 제목 */
 export const Name = styled.div`
   cursor: pointer;
-  margin: 0 20px;
-  width: 80%;
+  margin: 0px 4%;
+  width: 64%;
   font-family: BBTreeGB;
   font-size: 20px;
   font-weight: 500;
@@ -100,10 +100,9 @@ const Linkimg = styled(Title)`
     background-size: 20px;
     background-image: url(${Link});
   }
-  .downimg{
-    margin : 10px 20px;
-    background-color : blue;
-    
+  .downimg {
+    margin: 10px 20px;
+    background-color: blue;
   }
 
   a,
@@ -213,7 +212,7 @@ const Info = styled.div`
   .Name {
     text-align: center;
     font-weight: bold;
-    width: 5%;
+    width: 60px;
   }
   .Email {
     text-align: center;
@@ -237,8 +236,8 @@ const CoverLang = styled.div`
 
   > h2 {
     margin: 10px;
-    font-size: 20px;
-    font-family: BBTreeGl;
+    font-size: 18px;
+    font-weight: bold;
   }
 `;
 
@@ -259,14 +258,14 @@ const Language = styled.div`
     border-radius: 10px;
   }
   > span:hover {
-    background-color: #9d9de9;
+    background-color: #e4effe;
     transition: all 0.8s;
   }
 `;
 const Member = styled(Language)``;
 
 const Year = styled.div`
-  width: 20%;
+  width: 25%;
   span {
     margin: 0 20px;
     font-family: BBTreeGl;

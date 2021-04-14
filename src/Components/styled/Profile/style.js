@@ -15,7 +15,7 @@ const MainProfile = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 77%;
+  width: 71%;
   height: 73%;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
   border: solid 1px #e4eef2;
@@ -41,7 +41,7 @@ const Profile = styled.div`
   margin: 20px;
 `;
 
-const ProPhoto = styled.div`
+const ProPhoto = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +79,7 @@ const ProPhoto = styled.div`
       color: black;
     }
   }
-  .introduce{
+  .introduce {
     height: 30%;
   }
 `;
@@ -130,6 +130,8 @@ const PreProject = styled.div`
   align-items: center;
   margin: 30px;
   width: 80%;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 export const MainProject = styled.div`
@@ -217,7 +219,6 @@ const Modify = styled.button`
   font-size: 15px;
 `;
 
-const ProNum = styled.div``;
 
 const ProjectCover = styled.div`
   width: 100%;
@@ -229,7 +230,6 @@ export {
   MainProjectSolo,
   MainProjectTeam,
   MainProjectClub,
-  ProNum,
   Project,
   Main,
   ProPhoto,
