@@ -65,11 +65,10 @@ function MyProfile(props) {
     try {
       const { data } = await request(
         "get",
-        "/user/profile/report?size=20&page=0",
+        "/user/profile/report?size=&page=0",
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         ""
       );
-      console.log(data.myPageReportResponses.reportId);
       setProfileReport(data.myPageReportResponses);
       setReportId(data.myPageReportResponses.reportId);
     } catch (e) {
@@ -81,8 +80,6 @@ function MyProfile(props) {
     getProfile();
     getMyProject();
   }, []);
-
-  console.log(name);
 
   return (
     <S.Main>
@@ -111,7 +108,11 @@ function MyProfile(props) {
                   title={myPageReportResponses.title}
                   date={myPageReportResponses.createdAt.split("T")[0]}
                   //임시저장되었나 확인
-                  isSubmitted={myPageReportResponses.isSubmitted[index]}
+                  isSubmitted={myPageReportResponses.isSubmitted}
+                  //승인
+                  isAccepted={myPageReportResponses.isAccepted}
+                  //승인거부
+                  isRejected={myPageReportResponses.isRejected}
                 />
               ))}
 
