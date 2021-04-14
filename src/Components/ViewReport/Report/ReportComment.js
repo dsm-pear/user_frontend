@@ -17,6 +17,8 @@ const ReportComment = (props) => {
 
   //댓글 작성
   const postReportComment = async (e) => {
+    e.preventDefault();
+
     try {
       await request(
         "post",
