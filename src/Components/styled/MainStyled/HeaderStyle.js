@@ -71,8 +71,9 @@ export const SeachChoice = styled.div`
 
 export const SeachList = styled.div`
     cursor: pointer;
+    position: absolute;
     margin-top: 20px;
-    z-index: 5;
+    z-index: 1000;
     width: 52px;
     height: 47px;
     border-radius: 6px;
@@ -82,8 +83,10 @@ export const SeachList = styled.div`
 `;
 
 export const SeachType = styled.div`
+    cursor: pointer;
     font-size: 13px;
     margin-bottom: 8px;
+    z-index: 100;
     &:hover{
         color : #5955d8;
     }
@@ -147,7 +150,7 @@ export const MenuSee = styled.div`
     background-color: #ffffff;
     text-align: center;
     cursor: pointer;
-    margin-top: 78px;
+    margin-top: 74.5px;
     margin-left: 4px;
     z-index: 5;
     position: absolute;
