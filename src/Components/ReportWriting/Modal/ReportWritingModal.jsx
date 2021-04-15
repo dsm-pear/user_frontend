@@ -36,7 +36,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      console.log(getUser);
     }
     getUsers();
   }, [ACCESS_TOKEN]);
@@ -54,12 +53,12 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      setSelectedUserList(
-        response.data.userResponses.map((user, index) => ({
-          id: index + 1,
-          user,
-        }))
-      );
+      // setSelectedUserList(
+      //   response.data.userResponses.map((user, index) => ({
+      //     id: index + 1,
+      //     user,
+      //   }))
+      // );
     } catch (e) {
       switch (e.searchList) {
         case 400:
@@ -76,21 +75,27 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  const onClickLeft = (e) => {
-    // const FIND_IDX = selectedUserList.findIndex();
-    // if (selectedUserList) {
-    setSelectedUserList(
-      selectedUserList.map(({ user, id }) => {
-        return {
-          user,
-          id,
-        };
-      })
-    );
-    console.log(e.target);
-    // } else {
-    //   setSelectedUserList();
-    // }
+  const onClickLeft = (id) => {
+    console.log(id);
+
+    const userIndex = searchList.findIndex((_, index) => {
+      // TODO: id랑 같은 user 찾는 조건문
+      if (index === id) {
+        return true;
+      }
+    });
+    console.log(userIndex);
+
+    const isExistUser = userIndex; // 아래 조건문에서 isExistUser의 true | false값으로 set해주는데 isExistUser에 어떤 값을 담아야 하나요..?
+    const user = selectedUserList[userIndex];
+
+    if (!isExistUser) {
+      // TODO: selectedUserList에 user 추가 해서 setState
+      setSelectedUserList(selectedUserList.concat([user]));
+    } else {
+      // TODO: selectedUSerLISt에서 user를 지워 그 담에 setState
+      setSelectedUserList(selectedUserList.slice([user]));
+    } // isExistUser가 false일 때 concat으로 배열 추가, true면 삭제를 했는데 이렇게 사용할 수 있을까요?
   };
 
   const onClickRight = () => {};
@@ -131,12 +136,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             </S.SearchInput>
             <S.LeftSearchResult>
               {searchList &&
-                searchList.map((searchList) => {
-                  // searchList -> { id: 1, user: { name: 'sdf', email: 'sdf' }, isSelected: false }
+                searchList.map((userInfo) => {
                   return (
                     <UserMapping
-                      key={searchList.id}
-                      searchList={searchList}
+                      key={userInfo.id}
+                      userInfo={userInfo}
                       onClickLeft={onClickLeft}
                     />
                   );
@@ -161,6 +165,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             toggled={toggled}
             setToggled={setToggled}
             selectedUserList={selectedUserList}
+            onClickRight={onClickRight}
           />
         )}
       </S.Div>

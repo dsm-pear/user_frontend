@@ -14,7 +14,7 @@ const RightModal = ({
 
   return (
     <>
-      <S.RightModalMain>
+      <S.RightModalMain onClick={() => onClickRight(selectedUserList.id)}>
         <S.RightModalSort>
           <S.RightCloseBtn>
             <span>
@@ -23,9 +23,9 @@ const RightModal = ({
           </S.RightCloseBtn>
           <S.RightSearchResult>
             {selectedUserList
-              .filter((selectedUserList) => {
-                return selectedUserList;
-              })
+              // .filter((selectedUserList) => {
+              //   return selectedUserList;
+              // })
               .map((selectedUserList) => {
                 console.log(selectedUserList);
                 return (
