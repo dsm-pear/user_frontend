@@ -36,7 +36,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      console.log(getUser);
     }
     getUsers();
   }, [ACCESS_TOKEN]);
@@ -54,12 +53,12 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      setSelectedUserList(
-        response.data.userResponses.map((user, index) => ({
-          id: index + 1,
-          user,
-        }))
-      );
+      // setSelectedUserList(
+      //   response.data.userResponses.map((user, index) => ({
+      //     id: index + 1,
+      //     user,
+      //   }))
+      // );
     } catch (e) {
       switch (e.searchList) {
         case 400:
@@ -76,21 +75,32 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  const onClickLeft = (e) => {
-    // const FIND_IDX = selectedUserList.findIndex();
-    // if (selectedUserList) {
-    setSelectedUserList(
-      selectedUserList.map(({ user, id }) => {
-        return {
-          user,
-          id,
-        };
-      })
-    );
-    console.log(e.target);
-    // } else {
-    //   setSelectedUserList();
-    // }
+  const onClickLeft = (id) => {
+    console.log(id);
+
+    const userIndex = searchList.findIndex((_, index) => {
+      // if (item.id === e.target.dataset.id) {
+      //   return true;
+      // }
+      // TODO: id랑 같은 user 찾는 조건문
+      if (index === id) {
+        return true;
+        // isExistUser = true
+      }
+      // return index === id;
+    });
+    console.log(userIndex);
+
+    const isExistUser = userIndex;
+    const user = selectedUserList[userIndex];
+
+    if (!isExistUser) {
+      // TODO: selectedUserList에 user 추가 해서 setState
+      setSelectedUserList(selectedUserList.concat([user]));
+    } else {
+      // TODO: selectedUSerLISt에서 user를 지워 그 담에 setState
+      setSelectedUserList(selectedUserList.slice([user]));
+    }
   };
 
   const onClickRight = () => {};
@@ -131,12 +141,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             </S.SearchInput>
             <S.LeftSearchResult>
               {searchList &&
-                searchList.map((searchList) => {
-                  // searchList -> { id: 1, user: { name: 'sdf', email: 'sdf' }, isSelected: false }
+                searchList.map((userInfo) => {
                   return (
                     <UserMapping
-                      key={searchList.id}
-                      searchList={searchList}
+                      key={userInfo.id}
+                      userInfo={userInfo}
                       onClickLeft={onClickLeft}
                     />
                   );
@@ -161,6 +170,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             toggled={toggled}
             setToggled={setToggled}
             selectedUserList={selectedUserList}
+            onClickRight={onClickRight}
           />
         )}
       </S.Div>
