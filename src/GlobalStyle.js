@@ -1,21 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-    @font-face {
-      font-family: "BBTreeGB";
-      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff")
-      format("woff");
-      font-weight: normal;
-      font-style: normal;
-    }
 
-    @font-face {
-    font-family: 'BBTreeGL';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff')
-    format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+
     /* http://meyerweb.com/eric/tools/css/reset/ 
       v2.0 | 20110126
       License: none (public domain)
@@ -45,6 +34,10 @@ export default createGlobalStyle`
     article, aside, details, figcaption, figure, 
     footer, header, hgroup, menu, nav, section {
       display: block;
+    }
+    a{
+      text-decoration: none;  
+      color: black;
     }
     body {
       line-height: 1;
