@@ -1,18 +1,21 @@
 //내가 보는 내 프로필 수정 하기 누르기
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { request, useRefresh } from "../../utils/axios/axios";
 import * as S from "../styled/Profile/style";
-import * as M from "../styled/ViewReport/style";
 import Header from "../Main/Header";
 import Project from "./Project";
 import Profile from "./Profile";
 
 function MyProfile(props) {
   const [text, setText] = useState("수정");
-  const [profileReportListResponses, setProfileReportListResponses] = useState([]);    
-  const [profileData, setProfileData] = useState([]);
   const refreshHandler = useRefresh();
+
+  const [profileReport, setProfileReport] = useState([]);
+  const [profileData, setProfileData] = useState("");
+  const [reportId, setReportId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [produce, setProduce] = useState("");
 
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
   //프로필 수정 API
@@ -21,97 +24,63 @@ function MyProfile(props) {
       setText("저장");
     } else {
       try {
-        const { data } = await request(
+        await request(
           "put",
-          "/user/profile/",
+          "/user/profile",
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           {
-            git_hub: props.github,
-            self_intro: props.introduce,
+            github: email,
+            intro: produce,
           }
         );
+        console.log("프로필 수정 완료");
       } catch (e) {
         console.error(e);
-        switch (e.data.status) {
-          case 400:
-            alert("프로필 불러오기를 실패했습니다.");
-            break;
-          case 401:
-            refreshHandler().then(() => {
-             ChangeProfile();
-            });
-            break;
-          default:
-            break;
-        }
       }
       setText("수정");
       alert("프로필이 변경되었습니다.");
     }
   };
 
+  const getProfile = async () => {
+    try {
+      const { data } = await request(
+        "get",
+        "/user/profile",
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+
+      setProfileData(data);
+      setName(data.userName);
+      setEmail(data.userEmail);
+      setProduce(data.selfIntro);
+    } catch (e) {
+      //토큰 만료
+      console.error(e);
+    }
+  };
+
+  const getMyProject = async () => {
+    try {
+      const { data } = await request(
+        "get",
+        "/user/profile/report?size=&page=0",
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+      setProfileReport(data.myPageReportResponses);
+      setReportId(data.myPageReportResponses.reportId);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
-    //프로필 API
-    const getProfile = async () => {
-      try {
-        const { data } = await request(
-          "get",
-          "/user/profile",
-          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-          ""
-          );
-          
-          setProfileData(data.profileData);
-        } catch (e) {
-        //토큰 만료
-        console.error(e);
-        switch(e.response.status){
-          case 400:
-            alert("프로필 불러오기를 실패했습니다.");
-            break;
-          case 401:
-            refreshHandler().then(()=>{
-              getProfile();
-            })
-            break;
-          default:
-            break;
-        }
-      }
-    };
-
+    ChangeProfile();
     getProfile();
-    
-    //내 프로젝트 가져오기
-    const getMyProject = async () => {
-      try {
-        const { data } = await request(
-          "get",
-          "/user/profile/report?size=6&page=0",
-          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-          ""
-        );
-
-        setProfileReportListResponses(data.MyReportListResponses.ProfileReportListResponses);
-      } catch (e) {
-        console.error(e);
-        switch (e.data.status) {
-          case 400:
-            alert("프로젝트 불러오기를 실패했습니다.");
-            break;
-          case 401:
-            refreshHandler().then(() => {
-              getMyProject();
-            });
-            break;
-          default:
-            break;
-        }
-      }
-    };
     getMyProject();
-
-  });
+  }, []);
 
   return (
     <S.Main>
@@ -120,37 +89,41 @@ function MyProfile(props) {
         {/* 좌측 프로필 */}
         <S.Cover>
           <Profile
-            name={profileData.userName}
-            email={profileData.userEmail}
-            produce={profileData.self_intro}
-            setProduce={profileData.setProduce}
+            name={name}
+            setName={setName}
+            setEmail={setEmail}
+            setProduce={setProduce}
+            email={email}
+            produce={produce}
             github={profileData.git_hub}
-            //setGithub={setGithub}
             text={text}
           />
 
           {/* 프로젝트 보여주는 곳 */}
           <S.Project>
             <S.PreProject>
-              {profileReportListResponses.map(() => (
+              {profileReport.map((myPageReportResponses, index) => (
                 <Project
-                  team={profileReportListResponses.team}
-                  title={profileReportListResponses.title}
-                  date={profileReportListResponses.createdAt}
+                  key={index}
+                  type={myPageReportResponses.type}
+                  title={myPageReportResponses.title}
+                  date={myPageReportResponses.createdAt.split("T")[0]}
+                  //임시저장되었나 확인
+                  isSubmitted={myPageReportResponses.isSubmitted}
+                  //승인
+                  isAccepted={myPageReportResponses.isAccepted}
+                  //승인거부
+                  isRejected={myPageReportResponses.isRejected}
                 />
               ))}
+
               {/* 밑에 더보기 / 숫자 */}
-              {/* <M.Number>
-                <Link>1</Link>
-                <Link>2</Link>
-                <Link>3</Link>
-                <Link>4</Link>
-                <Link>5</Link>
-              </M.Number> */}
             </S.PreProject>
           </S.Project>
         </S.Cover>
-        <S.Modify onClick={ChangeProfile}>{text}</S.Modify>
+        <S.Modify type="submit" onClick={ChangeProfile}>
+          {text}
+        </S.Modify>
       </S.MainProfile>
     </S.Main>
   );
