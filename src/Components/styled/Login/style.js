@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-const LoginBody = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  top: 0;
-  width: 100%;
-  position: absolute;
-  z-index: 3;
-`;
-
 const Loginbg = styled.div`
   width: 430px;
   height: 500px;
@@ -145,7 +133,6 @@ const Button = styled.div`
 `;
 
 export {
-  LoginBody,
   Loginbg,
   Title,
   Logininput,

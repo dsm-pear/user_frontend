@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MainBody = styled.div`
-    height: 90.3%;
+    height: 100vh;
     min-width: 1320px;
     width: 100%;
 `

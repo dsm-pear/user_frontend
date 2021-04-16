@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SubmitSuccess from "./SubmitSuccess";
-import * as S from "../styled/Modal/SrModalStyle";
-import { Close } from "../../assets";
+import * as S from "../../styled/ReportWriting/Modal/SrModalStyle";
+import { Close } from "../../../assets";
 import axios from "axios";
 
 const SubmitReportModal = ({
@@ -11,15 +11,33 @@ const SubmitReportModal = ({
   hei,
   myopa,
   setMyOpa,
+  clickFieldNumber,
+  clickGradeNumber,
+  clickDivisionNumber,
+  clickScopeNumber,
   files,
+  title,
+  description,
+  languages,
+  isSubmitted,
+  github,
+  teamName,
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
-
+  const ACCESS_TOKEN = localStorage.getItem("access-token");
   const onClick = () => {
     setState("hidden");
     setHei("0");
   };
+
+  // const onCloseChange = (e) => {
+  //   if (e.key === "escape") {
+  //     setState("hidden");
+  //     setHei("0");
+  //   }
+  //   console.log(e.target.value);
+  // };
 
   const btnClick = () => {
     setView("visible");
@@ -30,38 +48,43 @@ const SubmitReportModal = ({
     data1.append("reportFile", files[0]); // append = 기존의 것 + @
     // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
     axios
-      .post(`${baseUrl}:3000/report/files/1`, data1, {
+      .post(`http://54.180.224.67:3000/report/files/1`, data1, {
         headers: {
           "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
     axios
-      .post(`${baseUrl}:8081/report`, {
-        headers: {
-          "Contect-Type": "application/json",
+      .post(
+        `${baseUrl}:8080/report`,
+        {
+          title: `${title}`,
+          description: `${description}`,
+          languages: `${languages}`,
+          type: `${clickDivisionNumber}`,
+          access: `${clickScopeNumber}`,
+          field: `${clickFieldNumber}`,
+          grade: `${clickGradeNumber}`,
+          isSubmitted: `${isSubmitted}`,
+          fileName: `${files}`,
+          github: `${github}`,
+          teamName: `${teamName}`,
         },
-        data: {
-          title: "<title>",
-          description: "<description>",
-          languages: "<languages>",
-          type: "<type>",
-          access: "<access>",
-          field: "<field>",
-          grade: "<grade>",
-          isSubmitted: "<isSubmitted>",
-          fileName: "<fileName>",
-          github: "<github>",
-          teamName: "<teamName>",
-        },
-      })
+        {
+          headers: {
+            "Contect-Type": "application/json",
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          },
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
-  const baseUrl = "http://10.156.147.50";
+  const baseUrl = "http://54.180.224.67";
 
   return (
     <>
