@@ -8,6 +8,7 @@ const Project = (props) => {
   const [fontColor, setFontColor] = useState("");
   const [background, setBackground] = useState("");
   const [boxShadow, setBoxShadow] = useState("");
+  const [text, setText] = useState("");
   const location = useLocation();
   const history = useHistory();
 
@@ -33,6 +34,7 @@ const Project = (props) => {
       setFontColor(" #ff5959");
       setBackground("#ffeded");
       setBoxShadow("0 3px 6px 0 rgba(0, 0, 0, 0.16)");
+      setText("임시저장");
       console.log("임시저장");
     } else if (
       props.isSubmitted === true &&
@@ -48,12 +50,14 @@ const Project = (props) => {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");
       setBoxShadow("0 3px 6px 0 rgba(0, 0, 0, 0.16)");
+      setText("승인거부");
       console.log("승인거부");
     } else {
       setBorder("solid 1.6px #ff5959");
-/*       setFontColor(" #ff5959");
+      setFontColor(" #ff5959");
       setBackground("#ffeded");
-      setBoxShadow("0 3px 6px 0 rgba(0, 0, 0, 0.16)"); */
+      setBoxShadow("0 3px 6px 0 rgba(0, 0, 0, 0.16)");
+      setText("미승인");
       console.log("미승인");
     }
   }, []);
@@ -64,17 +68,20 @@ const Project = (props) => {
         color={color}
         style={{
           border: border,
-          color: fontColor,
           backgroundColor: background,
           boxShadow: boxShadow,
         }}
         onClick={reportChilckHandler}
       >
-        <span className="project_team">[{props.type}]</span>
+        <span className="project_team" style={{ color: fontColor }}>
+          [{props.type}]
+        </span>
         <p className="project_title">{props.title}</p>
         <span className="project_date">{props.date}</span>
         {location.pathname === "/my-profile" && (
-          <span className="project_save">[임시저장]</span>
+          <span className="project_save" style={{ color: fontColor }}>
+            [{text}]
+          </span>
         )}
       </S.MainProject>
     </S.ProjectCover>

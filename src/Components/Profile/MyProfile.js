@@ -5,7 +5,6 @@ import * as S from "../styled/Profile/style";
 import Header from "../Main/Header";
 import Project from "./Project";
 import Profile from "./Profile";
-import { Mypage } from "../styled/MainStyled/HeaderStyle";
 
 function MyProfile(props) {
   const [text, setText] = useState("수정");
@@ -30,10 +29,11 @@ function MyProfile(props) {
           "/user/profile",
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           {
-            git_hub: props.github,
-            self_intro: props.introduce,
+            github: email,
+            intro: produce,
           }
         );
+        console.log("프로필 수정 완료");
       } catch (e) {
         console.error(e);
       }
@@ -54,7 +54,7 @@ function MyProfile(props) {
       setProfileData(data);
       setName(data.userName);
       setEmail(data.userEmail);
-      setProduce(data.self_intro);
+      setProduce(data.selfIntro);
     } catch (e) {
       //토큰 만료
       console.error(e);
@@ -77,6 +77,7 @@ function MyProfile(props) {
   };
 
   useEffect(() => {
+    ChangeProfile();
     getProfile();
     getMyProject();
   }, []);
@@ -89,7 +90,7 @@ function MyProfile(props) {
         <S.Cover>
           <Profile
             name={name}
-            setNeme={setName}
+            setName={setName}
             setEmail={setEmail}
             setProduce={setProduce}
             email={email}
