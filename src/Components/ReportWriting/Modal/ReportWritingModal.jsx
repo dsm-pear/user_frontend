@@ -75,27 +75,22 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  const onClickLeft = (id) => {
-    console.log(id);
-
-    const userIndex = searchList.findIndex((_, index) => {
+  const onClickLeft = (id, userInfo) => {
+    const user = selectedUserList.find((user) => {
       // TODO: id랑 같은 user 찾는 조건문
-      if (index === id) {
+      if (user.id === id) {
         return true;
       }
+      return false;
     });
-    console.log(userIndex);
 
-    const isExistUser = userIndex; // 아래 조건문에서 isExistUser의 true | false값으로 set해주는데 isExistUser에 어떤 값을 담아야 하나요..?
-    const user = selectedUserList[userIndex];
-
-    if (!isExistUser) {
+    if (!user) {
       // TODO: selectedUserList에 user 추가 해서 setState
-      setSelectedUserList(selectedUserList.concat([user]));
+      setSelectedUserList([userInfo, ...selectedUserList]);
     } else {
       // TODO: selectedUSerLISt에서 user를 지워 그 담에 setState
-      setSelectedUserList(selectedUserList.slice([user]));
-    } // isExistUser가 false일 때 concat으로 배열 추가, true면 삭제를 했는데 이렇게 사용할 수 있을까요?
+      setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
+    }
   };
 
   const onClickRight = () => {};
@@ -142,6 +137,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
                       key={userInfo.id}
                       userInfo={userInfo}
                       onClickLeft={onClickLeft}
+                      selectedUserList={selectedUserList}
                     />
                   );
                 })}
