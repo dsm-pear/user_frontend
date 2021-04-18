@@ -27,7 +27,7 @@ const RightModal = ({
               //   return selectedUserList;
               // })
               .map((selectedUserList) => {
-                console.log(selectedUserList);
+                // console.log(selectedUserList);
                 return (
                   <S.RightResult key={selectedUserList.id}>
                     <S.MemberBox>
