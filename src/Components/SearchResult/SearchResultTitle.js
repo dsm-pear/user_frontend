@@ -1,95 +1,55 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import * as S from '../styled/SearchResult/SearchResultStyle';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const SearchResultTitle = () => {
-    
-    const data = [
-        {
-            "id": 1,
-            "bdc": "개인",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 2,
-            "bdc": "팀",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 3,
-            "bdc": "동아리",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 4,
-            "bdc": "개인",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 5,
-            "bdc": "팀",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 6,
-            "bdc": "동아리",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 7,
-            "bdc": "개인",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 8,
-            "bdc": "팀",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-        {
-            "id": 9,
-            "bdc": "동아리",
-            "title": "제목",
-            "day": "2020.11.03"
-        },
-    ]
+const SearchResultTitle = (props) => {
+    const searchData = props.data;
+
+    const history = useHistory();
+
+    const onLink = () => {
+        history.push(`/view-report/main-report`)
+    }
+
+    const [ type, setType ] = useState("")
 
     const SearchTitle = useCallback(
         (dataList) => {
             return dataList.map((data)=>{
-                const color = data.bdc === "팀" ? "#6192f3" : data.bdc === "개인" ? "#27d5b1" : "#5955d8";
+                const color = data.type === "TEAM" ? "#6192f3" : data.type === "SOLE" ? "#27d5b1" : "#5955d8";
+                data.type === "TEAM" ? setType("팀") : data.type === "SOLE" ? setType("솔로") : setType("동아리")
+                const createTime = data.createdAt.split("T")
                 return(
-                    <Link to={`/view-report/main-report`}>
-                        <S.Container bordercolor={color} key={data.id}>
-                            <S.ContainerContant>
-                                <S.ContainerBDC fontcolor={color}>
-                                    [{data.bdc}]
-                                </S.ContainerBDC>
-                                <S.ContainerTitle>
-                                    {data.title}
-                                </S.ContainerTitle>
-                                <S.ContainerDay>
-                                    {data.day}
-                                </S.ContainerDay>
-                            </S.ContainerContant>
-                        </S.Container>
-                    </Link>
+                    <>
+                        <div onClick={onLink} key={data.reportId}>
+                            <S.Container bordercolor={color} >
+                                <S.ContainerContant>
+                                    <S.ContainerBDC fontcolor={color}>
+                                        [{type}]
+                                    </S.ContainerBDC>
+                                    <S.ContainerTitle>
+                                        {data.title}
+                                    </S.ContainerTitle>
+                                    <S.ContainerDay>
+                                        {createTime[0]}
+                                    </S.ContainerDay>
+                                </S.ContainerContant>
+                            </S.Container>
+                        </div>
+                    </>
                 )
             })
         }
-    ,[]);
+    );
+
+    
 
     return (
         <>
             {
-                SearchTitle(data)
+                searchData ?
+                SearchTitle(searchData.reportResponses)
+                : <S.noneData>검색결과가 없습니다.</S.noneData>
             }
         </>
     )

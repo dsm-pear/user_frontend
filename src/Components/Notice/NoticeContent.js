@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Header from '../Main/Header';
 import * as S from '../styled/NoticeStyled/NoticeContentStyle';

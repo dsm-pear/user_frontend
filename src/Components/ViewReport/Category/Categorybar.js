@@ -1,6 +1,5 @@
 import React from "react";
 import * as S from "../../styled/ViewReport/style";
-//import CategoryName from "./Categorytitle";
 import CategoryName from "./CategoryName";
 
 const Categorybar = () => {
@@ -10,20 +9,24 @@ const Categorybar = () => {
         SwName="소프트웨어 개발과"
         Ele={[
           {
+            id: 1,
             text: "웹 개발 ",
-            link: "report-web",
+            field: "WEB",
           },
           {
+            id: 2,
             text: "앱 개발 ",
-            link: "report-app",
+            field: "APP",
           },
           {
+            id: 3,
             text: "게임 개발 ",
-            link: "report-game",
+            field: "GAME",
           },
           {
+            id: 4,
             text: "인공지능 개발 ",
-            link: "report-ai",
+            field: "AI",
           },
         ]}
       />
@@ -31,8 +34,9 @@ const Categorybar = () => {
         SwName="임베디드 개발과"
         Ele={[
           {
+            id: 5,
             text: "임베디드 개발 ",
-            link: "report-emb",
+            field: "EMBEDDED",
           },
         ]}
       />
@@ -40,17 +44,9 @@ const Categorybar = () => {
         SwName="정보 보안"
         Ele={[
           {
+            id: 1,
             text: "정보 보안 개발 ",
-            link: "report-info",
-          },
-        ]}
-      />
-      <CategoryName
-        SwName="융합 "
-        Ele={[
-          {
-            text: "융합 개발 ",
-            link: "report-fus",
+            field: "SECURITY",
           },
         ]}
       />

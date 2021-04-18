@@ -1,12 +1,13 @@
 import Axios from "axios";
-export const MainURL = "http://10.156.147.50:8081";
-export const FileURL = "http://3.15.177.120:3000";
+import { useHistory } from "react-router-dom";
 
-export function request(method, url, header, data) {  
+export const MainURL = "http://54.180.224.67:8080";
+export const FileURL = "http://54.180.224.67:3000";
+
+export function request(method, url, header, data) {
   return Axios({
     method,
     url: MainURL + url,
-
     headers: header,
     data: data,
   })
@@ -16,7 +17,7 @@ export function request(method, url, header, data) {
       return res;
     })
     .catch((e) => {
-      console.log(MainURL + url)
+      console.log(MainURL + url);
       console.error(e);
     });
 }
@@ -36,4 +37,27 @@ export function fileRequest(method, url, header, data) {
     .catch((e) => {
       console.error(e);
     });
+}
+
+export function useRefresh(method, url, data) {
+  const history = useHistory();
+
+  return true;
+
+  //   return Axios({
+  //     method: "put",
+  //     url: MainURL + "/auth",
+  //     headers: {
+  //       "X-Refresh-Token": localStorage.getItem("refresh-token"),
+  //     },
+  //     data: data,
+  //   })
+  //     .then((res) => {
+  //       localStorage.setItem("access-token", res.data.access_token);
+  //     })
+  //     .catch(() => {
+  //       localStorage.removeItem("access-token");
+  //       localStorage.removeItem("refresh-token");
+  //       history.push("/");
+  //     });
 }

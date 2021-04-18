@@ -4,7 +4,7 @@ export const FooterBox = styled.div`
     height: 150px;
     background-color: #f5fafc;
     min-width: 1320px;
-    font-family: BBTreeGB;
+    font-family: "Noto Sans KR", sans-serif;
 `;
 
 export const FooterSubBox = styled.div`

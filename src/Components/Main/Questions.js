@@ -1,6 +1,7 @@
-import React, {useState}from 'react';
-import QuestionModal from './QuestionModal';
-import * as S from '../styled/MainStyled/QuestionsStyle';
+import React, { useState, useEffect } from "react";
+import QuestionModal from "./QuestionModal";
+import * as S from "../styled/MainStyled/QuestionsStyle";
+import { request } from "../../utils/axios/axios";
 
 const Questions = () => {
 
@@ -8,11 +9,7 @@ const Questions = () => {
     const [ email, setEmail ] = useState("");
     const [ content, setContent ] = useState("");
 
-    /*
-    const [questdata, setQuestdata] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);*/
-    const [ message, setMessage ] = useState("버그 & 문의 사항이 접수 되었습니다")
+    const [ message, setMessage ] = useState(null)
 
     const closeModal = () => {
         setModalVisible(false);
@@ -31,57 +28,91 @@ const Questions = () => {
             setMessage("빈 칸을 입력해주세요")
             setModalVisible(true);
         }else{
-            setMessage("버그 & 문의 사항이 접수 되었습니다")
-            setModalVisible(true);
+            QuestApi()
         }
         
     }
 
+    const QuestApi = async () => {
+        const questData = {
+            email: email,
+            description: content
+        }
+        const response = await request(
+            "post",
+            "/question",
+            {},
+            questData
+        )
 
-    return(
-        <>
-            <S.Questions>
-                <S.QuestionBox>
-                    <S.QuestionText>문의사항</S.QuestionText>
-                    
-                        <S.QuestExplain>
-                            버그, 문의사항을 적어주시면 메일 또는 공지사항으로 안내해드리겠습니다.
-                        </S.QuestExplain>
+    console.log(response);
 
-                    <form onSubmit={send}>
-                        <S.EmailBox>
-                            <S.EmailInput
-                                type="email"
-                                placeholder="이메일을 입력해주세요."
-                                onChange={onEmail}
-                            />
-                        </S.EmailBox>
+    const statusNumber = Number(response.status);
 
-                        <S.ContentBox>
-                            <S.Content
-                                rows="6"
-                                placeholder="버그 & 문의사항을 입력해주세요"
-                                onChange={onContent}
-                            />
-                        </S.ContentBox>
+    if (statusNumber === 200) {
+      setMessage("버그 & 문의 사항이 접수 되었습니다");
+    } else if (statusNumber === 400) {
+      setMessage("에러발생! 내용을 확인해주세요");
+    }
+    setModalVisible(true);
+  };
 
-                        <S.QuestButton>버그 & 문의 보내기</S.QuestButton>
-                    </form>
-                </S.QuestionBox>
-                {
-                    modalVisible && 
-                    <QuestionModal
-                        visible={modalVisible}
-                        closable={true}
-                        maskClosable={true}
-                        onClose={closeModal}
-                        message={message}
-                    />
-                }
-                
-            </S.Questions>
-        </>
-    )
-}
+  useEffect(() => {
+    function handleTouchMove(e) {
+      if (modalVisible) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        return false;
+      }
+    }
+    window.addEventListener("mousewheel", handleTouchMove, {
+      passive: false,
+    });
+    return () => window.removeEventListener("mousewheel", handleTouchMove);
+  }, [modalVisible]);
+
+  return (
+    <>
+      <S.Questions>
+        <S.QuestionBox>
+          <S.QuestionText>문의사항</S.QuestionText>
+
+          <S.QuestExplain>
+            버그, 문의사항을 적어주시면 메일 또는 공지사항으로
+            안내해드리겠습니다.
+          </S.QuestExplain>
+
+          <S.QuestInputForm onSubmit={send}>
+            <S.EmailBox>
+              <S.EmailInput
+                type="email"
+                placeholder="이메일을 입력해주세요."
+                onChange={onEmail}
+              />
+            </S.EmailBox>
+
+            <S.ContentBox>
+              <S.Content
+                rows="8"
+                placeholder="버그 & 문의사항을 입력해주세요"
+                onChange={onContent}
+              />
+            </S.ContentBox>
+
+            <S.QuestButton>버그 & 문의 보내기</S.QuestButton>
+          </S.QuestInputForm>
+        </S.QuestionBox>
+        {modalVisible && (
+          <QuestionModal
+            visible={modalVisible}
+            // onClose={closeModal}
+            message={message}
+          />
+        )}
+      </S.Questions>
+    </>
+  );
+};
 
 export default Questions;

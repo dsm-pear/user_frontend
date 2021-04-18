@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function SignUp({ Data }) {
+function SignUp() {
   const history = useHistory();
   //모든 창이 입력 되면 버튼색 바뀐
   const [button, setButton] = useState("#e1e1e1");
@@ -44,7 +44,7 @@ function SignUp({ Data }) {
         }
       );
       localStorage.setItem("token", data.token);
-      history.push("/login");
+      history.push("/");
     } catch (e) {
       alert("이메일을 다시 확인해주세요");
       console.log(e);
@@ -64,7 +64,6 @@ function SignUp({ Data }) {
         setPwInput("#e3f0ff");
       }
     } else if (password.length >= 8 && password.length <= 14) {
-
       if (password !== pwconfirm) {
         /* 회원가입 조건중 비밀번호 확인 틀림 */
         console.log("달라요");
@@ -74,18 +73,16 @@ function SignUp({ Data }) {
         if (pwconfirm === "") {
           setConInput("#e3f0ff");
         }
-      } 
-      else if (password.length >= 8 && password.length <= 14) {
+      } else if (password.length >= 8 && password.length <= 14) {
         /* 회원가입 조건 모두 만족 */
         postSignup();
-  
+
         if (password === pwconfirm) {
-          
           alert("회원가입에 성공하셨습니다.");
           history.push("/");
         }
       }
-    } 
+    }
   };
   //버튼 색 바뀌게 비교
   const compare = (e) => {
@@ -97,7 +94,6 @@ function SignUp({ Data }) {
       password !== "" &&
       pwconfirm !== ""
     ) {
-      console.log("check");
       setButton("#5955d8");
       setBcolor("#ffffff");
     }
@@ -170,6 +166,8 @@ function SignUp({ Data }) {
               ) => (
                 <InputCom
                   key={i}
+                  post={post}
+                  check={check}
                   type={type}
                   placeholder={placeholder}
                   setData={setData}

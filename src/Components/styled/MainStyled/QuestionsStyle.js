@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 export const Questions = styled.div`
@@ -31,6 +30,10 @@ export const QuestExplain = styled.div`
     margin-bottom: 35.5px;
 `;
 
+export const QuestInputForm = styled.form`
+    font-family: "Noto Sans KR", sans-serif;
+`;
+
 export const EmailBox = styled.div`
     width: 1030px;
     height: 60px;
@@ -49,6 +52,7 @@ export const EmailInput = styled.input`
     align-items: center;
     padding: 18px 0 18px 55px;
     background-color: #e4eef2;
+    font-family: "Noto Sans KR", sans-serif;
     &:focus {
         outline: none;
     }
@@ -63,14 +67,14 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = styled.textarea`
+    font-family: "Noto Sans KR", sans-serif;
     width: 900px;
     font-size: 20px;
     line-height: 1.2;
     border: none;
     align-items: center;
     resize: none;
-    border-radius: 30px;
-    padding: 47px 55px 0 55px;
+    margin: 18px 0 0 55px;
     background-color: #e4eef2;
     color: #4d4d4d;
     &:focus {
@@ -102,9 +106,8 @@ export const QuestButton = styled.button`
 
 /* 모달 스타일 */
 
-
-
 export const ModalBox = styled.div`
+    overflow: hidden;
     width: 100%;
     display: ${(props) => (props.visible ? 'block' : 'none')};
 `;
@@ -118,6 +121,7 @@ export const ModalBackground = styled.div `
     justify-content: center;
     align-items : center;
     z-index: 3;
+    overflow: hidden;
 `
 
 export const Modal = styled.div`

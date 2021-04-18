@@ -33,27 +33,25 @@ function Login() {
 
   return (
     <>
-      <S.LoginBody>
-        <S.Loginbg>
-          <S.Title>LOGIN</S.Title>
-          <S.Logininput>
-            <input
-              type="text"
-              placeholder="학교 이메일"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="비밀번호"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={loginCilckHeadler}>로그인</button>
-            <Link to="/signup">아직 계정이 없으신가요?</Link>
-          </S.Logininput>
-        </S.Loginbg>
-      </S.LoginBody>
+      <S.Loginbg>
+        <S.Title>LOGIN</S.Title>
+        <S.Logininput>
+          <input
+            type="text"
+            placeholder="학교 이메일"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={loginCilckHeadler}>로그인</button>
+          <Link to="/signup">아직 계정이 없으신가요?</Link>
+        </S.Logininput>
+      </S.Loginbg>
     </>
   );
 }

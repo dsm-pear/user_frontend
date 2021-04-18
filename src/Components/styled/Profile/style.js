@@ -47,7 +47,7 @@ const ProPhoto = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 70%;
+  height: 87%;
 
   & div {
     background-image: url(${StudentProfile});
@@ -56,6 +56,7 @@ const ProPhoto = styled.div`
     margin: 10px;
   }
   .input {
+    justify-content: center;
     background-color: white;
     padding: 0 20px;
     margin: 10px;
@@ -77,6 +78,9 @@ const ProPhoto = styled.div`
       font-size: 15px;
       color: black;
     }
+  }
+  .introduce{
+    height: 30%;
   }
 `;
 const Git = styled.div`

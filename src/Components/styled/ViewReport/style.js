@@ -12,7 +12,7 @@ const Cover = styled.div`
   margin: auto;
   margin-top: 80px;
   display: flex;
-  width: 77%;
+  width: 71%;
   height: 73%;
   .coverCategory {
     width: 20%;
@@ -40,7 +40,7 @@ const Box = styled.div`
 const Categorybar = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   margin-top: 17px;
   width: 100%;
@@ -54,7 +54,7 @@ const Category = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 30%;
+  height: 38%;
   &:nth-child(2) {
     margin-top: 30px;
   }
@@ -73,27 +73,33 @@ const ReportKindOf = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: 50%;
+  margin-bottom: 51px;
 
-  > ul > a {
-    color: black;
-    font-weight: 300px;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    padding: 10px 0 10px 50px;
-    width: 85%;
-    font-size: 15px;
-    font-family: "Noto Sans KR", sans-serif;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    &.active {
-      color: white;
-
-      background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  & ul {
+    height: 100%;
+    & button {
+      width: 102%;
+      background-color: white;
+      outline: none;
+      border: none;
+      font-weight: 300px;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      padding: 10px 0 10px 50px;
+      font-size: 15px;
+      font-family: "Noto Sans KR", sans-serif;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+      outline: none;
     }
   }
-
+  &.active {
+    color: white;
+    background-image: linear-gradient(to bottom, #5955d8, #716dec);
+  }
   a:hover {
     color: #5a5edc;
   }
@@ -120,22 +126,20 @@ const ProjectHeader = styled.nav`
   border-bottom: solid 1px #e4eef2;
   .nav {
     margin: 0 20px;
-    & label {
-      & div {
-        text-align: center;
-        cursor: pointer;
-        margin: 0 10px;
-        padding-top: 5px;
-        outline: none;
-        border: none;
-        width: 63px;
-        height: 22px;
-        display: inline-block;
-        border-radius: 14px;
-        font-family: "Noto Sans KR", sans-serif;
-        background: #efefef;
-        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-      }
+    & button {
+      text-align: center;
+      cursor: pointer;
+      margin: 0 10px;
+      padding: 2px;
+      outline: none;
+      border: none;
+      width: 63px;
+      height: 22px;
+      display: inline-block;
+      border-radius: 14px;
+      font-family: "Noto Sans KR", sans-serif;
+      background: #efefef;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
       & input {
         display: none;
       }
@@ -154,7 +158,7 @@ const Project = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 960px;
+  width: 100%;
   height: 49px;
   margin: 10px;
   border: 1.6px solid ${(props) => props.color};
@@ -204,10 +208,10 @@ const Project = styled.div`
 const MainCover = styled.div`
   margin: 40px;
   height: 70%;
+  width: 94%;
 `;
 
 const Number = styled.div`
-  
   a {
     margin: 10px;
     font-family: "Noto Sans KR", sans-serif;
