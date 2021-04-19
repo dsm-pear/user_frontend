@@ -1,8 +1,8 @@
 import React from "react";
 import { checked, bfchecked } from "../../../../assets";
-import * as S from "../../../styled/ReportWriting/Modal/UserMappingStyle";
+import * as S from "../../../styled/ReportWriting/Modal/LeftUserMapping";
 
-const UserMapping = ({ userInfo, onClickLeft, selectedUserList }) => {
+const LeftUserMapping = ({ userInfo, onClickLeft, selectedUserList }) => {
   return (
     <>
       <S.LeftResult onClick={() => onClickLeft(userInfo.id, userInfo)}>
@@ -29,4 +29,4 @@ const UserMapping = ({ userInfo, onClickLeft, selectedUserList }) => {
   );
 };
 
-export default UserMapping;
+export default LeftUserMapping;
