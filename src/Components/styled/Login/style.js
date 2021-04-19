@@ -63,7 +63,6 @@ const Logininput = styled.div`
     border-bottom: 1px solid #5955d8;
   }
 `;
-
 const SignUpButton = styled.div`
   margin: 30px 10px;
   width: 500px;
