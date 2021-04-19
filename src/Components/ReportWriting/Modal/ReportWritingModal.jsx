@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import UserMapping from "./UserList/UserMapping";
+import LeftUserMapping from "./UserList/LeftUserMapping";
 import LoadingPage from "../LoadingPage";
-import RightModal from "./UserList/RightModal";
+import RightUserMapping from "./UserList/RightUserMapping";
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 import { request, useRefresh } from "../../../utils/axios/axios";
@@ -77,7 +77,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
   const onClickLeft = (id, userInfo) => {
     const user = selectedUserList.find((user) => {
-      // TODO: id랑 같은 user 찾는 조건문
       if (user.id === id) {
         return true;
       }
@@ -85,15 +84,13 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     });
 
     if (!user) {
-      // TODO: selectedUserList에 user 추가 해서 setState
       setSelectedUserList([userInfo, ...selectedUserList]);
     } else {
-      // TODO: selectedUSerLISt에서 user를 지워 그 담에 setState
       setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
     }
   };
 
-  const onClickRight = () => {};
+  const onClickRight = (id, selectedUser) => {};
 
   const onClose = () => {
     setOpen("hidden");
@@ -133,7 +130,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
               {searchList &&
                 searchList.map((userInfo) => {
                   return (
-                    <UserMapping
+                    <LeftUserMapping
                       key={userInfo.id}
                       userInfo={userInfo}
                       onClickLeft={onClickLeft}
@@ -156,13 +153,36 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             </S.TeamState>
           </S.LeftModalSort>
         </S.LeftModalMain>
-        {toggled === true && (
-          <RightModal
-            toggled={toggled}
-            setToggled={setToggled}
-            selectedUserList={selectedUserList}
-            onClickRight={onClickRight}
-          />
+        {toggled && (
+          <S.RightModalMain>
+            <S.RightModalSort>
+              <S.RightCloseBtn>
+                <span>
+                  <img src={Close} alt="Close" onClick={onClose} />
+                </span>
+              </S.RightCloseBtn>
+              <S.RightSearchResult>
+                {selectedUserList &&
+                  selectedUserList.map((selectedUser) => {
+                    return (
+                      <RightUserMapping
+                        key={selectedUser.id}
+                        selectedUser={selectedUser}
+                        onClickRight={onClickRight}
+                        selectedUserList={selectedUserList}
+                      />
+                    );
+                  })}
+              </S.RightSearchResult>
+            </S.RightModalSort>
+          </S.RightModalMain>
+
+          // <RightModal
+          //   toggled={toggled}
+          //   setToggled={setToggled}
+          //   onClickRight={onClickRight}
+          //   searchList={searchList}
+          // />
         )}
       </S.Div>
     </>
