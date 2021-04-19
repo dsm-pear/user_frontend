@@ -8,7 +8,7 @@ import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
 
-function MainReport({ match }) {
+function MainReport(props) {
   const [reportData, setReportData] = useState([]);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
@@ -16,19 +16,19 @@ function MainReport({ match }) {
   const refreshHandler = useRefresh();
 
   useEffect(() => {
+    //보고서 내용
     const getReportView = async () => {
       try {
         loding(true);
         const data = await request(
           "get",
-          `/report/${match.params.reportid}`,
+          `/report/${props.reportId}`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           0
         );
 
         setReportData(data.reportData);
-        console.log(reportData);
-        console.log(data);
+        
       } catch (e) {
         console.error(e);
         switch (e.data.status) {
@@ -49,11 +49,11 @@ function MainReport({ match }) {
     };
 
     getReportView();
-  }, []);
+  });
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  //if (!reportData) return <div>서버좀 줘라</div>;
+  if (!reportData) return <div>서버좀 줘라</div>;
 
   return (
     <S.Main>
@@ -71,14 +71,16 @@ function MainReport({ match }) {
           text={reportData.description}
           git="{reportData.github}"
           file={reportData.fileName}
-          //onClick={downlodehandler}
         />
         <ReportTeam />j
         <ReportLanguage languages={reportData.languages} />
         <ReportComment
-          name={reportData.userName}
-          content={reportData.content}
-          commentId={reportData.commentId}
+          name={reportData.comment.userName}
+          email={reportData.comment.userEmail}
+          content={reportData.comment.content}
+          commentId={reportData.comment.commentId}
+          isMain={reportData.comment.isMain}
+          createdAt={reportData.comment.createdAt}
         />
       </S.MainBox>
     </S.Main>

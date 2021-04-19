@@ -1,40 +1,64 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import * as S from "../../styled/ViewReport/style";
+import { request, useRefresh } from "../../../utils/axios/axios";
 
+const CategoryName = (props) => {
+  const [selected, setSeletect] = useState(0);
+  const refreshHandler = useRefresh();
 
-const CategoryName = ({ SwName, Ele, field, grade, page, type, to }) => {
-  const [backgroundColor, setBackgroundColor] = useState("");
-  const [color, setColor] = useState("none");
-
-  const colorChangeHandler = (e) => {
-    console.log("색 바뀐다");
-    console.log(e.target.checked);
-    if (e.target.checked === true) {
-      setColor("white");
-      setBackgroundColor("linear-gradient(to bottom, #5955d8, #716dec)");
-    } else {
-      setColor("");
-      setBackgroundColor("");
+  //API 요청
+  const colorChangeHandler = async () => {
+    //console.log(e.target.checked);
+    try {
+      const data = await request(
+        "get",
+        `report/filter?size=6&page=0&type=&grade=&field=APP`,
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+    } catch (e) {
+      console.log(e);
+      /* switch (e.data.status) {
+        case 400:
+          alert("프로필 불러오기를 실패했습니다.");
+          break;
+        case 403:
+          refreshHandler().then(() => {
+            colorChangeHandler();
+          });
+          break;
+        default:
+          break;
+      } */
     }
+  };
+
+  //카테고리 중복선택 안되게
+  const handleColor = (row) => {
+    setSeletect(row.id);
   };
 
   return (
     <S.Category>
-      <span>{SwName}</span>
+      <span>{props.SwName}</span>
       <S.ReportKindOf>
         <ul>
-          {Ele.map(({ text, field }, i) => {
-            return (
-              <NavLink
-                to= {`/view-report/report/filter?size=6&page=${page}&type=${type}&field=${field}&grade=${grade}`} 
-                key={i}
-                activeClassName="active"
-              >
-                {text}
-              </NavLink>
-            );
-          })}
+          {props.Ele.map((list) => (
+            <button
+              key={list.id}
+              onClick={() => handleColor(list)}
+              style={{
+                background:
+                  list.id === selected
+                    ? "linear-gradient(to bottom, #5955d8, #716dec)"
+                    : "none",
+                color: list.id === selected ? "white" : "",
+              }}
+            >
+              {list.text}
+            </button>
+          ))}
         </ul>
       </S.ReportKindOf>
     </S.Category>
