@@ -30,12 +30,6 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      setSelectedUserList(
-        getUser.data.userResponses.map((user, index) => ({
-          id: index + 1,
-          user,
-        }))
-      );
     }
     getUsers();
   }, [ACCESS_TOKEN]);
@@ -53,12 +47,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      // setSelectedUserList(
-      //   response.data.userResponses.map((user, index) => ({
-      //     id: index + 1,
-      //     user,
-      //   }))
-      // );
+      setLoading(false);
     } catch (e) {
       switch (e.searchList) {
         case 400:
@@ -90,7 +79,9 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  const onClickRight = (id, selectedUser) => {};
+  const onClickRight = (id) => {
+    setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
+  };
 
   const onClose = () => {
     setOpen("hidden");
@@ -104,6 +95,19 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
 
   const onSearchChange = (e) => {
     loadUserSearchList(e.target.value);
+  };
+
+  const renderSelectedUser = () => {
+    return selectedUserList.map((selectedUser) => {
+      return (
+        <RightUserMapping
+          key={selectedUser.id}
+          selectedUser={selectedUser}
+          onClickRight={onClickRight}
+          selectedUserList={selectedUserList}
+        />
+      );
+    });
   };
 
   return (
@@ -161,28 +165,9 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
                   <img src={Close} alt="Close" onClick={onClose} />
                 </span>
               </S.RightCloseBtn>
-              <S.RightSearchResult>
-                {selectedUserList &&
-                  selectedUserList.map((selectedUser) => {
-                    return (
-                      <RightUserMapping
-                        key={selectedUser.id}
-                        selectedUser={selectedUser}
-                        onClickRight={onClickRight}
-                        selectedUserList={selectedUserList}
-                      />
-                    );
-                  })}
-              </S.RightSearchResult>
+              <S.RightSearchResult>{renderSelectedUser()}</S.RightSearchResult>
             </S.RightModalSort>
           </S.RightModalMain>
-
-          // <RightModal
-          //   toggled={toggled}
-          //   setToggled={setToggled}
-          //   onClickRight={onClickRight}
-          //   searchList={searchList}
-          // />
         )}
       </S.Div>
     </>
