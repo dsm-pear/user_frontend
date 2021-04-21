@@ -34,8 +34,8 @@ export const BorderBox = styled.div`
   width: 68%;
   min-width: 950px;
   max-width: 68%;
-  height: 780px;
-  min-height: 780px;
+  height: 835px;
+  min-height: 835px;
   max-height: 100%;
   margin: 15rem 0 3rem;
   padding: 2rem 2.5rem 0;
@@ -362,7 +362,7 @@ export const inAttachFile = styled.div`
 export const SubmitBox = styled.div`
   width: 100%;
   display: flex;
-  margin: 3rem 0 3rem;
+  margin: 1.5rem 0 3rem;
 
   &:hover {
     cursor: default;
@@ -389,6 +389,44 @@ export const MakeTeam = styled.div`
   }
 `;
 
+export const MtBtnBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const MemberResult = styled.div`
+  width: 83%;
+  background-color: #ffffff;
+  border: 1px solid #4d4d4d;
+`;
+
+export const MtBtn = styled.div`
+  text-align: center;
+  width: 5.7rem;
+  height: 24px;
+  margin-top: 7.5rem;
+  border: 1px solid #6192f3;
+  border-radius: 18px;
+  outline: none;
+  background: #6192f3;
+  transition: 0.3s;
+  padding: 0.3rem 1rem;
+  color: white;
+  font-family: BBTreeGL;
+  font-size: 13px;
+
+  &:hover {
+    cursor: pointer;
+    background: #719cf0;
+    transition: 0.3s;
+  }
+`;
+
 export const SaveSubBtn = styled.div`
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -398,6 +436,119 @@ export const SaveSubBtn = styled.div`
   width: 27%;
   display: flex;
   justify-content: flex-end;
+  margin-top: 7.5rem;
+
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const SelctFlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const ListTable = styled.div`
+  font-family: BBTreeGL;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 12px;
+  color: #000000;
+  cursor: pointer;
+  padding: 0.2rem 4px;
+  margin: 0.3rem 0.3rem;
+
+  &:hover {
+    transition: 0.2s;
+    color: #5955d8;
+  }
+`;
+
+export const InList = styled.div`
+  font-family: BBTreeGL;
+  font-size: 12px;
+  font-weight: normal;
+  color: #000000;
+  cursor: pointer;
+  margin: 0 0 5px 12px;
+
+  &:hover {
+    transition: 0.2s;
+    color: #5955d8;
+  }
+`;
+
+export const TeamName = styled.div`
+  width: ${({ width }) => width};
+  transition: all 0.6s;
+  background: #f8f8f8;
+  outline: none;
+  border: 1px solid #f8f8f8;
+  border-radius: 21px;
+  padding: 0.3rem 1rem;
+
+  span > input {
+    background: #f8f8f8;
+    outline: none;
+    border: 1px solid #f8f8f8;
+    text-align: left;
+    font-size: 13px;
+    font-family: BBTreeGL;
+  }
+`;
+
+export const SaveBtn = styled.div`
+  margin-right: 1rem;
+
+  div {
+    text-align: center;
+    width: 5.5rem;
+    border: 1px solid #6192f3;
+    border-radius: 18px;
+    outline: none;
+    background: #6192f3;
+    transition: 0.3s;
+    padding: 0.3rem 1rem;
+    color: white;
+    font-family: BBTreeGL;
+    font-size: 13px;
+  }
+  div:hover {
+    cursor: pointer;
+    background: #719cf0;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const SubBtn = styled.div`
+  margin-left: 1rem;
+
+  div {
+    text-align: center;
+    width: 5.5rem;
+    border: 1px solid #6192f3;
+    border-radius: 18px;
+    outline: none;
+    background: #6192f3;
+    transition: 0.3s;
+    padding: 0.3rem 1rem;
+    color: white;
+    font-family: BBTreeGL;
+    font-size: 13px;
+  }
+  div:hover {
+    cursor: pointer;
+    background: #719cf0;
+    transition: 0.3s;
+  }
 
   &:hover {
     cursor: default;

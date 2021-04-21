@@ -6,10 +6,19 @@ import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 import { request, useRefresh } from "../../../utils/axios/axios";
 
-const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
+const ReportWritingModal = ({
+  setOpen,
+  setMyHei,
+  open,
+  myHei,
+  opas,
+  searchList,
+  setSearchList,
+  selectedUserList,
+  setSelectedUserList,
+}) => {
   const [toggled, setToggled] = useState(false);
-  const [searchList, setSearchList] = useState([]);
-  const [selectedUserList, setSelectedUserList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState("hidden");
   const [loading, setLoading] = useState(true);
   const refreshHandler = useRefresh();
   const ACCESS_TOKEN = localStorage.getItem("access-token");
@@ -32,7 +41,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       );
     }
     getUsers();
-  }, [ACCESS_TOKEN]);
+  }, [ACCESS_TOKEN, setSearchList]);
 
   if (loading) return <LoadingPage />;
 
@@ -83,18 +92,23 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
   };
 
-  const onClose = () => {
-    setOpen("hidden");
-    setMyHei("0");
-    setToggled(false);
+  const onSearchChange = (e) => {
+    loadUserSearchList(e.target.value);
   };
 
-  const btnClick = () => {
+  const onLeftModalClose = () => {
+    setOpen("hidden");
+    setMyHei("0");
+  };
+
+  const onRightModalClose = () => {
+    setIsModalOpen("hidden");
     setToggled(!toggled);
   };
 
-  const onSearchChange = (e) => {
-    loadUserSearchList(e.target.value);
+  const rightModalOpen = () => {
+    setToggled(!toggled);
+    setIsModalOpen("visible");
   };
 
   const renderSelectedUser = () => {
@@ -115,7 +129,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       <S.Div visibility={open}>
         <S.LeftModalMain height={myHei} opas={opas}>
           <S.LeftModalSort>
-            <S.LeftCloseBtn onClick={onClose}>
+            <S.LeftCloseBtn onClick={onLeftModalClose}>
               <span>
                 {toggled === !true && <img src={Close} alt="Close" />}
               </span>
@@ -144,7 +158,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
                 })}
             </S.LeftSearchResult>
             <S.TeamState>
-              <S.BorderState onClick={btnClick}>
+              <S.BorderState onClick={rightModalOpen}>
                 <span>현재 팀 상태</span>
                 {toggled === true ? (
                   <div>
@@ -158,11 +172,11 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           </S.LeftModalSort>
         </S.LeftModalMain>
         {toggled && (
-          <S.RightModalMain>
+          <S.RightModalMain visibility={isModalOpen}>
             <S.RightModalSort>
               <S.RightCloseBtn>
                 <span>
-                  <img src={Close} alt="Close" onClick={onClose} />
+                  <img src={Close} alt="Close" onClick={onRightModalClose} />
                 </span>
               </S.RightCloseBtn>
               <S.RightSearchResult>{renderSelectedUser()}</S.RightSearchResult>
