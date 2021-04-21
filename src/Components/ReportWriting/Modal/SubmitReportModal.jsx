@@ -25,37 +25,59 @@ const SubmitReportModal = ({
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
+  const baseUrl = "http://54.180.224.67";
   const ACCESS_TOKEN = localStorage.getItem("access-token");
+  const REFRESH_TOKEN = localStorage.getItem("refresh-token");
+
   const onClick = () => {
     setState("hidden");
     setHei("0");
   };
-
-  // const onCloseChange = (e) => {
-  //   if (e.key === "escape") {
-  //     setState("hidden");
-  //     setHei("0");
-  //   }
-  //   console.log(e.target.value);
-  // };
 
   const btnClick = () => {
     setView("visible");
     setState("hidden");
     setMyOpa("0");
     setOpa("1");
-    const data1 = new FormData(); // 파일을 이용할 때 FormData
-    data1.append("reportFile", files[0]); // append = 기존의 것 + @
+    const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
+    isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
     // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
     axios
-      .post(`http://54.180.224.67:3000/report/files/1`, data1, {
+      .post(`http://54.180.224.67:3000/report/files/1`, isSubmitFile, {
         headers: {
           "Content-Type": "multipart/form-data", // multipart = 파일 업로드
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
       })
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 410) {
+          axios
+            .put(`http://54.180.224.67:8080/auth`, undefined, {
+              headers: {
+                "X-Refresh-Token": REFRESH_TOKEN,
+              },
+            })
+            .then((res) => {
+              if (res.data.access_token) {
+                localStorage.setItem("access-token", ACCESS_TOKEN);
+                console.log(REFRESH_TOKEN);
+                axios.post(
+                  `http://54.180.224.67:3000/report/files/${res.data.id}`,
+                  isSubmitFile,
+                  {
+                    headers: {
+                      "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                      Authorization: `Bearer ${localStorage.getItem(
+                        "access-token"
+                      )}`,
+                    },
+                  }
+                );
+              }
+            });
+        }
+      });
 
     axios
       .post(
@@ -83,8 +105,6 @@ const SubmitReportModal = ({
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
-
-  const baseUrl = "http://54.180.224.67";
 
   return (
     <>

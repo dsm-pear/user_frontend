@@ -161,6 +161,7 @@ export const RightModalMain = styled.div`
   border-left: 2px solid #e4eef2;
   border-radius: 5px;
   background-color: #ffffff;
+  visibility: ${({ visibility }) => visibility};
 
   &:hover {
     cursor: default;
