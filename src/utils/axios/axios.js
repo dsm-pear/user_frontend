@@ -42,22 +42,22 @@ export function fileRequest(method, url, header, data) {
 export function useRefresh(method, url, data) {
   const history = useHistory();
 
-  return true;
+  // return true;
 
-  //   return Axios({
-  //     method: "put",
-  //     url: MainURL + "/auth",
-  //     headers: {
-  //       "X-Refresh-Token": localStorage.getItem("refresh-token"),
-  //     },
-  //     data: data,
-  //   })
-  //     .then((res) => {
-  //       localStorage.setItem("access-token", res.data.access_token);
-  //     })
-  //     .catch(() => {
-  //       localStorage.removeItem("access-token");
-  //       localStorage.removeItem("refresh-token");
-  //       history.push("/");
-  //     });
+  return Axios({
+    method: "put",
+    url: MainURL + "/auth",
+    headers: {
+      "X-Refresh-Token": localStorage.getItem("refresh-token"),
+    },
+    data: data,
+  })
+    .then((res) => {
+      localStorage.setItem("access-token", res.data.access_token);
+    })
+    .catch(() => {
+      localStorage.removeItem("access-token");
+      localStorage.removeItem("refresh-token");
+      history.push("/");
+    });
 }

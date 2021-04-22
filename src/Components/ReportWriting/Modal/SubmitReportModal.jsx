@@ -25,84 +25,130 @@ const SubmitReportModal = ({
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
-  const baseUrl = "http://54.180.224.67";
+
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
+
+  const Api = axios;
+  const FileApi = axios;
+  const baseUrl = "http://54.180.224.67";
 
   const onClick = () => {
     setState("hidden");
     setHei("0");
   };
 
-  const btnClick = () => {
+  const btnClick = (e) => {
     setView("visible");
     setState("hidden");
     setMyOpa("0");
     setOpa("1");
-    const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
-    isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
-    // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-    axios
-      .post(`http://54.180.224.67:3000/report/files/1`, isSubmitFile, {
+
+    // const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
+    // isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
+    // // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
+    // FileApi
+    //   .post(`http://54.180.224.67:3000/report/files/1`, isSubmitFile, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+    //       Authorization: `Bearer ${ACCESS_TOKEN}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     if (err.response.status === 410) {
+    //       axios
+    //         .put(`http://54.180.224.67:8080/auth`, undefined, {
+    //           headers: {
+    //             "X-Refresh-Token": REFRESH_TOKEN,
+    //           },
+    //         })
+    //         .then((res) => {
+    //           if (res.data.access_token) {
+    //             localStorage.setItem("access-token", ACCESS_TOKEN);
+    //             console.log(REFRESH_TOKEN);
+    //             axios.post(
+    //               `http://54.180.224.67:3000/report/files/1`,
+    //               isSubmitFile,
+    //               {
+    //                 headers: {
+    //                   "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+    //                   Authorization: `Bearer ${localStorage.getItem(
+    //                     "access-token"
+    //                   )}`,
+    //                 },
+    //               }
+    //             );
+    //           }
+    //         });
+    //     }
+    //   });
+
+    Api.post(
+      `${baseUrl}:8080/report`,
+      {
+        title: `${title}`,
+        description: `${description}`,
+        languages: `${languages}`,
+        type: `${clickDivisionNumber}`,
+        access: `${clickScopeNumber}`,
+        field: `${clickFieldNumber}`,
+        grade: `${clickGradeNumber}`,
+        isSubmitted: `${isSubmitted}`,
+        fileName: `${files}`,
+        github: `${github}`,
+        teamName: `${teamName}`,
+      },
+      {
         headers: {
-          "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+          "Contect-Type": "application/json",
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => {
-        if (err.response.status === 410) {
-          axios
-            .put(`http://54.180.224.67:8080/auth`, undefined, {
-              headers: {
-                "X-Refresh-Token": REFRESH_TOKEN,
-              },
-            })
-            .then((res) => {
-              if (res.data.access_token) {
-                localStorage.setItem("access-token", ACCESS_TOKEN);
-                console.log(REFRESH_TOKEN);
-                axios.post(
-                  `http://54.180.224.67:3000/report/files/${res.data.id}`,
-                  isSubmitFile,
-                  {
-                    headers: {
-                      "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                      Authorization: `Bearer ${localStorage.getItem(
-                        "access-token"
-                      )}`,
-                    },
-                  }
-                );
-              }
-            });
-        }
-      });
-
-    axios
-      .post(
-        `${baseUrl}:8080/report`,
-        {
-          title: `${title}`,
-          description: `${description}`,
-          languages: `${languages}`,
-          type: `${clickDivisionNumber}`,
-          access: `${clickScopeNumber}`,
-          field: `${clickFieldNumber}`,
-          grade: `${clickGradeNumber}`,
-          isSubmitted: `${isSubmitted}`,
-          fileName: `${files}`,
-          github: `${github}`,
-          teamName: `${teamName}`,
-        },
-        {
+      }
+    )
+      .then((e) => {
+        const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
+        isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
+        const id = e.data.id;
+        // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
+        FileApi.post(`${baseUrl}:3000/report/files/${id}`, isSubmitFile, {
           headers: {
-            "Contect-Type": "application/json",
+            "Content-Type": "multipart/form-data", // multipart = 파일 업로드
             Authorization: `Bearer ${ACCESS_TOKEN}`,
           },
-        }
-      )
-      .then((res) => console.log(res))
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            if (err.response.status === 410) {
+              Api.put(`${baseUrl}:8080/auth`, undefined, {
+                headers: {
+                  "X-Refresh-Token": REFRESH_TOKEN,
+                },
+              }).then((res) => {
+                if (res.data.access_token) {
+                  localStorage.setItem("access-token", ACCESS_TOKEN);
+                  console.log(REFRESH_TOKEN);
+                  FileApi.post(
+                    `${baseUrl}:3000/report/files/${id}`,
+                    isSubmitFile,
+                    {
+                      headers: {
+                        "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                        Authorization: `Bearer ${localStorage.getItem(
+                          "access-token"
+                        )}`,
+                      },
+                    }
+                  );
+                }
+              });
+            }
+          });
+      })
       .catch((err) => console.log(err));
   };
 

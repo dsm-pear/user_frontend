@@ -68,11 +68,18 @@ export const ReportLogo = styled.div`
   span {
     width: 30%;
     padding: 0 0.6rem;
+    &:hover {
+      cursor: default;
+    }
   }
   img {
     width: 10rem;
+    &:hover {
+      cursor: default;
+    }
+    -webkit-user-drag: none;
   }
-  &.hover {
+  &:hover {
     cursor: default;
   }
 `;
@@ -393,6 +400,9 @@ export const MtBtnBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  background-color: #ffffff;
+  border: 1px solid #4d4d4d;
+  padding: 0.4rem 0.8rem;
 
   &:hover {
     cursor: default;
@@ -400,16 +410,57 @@ export const MtBtnBox = styled.div`
 `;
 
 export const MemberResult = styled.div`
-  width: 83%;
-  background-color: #ffffff;
-  border: 1px solid #4d4d4d;
+  width: 80%;
+  height: 100%;
+  font-family: BBTreeGL;
+
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const ResultHeader = styled.div`
+  margin-bottom: 12px;
+
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const ResultBody = styled.div`
+  display: flex;
+  height: 75%;
+  overflow-y: scroll;
+  overflow-x: auto;
+  font-size: 12px;
+  white-space: pre;
+  flex-wrap: wrap;
+
+  &:hover {
+    cursor: default;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+  }
+`;
+
+export const MtFlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const MtBtn = styled.div`
   text-align: center;
   width: 5.7rem;
   height: 24px;
-  margin-top: 7.5rem;
+  margin-top: 6rem;
   border: 1px solid #6192f3;
   border-radius: 18px;
   outline: none;
