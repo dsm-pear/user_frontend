@@ -1,15 +1,16 @@
 import React from "react";
 import * as S from "../../styled/ReportWriting/Modal/SelectedUsersStyle";
 
-const LeftUserMapping = ({}) => {
+const SelectedUsers = ({ selectedUser }) => {
   return (
     <>
       <S.Container>
-        <S.TeamMember></S.TeamMember>
-        <S.ResultBox></S.ResultBox>
+        <S.UserWrap>
+          {selectedUser.user.name} ({selectedUser.user.email})
+        </S.UserWrap>
       </S.Container>
     </>
   );
 };
 
-export default LeftUserMapping;
+export default SelectedUsers;
