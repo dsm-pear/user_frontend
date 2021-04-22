@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReportWritingModal from "./Modal/ReportWritingModal";
 import SubmitReportModal from "./Modal/SubmitReportModal";
 import SelectedUsers from "./Modal/SelectedUsers";
+import { request } from "../../utils/axios/axios";
 import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
@@ -37,6 +38,9 @@ const ReportWriting = () => {
   );
   const [searchList, setSearchList] = useState([]);
   const [selectedUserList, setSelectedUserList] = useState([]);
+
+  const ACCESS_TOKEN = localStorage.getItem("access-token");
+
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("userTextData")) || {
       title: "",
@@ -48,6 +52,25 @@ const ReportWriting = () => {
     setDescription(savedData.description);
     console.log(savedData);
   }, []);
+
+  useEffect(() => {
+    async function getUsers(getUser) {
+      try {
+        getUser = await request("get", `/account?name=`, {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        });
+      } catch (e) {
+        alert(e);
+      }
+      setSelectedUserList(
+        getUser.data.userResponses.map((user, index) => ({
+          id: index + 1,
+          user,
+        }))
+      );
+    }
+    getUsers();
+  }, [ACCESS_TOKEN, setSelectedUserList]);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -505,11 +528,21 @@ const ReportWriting = () => {
                 <span>
                   <S.MtBtnBox>
                     <S.MemberResult>
-                      {selectedUserList.map((selectedUser) => {
-                        return <SelectedUsers key={selectedUser.id} />;
-                      })}
+                      <S.ResultHeader>TEAM MEMBER</S.ResultHeader>
+                      <S.ResultBody>
+                        {selectedUserList.map((selectedUser) => {
+                          return (
+                            <SelectedUsers
+                              key={selectedUser.id}
+                              selectedUser={selectedUser}
+                            />
+                          );
+                        })}
+                      </S.ResultBody>
                     </S.MemberResult>
-                    <S.MtBtn onClick={teamBtnClick}>팀 만들기</S.MtBtn>
+                    <S.MtFlexBox>
+                      <S.MtBtn onClick={teamBtnClick}>팀 만들기</S.MtBtn>
+                    </S.MtFlexBox>
                   </S.MtBtnBox>
                 </span>
               </S.MakeTeam>
