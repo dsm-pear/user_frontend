@@ -4,7 +4,8 @@ import LoadingPage from "../LoadingPage";
 import RightUserMapping from "./UserList/RightUserMapping";
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
-import { request, useRefresh } from "../../../utils/axios/axios";
+import { request } from "../../../utils/axios/axios";
+import axios from "axios";
 
 const ReportWritingModal = ({
   setOpen,
@@ -20,8 +21,10 @@ const ReportWritingModal = ({
   const [toggled, setToggled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState("hidden");
   const [loading, setLoading] = useState(true);
-  const refreshHandler = useRefresh();
+  // const refreshHandler = useRefresh();
   const ACCESS_TOKEN = localStorage.getItem("access-token");
+  const REFRESH_TOKEN = localStorage.getItem("refresh-token");
+  const baseUrl = "http://54.180.224.67";
 
   useEffect(() => {
     async function getUsers(getUser) {
@@ -58,14 +61,22 @@ const ReportWritingModal = ({
       );
       setLoading(false);
     } catch (e) {
-      switch (e.searchList) {
+      switch (e.data.status) {
         case 400:
           alert("");
           break;
-        case 403:
-          refreshHandler().then(() => {
-            loadUserSearchList();
-          });
+        case 401:
+          axios
+            .put(`${baseUrl}:8080/auth`, undefined, {
+              headers: {
+                "X-Refresh-Token": REFRESH_TOKEN,
+              },
+            })
+            .then((res) => {
+              if (res.data.access_token) {
+                localStorage.setItem("access-token", ACCESS_TOKEN);
+              }
+            });
           break;
         default:
           break;
