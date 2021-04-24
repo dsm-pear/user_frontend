@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import ReportWritingModal from "./Modal/ReportWritingModal";
 import SubmitReportModal from "./Modal/SubmitReportModal";
 import SelectedUsers from "./Modal/SelectedUsers";
-import { request } from "../../utils/axios/axios";
 import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
@@ -33,13 +32,8 @@ const ReportWriting = () => {
   const [languages, setLanguages] = useState("");
   const [github, setGithub] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [autoSave, setAutoSave] = useState(
-    localStorage.getItem("userTextData")
-  );
   const [searchList, setSearchList] = useState([]);
   const [selectedUserList, setSelectedUserList] = useState([]);
-
-  const ACCESS_TOKEN = localStorage.getItem("access-token");
 
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("userTextData")) || {
@@ -50,27 +44,7 @@ const ReportWriting = () => {
     setTitle(savedData.title);
     setTags(savedData.tags);
     setDescription(savedData.description);
-    console.log(savedData);
   }, []);
-
-  useEffect(() => {
-    async function getUsers(getUser) {
-      try {
-        getUser = await request("get", `/account?name=`, {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-        });
-      } catch (e) {
-        alert(e);
-      }
-      setSelectedUserList(
-        getUser.data.userResponses.map((user, index) => ({
-          id: index + 1,
-          user,
-        }))
-      );
-    }
-    getUsers();
-  }, [ACCESS_TOKEN, setSelectedUserList]);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -81,7 +55,6 @@ const ReportWriting = () => {
   };
 
   const isSdClick = (e) => {
-    console.log(e.target);
     switch (e.target.dataset.type) {
       case "grade":
         setClickGradeNumber(e.target.innerHTML);
@@ -155,46 +128,38 @@ const ReportWriting = () => {
 
   const onTitleChange = (e) => {
     setTitle(e.target.value);
-    console.log(e);
   };
 
   const onLanguagesChange = (e) => {
     setLanguages(e.target.value);
-    console.log(e);
   };
 
   const onDescriptionChange = (e) => {
     setDescription(e.target.value);
-    console.log(e);
   };
 
   const onGithubChange = (e) => {
     setGithub(e.target.value);
-    console.log(e);
   };
 
-  const onGradeClick = (e) => {
+  const onGradeClick = () => {
     setGrade(grade);
-    console.log(e);
   };
 
-  const onTypeClick = (e) => {
+  const onTypeClick = () => {
     setType(type);
-    console.log(e);
   };
 
-  const onFieldClick = (e) => {
+  const onFieldClick = () => {
     setField(field);
-    console.log(e);
   };
 
-  const onAccessClick = (e) => {
+  const onAccessClick = () => {
     setAccess(access);
-    console.log(e);
   };
 
-  const onSaveLocalStorage = (e) => {
-    window.localStorage.setItem(
+  const onSaveLocalStorage = () => {
+    const saveItems = window.localStorage.setItem(
       "userTextData",
       JSON.stringify({
         title: title,
@@ -202,16 +167,14 @@ const ReportWriting = () => {
         description: description,
       })
     );
-    setAutoSave(e);
-  };
 
-  const checkAutoSave = (e) => {
-    console.log(e.target.value);
-    if (autoSave === true) {
-      setIsSubmitted(true);
-    } else {
-      setIsSubmitted(false);
+    const readItems = localStorage.getItem("userTextData");
+
+    if (readItems === saveItems) {
+      return setIsSubmitted(true);
     }
+
+    console.log(isSubmitted);
   };
 
   return (
@@ -400,7 +363,6 @@ const ReportWriting = () => {
                     >
                       임베디드
                     </S.ListTable>
-                    {/* 임베디드 시스템, 임베디드 소프트웨어 */}
                     <S.ListTable
                       data-id="정보보안"
                       data-type="field"
@@ -469,7 +431,7 @@ const ReportWriting = () => {
               <S.UseLang>
                 {tags.map((tag, i) => {
                   return (
-                    <S.Tag onClick={() => onLanguageClick(i)} index={i}>
+                    <S.Tag onClick={() => onLanguageClick(i)} index={i} key={i}>
                       {tag}
                     </S.Tag>
                   );
@@ -548,9 +510,7 @@ const ReportWriting = () => {
               </S.MakeTeam>
               <S.SaveSubBtn>
                 <S.SaveBtn>
-                  <div onClick={onSaveLocalStorage && checkAutoSave}>
-                    임시저장
-                  </div>
+                  <div onClick={onSaveLocalStorage}>임시저장</div>
                 </S.SaveBtn>
                 <S.SubBtn onClick={onClick}>
                   <div>제출하기</div>
