@@ -44,48 +44,6 @@ const SubmitReportModal = ({
     setMyOpa("0");
     setOpa("1");
 
-    // const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
-    // isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
-    // // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-    // FileApi
-    //   .post(`http://54.180.224.67:3000/report/files/1`, isSubmitFile, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-    //       Authorization: `Bearer ${ACCESS_TOKEN}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     if (err.response.status === 410) {
-    //       axios
-    //         .put(`http://54.180.224.67:8080/auth`, undefined, {
-    //           headers: {
-    //             "X-Refresh-Token": REFRESH_TOKEN,
-    //           },
-    //         })
-    //         .then((res) => {
-    //           if (res.data.access_token) {
-    //             localStorage.setItem("access-token", ACCESS_TOKEN);
-    //             console.log(REFRESH_TOKEN);
-    //             axios.post(
-    //               `http://54.180.224.67:3000/report/files/1`,
-    //               isSubmitFile,
-    //               {
-    //                 headers: {
-    //                   "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-    //                   Authorization: `Bearer ${localStorage.getItem(
-    //                     "access-token"
-    //                   )}`,
-    //                 },
-    //               }
-    //             );
-    //           }
-    //         });
-    //     }
-    //   });
-
     Api.post(
       `${baseUrl}:8080/report`,
       {
@@ -97,7 +55,7 @@ const SubmitReportModal = ({
         field: `${clickFieldNumber}`,
         grade: `${clickGradeNumber}`,
         isSubmitted: `${isSubmitted}`,
-        fileName: `${files}`,
+        fileName: `${files.inputElement.value}`,
         github: `${github}`,
         teamName: `${teamName}`,
       },
@@ -119,8 +77,8 @@ const SubmitReportModal = ({
             Authorization: `Bearer ${ACCESS_TOKEN}`,
           },
         })
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            console.log("파일 요청 성공");
           })
           .catch((err) => {
             if (err.response.status === 410) {
