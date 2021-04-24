@@ -15,11 +15,20 @@ export const Main = styled.div`
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 10px;
-    /* 스크롤바의 width */
   }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #81bcff, #56d4e2);
+    border-radius: 10px;
+    &:hover {
+      background: linear-gradient(135deg, #9dc9fa, #77dce6);
+    }
+  }
+
   &:hover {
     cursor: default;
   }
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -225,7 +234,7 @@ export const colors = [
 export const Tag = styled.div`
   border: 1px solid;
   white-space: nowrap;
-  color: darkslategray;
+  color: #546e7a;
   background-color: ${({ index }) => colors[index % colors.length]};
   border: 1px solid ${({ index }) => colors[index % colors.length]};
   border-radius: 5px;
@@ -441,7 +450,15 @@ export const ResultBody = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #f5f5f5;
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #81bcff, #56d4e2);
+    border-radius: 10px;
+    &:hover {
+      background: linear-gradient(135deg, #9dc9fa, #77dce6);
+    }
   }
 `;
 
