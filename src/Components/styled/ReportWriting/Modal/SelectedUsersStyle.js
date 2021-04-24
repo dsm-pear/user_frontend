@@ -2,8 +2,15 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 48%;
+  height: 22%;
   display: flex;
   justify-content: flex-start;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
-export const UserWrap = styled.div``;
+export const UserWrap = styled.div`
+  height: 63%;
+`;
