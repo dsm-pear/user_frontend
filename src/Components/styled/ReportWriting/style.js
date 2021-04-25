@@ -157,9 +157,34 @@ export const ViewList = styled.div`
   text-align: left;
   cursor: pointer;
   z-index: 1;
-  margin: 4.5px 10px 0 0;
+  margin: 4.4px 10px 0 0;
   left: -1px;
   overflow: hidden;
+`;
+
+export const SelctFlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const ListTable = styled.div`
+  font-family: BBTreeGL;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 12px;
+  color: #000000;
+  cursor: pointer;
+  padding: 0.2rem 4px;
+  margin: 0.3rem 0.3rem;
+
+  &:hover {
+    transition: 0.2s;
+    color: #5955d8;
+  }
 `;
 
 export const ReportMain = styled.div`
@@ -401,9 +426,10 @@ export const MakeTeam = styled.div`
   span {
     width: 100%;
     height: 100%;
-    display: flex;
   }
 `;
+
+export const SetTeamName = styled.div``;
 
 export const MtBtnBox = styled.div`
   width: 100%;
@@ -508,45 +534,6 @@ export const SaveSubBtn = styled.div`
 
   &:hover {
     cursor: default;
-  }
-`;
-
-export const SelctFlexBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  &:hover {
-    cursor: default;
-  }
-`;
-
-export const ListTable = styled.div`
-  font-family: BBTreeGL;
-  font-size: 12px;
-  font-weight: normal;
-  margin-bottom: 12px;
-  color: #000000;
-  cursor: pointer;
-  padding: 0.2rem 4px;
-  margin: 0.3rem 0.3rem;
-
-  &:hover {
-    transition: 0.2s;
-    color: #5955d8;
-  }
-`;
-
-export const InList = styled.div`
-  font-family: BBTreeGL;
-  font-size: 12px;
-  font-weight: normal;
-  color: #000000;
-  cursor: pointer;
-  margin: 0 0 5px 12px;
-
-  &:hover {
-    transition: 0.2s;
-    color: #5955d8;
   }
 `;
 
