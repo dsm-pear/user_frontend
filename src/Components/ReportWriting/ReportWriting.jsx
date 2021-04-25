@@ -10,15 +10,15 @@ import { link } from "../../assets";
 import { github as gitgubimg } from "../../assets";
 
 const ReportWriting = () => {
-  const [type, setType] = useState("");
-  const [access, setAccess] = useState("");
-  const [field, setField] = useState("");
   const [grade, setGrade] = useState("");
+  const [type, setType] = useState("");
+  const [field, setField] = useState("");
+  const [access, setAccess] = useState("");
   const [hoverNumber, setHoverNumber] = useState(0);
   const [clickGradeNumber, setClickGradeNumber] = useState("학년 선택");
-  const [clickDivisionNumber, setClickDivisionNumber] = useState("구분 선택");
+  const [clickTypeNumber, setClickTypeNumber] = useState("구분 선택");
   const [clickFieldNumber, setClickFieldNumber] = useState("개발 분야");
-  const [clickScopeNumber, setClickScopeNumber] = useState("공개 범위");
+  const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
@@ -31,6 +31,7 @@ const ReportWriting = () => {
   const [description, setDescription] = useState("");
   const [languages, setLanguages] = useState("");
   const [github, setGithub] = useState("");
+  const [teamName, setTeamName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [searchList, setSearchList] = useState([]);
   const [selectedUserList, setSelectedUserList] = useState([]);
@@ -54,19 +55,23 @@ const ReportWriting = () => {
     setHoverNumber(0);
   };
 
-  const isSdClick = (e) => {
+  const isTypeClick = (e) => {
     switch (e.target.dataset.type) {
       case "grade":
         setClickGradeNumber(e.target.innerHTML);
+        setGrade(e.target.dataset.id);
         break;
-      case "division":
-        setClickDivisionNumber(e.target.innerHTML);
+      case "type":
+        setClickTypeNumber(e.target.innerHTML);
+        setType(e.target.dataset.id);
         break;
       case "field":
         setClickFieldNumber(e.target.innerHTML);
+        setField(e.target.dataset.id);
         break;
-      case "scope":
-        setClickScopeNumber(e.target.innerHTML);
+      case "access":
+        setClickAcceessNumber(e.target.innerHTML);
+        setAccess(e.target.dataset.id);
         break;
       default:
         console.log("err");
@@ -142,20 +147,8 @@ const ReportWriting = () => {
     setGithub(e.target.value);
   };
 
-  const onGradeClick = () => {
-    setGrade(grade);
-  };
-
-  const onTypeClick = () => {
-    setType(type);
-  };
-
-  const onFieldClick = () => {
-    setField(field);
-  };
-
-  const onAccessClick = () => {
-    setAccess(access);
+  const onTeamNameChange = (e) => {
+    setTeamName(e.target.value);
   };
 
   const onSaveLocalStorage = () => {
@@ -190,11 +183,12 @@ const ReportWriting = () => {
         title={title}
         description={description}
         languages={languages}
-        clickGradeNumber={clickGradeNumber}
-        clickDivisionNumber={clickDivisionNumber}
-        clickFieldNumber={clickFieldNumber}
-        clickScopeNumber={clickScopeNumber}
+        grade={grade}
+        type={type}
+        field={field}
+        access={access}
         github={github}
+        teamName={teamName}
         isSubmitted={isSubmitted}
       />
       <ReportWritingModal
@@ -229,34 +223,34 @@ const ReportWriting = () => {
                       <img
                         src={selecthover}
                         style={{ width: "11px" }}
-                        alt="language"
+                        alt="grade"
                       />
                     </S.SelctFlexBox>
                   ) : (
                     <S.SelctFlexBox>
                       <span>{clickGradeNumber}</span>
-                      <img src={select} alt="language" />
+                      <img src={select} alt="grade" />
                     </S.SelctFlexBox>
                   )}
-                  <S.ViewList onClick={onGradeClick}>
+                  <S.ViewList>
                     <S.ListTable
-                      data-id="1학년"
+                      data-id="GRADE1"
                       data-type="grade"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       1학년
                     </S.ListTable>
                     <S.ListTable
-                      data-id="2학년"
+                      data-id="GRADE2"
                       data-type="grade"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       2학년
                     </S.ListTable>
                     <S.ListTable
-                      data-id="3학년"
+                      data-id="GRADE3"
                       data-type="grade"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       3학년
                     </S.ListTable>
@@ -269,38 +263,38 @@ const ReportWriting = () => {
                 >
                   {hoverNumber === 2 ? (
                     <S.SelctFlexBox>
-                      <span>{clickDivisionNumber}</span>
+                      <span>{clickTypeNumber}</span>
                       <img
                         src={selecthover}
                         style={{ width: "11px" }}
-                        alt="language"
+                        alt="type"
                       />
                     </S.SelctFlexBox>
                   ) : (
                     <S.SelctFlexBox>
-                      <span>{clickDivisionNumber}</span>
-                      <img src={select} alt="language" />
+                      <span>{clickTypeNumber}</span>
+                      <img src={select} alt="type" />
                     </S.SelctFlexBox>
                   )}
-                  <S.ViewList onClick={onTypeClick}>
+                  <S.ViewList>
                     <S.ListTable
-                      data-id="개인"
-                      data-type="division"
-                      onClick={isSdClick}
+                      data-id="SOLE"
+                      data-type="type"
+                      onClick={isTypeClick}
                     >
                       개인
                     </S.ListTable>
                     <S.ListTable
-                      data-id="팀"
-                      data-type="division"
-                      onClick={isSdClick}
+                      data-id="TEAM"
+                      data-type="type"
+                      onClick={isTypeClick}
                     >
                       팀
                     </S.ListTable>
                     <S.ListTable
-                      data-id="동아리"
-                      data-type="division"
-                      onClick={isSdClick}
+                      data-id="CIRCLES"
+                      data-type="type"
+                      onClick={isTypeClick}
                     >
                       동아리
                     </S.ListTable>
@@ -310,7 +304,7 @@ const ReportWriting = () => {
                   data-id="3"
                   onMouseOver={onMouseOver}
                   onMouseLeave={onMouseLeave}
-                  height={150}
+                  height={165}
                 >
                   {hoverNumber === 3 ? (
                     <S.SelctFlexBox>
@@ -318,62 +312,62 @@ const ReportWriting = () => {
                       <img
                         src={selecthover}
                         style={{ width: "11px" }}
-                        alt="language"
+                        alt="field"
                       />
                     </S.SelctFlexBox>
                   ) : (
                     <S.SelctFlexBox>
                       <span>{clickFieldNumber}</span>
-                      <img src={select} alt="language" />
+                      <img src={select} alt="field" />
                     </S.SelctFlexBox>
                   )}
-                  <S.ViewList onClick={onFieldClick}>
+                  <S.ViewList>
                     <S.ListTable
-                      data-id="소프트웨어"
+                      data-id="WEB"
                       data-type="field"
-                      onClick={isSdClick}
-                    >
-                      소프트웨어
-                    </S.ListTable>
-                    <S.InList
-                      data-id="웹"
-                      data-type="field"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       웹
-                    </S.InList>
-                    <S.InList
-                      data-id="앱"
+                    </S.ListTable>
+                    <S.ListTable
+                      data-id="APP"
                       data-type="field"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       앱
-                    </S.InList>
-                    <S.InList
-                      data-id="게임"
+                    </S.ListTable>
+                    <S.ListTable
+                      data-id="GAME"
                       data-type="field"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       게임
-                    </S.InList>
+                    </S.ListTable>
                     <S.ListTable
-                      data-id="임베디드"
+                      data-id="AI"
                       data-type="field"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
+                    >
+                      인공지능
+                    </S.ListTable>
+                    <S.ListTable
+                      data-id="EMBEDDED"
+                      data-type="field"
+                      onClick={isTypeClick}
                     >
                       임베디드
                     </S.ListTable>
                     <S.ListTable
-                      data-id="정보보안"
+                      data-id="SECURITY"
                       data-type="field"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       정보보안
                     </S.ListTable>
                     <S.ListTable
-                      data-id="융합"
+                      data-id="FUSION"
                       data-type="field"
-                      onClick={isSdClick}
+                      onClick={isTypeClick}
                     >
                       융합
                     </S.ListTable>
@@ -387,31 +381,31 @@ const ReportWriting = () => {
                 >
                   {hoverNumber === 4 ? (
                     <S.SelctFlexBox>
-                      <span>{clickScopeNumber}</span>
+                      <span>{clickAcceessNumber}</span>
                       <img
                         src={selecthover}
                         style={{ width: "11px" }}
-                        alt="language"
+                        alt="access"
                       />
                     </S.SelctFlexBox>
                   ) : (
                     <S.SelctFlexBox>
-                      <span>{clickScopeNumber}</span>
-                      <img src={select} alt="language" />
+                      <span>{clickAcceessNumber}</span>
+                      <img src={select} alt="access" />
                     </S.SelctFlexBox>
                   )}
-                  <S.ViewList onClick={onAccessClick}>
+                  <S.ViewList>
                     <S.ListTable
-                      data-id="전체 공개"
-                      data-type="scope"
-                      onClick={isSdClick}
+                      data-id="EVERY"
+                      data-type="access"
+                      onClick={isTypeClick}
                     >
                       전체 공개
                     </S.ListTable>
                     <S.ListTable
-                      data-id="비공개"
-                      data-type="scope"
-                      onClick={isSdClick}
+                      data-id="ADMIN"
+                      data-type="access"
+                      onClick={isTypeClick}
                     >
                       비공개
                     </S.ListTable>
@@ -488,6 +482,15 @@ const ReportWriting = () => {
             <S.SubmitBox>
               <S.MakeTeam>
                 <span>
+                  <S.SetTeamName>
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="팀의 이름을 입력해주세요"
+                        onChange={onTeamNameChange}
+                      />
+                    </div>
+                  </S.SetTeamName>
                   <S.MtBtnBox>
                     <S.MemberResult>
                       <S.ResultHeader>TEAM MEMBER</S.ResultHeader>
