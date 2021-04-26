@@ -72,6 +72,7 @@ const ProPhoto = styled.form`
     font-family: "Noto Sans KR", sans-serif;
     box-shadow: 0 1px 4px #c3c7c7;
     cursor: pointer;
+    background: none;
 
     &::placeholder {
       margin: 10px;
@@ -141,7 +142,7 @@ export const MainProject = styled.div`
   justify-content: space-around;
   width: 100%;
   height: 49px;
-  margin: 5px;
+  margin-bottom: 20px;
   border: 1.6px solid ${(props) => props.color};
   border-radius: 6px;
   background-color: #ffffff;
@@ -218,7 +219,6 @@ const Modify = styled.button`
   font-weight: bold;
   font-size: 15px;
 `;
-
 
 const ProjectCover = styled.div`
   width: 100%;

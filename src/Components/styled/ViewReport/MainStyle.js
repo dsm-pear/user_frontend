@@ -101,8 +101,12 @@ const Linkimg = styled(Title)`
     background-image: url(${Link});
   }
   .downimg {
+    padding: 5px;
     margin: 10px 20px;
     background-color: blue;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #80808054;
   }
 
   a,
@@ -276,6 +280,21 @@ const Teambox = styled(CoverLang)`
   height: 7%;
 `;
 
+const Modify = styled.div`
+  width: 100%;
+
+  button {
+    padding: 5px;
+    margin: 10px 20px;
+    background-color: blue;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: white;
+    box-shadow: 1px 1px 5px #80808054;
+  }
+`;
+
 export {
   Main,
   MainBox,
@@ -297,4 +316,5 @@ export {
   Year,
   Member,
   Teambox,
+  Modify,
 };
