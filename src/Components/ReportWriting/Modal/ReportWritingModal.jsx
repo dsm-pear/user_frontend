@@ -21,10 +21,9 @@ const ReportWritingModal = ({
   const [toggled, setToggled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState("hidden");
   const [loading, setLoading] = useState(true);
-  // const refreshHandler = useRefresh();
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
-  const baseUrl = "http://54.180.224.67";
+  const baseUrl = "http://211.38.86.92";
 
   useEffect(() => {
     async function getUsers(getUser) {
@@ -67,7 +66,7 @@ const ReportWritingModal = ({
           break;
         case 401:
           axios
-            .put(`${baseUrl}:8080/auth`, undefined, {
+            .put(`${baseUrl}:8005/auth`, undefined, {
               headers: {
                 "X-Refresh-Token": REFRESH_TOKEN,
               },
