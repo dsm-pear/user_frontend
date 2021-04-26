@@ -1,50 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
-import Comments from "./Comments";
 
 const ReportComment = (props) => {
+  const [value, setValue] = useState("");
   //코멘트 버튼 클릭시
-  
+  const comments = props.comments;
+
   const refreshHandler = useRefresh();
 
+  const onChange = (e) => {
+    console.log(e.target.value);
+    setValue(e.target.value);
+  };
+
   //댓글 작성
-  const postReportComment = async () => {
+  const postReportComment = async (e) => {
+    e.preventDefault();
+
     try {
       await request(
         "post",
-        `/report/comment/${props.reportId}`,
+        `/comment/77`,
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        "",
+        {
+          content: value,
+        }
       );
-
     } catch (e) {
-      console.log('에러');
       console.error(e);
-      switch (e.data.status) {
-        case 400:
-          alert("프로필 불러오기를 실패했습니다.");
-          break;
-        case 401:
-          refreshHandler().then(() => {
-           postReportComment();
-          });
-          break;
-        default:
-          break;
-      }
     }
   };
 
   return (
     <S.CommentMain>
       <S.Add>
-        <S.Search placeholder="댓글을 입력해주세요" content={props.content}/>
+        <S.Search placeholder="댓글을 입력해주세요" onChange={onChange} />
         <div onClick={postReportComment}></div>
       </S.Add>
       <S.MainCom>
-        {props.comment.map(({ userName, email, content, commentId }) => (
-          <Comments commentId={commentId} name={userName} email={email} content={content} />
+        {comments.map(({ userName, userEmail, content, commentId }) => (
+          <S.CommentBox key={commentId}>
+            <S.Info>
+              <div></div>
+              <Link to="/user-profile" className="Name">
+                {userName}
+              </Link>
+              <Link to="/user-profile" className="Email">
+                {userEmail}
+              </Link>
+              <span className="Comment">{content}</span>
+            </S.Info>
+            <S.Date />
+          </S.CommentBox>
         ))}
       </S.MainCom>
     </S.CommentMain>

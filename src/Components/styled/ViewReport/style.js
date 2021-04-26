@@ -209,6 +209,7 @@ const MainCover = styled.div`
   margin: 40px;
   height: 70%;
   width: 94%;
+  overflow: auto;
 `;
 
 const Number = styled.div`
