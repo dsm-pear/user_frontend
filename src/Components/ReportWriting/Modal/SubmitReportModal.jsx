@@ -18,10 +18,11 @@ const SubmitReportModal = ({
   files,
   title,
   description,
-  languages,
+  tags,
   github,
-  teamName,
   isSubmitted,
+  teamName,
+  selectedUserList,
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
@@ -31,25 +32,26 @@ const SubmitReportModal = ({
 
   const Api = axios;
   const FileApi = axios;
-  const baseUrl = "http://54.180.224.67";
+  const MainUrl = "http://211.38.86.92";
+  const FileUrl = "http://54.180.224.67";
 
   const onClick = () => {
     setState("hidden");
     setHei("0");
   };
 
-  const btnClick = (e) => {
+  const btnClick = () => {
     setView("visible");
     setState("hidden");
     setMyOpa("0");
     setOpa("1");
 
     Api.post(
-      `${baseUrl}:8080/report`,
+      `${MainUrl}:8005/report`,
       {
         title: `${title}`,
         description: `${description}`,
-        languages: `${languages}`,
+        languages: `${tags}`,
         grade: `${grade}`,
         type: `${type}`,
         field: `${field}`,
@@ -58,6 +60,7 @@ const SubmitReportModal = ({
         fileName: `${files}`,
         github: `${github}`,
         teamName: `${teamName}`,
+        members: `${selectedUserList}`,
       },
       {
         headers: {
@@ -71,7 +74,7 @@ const SubmitReportModal = ({
         isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
         const id = e.data.id;
         // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-        FileApi.post(`${baseUrl}:3000/report/files/${id}`, isSubmitFile, {
+        FileApi.post(`${FileUrl}:3000/report/files/${id}`, isSubmitFile, {
           headers: {
             "Content-Type": "multipart/form-data", // multipart = 파일 업로드
             Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -82,7 +85,7 @@ const SubmitReportModal = ({
           })
           .catch((err) => {
             if (err.response.status === 410) {
-              Api.put(`${baseUrl}:8080/auth`, undefined, {
+              Api.put(`${MainUrl}:8005/auth`, undefined, {
                 headers: {
                   "X-Refresh-Token": REFRESH_TOKEN,
                 },
@@ -91,7 +94,7 @@ const SubmitReportModal = ({
                   localStorage.setItem("access-token", ACCESS_TOKEN);
                   console.log(REFRESH_TOKEN);
                   FileApi.post(
-                    `${baseUrl}:3000/report/files/${id}`,
+                    `${FileUrl}:3000/report/files/${id}`,
                     isSubmitFile,
                     {
                       headers: {
