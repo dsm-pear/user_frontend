@@ -29,7 +29,6 @@ const ReportWriting = () => {
   const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [languages, setLanguages] = useState("");
   const [github, setGithub] = useState("");
   const [teamName, setTeamName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -131,12 +130,23 @@ const ReportWriting = () => {
     setFiles(delFile);
   };
 
-  const onTitleChange = (e) => {
-    setTitle(e.target.value);
+  const attachFiles = () => {
+    if (files.length !== 0) {
+      return files.map((file, i) => {
+        return (
+          <div key={i} onClick={() => onDelClickFile(i)}>
+            {file.name}
+          </div>
+        );
+      });
+    } else if (files.length > 1) {
+      alert("파일은 하나만 추가할 수 있습니다.");
+      return false;
+    } else return <span>팀이 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
-  const onLanguagesChange = (e) => {
-    setLanguages(e.target.value);
+  const onTitleChange = (e) => {
+    setTitle(e.target.value);
   };
 
   const onDescriptionChange = (e) => {
@@ -152,7 +162,7 @@ const ReportWriting = () => {
   };
 
   const onSaveLocalStorage = () => {
-    const saveItems = window.localStorage.setItem(
+    window.localStorage.setItem(
       "userTextData",
       JSON.stringify({
         title: title,
@@ -160,14 +170,6 @@ const ReportWriting = () => {
         description: description,
       })
     );
-
-    const readItems = localStorage.getItem("userTextData");
-
-    if (readItems === saveItems) {
-      return setIsSubmitted(true);
-    }
-
-    console.log(isSubmitted);
   };
 
   return (
@@ -182,14 +184,15 @@ const ReportWriting = () => {
         files={files}
         title={title}
         description={description}
-        languages={languages}
+        tags={tags}
         grade={grade}
         type={type}
         field={field}
         access={access}
         github={github}
-        teamName={teamName}
         isSubmitted={isSubmitted}
+        teamName={teamName}
+        selectedUserList={selectedUserList}
       />
       <ReportWritingModal
         setOpen={setOpen}
@@ -434,7 +437,6 @@ const ReportWriting = () => {
                   type="text"
                   placeholder="개발에 사용한 언어들을 입력해주세요"
                   onKeyPress={onLanguageChange}
-                  onChange={onLanguagesChange}
                 />
               </S.UseLang>
               <S.ReprotWriteBox>
@@ -464,18 +466,7 @@ const ReportWriting = () => {
               <S.AttachFile>
                 <S.inAttachFile>
                   <img src={link} alt="attachfile" onClick={onClickFile} />
-                  {files.length !== 0 ? (
-                    files.map((file, i) => {
-                      return (
-                        <div key={i} onClick={() => onDelClickFile(i)}>
-                          {file.name}
-                          {i === files.length - 1 ? "" : " / "}
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <span>팀이 작성한 개발 보고서의 파일을 올려주세요.</span>
-                  )}
+                  {attachFiles()}
                 </S.inAttachFile>
               </S.AttachFile>
             </S.ReportMain>
@@ -483,13 +474,13 @@ const ReportWriting = () => {
               <S.MakeTeam>
                 <span>
                   <S.SetTeamName>
-                    <div>
-                      <input
+                    <S.TeamNameBox>
+                      <S.InputTeamName
                         type="text"
                         placeholder="팀의 이름을 입력해주세요"
                         onChange={onTeamNameChange}
                       />
-                    </div>
+                    </S.TeamNameBox>
                   </S.SetTeamName>
                   <S.MtBtnBox>
                     <S.MemberResult>

@@ -43,8 +43,8 @@ export const BorderBox = styled.div`
   width: 68%;
   min-width: 950px;
   max-width: 68%;
-  height: 835px;
-  min-height: 835px;
+  height: 870px;
+  min-height: 870px;
   max-height: 100%;
   margin: 15rem 0 3rem;
   padding: 2rem 2.5rem 0;
@@ -429,10 +429,36 @@ export const MakeTeam = styled.div`
   }
 `;
 
-export const SetTeamName = styled.div``;
+export const SetTeamName = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+`;
+
+export const TeamNameBox = styled.div`
+  font-family: BBTreeGL;
+  width: 100%;
+  height: 100%;
+`;
+
+export const InputTeamName = styled.input`
+  width: 100%;
+  height: 100%;
+  padding: 0 0.8rem;
+  border: 1px solid #4d4d4d;
+  border-bottom: none;
+  outline: none;
+
+  &:hover {
+    cursor: text;
+  }
+`;
 
 export const MtBtnBox = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   background-color: #ffffff;
@@ -530,7 +556,7 @@ export const SaveSubBtn = styled.div`
   width: 27%;
   display: flex;
   justify-content: flex-end;
-  margin-top: 7.5rem;
+  margin-top: 9.2rem;
 
   &:hover {
     cursor: default;
