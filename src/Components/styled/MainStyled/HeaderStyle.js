@@ -6,7 +6,7 @@ export const HeaderBox = styled.div`
     padding-top: 40px;
     display: fixed;
     z-index: 10;
-    margin: auto;
+    margin: 0 auto;
     font-family: "Noto Sans KR", sans-serif;
     a{
         text-decoration: none;
@@ -61,7 +61,7 @@ export const SeachBarSelect = styled.div`
 export const SeachChoice = styled.div`
     cursor: pointer;
     text-align: center;
-    padding-top: 11px;
+    padding-top: 12px;
     img{
         width: 10px;
         margin-right: 3px;
@@ -71,8 +71,9 @@ export const SeachChoice = styled.div`
 
 export const SeachList = styled.div`
     cursor: pointer;
+    position: absolute;
     margin-top: 20px;
-    z-index: 5;
+    z-index: 1000;
     width: 52px;
     height: 47px;
     border-radius: 6px;
@@ -82,8 +83,10 @@ export const SeachList = styled.div`
 `;
 
 export const SeachType = styled.div`
+    cursor: pointer;
     font-size: 13px;
     margin-bottom: 8px;
+    z-index: 100;
     &:hover{
         color : #5955d8;
     }
@@ -147,8 +150,8 @@ export const MenuSee = styled.div`
     background-color: #ffffff;
     text-align: center;
     cursor: pointer;
-    margin-top: 78px;
-    margin-left: 10px;
+    margin-top: 74.5px;
+    margin-left: 4px;
     z-index: 5;
     position: absolute;
     transition: all 0.3s;
