@@ -13,7 +13,10 @@ const Project = (props) => {
   const history = useHistory();
 
   const reportChilckHandler = () => {
-    history.push(`/view-report/${props.reportId}`);
+    history.push({
+      pathname: `/view-report/${props.reportId}`,
+      state: { reportId: props.reportId },
+    });
     console.log(props.reportId);
   };
 
