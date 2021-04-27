@@ -71,6 +71,7 @@ function MyProfile(props) {
       );
       setProfileReport(data.myPageReportResponses);
       setReportId(data.myPageReportResponses.reportId);
+      console.log(reportId)
     } catch (e) {
       console.error(e);
     }

@@ -4,13 +4,12 @@ import * as S from "../styled/Profile/style.js";
 import Profile from "./Profile";
 import Project from "./Project";
 import Header from "../Main/Header";
+import MainProject from "../../Components/Profile/MainProject";
 
 function UserProfile({ match }) {
   //내 프로젝트 리트
   const [myReportListResponses, setMyReportListResponses] = useState([]);
   const [userProfile, setUserProfile] = useState("");
-  const [github, setGithub] = useState("");
-  const [produce, setProduce] = useState("");
   const refreshHandler = useRefresh();
 
   //유저 프로필 API
@@ -58,16 +57,14 @@ function UserProfile({ match }) {
                 name={userProfile.userName}
                 email={userProfile.userEmail}
                 produce={userProfile.selfIntro}
-                setProduce={setProduce}
                 github={userProfile.gitHub}
-                setGithub={setGithub}
               />
             }
             {/* 프로젝트 보여주는 곳 */}
             <S.Project>
               <S.PreProject>
                 {myReportListResponses.map((myReportListResponses, index) => (
-                  <Project
+                  <MainProject
                     key={index}
                     reportId={myReportListResponses.reportId}
                     type={myReportListResponses.type}
