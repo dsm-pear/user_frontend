@@ -4,7 +4,7 @@ import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
   const fileDownloadHandler = () => {
-    window.open(FileURL + `/report/${props.fileId}`);
+    window.open(FileURL + `/report/20`);
   };
 
   return (
