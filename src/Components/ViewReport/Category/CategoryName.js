@@ -3,9 +3,10 @@ import * as S from "../../styled/ViewReport/style";
 //import { request /* useRefresh */ } from "../../../utils/axios/axios";
 
 const CategoryName = (props) => {
+  //중복 선택 useState
   const [selected, setSeletect] = useState(0);
+  const [lSelected, setlSeletect] = useState(0);
   //const refreshHandler = useRefresh();
-  //field 를 어디로 보낼지 정해야 함
 
   //API 요청
   //카테고리 중복선택 안되게

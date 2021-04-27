@@ -11,8 +11,9 @@ const Categorybar = (props) => {
 
       <S.Categorybar>
         <CategoryName
+          id={1}
           setField={props.setField}
-          SwName="소프트웨어 개발과"
+          SwName=""
           Ele={[
             {
               id: 1,
@@ -34,23 +35,13 @@ const Categorybar = (props) => {
               text: "인공지능 개발 ",
               field: "AI",
             },
-          ]}
-        />
-        <CategoryName
-          SwName="임베디드 개발과"
-          Ele={[
             {
               id: 5,
               text: "임베디드 개발 ",
               field: "EMBEDDED",
             },
-          ]}
-        />
-        <CategoryName
-          SwName="정보 보안"
-          Ele={[
             {
-              id: 1,
+              id: 6,
               text: "정보 보안 개발 ",
               field: "SECURITY",
             },
