@@ -92,23 +92,25 @@ function MyProfile(props) {
           ""
         );
 
-        setProfileReportListResponses(data.data.profileReportListResponses);
-      } catch (e) {
-        console.error(e);
-        switch (e.data.status) {
-          case 400:
-            alert("프로필 불러오기를 실패했습니다.");
-            break;
-          case 401:
-            refreshHandler().then(() => {
-              getMyProject();
-            });
-            break;
-          default:
-            break;
-        }
-      }
-    };
+  const getMyProject = async () => {
+    try {
+      const { data } = await request(
+        "get",
+        "/user/profile/report?size=&page=0",
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+      setProfileReport(data.myPageReportResponses);
+      setReportId(data.myPageReportResponses.reportId);
+      console.log(reportId)
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    ChangeProfile();
+    getProfile();
     getMyProject();
 
   });

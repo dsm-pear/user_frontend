@@ -6,13 +6,12 @@ import * as M from "../styled/ViewReport/style";
 import Profile from "./Profile";
 import Project from "./Project";
 import Header from "../Main/Header";
+import MainProject from "../../Components/Profile/MainProject";
 
 function UserProfile({ match }) {
   //내 프로젝트 리트
-  const [MyReportListResponses, setMyReportListResponses] = useState([]);
-  const [userProfile, setUserProfile] = useState([]);
-  const [github, setGithub] = useState("");
-  const [produce, setProduce] = useState("");
+  const [myReportListResponses, setMyReportListResponses] = useState([]);
+  const [userProfile, setUserProfile] = useState("");
   const refreshHandler = useRefresh();
 
   useEffect(() => {
@@ -67,28 +66,27 @@ function UserProfile({ match }) {
         <Header></Header>
         <S.MainProfile>
           <S.Cover>
-            {<Profile
-              name={userProfile.userName}
-              email={userProfile.userEmail}
-              produce={userProfile.selfIntro}
-              setProduce={setProduce}
-              github={userProfile.gitHub}
-              setGithub={setGithub}
-            />}
+            {
+              <Profile
+                name={userProfile.userName}
+                email={userProfile.userEmail}
+                produce={userProfile.selfIntro}
+                github={userProfile.gitHub}
+              />
+            }
             {/* 프로젝트 보여주는 곳 */}
             <S.Project>
-              {MyReportListResponses.map(({ type, title, createdAt }) => (
-                <S.PreProject>
-                  <Project team={type} title={title} date={createdAt} />
-                </S.PreProject>
-              ))}
-            {/*   <M.Number>
-                <Link>1</Link>
-                <Link>2</Link>
-                <Link>3</Link>
-                <Link>4</Link>
-                <Link>5</Link>
-              </M.Number> */}
+              <S.PreProject>
+                {myReportListResponses.map((myReportListResponses, index) => (
+                  <MainProject
+                    key={index}
+                    reportId={myReportListResponses.reportId}
+                    type={myReportListResponses.type}
+                    title={myReportListResponses.title}
+                    date={myReportListResponses.createdAt.split("T")[0]}
+                  />
+                ))}
+              </S.PreProject>
             </S.Project>
           </S.Cover>
         </S.MainProfile>
