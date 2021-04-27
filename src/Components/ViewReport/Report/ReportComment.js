@@ -1,63 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
-import Comments from "./Comments";
 
-const ReportComment = ({ match, content, userName, email, reportId }) => {
+const ReportComment = (props) => {
+  const [value, setValue] = useState("");
   //코멘트 버튼 클릭시
-  const [reportComment, setReportComment] = useState([]);
+  const comments = props.comments;
+
   const refreshHandler = useRefresh();
 
-  const postReportComment = async () => {
-    try {
-      const data = await request(
-        "post",
-        `/report/comment/${match.params.reportid}`,
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        {
-          userEmail: email,
-          content,
-          reportId,
-        }
-      );
-
-      setReportComment(data.data);
-
-    } catch (e) {
-      console.log('에러');
-      console.error(e);
-      switch (e.data.status) {
-        case 400:
-          alert("프로필 불러오기를 실패했습니다.");
-          break;
-        case 401:
-          refreshHandler().then(() => {
-           postReportComment();
-          });
-          break;
-        default:
-          break;
-      }
-    }
+  const onChange = (e) => {
+    console.log(e.target.value);
+    setValue(e.target.value);
   };
 
-  const comment = [
-    {
-      name: userName,
-      email,
-      content,
-    },
-  ];
+  //댓글 작성
+  const postReportComment = async (e) => {
+    e.preventDefault();
+
+    try {
+      await request(
+        "post",
+        `/comment/77`,
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        {
+          content: value,
+        }
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <S.CommentMain>
       <S.Add>
-        <S.Search placeholder="댓글을 입력해주세요" content={reportComment.content}/>
+        <S.Search placeholder="댓글을 입력해주세요" onChange={onChange} />
         <div onClick={postReportComment}></div>
       </S.Add>
       <S.MainCom>
-        {comment.map(({ userName, email, content }, i) => (
-          <Comments key={i} name={userName} email={email} content={content} />
+        {comments.map(({ userName, userEmail, content, commentId }) => (
+          <S.CommentBox key={commentId}>
+            <S.Info>
+              <div></div>
+              <Link to="/user-profile" className="Name">
+                {userName}
+              </Link>
+              <Link to="/user-profile" className="Email">
+                {userEmail}
+              </Link>
+              <span className="Comment">{content}</span>
+            </S.Info>
+            <S.Date />
+          </S.CommentBox>
         ))}
       </S.MainCom>
     </S.CommentMain>

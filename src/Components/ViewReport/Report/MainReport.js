@@ -8,52 +8,44 @@ import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
 
-function MainReport({ match }) {
-  const [reportData, setReportData] = useState([]);
+function MainReport(props) {
+  const [reportData, setReportData] = useState("");
+  const [comments, setComments] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [languages, setLanguages] = useState("");
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
+
   //토큰 검사
   const refreshHandler = useRefresh();
 
+  const report = async () => {
+    try {
+      //loding(true);
+      const { data } = await request(
+        "get",
+        `/report/77`,
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        0
+      );
+      setReportData(data);
+      setComments(data.comments);
+      setMembers(data.member);
+      setLanguages(data.languages);
+    } catch (e) {
+      console.error(e);
+    }
+    setLoding(false);
+    setError(null);
+  };
+
   useEffect(() => {
-    const getReportView = async () => {
-      try {
-        loding(true);
-        const data = await request(
-          "get",
-          `/report/${match.params.reportid}`,
-          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-          0
-        );
-
-        setReportData(data.reportData);
-        console.log(reportData);
-        console.log(data);
-      } catch (e) {
-        console.error(e);
-        switch (e.data.status) {
-          case 400:
-            alert("프로필 불러오기를 실패했습니다.");
-            break;
-          case 403:
-            refreshHandler().then(() => {
-              getReportView();
-            });
-            break;
-          default:
-            break;
-        }
-      }
-      setLoding(false);
-      setError(null);
-    };
-
-    getReportView();
+    report();
   }, []);
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  //if (!reportData) return <div>서버좀 줘라</div>;
+  if (!reportData) return <div>서버좀 줘라</div>;
 
   return (
     <S.Main>
@@ -71,15 +63,11 @@ function MainReport({ match }) {
           text={reportData.description}
           git="{reportData.github}"
           file={reportData.fileName}
-          //onClick={downlodehandler}
+          fileId={reportData.fileId}
         />
-        <ReportTeam />j
-        <ReportLanguage languages={reportData.languages} />
-        <ReportComment
-          name={reportData.userName}
-          content={reportData.content}
-          commentId={reportData.commentId}
-        />
+        <ReportTeam teamName={reportData.teamName} members={members} />
+        <ReportLanguage languages={languages} />
+        <ReportComment reportId={props.reportId} comments={comments} />
       </S.MainBox>
     </S.Main>
   );

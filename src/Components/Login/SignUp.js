@@ -33,7 +33,7 @@ function SignUp() {
 
   const postSignup = async () => {
     try {
-      /* const { data } = */ await request(
+      const { data } = await request(
         "post",
         "/account",
         {},
@@ -43,8 +43,8 @@ function SignUp() {
           password,
         }
       );
-      //localStorage.setItem("token", data.token);
-      history.push("/login");
+      localStorage.setItem("token", data.token);
+      history.push("/");
     } catch (e) {
       alert("이메일을 다시 확인해주세요");
       console.log(e);
@@ -64,7 +64,6 @@ function SignUp() {
         setPwInput("#e3f0ff");
       }
     } else if (password.length >= 8 && password.length <= 14) {
-
       if (password !== pwconfirm) {
         /* 회원가입 조건중 비밀번호 확인 틀림 */
         console.log("달라요");
@@ -74,18 +73,16 @@ function SignUp() {
         if (pwconfirm === "") {
           setConInput("#e3f0ff");
         }
-      } 
-      else if (password.length >= 8 && password.length <= 14) {
+      } else if (password.length >= 8 && password.length <= 14) {
         /* 회원가입 조건 모두 만족 */
         postSignup();
-  
+
         if (password === pwconfirm) {
-          
           alert("회원가입에 성공하셨습니다.");
           history.push("/");
         }
       }
-    } 
+    }
   };
   //버튼 색 바뀌게 비교
   const compare = (e) => {
