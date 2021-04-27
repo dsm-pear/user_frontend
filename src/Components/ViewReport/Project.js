@@ -8,7 +8,12 @@ const Project = (props) => {
   const reportId = props.reportId;
 
   const reportChilckHandler = () => {
-    history.push(`/view-report/${reportId}`);
+    console.log(reportId);
+    history.push({
+      pathname: `/view-report/${reportId}`,
+      state: { reportId: reportId },
+    });
+
   };
 
   const color =
