@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { request, useRefresh } from "../../../utils/axios/axios";
+import { useHistory, useLocation } from "react-router-dom";
 import * as S from "../../styled/ViewReport/MainStyle";
 import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
@@ -12,19 +13,22 @@ function MainReport(props) {
   const [reportData, setReportData] = useState("");
   const [comments, setComments] = useState([]);
   const [members, setMembers] = useState([]);
-  const [languages, setLanguages] = useState("");
+  const [languages, setLanguages] = useState([]);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
 
   //토큰 검사
   const refreshHandler = useRefresh();
 
+  const location = useLocation();
+  const reportId = location.state;
+  
+
   const report = async () => {
     try {
-      //loding(true);
       const { data } = await request(
         "get",
-        `/report/77`,
+        `/report/${location.state.reportId}`,
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         0
       );
@@ -67,7 +71,7 @@ function MainReport(props) {
         />
         <ReportTeam teamName={reportData.teamName} members={members} />
         <ReportLanguage languages={languages} />
-        <ReportComment reportId={props.reportId} comments={comments} />
+        <ReportComment reportId={reportId.reportId} comments={comments} />
       </S.MainBox>
     </S.Main>
   );

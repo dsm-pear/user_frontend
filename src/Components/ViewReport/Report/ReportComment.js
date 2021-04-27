@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportComment = (props) => {
   const [value, setValue] = useState("");
+  const history = useHistory();
   //코멘트 버튼 클릭시
   const comments = props.comments;
+  const reportId = props.reportId;
 
   const refreshHandler = useRefresh();
 
   const onChange = (e) => {
-    console.log(e.target.value);
     setValue(e.target.value);
   };
 
@@ -22,11 +23,12 @@ const ReportComment = (props) => {
     try {
       await request(
         "post",
-        `/comment/77`,
+        `/comment/${reportId}`,
         { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
         {
           content: value,
-        }
+        },
+        window.location.reload()
       );
     } catch (e) {
       console.error(e);

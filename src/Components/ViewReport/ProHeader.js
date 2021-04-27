@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as S from "../styled/ViewReport/style";
 import {  /* useRefresh */ } from "../../utils/axios/axios";
 
@@ -6,17 +6,22 @@ const ProHeader = (props) => {
   const [seleted, setSeleted] = useState(0);
   //const refreshHandler = useRefresh();
 
+  //전체, 팀, 개인, 동아리 필터링
   const lists = [
     {
-      id: 1,
-      title: "팀",
+      id : 1, 
+      title : "전체",
     },
     {
       id: 2,
-      title: "개인",
+      title: "팀",
     },
     {
       id: 3,
+      title: "개인",
+    },
+    {
+      id: 4,
       title: "동아리",
     },
   ];
@@ -27,9 +32,12 @@ const ProHeader = (props) => {
       props.setType("TEAM");
     } else if (row.title === "개인") {
       props.setType("SOLE");
-    } else {
+    } else if (row.title === "돋아리") {
       props.setType("CIRCLES");
+    }else {
+      props.setType("");
     }
+    
   };
 
   return (
