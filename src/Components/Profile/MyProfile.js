@@ -1,6 +1,6 @@
 //내가 보는 내 프로필 수정 하기 누르기
 import React, { useState, useEffect } from "react";
-import { request, useRefresh } from "../../utils/axios/axios";
+import { request,/*  useRefresh */ } from "../../utils/axios/axios";
 import * as S from "../styled/Profile/style";
 import Header from "../Main/Header";
 import Project from "./Project";
@@ -8,7 +8,7 @@ import Profile from "./Profile";
 
 function MyProfile(props) {
   const [text, setText] = useState("수정");
-  const refreshHandler = useRefresh();
+ // const refreshHandler = useRefresh();
 
   const [profileReport, setProfileReport] = useState([]);
   const [profileData, setProfileData] = useState("");
