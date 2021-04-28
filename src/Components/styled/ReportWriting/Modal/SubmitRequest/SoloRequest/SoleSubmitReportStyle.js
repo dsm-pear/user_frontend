@@ -1,6 +1,19 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
+<<<<<<< HEAD:src/Components/styled/ReportWriting/Modal/SubmitRequest/SoloRequest/SoleSubmitReportStyle.js
+  position: absolute;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  visibility: ${({ visibility }) => visibility};
+  top: 0;
+  right: 0;
+=======
     position: absolute;
     z-index: 99;
     display: flex;
@@ -10,6 +23,7 @@ export const Main = styled.div`
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
     visibility: ${({visibility})=>visibility};
+>>>>>>> Modal:src/Components/styled/ReportWriting/Modal/SrModalStyle.js
 
     * {
         margin: 0;

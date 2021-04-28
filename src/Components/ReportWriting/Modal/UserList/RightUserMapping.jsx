@@ -1,6 +1,6 @@
 import React from "react";
 import { checked } from "../../../../assets";
-import * as S from "../../../styled/ReportWriting/Modal/RightUserMappingStyle";
+import * as S from "../../../styled/ReportWriting/Modal/UserList/RightUserMappingStyle";
 
 const RightUserMapping = ({ selectedUser, onClickRight }) => {
   return (

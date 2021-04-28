@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
-import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
+import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
 import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
@@ -17,6 +17,11 @@ const ReportWriting = () => {
   const [clickTypeNumber, setClickTypeNumber] = useState("구분 선택");
   const [clickFieldNumber, setClickFieldNumber] = useState("개발 분야");
   const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
+  const [showSoleReportComponent, setShowSoleReportComponent] = useState(false);
+  const [showTeamReportComponent, setShowTeamReportComponent] = useState(false);
+  const [showCircleReportComponent, setShowCircleReportComponent] = useState(
+    false
+  );
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -35,6 +40,26 @@ const ReportWriting = () => {
       case "type":
         setClickTypeNumber(types.target.innerHTML);
         setType(types.target.dataset.id);
+
+        switch (types.target.dataset.id) {
+          case "SOLE":
+            setShowSoleReportComponent(true);
+            setShowTeamReportComponent(false);
+            setShowCircleReportComponent(false);
+            break;
+          case "TEAM":
+            setShowTeamReportComponent(true);
+            setShowSoleReportComponent(false);
+            setShowCircleReportComponent(false);
+            break;
+          case "CIRCLES":
+            setShowCircleReportComponent(true);
+            setShowSoleReportComponent(false);
+            setShowTeamReportComponent(false);
+            break;
+          default:
+            console.log("err");
+        }
         break;
       case "field":
         setClickFieldNumber(types.target.innerHTML);
@@ -51,12 +76,6 @@ const ReportWriting = () => {
 
   return (
     <>
-      {/* <TeamReportWriting
-        grade={grade}
-        type={type}
-        field={field}
-        access={access}
-      /> */}
       <S.Main>
         <S.BorderBox>
           <S.InlineBox>
@@ -270,6 +289,30 @@ const ReportWriting = () => {
                 </S.PaddingBox>
               </S.SelectBoxs>
             </S.ReportHeader>
+            <S.ReportBody>
+              {showSoleReportComponent === true ? (
+                <SoleReportWriting
+                  grade={grade}
+                  type={type}
+                  field={field}
+                  access={access}
+                />
+              ) : null || showTeamReportComponent === true ? (
+                <TeamReportWriting
+                  grade={grade}
+                  type={type}
+                  field={field}
+                  access={access}
+                />
+              ) : null || showCircleReportComponent === true ? (
+                <CircleReportWriting
+                  grade={grade}
+                  type={type}
+                  field={field}
+                  access={access}
+                />
+              ) : null}
+            </S.ReportBody>
           </S.InlineBox>
         </S.BorderBox>
       </S.Main>
