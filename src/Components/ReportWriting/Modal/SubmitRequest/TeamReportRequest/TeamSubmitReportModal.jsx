@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SubmitSuccess from "./SubmitSuccess";
-import * as S from "../../styled/ReportWriting/Modal/SrModalStyle";
-import { Close } from "../../../assets";
+import SubmitSuccess from "../../SubmitSuccess";
+import * as S from "../../../../styled/ReportWriting/Modal/SubmitRequest/TeamRequest/TeamSubmitReportStyle";
+import { Close } from "../../../../../assets";
 import axios from "axios";
 
-const SubmitReportModal = ({
+const TeamSubmitReportModal = ({
   setState,
   setHei,
   state,
@@ -156,4 +156,4 @@ const SubmitReportModal = ({
   );
 };
 
-export default SubmitReportModal;
+export default TeamSubmitReportModal;
