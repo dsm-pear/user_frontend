@@ -63,6 +63,11 @@ export const InlineBox = styled.div`
   }
 `;
 
+export const ReportHeader = styled.div`
+  width: 100%;
+  height: 10%;
+`;
+
 export const ReportLogo = styled.div`
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -187,15 +192,18 @@ export const ListTable = styled.div`
   }
 `;
 
-export const ReportMain = styled.div`
-  margin-top: 0.8rem;
+export const ReportBody = styled.div`
+  width: 100%;
+  height: 90%;
+`;
 
+export const ReportMain = styled.div`
   &:hover {
     cursor: default;
   }
 `;
 
-export const ReportHeader = styled.div`
+export const ReportTitle = styled.div`
   width: 100%;
   height: 100%;
 
