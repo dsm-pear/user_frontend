@@ -6,10 +6,12 @@ export const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   visibility: ${({ visibility }) => visibility};
+  top: 0;
+  right: 0;
 
   * {
     margin: 0;
