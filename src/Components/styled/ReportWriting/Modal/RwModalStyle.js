@@ -161,12 +161,21 @@ export const RightModalMain = styled.div`
   border-left: 2px solid #e4eef2;
   border-radius: 5px;
   background-color: #ffffff;
+  visibility: ${({ visibility }) => visibility};
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const RightModalSort = styled.div`
   width: 100%;
   height: 100%;
   padding: 1rem 1rem;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const RightCloseBtn = styled.div`
@@ -174,11 +183,47 @@ export const RightCloseBtn = styled.div`
   display: flex;
   justify-content: flex-end;
 
+  &:hover {
+    cursor: default;
+  }
   span > img {
     width: 13px;
   }
   span > img:hover {
     cursor: pointer;
+  }
+`;
+
+export const RightSearchResult = styled.div`
+  height: 72%;
+  max-height: 72%;
+  margin: 3rem 1rem;
+  padding: 0.5rem 0rem;
+
+  overflow-y: scroll;
+
+  &:hover {
+    cursor: default;
+  }
+
+  &::-webkit-scrollbar {
+    width: 20px;
+    /* 스크롤바의 width */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #5955d8;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 7.5px solid transparent;
+    /* 스크롤바 색 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    margin: 0.4rem;
+    border-radius: 10px;
+    /* 스크롤바의 전체 */
   }
 `;
 

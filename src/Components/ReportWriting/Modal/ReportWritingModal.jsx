@@ -1,18 +1,29 @@
 import React, { useState, useEffect } from "react";
-import UserMapping from "./UserList/UserMapping";
+import LeftUserMapping from "./UserList/LeftUserMapping";
 import LoadingPage from "../LoadingPage";
-import RightModal from "./UserList/RightModal";
+import RightUserMapping from "./UserList/RightUserMapping";
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
-import { request, useRefresh } from "../../../utils/axios/axios";
+import { request } from "../../../utils/axios/axios";
+import axios from "axios";
 
-const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
+const ReportWritingModal = ({
+  setOpen,
+  setMyHei,
+  open,
+  myHei,
+  opas,
+  searchList,
+  setSearchList,
+  selectedUserList,
+  setSelectedUserList,
+}) => {
   const [toggled, setToggled] = useState(false);
-  const [searchList, setSearchList] = useState([]);
-  const [selectedUserList, setSelectedUserList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState("hidden");
   const [loading, setLoading] = useState(true);
-  const refreshHandler = useRefresh();
   const ACCESS_TOKEN = localStorage.getItem("access-token");
+  const REFRESH_TOKEN = localStorage.getItem("refresh-token");
+  const baseUrl = "http://211.38.86.92";
 
   useEffect(() => {
     async function getUsers(getUser) {
@@ -30,15 +41,9 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      setSelectedUserList(
-        getUser.data.userResponses.map((user, index) => ({
-          id: index + 1,
-          user,
-        }))
-      );
     }
     getUsers();
-  }, [ACCESS_TOKEN]);
+  }, [ACCESS_TOKEN, setSearchList]);
 
   if (loading) return <LoadingPage />;
 
@@ -53,21 +58,24 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
           user,
         }))
       );
-      // setSelectedUserList(
-      //   response.data.userResponses.map((user, index) => ({
-      //     id: index + 1,
-      //     user,
-      //   }))
-      // );
+      setLoading(false);
     } catch (e) {
-      switch (e.searchList) {
+      switch (e.data.status) {
         case 400:
           alert("");
           break;
-        case 403:
-          refreshHandler().then(() => {
-            loadUserSearchList();
-          });
+        case 401:
+          axios
+            .put(`${baseUrl}:8005/auth`, undefined, {
+              headers: {
+                "X-Refresh-Token": REFRESH_TOKEN,
+              },
+            })
+            .then((res) => {
+              if (res.data.access_token) {
+                localStorage.setItem("access-token", ACCESS_TOKEN);
+              }
+            });
           break;
         default:
           break;
@@ -75,43 +83,55 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
     }
   };
 
-  const onClickLeft = (id) => {
-    console.log(id);
-
-    const userIndex = searchList.findIndex((_, index) => {
-      // TODO: id랑 같은 user 찾는 조건문
-      if (index === id) {
+  const onClickLeft = (id, userInfo) => {
+    const user = selectedUserList.find((user) => {
+      if (user.id === id) {
         return true;
       }
+      return false;
     });
-    console.log(userIndex);
 
-    const isExistUser = userIndex; // 아래 조건문에서 isExistUser의 true | false값으로 set해주는데 isExistUser에 어떤 값을 담아야 하나요..?
-    const user = selectedUserList[userIndex];
-
-    if (!isExistUser) {
-      // TODO: selectedUserList에 user 추가 해서 setState
-      setSelectedUserList(selectedUserList.concat([user]));
+    if (!user) {
+      setSelectedUserList([userInfo, ...selectedUserList]);
     } else {
-      // TODO: selectedUSerLISt에서 user를 지워 그 담에 setState
-      setSelectedUserList(selectedUserList.slice([user]));
-    } // isExistUser가 false일 때 concat으로 배열 추가, true면 삭제를 했는데 이렇게 사용할 수 있을까요?
+      setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
+    }
   };
 
-  const onClickRight = () => {};
-
-  const onClose = () => {
-    setOpen("hidden");
-    setMyHei("0");
-    setToggled(false);
-  };
-
-  const btnClick = () => {
-    setToggled(!toggled);
+  const onClickRight = (id) => {
+    setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
   };
 
   const onSearchChange = (e) => {
     loadUserSearchList(e.target.value);
+  };
+
+  const onLeftModalClose = () => {
+    setOpen("hidden");
+    setMyHei("0");
+  };
+
+  const onRightModalClose = () => {
+    setIsModalOpen("hidden");
+    setToggled(!toggled);
+  };
+
+  const rightModalOpen = () => {
+    setToggled(!toggled);
+    setIsModalOpen("visible");
+  };
+
+  const renderSelectedUser = () => {
+    return selectedUserList.map((selectedUser) => {
+      return (
+        <RightUserMapping
+          key={selectedUser.id}
+          selectedUser={selectedUser}
+          onClickRight={onClickRight}
+          selectedUserList={selectedUserList}
+        />
+      );
+    });
   };
 
   return (
@@ -119,7 +139,7 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
       <S.Div visibility={open}>
         <S.LeftModalMain height={myHei} opas={opas}>
           <S.LeftModalSort>
-            <S.LeftCloseBtn onClick={onClose}>
+            <S.LeftCloseBtn onClick={onLeftModalClose}>
               <span>
                 {toggled === !true && <img src={Close} alt="Close" />}
               </span>
@@ -138,16 +158,17 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
               {searchList &&
                 searchList.map((userInfo) => {
                   return (
-                    <UserMapping
+                    <LeftUserMapping
                       key={userInfo.id}
                       userInfo={userInfo}
                       onClickLeft={onClickLeft}
+                      selectedUserList={selectedUserList}
                     />
                   );
                 })}
             </S.LeftSearchResult>
             <S.TeamState>
-              <S.BorderState onClick={btnClick}>
+              <S.BorderState onClick={rightModalOpen}>
                 <span>현재 팀 상태</span>
                 {toggled === true ? (
                   <div>
@@ -160,13 +181,17 @@ const ReportWritingModal = ({ setOpen, setMyHei, open, myHei, opas }) => {
             </S.TeamState>
           </S.LeftModalSort>
         </S.LeftModalMain>
-        {toggled === true && (
-          <RightModal
-            toggled={toggled}
-            setToggled={setToggled}
-            selectedUserList={selectedUserList}
-            onClickRight={onClickRight}
-          />
+        {toggled && (
+          <S.RightModalMain visibility={isModalOpen}>
+            <S.RightModalSort>
+              <S.RightCloseBtn>
+                <span>
+                  <img src={Close} alt="Close" onClick={onRightModalClose} />
+                </span>
+              </S.RightCloseBtn>
+              <S.RightSearchResult>{renderSelectedUser()}</S.RightSearchResult>
+            </S.RightModalSort>
+          </S.RightModalMain>
         )}
       </S.Div>
     </>

@@ -1,21 +1,3 @@
-// import React from "react";
-// import {
-//   Ring,
-//   DualRing,
-//   Circle,
-//   Roller,
-//   Default,
-//   Ellipsis,
-//   Grid,
-//   HourGlass,
-// } from "react-awesome-spinners";
-
-// function LoadingPage() {
-//   return <Ring />;
-// }
-
-// export default LoadingPage;
-
 import React from "react";
 import {
   // BabelLoading,

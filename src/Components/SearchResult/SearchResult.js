@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import * as S from "../styled/SearchResult/SearchResultStyle";
-import SearchResultTitle from "./SearchResultTitle";
 import SearchResultProfile from "./SearchResultProfile";
 import Header from "../Main/Header";
 import { LeftArrow, RightArrow } from "../../assets/ArrowImg/index";
 import queryString from "query-string";
 import { request } from "../../utils/axios/axios";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import SearchResultReport from "./SearchResultReport";
 
 const SearchResult = ({ location }) => {
   const query = queryString.parse(location.search);
-
-  const [searchData, setSearchData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
-
-  const history = useHistory();
 
   /* page 설정 */
   const [page, setPage] = useState(5);
@@ -24,13 +18,18 @@ const SearchResult = ({ location }) => {
   const [EndPage, setEndPage] = useState(1);
   let page_arr = [];
 
-  useEffect(() => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [data, setData] = useState(null);
+
+  useEffect(()=> {
+
     const DataApi = async () => {
       setLoading(true);
 
       try {
         setError(null);
-        setSearchData(null);
+        setData(null);
         const response = await request(
           "get",
           `/search/${query.mode}?keyword=${query.keyword}&size=7&page=${
@@ -39,7 +38,7 @@ const SearchResult = ({ location }) => {
           {},
           ""
         );
-        setSearchData(response.data);
+        setData(response.data);
         setEndPage(response.data.totalPages);
       } catch (e) {
         setError(e);
@@ -49,15 +48,16 @@ const SearchResult = ({ location }) => {
     };
 
     DataApi();
-  }, [nowPage, query.mode, query.keyword]);
+  }, [query.mode, query.keyword, nowPage]);
 
   const mode = () => {
     if (!loading) {
       switch (query.mode) {
         case "profile":
-          return <SearchResultProfile data={searchData} />;
+          return <SearchResultProfile data={data} />;
         case "report":
-          return <SearchResultTitle data={searchData} />;
+          console.log(data)
+          return <SearchResultReport data={data} />;
         default:
           return <div>없는 타입</div>;
       }
@@ -65,12 +65,6 @@ const SearchResult = ({ location }) => {
       return <div>Loading...</div>;
     }
   };
-
-    const onPage = (num) => {
-        history.push(
-            `search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`
-        )
-    }
 
   /* api 연동되면 수정할 것들 */
 
@@ -88,21 +82,22 @@ const SearchResult = ({ location }) => {
     page_arr.map((num) => {
       if (Number(querys.page) !== num) {
         return (
-          <div onClick={(() => setNowPage(num), onPage)} key={num}>
+          <Link onClick={() => setNowPage(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} key={num}>
             {" "}
             {page_arr[num]}{" "}
-          </div>
+          </Link>
         );
       } else {
         return (
-          <div
-            onClick={(() => setNowPage(num), onPage)}
+          <Link
+            onClick={() => setNowPage(num)}
+            to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`}
             style={{ color: "#6192f3" }}
             key={num}
           >
             {" "}
             {page_arr[num]}{" "}
-          </div>
+          </Link>
         );
       }
     });
@@ -153,9 +148,9 @@ const SearchResult = ({ location }) => {
 
             <S.ResultAdd>
               <S.ResultAddNumber>
-                <img src={LeftArrow} alt="사진" onClick={prev} />
+                <img src={LeftArrow} alt="사진" onClick={() => prev()} />
                 {processed(query)}
-                <img src={RightArrow} alt="사진" onClick={next} />
+                <img src={RightArrow} alt="사진" onClick={() => next()} />
               </S.ResultAddNumber>
             </S.ResultAdd>
           </S.ResultSubBox>

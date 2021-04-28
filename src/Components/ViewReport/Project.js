@@ -4,19 +4,29 @@ import { useHistory } from "react-router-dom";
 
 const Project = (props) => {
   const history = useHistory();
-  const createdAt = props.date.split('T');
+  const createdAt = props.date.split("T");
+  const reportId = props.reportId;
 
   const reportChilckHandler = () => {
-    history.push(`/view-report/:reportid`);
+    console.log(reportId);
+    history.push({
+      pathname: `/view-report/${reportId}`,
+      state: { reportId: reportId },
+    });
+
   };
 
   const color =
-    props.team === "동아리" ? "#5955d8" : props.team === "팀" ? "#6192f3" : "#27d5b1";
+    props.team === "CIRCLES"
+      ? "#5955d8"
+      : props.team === "TEAM"
+      ? "#6192f3"
+      : "#27d5b1";
 
   return (
     <>
-      <S.MainPro>
-        <S.Project onClick={reportChilckHandler} color={color}>
+      <S.MainPro onClick={reportChilckHandler}>
+        <S.Project color={color}>
           <span className="project_team">[{props.team}]</span>
           <p className="project_title">{props.title}</p>
           <span className="project_date">{createdAt[0]}</span>

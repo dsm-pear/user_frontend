@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { request, useRefresh } from "../../../utils/axios/axios";
+import { request /* useRefresh  */ } from "../../../utils/axios/axios";
+import { useLocation } from "react-router-dom";
 import * as S from "../../styled/ViewReport/MainStyle";
 import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
@@ -8,48 +9,43 @@ import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
 
-function MainReport(props) {
-  const [reportData, setReportData] = useState([]);
+function MainReport() {
+  const [reportData, setReportData] = useState("");
+  const [comments, setComments] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [languages, setLanguages] = useState([]);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
+
   //토큰 검사
-  const refreshHandler = useRefresh();
+  //const refreshHandler = useRefresh();
+
+  const location = useLocation();
+  const reportId = location.state.reportId;
 
   useEffect(() => {
-    //보고서 내용
-    const getReportView = async () => {
+    const report = async () => {
       try {
-        loding(true);
-        const data = await request(
+        const { data } = await request(
           "get",
-          `/report/${props.reportId}`,
+          `/report/${reportId}`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           0
         );
-
-        setReportData(data.reportData);
-        
+        setReportData(data);
+        setComments(data.comments);
+        setMembers(data.member);
+        setLanguages(data.languages);
+        console.log(data.comments[0].commentId);
       } catch (e) {
         console.error(e);
-        switch (e.data.status) {
-          case 400:
-            alert("프로필 불러오기를 실패했습니다.");
-            break;
-          case 403:
-            refreshHandler().then(() => {
-              getReportView();
-            });
-            break;
-          default:
-            break;
-        }
       }
       setLoding(false);
       setError(null);
     };
 
-    getReportView();
-  });
+    report();
+  }, [reportId]);
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
@@ -71,16 +67,14 @@ function MainReport(props) {
           text={reportData.description}
           git="{reportData.github}"
           file={reportData.fileName}
+          fileId={reportData.fileId}
         />
-        <ReportTeam />j
-        <ReportLanguage languages={reportData.languages} />
+        <ReportTeam teamName={reportData.teamName} members={members} />
+        <ReportLanguage languages={languages} />
         <ReportComment
-          name={reportData.comment.userName}
-          email={reportData.comment.userEmail}
-          content={reportData.comment.content}
-          commentId={reportData.comment.commentId}
-          isMain={reportData.comment.isMain}
-          createdAt={reportData.comment.createdAt}
+          reportId={reportId}
+          commentId={comments.commentId}
+          comments={comments}
         />
       </S.MainBox>
     </S.Main>

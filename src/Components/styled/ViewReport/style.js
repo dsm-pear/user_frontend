@@ -79,6 +79,7 @@ const ReportKindOf = styled.div`
   & ul {
     height: 100%;
     & button {
+      margin-bottom: 20px;
       width: 102%;
       background-color: white;
       outline: none;
@@ -209,6 +210,7 @@ const MainCover = styled.div`
   margin: 40px;
   height: 70%;
   width: 94%;
+  overflow: auto;
 `;
 
 const Number = styled.div`

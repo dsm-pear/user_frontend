@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 
-export const MainURL = "http://54.180.224.67:8080";
+export const MainURL = "http://211.38.86.92:8005";
 export const FileURL = "http://54.180.224.67:3000";
 
 export function request(method, url, header, data) {
@@ -42,22 +42,22 @@ export function fileRequest(method, url, header, data) {
 export function useRefresh(method, url, data) {
   const history = useHistory();
 
-  return true;
+  // return true;
 
-  //   return Axios({
-  //     method: "put",
-  //     url: MainURL + "/auth",
-  //     headers: {
-  //       "X-Refresh-Token": localStorage.getItem("refresh-token"),
-  //     },
-  //     data: data,
-  //   })
-  //     .then((res) => {
-  //       localStorage.setItem("access-token", res.data.access_token);
-  //     })
-  //     .catch(() => {
-  //       localStorage.removeItem("access-token");
-  //       localStorage.removeItem("refresh-token");
-  //       history.push("/");
-  //     });
+  return Axios({
+    method: "put",
+    url: MainURL + "/auth",
+    headers: {
+      "X-Refresh-Token": localStorage.getItem("refresh-token"),
+    },
+    data: data,
+  })
+    .then((res) => {
+      localStorage.setItem("access-token", res.data.access_token);
+    })
+    .catch(() => {
+      localStorage.removeItem("access-token");
+      localStorage.removeItem("refresh-token");
+      history.push("/");
+    });
 }

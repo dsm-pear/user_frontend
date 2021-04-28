@@ -1,42 +1,33 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import * as S from "../../styled/ViewReport/style";
-import { request, useRefresh } from "../../../utils/axios/axios";
+//import { request /* useRefresh */ } from "../../../utils/axios/axios";
 
 const CategoryName = (props) => {
+  //중복 선택 useState
   const [selected, setSeletect] = useState(0);
-  const refreshHandler = useRefresh();
+  const [lSelected, setlSeletect] = useState(0);
+  //const refreshHandler = useRefresh();
 
   //API 요청
-  const colorChangeHandler = async () => {
-    //console.log(e.target.checked);
-    try {
-      const data = await request(
-        "get",
-        `report/filter?size=6&page=0&type=&grade=&field=APP`,
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        ""
-      );
-    } catch (e) {
-      console.log(e);
-      /* switch (e.data.status) {
-        case 400:
-          alert("프로필 불러오기를 실패했습니다.");
-          break;
-        case 403:
-          refreshHandler().then(() => {
-            colorChangeHandler();
-          });
-          break;
-        default:
-          break;
-      } */
-    }
-  };
-
   //카테고리 중복선택 안되게
-  const handleColor = (row) => {
+  const handleColor = async (row) => {
     setSeletect(row.id);
+    console.log(row.field);
+    if (row.field === "WEB") {
+      props.setField("WEB");
+    } else if (row.field === "APP") {
+      props.setField("APP");
+    } else if (row.field === "GAME") {
+      props.setField("GAME");
+    } else if (row.field === "AI") {
+      props.setField("AI");
+    } else if (row.field === "EMBEDDED") {
+      props.setField("EMBEDDED");
+    } else if (row.field) {
+      props.setField("SECURITY");
+    } else {
+      props.setField("");
+    }
   };
 
   return (
@@ -64,5 +55,4 @@ const CategoryName = (props) => {
     </S.Category>
   );
 };
-
 export default CategoryName;

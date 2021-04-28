@@ -1,36 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { fileRequest, FileURL } from "../../../utils/axios/axios";
+import React from "react";
+import { FileURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
-  const [fileId, setFileId] = useState(null);
 
-  useEffect(() => {
-    //파일 상태
-    const FileApi = async () => {
-      try {
-        const data = await fileRequest(
-          "get",
-          `/report/files/${props.match.params.reportid}`,
-          {},
-          ""
-        );
-        console.log(data);
-        setFileId(data.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    FileApi();
-  });
-
+  const fileId = props.fileId;
   const fileDownloadHandler = () => {
-    console.log(fileId)
-    window.open(FileURL + `/report/${fileId[0].id}`);
+    window.open(FileURL + `/report/${fileId}`);
   };
 
   return (
     <S.Contents>
+      {/* 보고서 수정 삭제   */}
+      <S.Modify>
+        <button>수정</button>
+        <button>삭제</button>
+      </S.Modify>
       <S.Title>
         <p>{props.title}</p>
       </S.Title>

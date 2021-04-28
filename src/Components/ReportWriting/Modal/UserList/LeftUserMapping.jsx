@@ -1,11 +1,11 @@
 import React from "react";
 import { checked, bfchecked } from "../../../../assets";
-import * as S from "../../../styled/ReportWriting/Modal/UserMappingStyle";
+import * as S from "../../../styled/ReportWriting/Modal/LeftUserMappingStyle";
 
-const UserMapping = ({ userInfo, onClickLeft }) => {
+const LeftUserMapping = ({ userInfo, onClickLeft, selectedUserList }) => {
   return (
     <>
-      <S.LeftResult onClick={() => onClickLeft(userInfo.id)}>
+      <S.LeftResult onClick={() => onClickLeft(userInfo.id, userInfo)}>
         <S.BorderResult>
           <S.LeftSideBox>
             <S.BolderCheckBox>
@@ -13,7 +13,9 @@ const UserMapping = ({ userInfo, onClickLeft }) => {
                 {userInfo.user.name} ({userInfo.user.email})
               </span>
               <div>
-                {userInfo.id ? (
+                {selectedUserList.find(
+                  (selectedUser) => selectedUser.id === userInfo.id
+                ) ? (
                   <img src={checked} alt="checked" />
                 ) : (
                   <img src={bfchecked} alt="beforechecked" />
@@ -27,4 +29,4 @@ const UserMapping = ({ userInfo, onClickLeft }) => {
   );
 };
 
-export default UserMapping;
+export default LeftUserMapping;

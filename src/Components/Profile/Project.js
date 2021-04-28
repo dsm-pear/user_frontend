@@ -1,7 +1,6 @@
 //프로젝트 리스트 컴포넌트
-import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
-import * as S from "../styled/Profile/style";
+import React from "react";
+import MainProject from "./MainProject";
 
 const Project = (props) => {
   const [border, setBorder] = useState("");
@@ -13,7 +12,10 @@ const Project = (props) => {
   const history = useHistory();
 
   const reportChilckHandler = () => {
-    history.push(`/view-report/${props.reportId}`);
+    history.push({
+      pathname: `/view-report/${props.reportId}`,
+      state: { reportId: props.reportId },
+    });
     console.log(props.reportId);
   };
 
