@@ -1,8 +1,4 @@
 import React from "react";
-//import { Link } from "react-router-dom";
-//import queryString from "query-string";
-//import * as N from "../styled/NoticeStyled/NoticeStyle";
-//import {LeftArrow, RightArrow} from '../../assets/index';
 import * as S from "../styled/ViewReport/style";
 import Project from "./Project";
 import ProHeader from "./ProHeader";
