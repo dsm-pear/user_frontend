@@ -164,7 +164,7 @@ const TeamReportWriting = () => {
         {
           title: `${title}`,
           description: `${description}`,
-          language: tags,
+          languages: tags,
           type: `${type}`,
           access: `${access}`,
           field: `${field}`,
