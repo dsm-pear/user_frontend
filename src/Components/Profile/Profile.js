@@ -18,7 +18,7 @@ const Profile = (props) => {
           disabled={props.text === "저장" ? false : true}
           onKeyUp={(e) => props.setEmail(e.target.value)}
         />
-        <input
+        <input  x
           className="input introduce"
           type="text"
           placeholde={props.produce}

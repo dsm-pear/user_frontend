@@ -3,7 +3,6 @@ export { default as SignUp } from "./Login/SignUp";
 export { default as UserProfile } from "./Profile/UserProfile";
 export { default as MyProfile } from "./Profile/MyProfile";
 export { default as ViewReport } from "./ViewReport/ViewReport";
-export { default as ReportWeb } from "./ViewReport/ViewReportGroup/ReportWeb";
 export { default as MainReport } from "./ViewReport/Report/MainReport";
 export { default as ReportWriting } from "./ReportWriting/ReportWriting";
 export { default as Notice } from "./Notice/Notice";
