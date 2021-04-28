@@ -1,6 +1,6 @@
 import React from "react";
 import { checked, bfchecked } from "../../../../assets";
-import * as S from "../../../styled/ReportWriting/Modal/LeftUserMappingStyle";
+import * as S from "../../../styled/ReportWriting/Modal/UserList/LeftUserMappingStyle";
 
 const LeftUserMapping = ({ userInfo, onClickLeft, selectedUserList }) => {
   return (
