@@ -36,7 +36,7 @@ export const BolderCheckBox = styled.div`
   align-items: center;
 
   img {
-    width: 12px;
+    width: 15px;
   }
 
   &:hover {
