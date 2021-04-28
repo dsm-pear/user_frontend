@@ -1,4 +1,4 @@
-import React, { useDebugValue } from "react";
+import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import * as S from "../styled/Profile/style";
 
