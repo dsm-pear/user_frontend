@@ -11,16 +11,16 @@ const SubmitReportModal = ({
   hei,
   myopa,
   setMyOpa,
-  grade,
-  type,
-  field,
-  access,
-  files,
   title,
   description,
   tags,
-  github,
+  type,
+  access,
+  field,
+  grade,
   isSubmitted,
+  files,
+  github,
   teamName,
   selectedUserList,
 }) => {
@@ -32,8 +32,8 @@ const SubmitReportModal = ({
 
   const Api = axios;
   const FileApi = axios;
-  const MainUrl = "http://211.38.86.92";
-  const FileUrl = "http://54.180.224.67";
+  const MainUrl = "http://211.38.86.92:8005";
+  const FileUrl = "http://54.180.224.67:3000";
 
   const onClick = () => {
     setState("hidden");
@@ -46,35 +46,41 @@ const SubmitReportModal = ({
     setMyOpa("0");
     setOpa("1");
 
+    console.log(files[0]?.name, selectedUserList);
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     Api.post(
-      `${MainUrl}:8005/report`,
+      `${MainUrl}/report/team`,
       {
         title: `${title}`,
         description: `${description}`,
-        languages: `${tags}`,
-        grade: `${grade}`,
+        languages: tags,
         type: `${type}`,
-        field: `${field}`,
         access: `${access}`,
-        isSubmitted: `${isSubmitted}`,
-        fileName: `${files}`,
+        field: `${field}`,
+        grade: `${grade}`,
+        isSubmitted: isSubmitted ?? true,
+        fileName: `${files[0].name}`,
         github: `${github}`,
         teamName: `${teamName}`,
-        members: `${selectedUserList}`,
+        members: selectedUserList.map((users) => {
+          return users.user.email;
+        }),
       },
       {
         headers: {
-          "Contect-Type": "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
       }
     )
-      .then((e) => {
+      .then((response) => {
+        console.log(response);
         const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
         isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
-        const id = e.data.id;
+        const id = response.data;
         // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-        FileApi.post(`${FileUrl}:3000/report/files/${id}`, isSubmitFile, {
+        FileApi.post(`${FileUrl}/report/files/${id}`, isSubmitFile, {
           headers: {
             "Content-Type": "multipart/form-data", // multipart = 파일 업로드
             Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -85,7 +91,7 @@ const SubmitReportModal = ({
           })
           .catch((err) => {
             if (err.response.status === 410) {
-              Api.put(`${MainUrl}:8005/auth`, undefined, {
+              Api.put(`${MainUrl}/auth`, undefined, {
                 headers: {
                   "X-Refresh-Token": REFRESH_TOKEN,
                 },
@@ -93,18 +99,14 @@ const SubmitReportModal = ({
                 if (res.data.access_token) {
                   localStorage.setItem("access-token", ACCESS_TOKEN);
                   console.log(REFRESH_TOKEN);
-                  FileApi.post(
-                    `${FileUrl}:3000/report/files/${id}`,
-                    isSubmitFile,
-                    {
-                      headers: {
-                        "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                        Authorization: `Bearer ${localStorage.getItem(
-                          "access-token"
-                        )}`,
-                      },
-                    }
-                  );
+                  FileApi.post(`${FileUrl}/report/files/${id}`, isSubmitFile, {
+                    headers: {
+                      "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                      Authorization: `Bearer ${localStorage.getItem(
+                        "access-token"
+                      )}`,
+                    },
+                  });
                 }
               });
             }
