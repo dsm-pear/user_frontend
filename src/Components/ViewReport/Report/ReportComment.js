@@ -5,7 +5,6 @@ import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportComment = (props) => {
   const [value, setValue] = useState("");
-  const [email, setEmail] = useState("");
   const history = useHistory();
   //코멘트 버튼 클릭시
 
