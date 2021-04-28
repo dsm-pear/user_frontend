@@ -5,7 +5,6 @@ import * as S from "../../styled/ViewReport/style";
 const CategoryName = (props) => {
   //중복 선택 useState
   const [selected, setSeletect] = useState(0);
-  const [lSelected, setlSeletect] = useState(0);
   //const refreshHandler = useRefresh();
 
   //API 요청
