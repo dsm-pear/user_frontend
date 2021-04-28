@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import * as S from "../styled/ViewReport/style";
 import Categorybar from "./Category/Categorybar";
 import MainProject from "./MainProject";
@@ -10,13 +11,20 @@ function ViewReport() {
   const [type, setType] = useState("");
   const [field, setField] = useState("");
 
+  const location = useLocation();
+  const grade = location.state.grade;
+
+  const gradeNumber = grade.split("GRADE")[1];
+
+  console.log(gradeNumber);
+
   useEffect(() => {
     //프로젝트 목록 리스트 얻어오기
     const getProjectList = async () => {
       try {
         const data = await request(
           "get",
-          `/report/filter?size=&page=0&type=${type}&field=${field}&grade=GRADE1`,
+          `/report/filter?size=&page=0&type=${type}&field=${field}&grade=${grade}`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           ""
         );
@@ -28,7 +36,7 @@ function ViewReport() {
     };
 
     getProjectList();
-  }, [type, field]);
+  }, [grade, field, type]);
 
   return (
     <S.Main>
@@ -36,7 +44,7 @@ function ViewReport() {
       <S.Cover>
         <div className="coverCategory">
           {/* 카테고리 네임에게 전달 */}
-          <Categorybar setField={setField} grade="1" />
+          <Categorybar setField={setField} grade={gradeNumber} />
         </div>
 
         <MainProject
