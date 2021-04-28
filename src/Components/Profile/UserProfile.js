@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { request, useRefresh } from "../../utils/axios/axios.js";
+import { request, /* useRefresh */ } from "../../utils/axios/axios.js";
 import * as S from "../styled/Profile/style.js";
 import Profile from "./Profile";
 import Header from "../Main/Header";
@@ -10,7 +10,7 @@ function UserProfile() {
   //내 프로젝트 리트
   const [myReportListResponses, setMyReportListResponses] = useState([]);
   const [userProfile, setUserProfile] = useState("");
-  const refreshHandler = useRefresh();
+  //const refreshHandler = useRefresh();
 
   const location = useLocation();
 

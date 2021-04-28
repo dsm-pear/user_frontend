@@ -94,6 +94,7 @@ function SignUp() {
       password !== "" &&
       pwconfirm !== ""
     ) {
+      console.log("check");
       setButton("#5955d8");
       setBcolor("#ffffff");
     }
