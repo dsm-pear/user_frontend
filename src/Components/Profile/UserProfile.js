@@ -1,50 +1,56 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import { request, useRefresh } from "../../utils/axios/axios.js";
 import * as S from "../styled/Profile/style.js";
 import Profile from "./Profile";
-import Project from "./Project";
 import Header from "../Main/Header";
 import MainProject from "../../Components/Profile/MainProject";
 
-function UserProfile({ match }) {
+function UserProfile() {
   //내 프로젝트 리트
   const [myReportListResponses, setMyReportListResponses] = useState([]);
   const [userProfile, setUserProfile] = useState("");
   const refreshHandler = useRefresh();
 
-  //유저 프로필 API
-  const getProfile = async () => {
-    try {
-      const data = await request(
-        "get",
-        `/profile?user-email=201201keb@dsm.hs.kr`,
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        ""
-      );
-      setUserProfile(data.data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  //유저 프로젝트 API
-  const getProject = async () => {
-    try {
-      const data = await request(
-        "get",
-        `/profile/report?user-email=201201keb@dsm.hs.kr&size=6&page=0`,
-        "",
-        ""
-      );
-      setMyReportListResponses(data.data.profileReportResponses);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  const location = useLocation();
+
+  const userEmail = location.state;
+
+  console.log(userEmail);
 
   useEffect(() => {
+    //유저 프로필 API
+    const getProfile = async () => {
+      try {
+        const data = await request(
+          "get",
+          `/profile?user-email=${userEmail.userEmail}`,
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          ""
+        );
+        setUserProfile(data.data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    //유저 프로젝트 API
+    const getProject = async () => {
+      try {
+        const data = await request(
+          "get",
+          `/profile/report?user-email=${userEmail.userEmail}&size=&page=`,
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          ""
+        );
+        setMyReportListResponses(data.data.profileReportResponses);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
     getProfile();
     getProject();
-  }, []);
+  }, [userEmail]);
 
   return (
     <>
