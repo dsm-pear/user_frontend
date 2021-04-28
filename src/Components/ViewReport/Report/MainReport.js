@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { request, useRefresh } from "../../../utils/axios/axios";
-import { useHistory, useLocation } from "react-router-dom";
+import { request /* useRefresh  */ } from "../../../utils/axios/axios";
+import { useLocation } from "react-router-dom";
 import * as S from "../../styled/ViewReport/MainStyle";
 import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
@@ -9,7 +9,7 @@ import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
 
-function MainReport(props) {
+function MainReport() {
   const [reportData, setReportData] = useState("");
   const [comments, setComments] = useState([]);
   const [members, setMembers] = useState([]);
@@ -18,34 +18,34 @@ function MainReport(props) {
   const [error, setError] = useState(null);
 
   //토큰 검사
-  const refreshHandler = useRefresh();
+  //const refreshHandler = useRefresh();
 
   const location = useLocation();
-  const reportId = location.state;
-  
-
-  const report = async () => {
-    try {
-      const { data } = await request(
-        "get",
-        `/report/${location.state.reportId}`,
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        0
-      );
-      setReportData(data);
-      setComments(data.comments);
-      setMembers(data.member);
-      setLanguages(data.languages);
-    } catch (e) {
-      console.error(e);
-    }
-    setLoding(false);
-    setError(null);
-  };
+  const reportId = location.state.reportId;
 
   useEffect(() => {
+    const report = async () => {
+      try {
+        const { data } = await request(
+          "get",
+          `/report/${reportId}`,
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          0
+        );
+        setReportData(data);
+        setComments(data.comments);
+        setMembers(data.member);
+        setLanguages(data.languages);
+        console.log(data.comments[0].commentId);
+      } catch (e) {
+        console.error(e);
+      }
+      setLoding(false);
+      setError(null);
+    };
+
     report();
-  }, []);
+  }, [reportId]);
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
@@ -71,7 +71,11 @@ function MainReport(props) {
         />
         <ReportTeam teamName={reportData.teamName} members={members} />
         <ReportLanguage languages={languages} />
-        <ReportComment reportId={reportId.reportId} comments={comments} />
+        <ReportComment
+          reportId={reportId}
+          commentId={comments.commentId}
+          comments={comments}
+        />
       </S.MainBox>
     </S.Main>
   );

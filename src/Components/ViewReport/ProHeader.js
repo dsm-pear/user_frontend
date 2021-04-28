@@ -32,7 +32,7 @@ const ProHeader = (props) => {
       props.setType("TEAM");
     } else if (row.title === "개인") {
       props.setType("SOLE");
-    } else if (row.title === "돋아리") {
+    } else if (row.title === "동아리") {
       props.setType("CIRCLES");
     }else {
       props.setType("");
