@@ -1,6 +1,6 @@
 import * as S from "../styled/SearchResult/SearchResultStyle";
 import { StudentProfile } from "../../assets";
-import React, { useCallback } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 const SearchPropfile = ({ dataList }) => {
