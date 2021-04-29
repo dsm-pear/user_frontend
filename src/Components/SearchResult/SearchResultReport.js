@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as S from "../styled/SearchResult/SearchResultStyle";
+import * as S from "../styled/SearchResult/SearchResultStyle.js";
 import { useHistory } from "react-router-dom";
 
 const SearchReport = ({ dataList }) => {

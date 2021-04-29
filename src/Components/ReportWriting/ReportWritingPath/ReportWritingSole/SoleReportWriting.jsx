@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SoleSubmitReportModal from "../../Modal/SubmitRequest/SoleReportRequest/SoleSubmitReportModal";
+import LoadingPage from "../../LoadingPage";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingSole/style";
 import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
@@ -14,9 +15,18 @@ const SoleReportWriting = ({ type, access, field, grade }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [github, setGithub] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const MainUrl = "http://211.38.86.92:8005";
+
+  useEffect(() => {
+    setInterval(() => {
+      setLoading(false);
+    }, 500);
+  }, []);
+
+  if (loading) return <LoadingPage />;
 
   const onTitleChange = (e) => {
     setTitle(e.target.value);
