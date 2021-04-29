@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
+import Header from "../Main/Header";
 import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
@@ -76,6 +77,7 @@ const ReportWriting = () => {
 
   return (
     <>
+      <Header />
       <S.Main>
         <S.BorderBox>
           <S.InlineBox>

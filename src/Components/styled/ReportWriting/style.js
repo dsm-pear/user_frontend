@@ -1,23 +1,19 @@
 import styled from "styled-components";
-import { MainBackground } from "../../../assets";
+import { MainBackground } from "../../../assets/";
 
 export const Main = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100%;
-  min-width: 1045px;
-  min-height: 650px;
+  min-width: 1320px;
+  min-height: 950px;
   background-image: url(${MainBackground});
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  overflow-y: scroll;
-  overflow-x: none;
-  &::-webkit-scrollbar {
-    width: 10px;
-    /* 스크롤바의 width */
+
+  &:hover {
+    cursor: default;
   }
+
   * {
     box-sizing: border-box;
   }
@@ -32,18 +28,30 @@ export const BorderBox = styled.div`
   height: 865px;
   min-height: 865px;
   max-height: 100%;
-  margin: 15rem 0 3rem;
+  margin: 0 auto;
+  margin-top: 60px;
   padding: 2rem 2.5rem 0;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const InlineBox = styled.div`
   width: 100%;
   height: 100%;
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ReportHeader = styled.div`
   width: 100%;
   height: 10%;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ReportLogo = styled.div`
@@ -60,9 +68,17 @@ export const ReportLogo = styled.div`
   span {
     width: 30%;
     padding: 0 0.6rem;
+
+    &:hover {
+      cursor: default;
+    }
   }
   img {
     width: 10rem;
+  }
+
+  &:hover {
+    cursor: default;
   }
 `;
 
@@ -74,6 +90,10 @@ export const SelectBoxs = styled.div`
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const PaddingBox = styled.div`
@@ -81,6 +101,10 @@ export const PaddingBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 0 1.5rem;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const Select = styled.div`
@@ -156,4 +180,8 @@ export const ReportBody = styled.div`
   width: 100%;
   height: 90%;
   margin-top: 0.5rem;
+
+  &:hover {
+    cursor: default;
+  }
 `;
