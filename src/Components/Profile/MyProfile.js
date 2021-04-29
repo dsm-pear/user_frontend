@@ -81,7 +81,6 @@ function MyProfile(props) {
     getMyProject();
   }, [reportId]);
 
-
   return (
     <S.Main>
       <Header></Header>
