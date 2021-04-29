@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { FileURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
+  const fileId = props.fileId;
   const fileDownloadHandler = () => {
-    window.open(FileURL + `/report/20`);
+    window.open(FileURL + `/report/${fileId}`);
   };
 
   return (
