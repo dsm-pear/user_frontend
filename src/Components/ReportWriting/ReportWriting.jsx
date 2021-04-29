@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
+<<<<<<< HEAD
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
 import Header from "../Main/Header";
@@ -18,11 +19,20 @@ const ReportWriting = () => {
   const [clickTypeNumber, setClickTypeNumber] = useState("구분 선택");
   const [clickFieldNumber, setClickFieldNumber] = useState("개발 분야");
   const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Profile
   const [showSoleReportComponent, setShowSoleReportComponent] = useState(false);
   const [showTeamReportComponent, setShowTeamReportComponent] = useState(false);
   const [showCircleReportComponent, setShowCircleReportComponent] = useState(
     false
   );
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> Profile
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -41,6 +51,11 @@ const ReportWriting = () => {
       case "type":
         setClickTypeNumber(types.target.innerHTML);
         setType(types.target.dataset.id);
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Profile
 
         switch (types.target.dataset.id) {
           case "SOLE":
@@ -61,6 +76,10 @@ const ReportWriting = () => {
           default:
             console.log("err");
         }
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> Profile
         break;
       case "field":
         setClickFieldNumber(types.target.innerHTML);
@@ -291,6 +310,11 @@ const ReportWriting = () => {
                 </S.PaddingBox>
               </S.SelectBoxs>
             </S.ReportHeader>
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Profile
             <S.ReportBody>
               {showSoleReportComponent === true ? (
                 <SoleReportWriting
@@ -315,6 +339,10 @@ const ReportWriting = () => {
                 />
               ) : null}
             </S.ReportBody>
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> Profile
           </S.InlineBox>
         </S.BorderBox>
       </S.Main>
