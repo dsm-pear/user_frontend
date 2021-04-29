@@ -204,10 +204,10 @@ export const ReportBody = styled.div`
 export const ReportBody = styled.div`
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> Profile
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ReportMain = styled.div`
@@ -471,6 +471,7 @@ export const SaveBtn = styled.div`
     outline: none;
     background: #6192f3;
     transition: 0.3s;
+    margin: 0 0.5rem 0 0;
     padding: 0.3rem 1rem;
     color: white;
     font-family: BBTreeGL;
@@ -498,6 +499,7 @@ export const SubBtn = styled.div`
     outline: none;
     background: #6192f3;
     transition: 0.3s;
+    margin: 0 0 0 0.5rem;
     padding: 0.3rem 1rem;
     color: white;
     font-family: BBTreeGL;

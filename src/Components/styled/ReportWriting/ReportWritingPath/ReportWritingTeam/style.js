@@ -469,15 +469,7 @@ export const InputTeamName = styled.input`
   height: 100%;
   padding: 0 0.8rem;
   border: 1px solid #4d4d4d;
-<<<<<<< HEAD
-  border-radius: 7px 7px 0 0;
-=======
-<<<<<<< Updated upstream
-  border-bottom: none;
-=======
-  border-radius: 7px 7px 0 0;
->>>>>>> Stashed changes
->>>>>>> Profile
+  border-radius: 4px 4px 0 0;
   outline: none;
 
   &:hover {
@@ -492,8 +484,7 @@ export const MtBtnBox = styled.div`
   justify-content: space-between;
   background-color: #ffffff;
   border: 1px solid #4d4d4d;
-<<<<<<< HEAD
-  border-radius: 0 0 7px 7px;
+  border-radius: 0 0 4px 4px;
   border-top: none;
 =======
 <<<<<<< Updated upstream
