@@ -9,12 +9,12 @@ import {
   ViewReport,
   MainReport,
   ReportWriting,
+  TeamReportWriting,
+  SoleReportWriting,
+  CircleReportWriting,
   Notice,
   NoticeContent,
   SearchResult,
-  ReportWritingModal,
-  SubmitReportModal,
-  SubmitSuccess,
   Main,
   ReportWeb,
 } from "../Components/index";
@@ -32,39 +32,25 @@ function UserRouter() {
         <Route path="/view-report" component={ViewReport} exact />
         <Route path="/view-report/:reportid" component={MainReport} exact />
         <Route path="/report-writing" component={ReportWriting} exact />
-
+        <Route
+          path="/team-report-writing"
+          component={TeamReportWriting}
+          exact
+        />
+        <Route
+          path="/sole-report-writing"
+          component={SoleReportWriting}
+          exact
+        />
+        <Route
+          path="/circle-report-writing"
+          component={CircleReportWriting}
+          exact
+        />
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
-        <Route path="/search-result" component={SearchResult} exact />
-
-        <Route path="/notice" component={Notice} exact />
-        <Route path="/notice-content/:data" component={NoticeContent} exact />
-
-        <Route
-          path="/report-writing-modal"
-          component={ReportWritingModal}
-          exact
-        />
-
-        <Route
-          path="/report-writing-modal"
-          component={ReportWritingModal}
-          exact
-        />
-
-        <Route
-          path="/submit-report-modal"
-          component={SubmitReportModal}
-          exact
-        />
-        <Route path="/submit-succes-modal" component={SubmitSuccess} exact />
-        {/*검색 조건에 따라 제목, 언어, 프로필*/}
-
-        {/* 보고서 파트별로  소프트웨어 개발과 */}
         <Route path="/view-report/main-report" component={MainReport} exact />
-    
         <Route path="/search-result/:data" component={SearchResult} exact />
-
         <Route path="/view-report/:data" component={ReportWeb} exact />
       </Switch>
     </>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MainBody = styled.div`
     height: 100vh;
@@ -24,12 +24,12 @@ export const LogoSubBox = styled.div`
 `
   
 export const Logo = styled.div`
-    padding-left: 100px;
-    img{
-        width: 300px;
-    }
-`
-  
+  padding-left: 100px;
+  img {
+    width: 300px;
+  }
+`;
+
 export const LogoText = styled.div`
     width: 30%;
     font-size: 35px;

@@ -42,6 +42,11 @@ export const InlineBox = styled.div`
   height: 100%;
 `;
 
+export const ReportHeader = styled.div`
+  width: 100%;
+  height: 10%;
+`;
+
 export const ReportLogo = styled.div`
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -123,11 +128,42 @@ export const ViewList = styled.div`
   overflow: hidden;
 `;
 
-export const ReportMain = styled.div`
-  margin-top: 0.8rem;
+export const SelctFlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    cursor: default;
+  }
 `;
 
-export const ReportHeader = styled.div`
+export const ListTable = styled.div`
+  font-family: BBTreeGL;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 12px;
+  color: #000000;
+  cursor: pointer;
+  padding: 0.2rem 4px;
+  margin: 0.3rem 0.3rem;
+
+  &:hover {
+    transition: 0.2s;
+    color: #5955d8;
+  }
+`;
+
+export const ReportBody = styled.div`
+  width: 100%;
+  height: 90%;
+`;
+
+export const ReportMain = styled.div`
+  &:hover {
+    cursor: default;
+  }
+
+export const ReportTitle = styled.div`
   width: 100%;
   height: 100%;
 
@@ -315,6 +351,39 @@ export const MakeTeam = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
+  }
+`;
+
+export const MtFlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const MtBtn = styled.div`
+  text-align: center;
+  width: 5.7rem;
+  height: 24px;
+  margin-top: 6rem;
+  border: 1px solid #6192f3;
+  border-radius: 18px;
+  outline: none;
+  background: #6192f3;
+  transition: 0.3s;
+  padding: 0.3rem 1rem;
+  color: white;
+  font-family: BBTreeGL;
+  font-size: 13px;
+
+  &:hover {
+    cursor: pointer;
+    background: #719cf0;
+    transition: 0.3s;
   }
 `;
 
