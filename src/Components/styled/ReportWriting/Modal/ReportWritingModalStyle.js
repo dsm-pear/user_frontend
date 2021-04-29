@@ -10,6 +10,9 @@ export const Div = styled.div`
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   visibility: ${({ visibility }) => visibility};
+  top: 0;
+  right: 0;
+
   &:hover {
     cursor: default;
   }

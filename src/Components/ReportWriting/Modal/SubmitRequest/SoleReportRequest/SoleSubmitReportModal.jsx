@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SubmitSuccess from "./SubmitSuccess";
-import * as S from "../../styled/ReportWriting/Modal/SrModalStyle";
-import { Close } from "../../../assets";
+import SubmitSuccess from "../../SubmitSuccess";
+import * as S from "../../../../styled/ReportWriting/Modal/SubmitRequest/SoloRequest/SoleSubmitReportStyle";
+import { Close } from "../../../../../assets";
 import axios from "axios";
 
-const SubmitReportModal = ({
+const SoleSubmitReportModal = ({
   setState,
   setHei,
   state,
@@ -21,8 +21,6 @@ const SubmitReportModal = ({
   isSubmitted,
   files,
   github,
-  teamName,
-  selectedUserList,
 }) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
@@ -46,11 +44,11 @@ const SubmitReportModal = ({
     setMyOpa("0");
     setOpa("1");
 
-    console.log(files[0]?.name, selectedUserList);
+    console.log(files[0]?.name);
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     Api.post(
-      `${MainUrl}/report/team`,
+      `${MainUrl}/report/sole`,
       {
         title: `${title}`,
         description: `${description}`,
@@ -62,10 +60,6 @@ const SubmitReportModal = ({
         isSubmitted: isSubmitted ?? true,
         fileName: `${files[0].name}`,
         github: `${github}`,
-        teamName: `${teamName}`,
-        members: selectedUserList.map((users) => {
-          return users.user.email;
-        }),
       },
       {
         headers: {
@@ -156,4 +150,4 @@ const SubmitReportModal = ({
   );
 };
 
-export default SubmitReportModal;
+export default SoleSubmitReportModal;
