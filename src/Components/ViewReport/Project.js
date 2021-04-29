@@ -13,7 +13,6 @@ const Project = (props) => {
       pathname: `/view-report/${reportId}`,
       state: { reportId: reportId },
     });
-
   };
 
   const color =

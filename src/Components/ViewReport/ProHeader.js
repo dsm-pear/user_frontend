@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "../styled/ViewReport/style";
-import {  /* useRefresh */ } from "../../utils/axios/axios";
+import /* useRefresh */ "../../utils/axios/axios";
 
 const ProHeader = (props) => {
   const [seleted, setSeleted] = useState(0);
@@ -9,8 +9,8 @@ const ProHeader = (props) => {
   //전체, 팀, 개인, 동아리 필터링
   const lists = [
     {
-      id : 1, 
-      title : "전체",
+      id: 1,
+      title: "전체",
     },
     {
       id: 2,
@@ -32,12 +32,11 @@ const ProHeader = (props) => {
       props.setType("TEAM");
     } else if (row.title === "개인") {
       props.setType("SOLE");
-    } else if (row.title === "돋아리") {
+    } else if (row.title === "동아리") {
       props.setType("CIRCLES");
-    }else {
+    } else {
       props.setType("");
     }
-    
   };
 
   return (
