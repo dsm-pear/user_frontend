@@ -5,7 +5,6 @@ import * as S from "../styled/Profile/style";
 const MainProject = (props) => {
   const location = useLocation();
   const history = useHistory();
-  
 
   console.log(props.reportId);
 
@@ -30,7 +29,7 @@ const MainProject = (props) => {
         <p className="project_title">{props.title}</p>
         <span className="project_date">{props.date}</span>
         {location.pathname === "/MyProfile" && (
-          <span className="project_save">{save}</span>
+          <span className="project_save">{props.save}</span>
         )}
       </S.MainProject>
     </S.ProjectCover>
