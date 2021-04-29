@@ -1,4 +1,5 @@
 import styled from "styled-components";
+<<<<<<< Updated upstream
 import { MainBackground } from "../../../../../assets";
 
 export const Main = styled.div`
@@ -195,6 +196,12 @@ export const ListTable = styled.div`
 export const ReportBody = styled.div`
   width: 100%;
   height: 90%;
+=======
+
+export const ReportBody = styled.div`
+  width: 100%;
+  height: 100%;
+>>>>>>> Stashed changes
 `;
 
 export const ReportMain = styled.div`
@@ -456,7 +463,11 @@ export const InputTeamName = styled.input`
   height: 100%;
   padding: 0 0.8rem;
   border: 1px solid #4d4d4d;
+<<<<<<< Updated upstream
   border-bottom: none;
+=======
+  border-radius: 7px 7px 0 0;
+>>>>>>> Stashed changes
   outline: none;
 
   &:hover {
@@ -471,6 +482,11 @@ export const MtBtnBox = styled.div`
   justify-content: space-between;
   background-color: #ffffff;
   border: 1px solid #4d4d4d;
+<<<<<<< Updated upstream
+=======
+  border-radius: 0 0 7px 7px;
+  border-top: none;
+>>>>>>> Stashed changes
   padding: 0.4rem 0.8rem;
 
   &:hover {

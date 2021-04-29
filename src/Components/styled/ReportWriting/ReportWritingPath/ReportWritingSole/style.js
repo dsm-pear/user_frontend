@@ -1,4 +1,5 @@
 import styled from "styled-components";
+<<<<<<< Updated upstream
 import { MainBackground } from "../../../../../assets";
 
 export const Main = styled.div`
@@ -195,6 +196,12 @@ export const ListTable = styled.div`
 export const ReportBody = styled.div`
   width: 100%;
   height: 90%;
+=======
+
+export const ReportBody = styled.div`
+  width: 100%;
+  height: 100%;
+>>>>>>> Stashed changes
 `;
 
 export const ReportMain = styled.div`
@@ -411,7 +418,11 @@ export const inAttachFile = styled.div`
 export const SubmitBox = styled.div`
   width: 100%;
   display: flex;
+<<<<<<< Updated upstream
   margin: 1.5rem 0 3rem;
+=======
+  margin: 4.5rem 0 0;
+>>>>>>> Stashed changes
 
   &:hover {
     cursor: default;
@@ -434,8 +445,11 @@ export const SaveSubBtn = styled.div`
 `;
 
 export const SaveBtn = styled.div`
+<<<<<<< Updated upstream
   margin-right: 1rem;
 
+=======
+>>>>>>> Stashed changes
   div {
     text-align: center;
     width: 5.5rem;

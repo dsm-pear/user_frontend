@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReportWritingModal from "../../Modal/ReportWritingModal";
+<<<<<<< Updated upstream
 import SubmitReportModal from "../../Modal/SubmitReportModal";
 import SelectedUsers from "../../Modal/SelectedUsers";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingCircle/style";
@@ -21,6 +22,16 @@ const CircleReportWriting = () => {
   const [clickTypeNumber, setClickTypeNumber] = useState("구분 선택");
   const [clickFieldNumber, setClickFieldNumber] = useState("개발 분야");
   const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
+=======
+import TeamSubmitReportModal from "../../Modal/SubmitRequest/TeamReportRequest/TeamSubmitReportModal";
+import SelectedUsers from "../../Modal/SelectedUsers";
+import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingTeam/style";
+import { link } from "../../../../assets";
+import { github as gitgubimg } from "../../../../assets";
+import axios from "axios";
+
+const TeamReportWriting = ({ type, access, field, grade }) => {
+>>>>>>> Stashed changes
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
@@ -39,6 +50,7 @@ const CircleReportWriting = () => {
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const MainUrl = "http://211.38.86.92:8005";
 
+<<<<<<< Updated upstream
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
   };
@@ -70,6 +82,8 @@ const CircleReportWriting = () => {
     }
   };
 
+=======
+>>>>>>> Stashed changes
   const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -160,7 +174,11 @@ const CircleReportWriting = () => {
   const isSaveData = () => {
     axios
       .post(
+<<<<<<< Updated upstream
         `${MainUrl}/report`,
+=======
+        `${MainUrl}/report/team`,
+>>>>>>> Stashed changes
         {
           title: `${title}`,
           description: `${description}`,
@@ -194,7 +212,11 @@ const CircleReportWriting = () => {
 
   return (
     <>
+<<<<<<< Updated upstream
       <SubmitReportModal
+=======
+      <TeamSubmitReportModal
+>>>>>>> Stashed changes
         setState={setState}
         setHei={setHei}
         setMyOpa={setMyOpa}
@@ -224,6 +246,7 @@ const CircleReportWriting = () => {
         selectedUserList={selectedUserList}
         setSelectedUserList={setSelectedUserList}
       />
+<<<<<<< Updated upstream
       <S.Main>
         <S.BorderBox>
           <S.InlineBox>
@@ -546,3 +569,107 @@ const CircleReportWriting = () => {
 };
 
 export default CircleReportWriting;
+=======
+
+      <S.ReportBody>
+        <S.ReportMain>
+          <S.ReportTitle>
+            <input
+              type="text"
+              placeholder="개발 보고서의 제목을 입력해주세요"
+              onChange={onTitleChange}
+              value={title}
+            />
+          </S.ReportTitle>
+          <S.UseLang>
+            {tags.map((tag, i) => {
+              return (
+                <S.Tag onClick={() => onLanguageClick(i)} index={i} key={i}>
+                  {tag}
+                </S.Tag>
+              );
+            })}
+            <input
+              type="text"
+              placeholder="개발에 사용한 언어들을 입력해주세요"
+              onKeyPress={onLanguageChange}
+            />
+          </S.UseLang>
+          <S.ReprotWriteBox>
+            <textarea
+              name="writingbox"
+              rows="15"
+              cols="40"
+              minLength="10"
+              placeholder="동아리에서 작성한 개발보고서에 대한 소개글을 입력해주세요"
+              onChange={onDescriptionChange}
+              style={{ resize: "none" }}
+              value={description}
+            ></textarea>
+          </S.ReprotWriteBox>
+          <S.LinkBox>
+            <span>
+              <div>
+                <img src={gitgubimg} alt="gitgub-link" />
+                <input
+                  type="text"
+                  placeholder="동아리의 GITHUB 링크를 입력해주세요 (선택)"
+                  onChange={onGithubChange}
+                />
+              </div>
+            </span>
+          </S.LinkBox>
+          <S.AttachFile>
+            <S.inAttachFile>
+              <img src={link} alt="attachfile" onClick={onClickFile} />
+              {attachFiles()}
+            </S.inAttachFile>
+          </S.AttachFile>
+        </S.ReportMain>
+        <S.SubmitBox>
+          <S.MakeTeam>
+            <span>
+              <S.SetTeamName>
+                <S.TeamNameBox>
+                  <S.InputTeamName
+                    type="text"
+                    placeholder="동아리의 이름을 입력해주세요"
+                    onChange={onTeamNameChange}
+                  />
+                </S.TeamNameBox>
+              </S.SetTeamName>
+              <S.MtBtnBox>
+                <S.MemberResult>
+                  <S.ResultHeader>CIRCLE MEMBER</S.ResultHeader>
+                  <S.ResultBody>
+                    {selectedUserList.map((selectedUser) => {
+                      return (
+                        <SelectedUsers
+                          key={selectedUser.id}
+                          selectedUser={selectedUser}
+                        />
+                      );
+                    })}
+                  </S.ResultBody>
+                </S.MemberResult>
+                <S.MtFlexBox>
+                  <S.MtBtn onClick={teamBtnClick}>팀 만들기</S.MtBtn>
+                </S.MtFlexBox>
+              </S.MtBtnBox>
+            </span>
+          </S.MakeTeam>
+          <S.SaveSubBtn>
+            <S.SaveBtn>
+              <div onClick={isSaveData}>임시저장</div>
+            </S.SaveBtn>
+            <S.SubBtn onClick={onClick}>
+              <div>제출하기</div>
+            </S.SubBtn>
+          </S.SaveSubBtn>
+        </S.SubmitBox>
+      </S.ReportBody>
+    </>
+  );
+};
+export default TeamReportWriting;
+>>>>>>> Stashed changes

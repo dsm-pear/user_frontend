@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
+<<<<<<< Updated upstream
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
+=======
+import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
+import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
+>>>>>>> Stashed changes
 import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
@@ -17,6 +22,14 @@ const ReportWriting = () => {
   const [clickTypeNumber, setClickTypeNumber] = useState("구분 선택");
   const [clickFieldNumber, setClickFieldNumber] = useState("개발 분야");
   const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
+<<<<<<< Updated upstream
+=======
+  const [showSoleReportComponent, setShowSoleReportComponent] = useState(false);
+  const [showTeamReportComponent, setShowTeamReportComponent] = useState(false);
+  const [showCircleReportComponent, setShowCircleReportComponent] = useState(
+    false
+  );
+>>>>>>> Stashed changes
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -35,6 +48,29 @@ const ReportWriting = () => {
       case "type":
         setClickTypeNumber(types.target.innerHTML);
         setType(types.target.dataset.id);
+<<<<<<< Updated upstream
+=======
+
+        switch (types.target.dataset.id) {
+          case "SOLE":
+            setShowSoleReportComponent(true);
+            setShowTeamReportComponent(false);
+            setShowCircleReportComponent(false);
+            break;
+          case "TEAM":
+            setShowTeamReportComponent(true);
+            setShowSoleReportComponent(false);
+            setShowCircleReportComponent(false);
+            break;
+          case "CIRCLES":
+            setShowCircleReportComponent(true);
+            setShowSoleReportComponent(false);
+            setShowTeamReportComponent(false);
+            break;
+          default:
+            console.log("err");
+        }
+>>>>>>> Stashed changes
         break;
       case "field":
         setClickFieldNumber(types.target.innerHTML);
@@ -51,12 +87,15 @@ const ReportWriting = () => {
 
   return (
     <>
+<<<<<<< Updated upstream
       {/* <TeamReportWriting
         grade={grade}
         type={type}
         field={field}
         access={access}
       /> */}
+=======
+>>>>>>> Stashed changes
       <S.Main>
         <S.BorderBox>
           <S.InlineBox>
@@ -270,6 +309,33 @@ const ReportWriting = () => {
                 </S.PaddingBox>
               </S.SelectBoxs>
             </S.ReportHeader>
+<<<<<<< Updated upstream
+=======
+            <S.ReportBody>
+              {showSoleReportComponent === true ? (
+                <SoleReportWriting
+                  grade={grade}
+                  type={type}
+                  field={field}
+                  access={access}
+                />
+              ) : null || showTeamReportComponent === true ? (
+                <TeamReportWriting
+                  grade={grade}
+                  type={type}
+                  field={field}
+                  access={access}
+                />
+              ) : null || showCircleReportComponent === true ? (
+                <CircleReportWriting
+                  grade={grade}
+                  type={type}
+                  field={field}
+                  access={access}
+                />
+              ) : null}
+            </S.ReportBody>
+>>>>>>> Stashed changes
           </S.InlineBox>
         </S.BorderBox>
       </S.Main>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+<<<<<<< Updated upstream
 import ReportWritingModal from "../../Modal/ReportWritingModal";
 import SubmitReportModal from "../../Modal/SubmitReportModal";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingSole/style";
@@ -20,6 +21,15 @@ const SoleReportWriting = () => {
   const [clickTypeNumber, setClickTypeNumber] = useState("구분 선택");
   const [clickFieldNumber, setClickFieldNumber] = useState("개발 분야");
   const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
+=======
+import SoleSubmitReportModal from "../../Modal/SubmitRequest/SoleReportRequest/SoleSubmitReportModal";
+import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingSole/style";
+import { link } from "../../../../assets";
+import { github as gitgubimg } from "../../../../assets";
+import axios from "axios";
+
+const SoleReportWriting = ({ type, access, field, grade }) => {
+>>>>>>> Stashed changes
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
@@ -32,6 +42,7 @@ const SoleReportWriting = () => {
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const MainUrl = "http://211.38.86.92:8005";
 
+<<<<<<< Updated upstream
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
   };
@@ -63,6 +74,8 @@ const SoleReportWriting = () => {
     }
   };
 
+=======
+>>>>>>> Stashed changes
   const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -137,13 +150,21 @@ const SoleReportWriting = () => {
       files.splice(index, 1);
       return false;
     }
+<<<<<<< Updated upstream
     return <span>팀이 작성한 개발 보고서의 파일을 올려주세요.</span>;
+=======
+    return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
+>>>>>>> Stashed changes
   };
 
   const isSaveData = () => {
     axios
       .post(
+<<<<<<< Updated upstream
         `${MainUrl}/report`,
+=======
+        `${MainUrl}/report/sole`,
+>>>>>>> Stashed changes
         {
           title: `${title}`,
           description: `${description}`,
@@ -155,10 +176,13 @@ const SoleReportWriting = () => {
           isSubmitted: true,
           fileName: `${files[0].name}`,
           github: `${github}`,
+<<<<<<< Updated upstream
           // teamName: `${teamName}`,
           // members: selectedUserList.map((users) => {
           //   return users.user.email;
           // }),
+=======
+>>>>>>> Stashed changes
         },
         {
           headers: {
@@ -177,7 +201,11 @@ const SoleReportWriting = () => {
 
   return (
     <>
+<<<<<<< Updated upstream
       <SubmitReportModal
+=======
+      <SoleSubmitReportModal
+>>>>>>> Stashed changes
         setState={setState}
         setHei={setHei}
         setMyOpa={setMyOpa}
@@ -195,6 +223,7 @@ const SoleReportWriting = () => {
         github={github}
       />
 
+<<<<<<< Updated upstream
       <S.Main>
         <S.BorderBox>
           <S.InlineBox>
@@ -481,6 +510,74 @@ const SoleReportWriting = () => {
           </S.InlineBox>
         </S.BorderBox>
       </S.Main>
+=======
+      <S.ReportBody>
+        <S.ReportMain>
+          <S.ReportTitle>
+            <input
+              type="text"
+              placeholder="개발 보고서의 제목을 입력해주세요"
+              onChange={onTitleChange}
+              value={title}
+            />
+          </S.ReportTitle>
+          <S.UseLang>
+            {tags.map((tag, i) => {
+              return (
+                <S.Tag onClick={() => onLanguageClick(i)} index={i} key={i}>
+                  {tag}
+                </S.Tag>
+              );
+            })}
+            <input
+              type="text"
+              placeholder="개발에 사용한 언어들을 입력해주세요"
+              onKeyPress={onLanguageChange}
+            />
+          </S.UseLang>
+          <S.ReprotWriteBox>
+            <textarea
+              name="writingbox"
+              rows="15"
+              cols="40"
+              minLength="10"
+              placeholder="자신이 작성한 개발보고서에 대한 소개글을 입력해주세요"
+              onChange={onDescriptionChange}
+              style={{ resize: "none" }}
+              value={description}
+            ></textarea>
+          </S.ReprotWriteBox>
+          <S.LinkBox>
+            <span>
+              <div>
+                <img src={gitgubimg} alt="gitgub-link" />
+                <input
+                  type="text"
+                  placeholder="자신의 GITHUB 링크를 입력해주세요 (선택)"
+                  onChange={onGithubChange}
+                />
+              </div>
+            </span>
+          </S.LinkBox>
+          <S.AttachFile>
+            <S.inAttachFile>
+              <img src={link} alt="attachfile" onClick={onClickFile} />
+              {attachFiles()}
+            </S.inAttachFile>
+          </S.AttachFile>
+        </S.ReportMain>
+        <S.SubmitBox>
+          <S.SaveSubBtn>
+            <S.SaveBtn>
+              <div onClick={isSaveData}>임시저장</div>
+            </S.SaveBtn>
+            <S.SubBtn onClick={onClick}>
+              <div>제출하기</div>
+            </S.SubBtn>
+          </S.SaveSubBtn>
+        </S.SubmitBox>
+      </S.ReportBody>
+>>>>>>> Stashed changes
     </>
   );
 };
