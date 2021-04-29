@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import LeftUserMapping from "./UserList/LeftUserMapping";
 import LoadingPage from "../LoadingPage";
 import RightUserMapping from "./UserList/RightUserMapping";
+<<<<<<< HEAD
+import * as S from "../../styled/ReportWriting/Modal/ReportWritingModalStyle";
+=======
 import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
+>>>>>>> Profile
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 import { request } from "../../../utils/axios/axios";
 import axios from "axios";
@@ -21,6 +25,10 @@ const ReportWritingModal = ({
   const [toggled, setToggled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState("hidden");
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
+
+=======
+>>>>>>> Profile
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
   const baseUrl = "http://211.38.86.92";

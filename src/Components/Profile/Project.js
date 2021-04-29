@@ -62,7 +62,7 @@ const Project = (props) => {
       setText("미승인");
       console.log("미승인");
     }
-  }, []);
+  }, [props.isSubmitted, props.isAccepted, props.isRejected]);
 
   return (
     <S.ProjectCover>

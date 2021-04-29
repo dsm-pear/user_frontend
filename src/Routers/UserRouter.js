@@ -32,6 +32,8 @@ function UserRouter() {
         <Route path="/view-report" component={ViewReport} exact />
         <Route path="/view-report/:reportid" component={MainReport} exact />
         <Route path="/report-writing" component={ReportWriting} exact />
+<<<<<<< HEAD
+=======
         <Route
           path="/team-report-writing"
           component={TeamReportWriting}
@@ -47,6 +49,7 @@ function UserRouter() {
           component={CircleReportWriting}
           exact
         />
+>>>>>>> Profile
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
         <Route path="/view-report/main-report" component={MainReport} exact />

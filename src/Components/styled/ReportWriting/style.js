@@ -10,17 +10,16 @@ export const Main = styled.div`
   min-width: 1045px;
   min-height: 650px;
   background-image: url(${MainBackground});
-  background-size: 100vw 100vh;
+  background-size: cover;
   background-repeat: no-repeat;
   overflow-y: scroll;
+  overflow-x: none;
   &::-webkit-scrollbar {
     width: 10px;
     /* 스크롤바의 width */
   }
   * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
   }
 `;
 
@@ -123,7 +122,11 @@ export const ViewList = styled.div`
   text-align: left;
   cursor: pointer;
   z-index: 1;
+<<<<<<< HEAD
+  margin: 4px 10px 0 0;
+=======
   margin: 4.5px 10px 0 0;
+>>>>>>> Modal
   left: -1px;
   overflow: hidden;
 `;
@@ -156,6 +159,18 @@ export const ListTable = styled.div`
 export const ReportBody = styled.div`
   width: 100%;
   height: 90%;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  margin-top: 0.5rem;
+=======
+=======
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+  margin-top: 0.5rem;
+=======
+>>>>>>> Stashed changes
+>>>>>>> Profile
 `;
 
 export const ReportMain = styled.div`
@@ -396,4 +411,5 @@ export const SaveSubBtn = styled.div`
   width: 27%;
   display: flex;
   justify-content: flex-end;
+>>>>>>> Modal
 `;

@@ -1,4 +1,7 @@
 import styled from "styled-components";
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
 import { MainBackground } from "../../../../../assets";
 
 export const Main = styled.div`
@@ -195,6 +198,16 @@ export const ListTable = styled.div`
 export const ReportBody = styled.div`
   width: 100%;
   height: 90%;
+=======
+>>>>>>> Profile
+
+export const ReportBody = styled.div`
+  width: 100%;
+  height: 100%;
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> Profile
 `;
 
 export const ReportMain = styled.div`
@@ -411,7 +424,15 @@ export const inAttachFile = styled.div`
 export const SubmitBox = styled.div`
   width: 100%;
   display: flex;
+<<<<<<< HEAD
+  margin: 4.5rem 0 0;
+=======
+<<<<<<< Updated upstream
   margin: 1.5rem 0 3rem;
+=======
+  margin: 4.5rem 0 0;
+>>>>>>> Stashed changes
+>>>>>>> Profile
 
   &:hover {
     cursor: default;
@@ -434,8 +455,14 @@ export const SaveSubBtn = styled.div`
 `;
 
 export const SaveBtn = styled.div`
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
   margin-right: 1rem;
 
+=======
+>>>>>>> Stashed changes
+>>>>>>> Profile
   div {
     text-align: center;
     width: 5.5rem;

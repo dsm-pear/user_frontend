@@ -1,6 +1,6 @@
 //내가 보는 내 프로필 수정 하기 누르기
 import React, { useState, useEffect } from "react";
-import { request,/*  useRefresh */ } from "../../utils/axios/axios";
+import { request /*  useRefresh */ } from "../../utils/axios/axios";
 import * as S from "../styled/Profile/style";
 import Header from "../Main/Header";
 import Project from "./Project";
@@ -8,7 +8,7 @@ import Profile from "./Profile";
 
 function MyProfile(props) {
   const [text, setText] = useState("수정");
- // const refreshHandler = useRefresh();
+  // const refreshHandler = useRefresh();
 
   const [profileReport, setProfileReport] = useState([]);
   const [profileData, setProfileData] = useState("");
@@ -42,46 +42,44 @@ function MyProfile(props) {
     }
   };
 
-  const getProfile = async () => {
-    try {
-      const { data } = await request(
-        "get",
-        "/user/profile",
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        ""
-      );
-
-      setProfileData(data);
-      setName(data.userName);
-      setEmail(data.userEmail);
-      setProduce(data.selfIntro);
-    } catch (e) {
-      //토큰 만료
-      console.error(e);
-    }
-  };
-
-  const getMyProject = async () => {
-    try {
-      const { data } = await request(
-        "get",
-        "/user/profile/report?size=&page=0",
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        ""
-      );
-      setProfileReport(data.myPageReportResponses);
-      setReportId(data.myPageReportResponses.reportId);
-      console.log(reportId)
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   useEffect(() => {
-    ChangeProfile();
+    const getProfile = async () => {
+      try {
+        const { data } = await request(
+          "get",
+          "/user/profile",
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          ""
+        );
+
+        setProfileData(data);
+        setName(data.userName);
+        setEmail(data.userEmail);
+        setProduce(data.selfIntro);
+      } catch (e) {
+        //토큰 만료
+        console.error(e);
+      }
+    };
+
+    const getMyProject = async () => {
+      try {
+        const { data } = await request(
+          "get",
+          "/user/profile/report?size=&page=0",
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          ""
+        );
+        setProfileReport(data.myPageReportResponses);
+        setReportId(data.myPageReportResponses.reportId);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
     getProfile();
     getMyProject();
-  }, []);
+  }, [reportId]);
 
   return (
     <S.Main>

@@ -30,7 +30,7 @@ const Profile = (props) => {
           //disabled={props.text === "저장" ? false : true}
           onChange={(e) => setUserEmail(e.target.value)}
         />
-        <input  x
+        <input
           className="input introduce"
           type="text"
           placeholde={introduce}
