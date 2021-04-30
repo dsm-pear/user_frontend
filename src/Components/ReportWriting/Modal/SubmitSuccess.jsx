@@ -1,11 +1,18 @@
 import React from "react";
 import * as S from "../../styled/ReportWriting/Modal/SubmitSuccessStyle";
+import { useHistory } from "react-router-dom";
 import { Close } from "../../../assets";
 
 const SubmitSuccess = ({ setView, setOpa, view, opa }) => {
+  const history = useHistory();
+
   const onClick = () => {
     setView("hidden");
     setOpa("0");
+  };
+
+  const isPushMain = () => {
+    history.push("/");
   };
 
   return (
@@ -14,7 +21,7 @@ const SubmitSuccess = ({ setView, setOpa, view, opa }) => {
         <S.ModalSort>
           <S.CloseBtn onClick={onClick}>
             <span>
-              <img src={Close} alt="Close" />
+              <img src={Close} alt="Close" onClick={isPushMain} />
             </span>
           </S.CloseBtn>
           <S.ModalHeader>

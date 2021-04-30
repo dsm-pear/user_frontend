@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import LeftUserMapping from "./UserList/LeftUserMapping";
-import LoadingPage from "../LoadingPage";
 import RightUserMapping from "./UserList/RightUserMapping";
 import * as S from "../../styled/ReportWriting/Modal/ReportWritingModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
@@ -20,7 +19,6 @@ const ReportWritingModal = ({
 }) => {
   const [toggled, setToggled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState("hidden");
-  const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
@@ -32,9 +30,6 @@ const ReportWritingModal = ({
         getUser = await request("get", `/account?name=`, {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         });
-        setInterval(() => {
-          setLoading(false);
-        }, 500);
       } catch (e) {
         alert(e);
       }
@@ -47,8 +42,6 @@ const ReportWritingModal = ({
     }
     getUsers();
   }, [ACCESS_TOKEN, setSearchList]);
-
-  if (loading) return <LoadingPage />;
 
   const loadUserSearchList = async (search) => {
     try {
@@ -85,6 +78,8 @@ const ReportWritingModal = ({
     }
   };
 
+  useEffect(() => {}, []);
+
   const onClickLeft = (id, userInfo) => {
     const user = selectedUserList.find((user) => {
       if (user.id === id) {
@@ -98,6 +93,9 @@ const ReportWritingModal = ({
     } else {
       setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
     }
+
+    setToggled(true);
+    setIsModalOpen("visible");
   };
 
   const onClickRight = (id) => {
@@ -108,12 +106,12 @@ const ReportWritingModal = ({
     loadUserSearchList(e.target.value);
   };
 
-  const onLeftModalClose = () => {
+  const onClickLeftModalClose = (e) => {
     setOpen("hidden");
     setMyHei("0");
   };
 
-  const onRightModalClose = () => {
+  const onClickRightModalClose = (e) => {
     setIsModalOpen("hidden");
     setToggled(!toggled);
   };
@@ -141,7 +139,7 @@ const ReportWritingModal = ({
       <S.Div visibility={open}>
         <S.LeftModalMain height={myHei} opas={opas}>
           <S.LeftModalSort>
-            <S.LeftCloseBtn onClick={onLeftModalClose}>
+            <S.LeftCloseBtn onClick={onClickLeftModalClose}>
               <span>
                 {toggled === !true && <img src={Close} alt="Close" />}
               </span>
@@ -188,7 +186,11 @@ const ReportWritingModal = ({
             <S.RightModalSort>
               <S.RightCloseBtn>
                 <span>
-                  <img src={Close} alt="Close" onClick={onRightModalClose} />
+                  <img
+                    src={Close}
+                    alt="Close"
+                    onClick={onClickRightModalClose}
+                  />
                 </span>
               </S.RightCloseBtn>
               <S.RightSearchResult>{renderSelectedUser()}</S.RightSearchResult>

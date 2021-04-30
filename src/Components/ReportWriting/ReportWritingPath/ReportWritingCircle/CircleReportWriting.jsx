@@ -14,7 +14,6 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
   const [myopa, setMyOpa] = useState("1");
   const [open, setOpen] = useState("hidden");
   const [myHei, setMyHei] = useState("0");
-  const [opas, setOpas] = useState("1");
   const [tags, setTags] = useState([]);
   const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
@@ -23,6 +22,7 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
   const [teamName, setTeamName] = useState("");
   const [searchList, setSearchList] = useState([]);
   const [selectedUserList, setSelectedUserList] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
@@ -61,7 +61,6 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
   const teamBtnClick = (e) => {
     setOpen("visible");
     setMyHei("450px");
-    setOpas("1");
   };
 
   const onLanguageChange = (e) => {
@@ -152,6 +151,7 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
       )
       .then(() => {
         console.log("임시저장 성공");
+        setIsSubmitted(true);
       })
       .catch(() => {
         console.log("임시저장 실패");
@@ -178,13 +178,13 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
         github={github}
         teamName={teamName}
         selectedUserList={selectedUserList}
+        isSubmitted={isSubmitted}
       />
       <ReportWritingModal
         setOpen={setOpen}
         setMyHei={setMyHei}
         open={open}
         myHei={myHei}
-        opas={opas}
         searchList={searchList}
         setSearchList={setSearchList}
         selectedUserList={selectedUserList}
