@@ -1,14 +1,6 @@
 import React from "react";
 import { checked } from "../../../../assets";
-<<<<<<< HEAD
 import * as S from "../../../styled/ReportWriting/Modal/UserList/RightUserMappingStyle";
-=======
-<<<<<<< Updated upstream
-import * as S from "../../../styled/ReportWriting/Modal/RightUserMappingStyle";
-=======
-import * as S from "../../../styled/ReportWriting/Modal/UserList/RightUserMappingStyle";
->>>>>>> Stashed changes
->>>>>>> Profile
 
 const RightUserMapping = ({ selectedUser, onClickRight }) => {
   return (
