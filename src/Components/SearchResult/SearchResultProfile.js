@@ -1,14 +1,18 @@
 import * as S from "../styled/SearchResult/SearchResultStyle";
 import { StudentProfile } from "../../assets";
-import React from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 const SearchPropfile = ({ dataList }) => {
   const history = useHistory();
 
   const onLink = (email) => {
-    history.push(`/user-profile/${email}`);
+    history.push({
+      pathname: `/user-profile`,
+      state: { useremail : email}
+    });
   };
+  
   return dataList.map((data) => (
     <div onClick={() => onLink(data.email)} key={data.email}>
       <S.Container style={{ color: "#6192f3" }}>
