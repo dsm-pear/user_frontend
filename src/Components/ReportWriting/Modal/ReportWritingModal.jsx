@@ -106,12 +106,12 @@ const ReportWritingModal = ({
     loadUserSearchList(e.target.value);
   };
 
-  const onClickLeftModalClose = (e) => {
+  const onClickLeftModalClose = () => {
     setOpen("hidden");
     setMyHei("0");
   };
 
-  const onClickRightModalClose = (e) => {
+  const onClickRightModalClose = () => {
     setIsModalOpen("hidden");
     setToggled(!toggled);
   };
