@@ -3,15 +3,7 @@ import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportW
 <<<<<<< HEAD
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
-=======
-<<<<<<< Updated upstream
-import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
-import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
-=======
-import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
-import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
->>>>>>> Stashed changes
->>>>>>> Profile
+import Header from "../Main/Header";
 import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
@@ -104,18 +96,7 @@ const ReportWriting = () => {
 
   return (
     <>
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-      {/* <TeamReportWriting
-        grade={grade}
-        type={type}
-        field={field}
-        access={access}
-      /> */}
-=======
->>>>>>> Stashed changes
->>>>>>> Profile
+      <Header />
       <S.Main>
         <S.BorderBox>
           <S.InlineBox>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 99;
   display: flex;
   justify-content: center;
@@ -14,18 +14,17 @@ export const Main = styled.div`
   right: 0;
 
   * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
 `;
 
 export const ModalMain = styled.div`
   transition: all 0.6s;
-  opacity: ${({ opacity }) => opacity};
+  height: ${({ height }) => height};
+  opacity: ${({ myopa }) => myopa};
   box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
-  height: 210px;
-  width: 670px;
+  overflow: hidden;
+  width: 650px;
   border: 1px solid #ffffff;
   border-radius: 20px;
   background-color: #ffffff;
@@ -69,5 +68,39 @@ export const ModalMainText = styled.div`
 
   p {
     margin-top: 0.4rem;
+  }
+`;
+
+export const SubmitBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 147px;
+    height: 32px;
+    background: #5955d8;
+    color: white;
+    border: 1px solid #5955d8;
+    border-radius: 6px;
+    outline: none;
+    font-size: 18px;
+    font-family: BBTreeGL;
+    transition: 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      background: #6d6ada;
+      transition: 0.2s;
+    }
   }
 `;

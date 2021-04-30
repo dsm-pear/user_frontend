@@ -39,7 +39,9 @@ const ReportWritingModal = ({
         getUser = await request("get", `/account?name=`, {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         });
-        setLoading(false);
+        setInterval(() => {
+          setLoading(false);
+        }, 500);
       } catch (e) {
         alert(e);
       }
@@ -66,7 +68,6 @@ const ReportWritingModal = ({
           user,
         }))
       );
-      setLoading(false);
     } catch (e) {
       switch (e.data.status) {
         case 400:

@@ -1,6 +1,7 @@
 //프로젝트 리스트 컴포넌트
-import React from "react";
-import MainProject from "./MainProject";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
+import * as S from "../styled/Profile/style";
 
 const Project = (props) => {
   const [border, setBorder] = useState("");
