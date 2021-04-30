@@ -4,46 +4,39 @@ import * as S from "../styled/MainStyled/QuestionsStyle";
 import { request } from "../../utils/axios/axios";
 
 const Questions = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [email, setEmail] = useState("");
+  const [content, setContent] = useState("");
 
-    const [ modalVisible, setModalVisible] = useState(false);
-    const [ email, setEmail ] = useState("");
-    const [ content, setContent ] = useState("");
+  const [message, setMessage] = useState(null);
 
-    const [ message, setMessage ] = useState(null)
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
-    const closeModal = () => {
-        setModalVisible(false);
+  const onEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const onContent = (e) => {
+    setContent(e.target.value);
+  };
+
+  const send = (e) => {
+    e.preventDefault();
+    if ([email, content].includes("")) {
+      setMessage("빈 칸을 입력해주세요");
+      setModalVisible(true);
+    } else {
+      QuestApi();
     }
+  };
 
-    const onEmail = (e) => {
-        setEmail(e.target.value);
-    }
-    const onContent = (e) => {
-        setContent(e.target.value);
-    }
-
-    const send = (e) => {
-        e.preventDefault();
-        if([email, content].includes("")){
-            setMessage("빈 칸을 입력해주세요")
-            setModalVisible(true);
-        }else{
-            QuestApi()
-        }
-        
-    }
-
-    const QuestApi = async () => {
-        const questData = {
-            email: email,
-            description: content
-        }
-        const response = await request(
-            "post",
-            "/question",
-            {},
-            questData
-        )
+  const QuestApi = async () => {
+    const questData = {
+      email: email,
+      description: content,
+    };
+    const response = await request("post", "/question", {}, questData);
 
     console.log(response);
 
