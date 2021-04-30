@@ -32,15 +32,8 @@ const SearchPropfile = ({ dataList }) => {
 const SearchResultProfile = (props) => {
   const searchData = props.data;
 
-  return (
-    <>
-      {searchData ? (
-        <SearchPropfile dataList={searchData.userResponses} />
-      ) : (
-        <S.NoneData></S.NoneData>
-      )}
-    </>
-  );
+  return <>{searchData ? <SearchPropfile dataList={searchData.userResponses} /> : <S.NoneData></S.NoneData>}</>;
+
 };
 
 export default SearchResultProfile;
