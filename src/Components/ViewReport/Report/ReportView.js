@@ -3,7 +3,6 @@ import { FileURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
-
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(FileURL + `/report/${fileId}`);
