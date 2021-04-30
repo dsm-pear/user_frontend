@@ -47,7 +47,7 @@ const ProPhoto = styled.form`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 87%;
+  height: 100%;
 
   & div {
     background-image: url(${StudentProfile});

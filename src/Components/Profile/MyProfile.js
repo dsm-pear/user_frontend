@@ -5,17 +5,20 @@ import * as S from "../styled/Profile/style";
 import Header from "../Main/Header";
 import Project from "./Project";
 import Profile from "./Profile";
+import { BoxLoading } from "react-loadingg";
 
-function MyProfile(props) {
+function MyProfile() {
   const [text, setText] = useState("수정");
   // const refreshHandler = useRefresh();
 
   const [profileReport, setProfileReport] = useState([]);
   const [profileData, setProfileData] = useState("");
   const [reportId, setReportId] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [gitHub, setGithub] = useState("");
   const [produce, setProduce] = useState("");
+
+  const [loding, setLoding] = useState(null);
+  const [error, setError] = useState(null);
 
   //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
   //프로필 수정 API
@@ -29,7 +32,7 @@ function MyProfile(props) {
           "/user/profile",
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           {
-            github: email,
+            github: gitHub,
             intro: produce,
           }
         );
@@ -37,6 +40,8 @@ function MyProfile(props) {
       } catch (e) {
         console.error(e);
       }
+      setLoding(false);
+      setError(null);
       setText("수정");
       alert("프로필이 변경되었습니다.");
     }
@@ -53,14 +58,19 @@ function MyProfile(props) {
         );
 
         setProfileData(data);
-        setName(data.userName);
-        setEmail(data.userEmail);
-        setProduce(data.selfIntro);
+
+        console.log(data.selfIntro);
       } catch (e) {
         //토큰 만료
         console.error(e);
       }
+      setLoding(false);
+      setError(null);
     };
+
+    if (loding) return <div>로딩중</div>;
+    if (error) return <div>에러입니다</div>;
+    if (!profileData && !profileReport) return <BoxLoading />;
 
     const getMyProject = async () => {
       try {
@@ -88,13 +98,12 @@ function MyProfile(props) {
         {/* 좌측 프로필 */}
         <S.Cover>
           <Profile
-            name={name}
-            setName={setName}
-            setEmail={setEmail}
+            name={profileData.userName}
+            setGithub={setGithub}
             setProduce={setProduce}
-            email={email}
-            produce={produce}
-            github={profileData.git_hub}
+            gitHub={profileData.gitHub}
+            selfIntro={profileData.selfIntro}
+            email={profileData.userEmail}
             text={text}
           />
 
