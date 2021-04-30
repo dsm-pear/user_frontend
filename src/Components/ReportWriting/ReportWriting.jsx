@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
-<<<<<<< HEAD
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
-=======
-<<<<<<< Updated upstream
-import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
-import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
-=======
-import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
-import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
->>>>>>> Stashed changes
->>>>>>> Profile
+import Header from "../Main/Header";
 import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
@@ -23,24 +14,15 @@ const ReportWriting = () => {
   const [field, setField] = useState("");
   const [access, setAccess] = useState("");
   const [hoverNumber, setHoverNumber] = useState(0);
-  const [clickGradeNumber, setClickGradeNumber] = useState("학년 선택");
   const [clickTypeNumber, setClickTypeNumber] = useState("구분 선택");
+  const [clickGradeNumber, setClickGradeNumber] = useState("학년 선택");
   const [clickFieldNumber, setClickFieldNumber] = useState("개발 분야");
   const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Profile
   const [showSoleReportComponent, setShowSoleReportComponent] = useState(false);
   const [showTeamReportComponent, setShowTeamReportComponent] = useState(false);
   const [showCircleReportComponent, setShowCircleReportComponent] = useState(
     false
   );
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> Profile
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -50,22 +32,13 @@ const ReportWriting = () => {
     setHoverNumber(0);
   };
 
-  const isTypeClick = (types) => {
-    switch (types.target.dataset.type) {
-      case "grade":
-        setClickGradeNumber(types.target.innerHTML);
-        setGrade(types.target.dataset.id);
-        break;
+  const isTypeClick = (props) => {
+    switch (props.target.dataset.type) {
       case "type":
-        setClickTypeNumber(types.target.innerHTML);
-        setType(types.target.dataset.id);
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Profile
+        setClickTypeNumber(props.target.innerHTML);
+        setType(props.target.dataset.id);
 
-        switch (types.target.dataset.id) {
+        switch (props.target.dataset.id) {
           case "SOLE":
             setShowSoleReportComponent(true);
             setShowTeamReportComponent(false);
@@ -84,18 +57,18 @@ const ReportWriting = () => {
           default:
             console.log("err");
         }
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> Profile
+        break;
+      case "grade":
+        setClickGradeNumber(props.target.innerHTML);
+        setGrade(props.target.dataset.id);
         break;
       case "field":
-        setClickFieldNumber(types.target.innerHTML);
-        setField(types.target.dataset.id);
+        setClickFieldNumber(props.target.innerHTML);
+        setField(props.target.dataset.id);
         break;
       case "access":
-        setClickAcceessNumber(types.target.innerHTML);
-        setAccess(types.target.dataset.id);
+        setClickAcceessNumber(props.target.innerHTML);
+        setAccess(props.target.dataset.id);
         break;
       default:
         console.log("err");
@@ -104,18 +77,7 @@ const ReportWriting = () => {
 
   return (
     <>
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-      {/* <TeamReportWriting
-        grade={grade}
-        type={type}
-        field={field}
-        access={access}
-      /> */}
-=======
->>>>>>> Stashed changes
->>>>>>> Profile
+      <Header />
       <S.Main>
         <S.BorderBox>
           <S.InlineBox>
@@ -134,7 +96,7 @@ const ReportWriting = () => {
                   >
                     {hoverNumber === 1 ? (
                       <S.SelctFlexBox>
-                        <span>{clickGradeNumber}</span>
+                        <span>{clickTypeNumber}</span>
                         <img
                           src={selecthover}
                           style={{ width: "11px" }}
@@ -143,52 +105,8 @@ const ReportWriting = () => {
                       </S.SelctFlexBox>
                     ) : (
                       <S.SelctFlexBox>
-                        <span>{clickGradeNumber}</span>
+                        <span>{clickTypeNumber}</span>
                         <img src={select} alt="grade" />
-                      </S.SelctFlexBox>
-                    )}
-                    <S.ViewList>
-                      <S.ListTable
-                        data-id="GRADE1"
-                        data-type="grade"
-                        onClick={isTypeClick}
-                      >
-                        1학년
-                      </S.ListTable>
-                      <S.ListTable
-                        data-id="GRADE2"
-                        data-type="grade"
-                        onClick={isTypeClick}
-                      >
-                        2학년
-                      </S.ListTable>
-                      <S.ListTable
-                        data-id="GRADE3"
-                        data-type="grade"
-                        onClick={isTypeClick}
-                      >
-                        3학년
-                      </S.ListTable>
-                    </S.ViewList>
-                  </S.Select>
-                  <S.Select
-                    data-id="2"
-                    onMouseOver={onMouseOver}
-                    onMouseLeave={onMouseLeave}
-                  >
-                    {hoverNumber === 2 ? (
-                      <S.SelctFlexBox>
-                        <span>{clickTypeNumber}</span>
-                        <img
-                          src={selecthover}
-                          style={{ width: "11px" }}
-                          alt="type"
-                        />
-                      </S.SelctFlexBox>
-                    ) : (
-                      <S.SelctFlexBox>
-                        <span>{clickTypeNumber}</span>
-                        <img src={select} alt="type" />
                       </S.SelctFlexBox>
                     )}
                     <S.ViewList>
@@ -212,6 +130,50 @@ const ReportWriting = () => {
                         onClick={isTypeClick}
                       >
                         동아리
+                      </S.ListTable>
+                    </S.ViewList>
+                  </S.Select>
+                  <S.Select
+                    data-id="2"
+                    onMouseOver={onMouseOver}
+                    onMouseLeave={onMouseLeave}
+                  >
+                    {hoverNumber === 2 ? (
+                      <S.SelctFlexBox>
+                        <span>{clickGradeNumber}</span>
+                        <img
+                          src={selecthover}
+                          style={{ width: "11px" }}
+                          alt="type"
+                        />
+                      </S.SelctFlexBox>
+                    ) : (
+                      <S.SelctFlexBox>
+                        <span>{clickGradeNumber}</span>
+                        <img src={select} alt="type" />
+                      </S.SelctFlexBox>
+                    )}
+                    <S.ViewList>
+                      <S.ListTable
+                        data-id="GRADE1"
+                        data-type="grade"
+                        onClick={isTypeClick}
+                      >
+                        1학년
+                      </S.ListTable>
+                      <S.ListTable
+                        data-id="GRADE2"
+                        data-type="grade"
+                        onClick={isTypeClick}
+                      >
+                        2학년
+                      </S.ListTable>
+                      <S.ListTable
+                        data-id="GRADE3"
+                        data-type="grade"
+                        onClick={isTypeClick}
+                      >
+                        3학년
                       </S.ListTable>
                     </S.ViewList>
                   </S.Select>
@@ -329,39 +291,30 @@ const ReportWriting = () => {
                 </S.PaddingBox>
               </S.SelectBoxs>
             </S.ReportHeader>
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Profile
             <S.ReportBody>
               {showSoleReportComponent === true ? (
                 <SoleReportWriting
-                  grade={grade}
                   type={type}
+                  grade={grade}
                   field={field}
                   access={access}
                 />
               ) : null || showTeamReportComponent === true ? (
                 <TeamReportWriting
-                  grade={grade}
                   type={type}
+                  grade={grade}
                   field={field}
                   access={access}
                 />
               ) : null || showCircleReportComponent === true ? (
                 <CircleReportWriting
-                  grade={grade}
                   type={type}
+                  grade={grade}
                   field={field}
                   access={access}
                 />
               ) : null}
             </S.ReportBody>
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> Profile
           </S.InlineBox>
         </S.BorderBox>
       </S.Main>

@@ -8,6 +8,8 @@ export const RightModalMain = styled.div`
   border-left: 2px solid #e4eef2;
   border-radius: 5px;
   background-color: #ffffff;
+  top: 0;
+  right: 0;
 
   &:hover {
     cursor: default;

@@ -1,4 +1,4 @@
-import * as S from "../styled/SearchResult/SearchResultStyle";
+import * as S from "../styled/SearchResult/SearchResultStyle.js";
 import { StudentProfile } from "../../assets";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -28,7 +28,15 @@ const SearchPropfile = ({ dataList }) => {
 const SearchResultProfile = (props) => {
   const searchData = props.data;
 
-  return <>{searchData ? <SearchPropfile dataList={searchData.userResponses} /> : <S.NoneData></S.NoneData>}</>;
+  return (
+    <>
+      {searchData ? (
+        <SearchPropfile dataList={searchData.userResponses} />
+      ) : (
+        <S.NoneData></S.NoneData>
+      )}
+    </>
+  );
 };
 
 export default SearchResultProfile;
