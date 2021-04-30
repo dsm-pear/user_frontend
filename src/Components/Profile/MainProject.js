@@ -5,7 +5,6 @@ import * as S from "../styled/Profile/style";
 const MainProject = (props) => {
   const location = useLocation();
   const history = useHistory();
-  
 
   console.log(props.reportId);
 

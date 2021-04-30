@@ -113,6 +113,7 @@ function MyProfile(props) {
                   isAccepted={myPageReportResponses.isAccepted}
                   //승인거부
                   isRejected={myPageReportResponses.isRejected}
+                  reportId={myPageReportResponses.reportId}
                 />
               ))}
 
