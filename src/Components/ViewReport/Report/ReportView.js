@@ -8,6 +8,10 @@ const ReportView = (props) => {
     window.open(FileURL + `/report/${fileId}`);
   };
 
+  const isReviceReport = () => {};
+
+  const isDeleteReport = () => {};
+
   return (
     <S.Contents>
       {/* 보고서 수정 삭제   */}
