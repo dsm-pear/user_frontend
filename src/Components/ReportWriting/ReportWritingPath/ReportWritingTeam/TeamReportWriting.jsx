@@ -120,7 +120,7 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
       files.splice(index, 1);
       return false;
     }
-    return <span>팀이 작성한 개발 보고서의 파일을 올려주세요.</span>;
+    return <span>동아리에서 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
   const isSaveData = () => {
@@ -221,7 +221,7 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
               rows="15"
               cols="40"
               minLength="10"
-              placeholder="팀이 작성한 개발보고서에 대한 소개글을 입력해주세요"
+              placeholder="동아리에서 작성한 개발보고서에 대한 소개글을 입력해주세요"
               onChange={onDescriptionChange}
               style={{ resize: "none" }}
               value={description}
@@ -233,7 +233,7 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
                 <img src={gitgubimg} alt="gitgub-link" />
                 <input
                   type="text"
-                  placeholder="팀의 GITHUB 링크를 입력해주세요 (선택)"
+                  placeholder="동아리의 GITHUB 링크를 입력해주세요 (선택)"
                   onChange={onGithubChange}
                 />
               </div>
@@ -253,14 +253,14 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
                 <S.TeamNameBox>
                   <S.InputTeamName
                     type="text"
-                    placeholder="팀의 이름을 입력해주세요"
+                    placeholder="동아리의 이름을 입력해주세요"
                     onChange={onTeamNameChange}
                   />
                 </S.TeamNameBox>
               </S.SetTeamName>
               <S.MtBtnBox>
                 <S.MemberResult>
-                  <S.ResultHeader>TEAM MEMBER</S.ResultHeader>
+                  <S.ResultHeader>CIRCLE MEMBER</S.ResultHeader>
                   <S.ResultBody>
                     {selectedUserList.map((selectedUser) => {
                       return (

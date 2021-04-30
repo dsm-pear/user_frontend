@@ -18,8 +18,8 @@ const ReportHeader = (props) => {
         {/* 개인/팀/동아리 표시 각각 이름에 따라 색 변함 */}
         <span>[{props.team}]</span>
         {/* 학년 */}
-        <Link>{props.grade}</Link> {/* 개발과 / 개발 이름 */}
-        <Link>{props.subject}</Link> {/* 보고서 제목 */}
+        <Link to="/view-report">{props.grade}</Link> >{/* 개발과 / 개발 이름 */}
+        <Link to="/view-report">{props.subject}</Link> >{/* 보고서 제목 */}
         <span>{props.title}</span>
       </S.Name>
       <S.Year>
