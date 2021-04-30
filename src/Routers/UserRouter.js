@@ -12,7 +12,6 @@ import {
   Notice,
   NoticeContent,
   SearchResult,
-  SubmitSuccess,
   Main,
 } from "../Components/index";
 
