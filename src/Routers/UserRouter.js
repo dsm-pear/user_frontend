@@ -31,9 +31,6 @@ function UserRouter() {
         <Route path="/report-writing" component={ReportWriting} exact />
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
-
-        <Route path="/submit-succes-modal" component={SubmitSuccess} exact />
-
         <Route path="/search-result/:data" component={SearchResult} exact />
       </Switch>
     </>
