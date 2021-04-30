@@ -8,6 +8,7 @@ import ReportComment from "./ReportComment";
 import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
+import { BoxLoading } from "react-loadingg";
 
 function MainReport() {
   const [reportData, setReportData] = useState("");
@@ -48,7 +49,7 @@ function MainReport() {
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  if (!reportData) return <div>서버좀 줘라</div>;
+  if (!reportData) return <BoxLoading />;
 
   return (
     <S.Main>
