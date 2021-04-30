@@ -8,12 +8,16 @@ const ReportView = (props) => {
     window.open(FileURL + `/report/${fileId}`);
   };
 
+  const isFixedReport = () => {};
+
+  const isDeleteReprot = () => {};
+
   return (
     <S.Contents>
       {/* 보고서 수정 삭제   */}
       <S.Modify>
-        <button>수정</button>
-        <button>삭제</button>
+        <button onClick={isFixedReport}>수정</button>
+        <button onClick={isDeleteReprot}>삭제</button>
       </S.Modify>
       <S.Title>
         <p>{props.title}</p>
