@@ -123,11 +123,15 @@ export const TeamState = styled.div`
 export const BorderInput = styled.div`
   width: 100%;
 
-  form > span {
+  div > span {
     width: 100%;
     display: flex;
     justify-content: left;
     align-items: center;
+
+    &:hover {
+      cursor: default;
+    }
   }
   span > input {
     width: 90%;
@@ -142,6 +146,10 @@ export const BorderInput = styled.div`
   }
   span > img {
     width: 14px;
+
+    &:hover {
+      cursor: default;
+    }
   }
 `;
 
