@@ -9,7 +9,7 @@ const SearchPropfile = ({ dataList }) => {
   const onLink = (email) => {
     history.push({
       pathname: `/user-profile`,
-      state: { useremail : email}
+      state: { useremail: email },
     });
   };
 
