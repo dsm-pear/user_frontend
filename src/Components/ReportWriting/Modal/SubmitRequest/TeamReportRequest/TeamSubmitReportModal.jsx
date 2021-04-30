@@ -37,20 +37,14 @@ const TeamSubmitReportModal = ({
   const MainUrl = "http://211.38.86.92:8005";
   const FileUrl = "http://54.180.224.67:3000";
 
-  const onClick = () => {
+  const onCloseSubmitModal = () => {
     setState("hidden");
     setHei("0");
   };
 
-  const btnClick = () => {
-    setView("visible");
-    setState("hidden");
-    setMyOpa("0");
-    setOpa("1");
-
+  const onSubmitButtonClick = () => {
     console.log(files[0]?.name, selectedUserList);
-    axios.defaults.xsrfCookieName = "csrftoken";
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+
     Api.post(
       `${MainUrl}/report/team`,
       {
@@ -77,6 +71,11 @@ const TeamSubmitReportModal = ({
       }
     )
       .then((response) => {
+        setView("visible");
+        setState("hidden");
+        setMyOpa("0");
+        setOpa("1");
+
         console.log(response);
         const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
         isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
@@ -92,45 +91,37 @@ const TeamSubmitReportModal = ({
             console.log("파일 요청 성공");
           })
           .catch((err) => {
-            switch (err.response.status) {
-              case 410:
-                Api.put(`${MainUrl}/auth`, undefined, {
-                  headers: {
-                    "X-Refresh-Token": REFRESH_TOKEN,
-                  },
-                }).then((res) => {
-                  if (res.data.access_token) {
-                    localStorage.setItem("access-token", ACCESS_TOKEN);
-                    console.log(REFRESH_TOKEN);
-                    FileApi.post(
-                      `${FileUrl}/report/files/${id}`,
-                      isSubmitFile,
-                      {
-                        headers: {
-                          "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                          Authorization: `Bearer ${localStorage.getItem(
-                            "access-token"
-                          )}`,
-                        },
-                      }
-                    );
-                  }
-                });
-                break;
-
-              case 403:
-                alert("권한이 없습니다.");
-
-                localStorage.removeItem("access-token");
-                localStorage.removeItem("refresh-token");
-                history.push("/");
-                break;
-              default:
-                console.log("err");
+            if (err.response.status === 410) {
+              Api.put(`${MainUrl}/auth`, undefined, {
+                headers: {
+                  "X-Refresh-Token": REFRESH_TOKEN,
+                },
+              }).then((res) => {
+                if (res.data.access_token) {
+                  localStorage.setItem("access-token", ACCESS_TOKEN);
+                  console.log(REFRESH_TOKEN);
+                  FileApi.post(`${FileUrl}/report/files/${id}`, isSubmitFile, {
+                    headers: {
+                      "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                      Authorization: `Bearer ${localStorage.getItem(
+                        "access-token"
+                      )}`,
+                    },
+                  });
+                }
+              });
             }
           });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 403) {
+          alert("권한이 없습니다.");
+
+          localStorage.removeItem("access-token");
+          localStorage.removeItem("refresh-token");
+          history.push("/");
+        }
+      });
   };
 
   return (
@@ -139,7 +130,7 @@ const TeamSubmitReportModal = ({
       <S.Main visibility={state}>
         <S.ModalMain height={hei} myopa={myopa}>
           <S.ModalSort>
-            <S.CloseBtn onClick={onClick}>
+            <S.CloseBtn onClick={onCloseSubmitModal}>
               <span>
                 <img src={Close} alt="Close" />
               </span>
@@ -164,7 +155,7 @@ const TeamSubmitReportModal = ({
                 제출 바랍니다.
               </span>
             </S.ModalMainText>
-            <S.SubmitBtn onClick={btnClick}>
+            <S.SubmitBtn onClick={onSubmitButtonClick}>
               <span>제출</span>
             </S.SubmitBtn>
           </S.ModalSort>
