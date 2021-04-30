@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as S from "../styled/SearchResult/SearchResultStyle.js";
+import * as S from "../styled/SearchResult/SearchResultStyle";
 import SearchResultProfile from "./SearchResultProfile";
 import Header from "../Main/Header";
 import { LeftArrow, RightArrow } from "../../assets/ArrowImg/index";
