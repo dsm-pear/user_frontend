@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 99;
   display: flex;
   justify-content: center;
@@ -14,8 +14,6 @@ export const Main = styled.div`
   right: 0;
 
   * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
 `;

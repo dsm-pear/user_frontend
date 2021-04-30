@@ -9,14 +9,10 @@ import {
   ViewReport,
   MainReport,
   ReportWriting,
-  TeamReportWriting,
-  SoleReportWriting,
-  CircleReportWriting,
   Notice,
   NoticeContent,
   SearchResult,
   Main,
-  ReportWeb,
 } from "../Components/index";
 
 function UserRouter() {
@@ -32,29 +28,10 @@ function UserRouter() {
         <Route path="/view-report" component={ViewReport} exact />
         <Route path="/view-report/:reportid" component={MainReport} exact />
         <Route path="/report-writing" component={ReportWriting} exact />
-<<<<<<< HEAD
-=======
-        <Route
-          path="/team-report-writing"
-          component={TeamReportWriting}
-          exact
-        />
-        <Route
-          path="/sole-report-writing"
-          component={SoleReportWriting}
-          exact
-        />
-        <Route
-          path="/circle-report-writing"
-          component={CircleReportWriting}
-          exact
-        />
->>>>>>> Profile
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
         <Route path="/view-report/main-report" component={MainReport} exact />
         <Route path="/search-result/:data" component={SearchResult} exact />
-        <Route path="/view-report/:data" component={ReportWeb} exact />
       </Switch>
     </>
   );

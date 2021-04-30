@@ -55,7 +55,7 @@ const ReportComment = (props) => {
 
   //유저 프로필 이동 이메일 보냄
   const userProfileMove = (userEmail) => {
-    console.log(userEmail)
+    console.log(userEmail);
     history.push({
       pathname: "/user-profile",
       state: { userEmail: userEmail },
