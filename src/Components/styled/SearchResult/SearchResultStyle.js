@@ -170,7 +170,6 @@ export const ResultAddNumber = styled.div`
     align-items: center;
     a{
         padding: 0 10px;
-
         text-decoration: none;
         color: black;
     }
@@ -182,4 +181,13 @@ export const ResultAddNumber = styled.div`
         width: 15px;
         height: 15px;
     }
+    div{
+        cursor: pointer;
+    }
 `;
+
+export const NoneData = styled.div`
+    font-size: 50px;
+    text-align: center;
+    align-items: center;
+`

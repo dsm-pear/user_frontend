@@ -79,6 +79,7 @@ const ReportKindOf = styled.div`
   & ul {
     height: 100%;
     & button {
+      margin-bottom: 20px;
       width: 102%;
       background-color: white;
       outline: none;
