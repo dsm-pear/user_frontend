@@ -8,6 +8,7 @@ import ReportComment from "./ReportComment";
 import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
+import { BoxLoading } from "react-loadingg";
 
 function MainReport() {
   const [reportData, setReportData] = useState("");
@@ -36,7 +37,6 @@ function MainReport() {
         setComments(data.comments);
         setMembers(data.member);
         setLanguages(data.languages);
-        console.log(data.comments[0].commentId);
       } catch (e) {
         console.error(e);
       }
@@ -49,7 +49,7 @@ function MainReport() {
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  if (!reportData) return <div>서버좀 줘라</div>;
+  if (!reportData) return <BoxLoading />;
 
   return (
     <S.Main>
@@ -69,7 +69,10 @@ function MainReport() {
           file={reportData.fileName}
           fileId={reportData.fileId}
         />
-        <ReportTeam teamName={reportData.teamName} members={members} />
+        {reportData.type === "SOLE" ? null : (
+          <ReportTeam teamName={reportData.teamName} members={members} />
+        )}
+
         <ReportLanguage languages={languages} />
         <ReportComment
           reportId={reportId}

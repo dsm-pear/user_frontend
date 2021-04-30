@@ -12,6 +12,3 @@ export { default as Notice } from "./Notice/Notice";
 export { default as NoticeContent } from "./Notice/NoticeContent";
 export { default as Main } from "./Main/Main";
 export { default as SearchResult } from "./SearchResult/SearchResult";
-export { default as ReportWritingModal } from "./ReportWriting/Modal/ReportWritingModal";
-export { default as SubmitReportModal } from "./ReportWriting/Modal/SubmitReportModal";
-export { default as SubmitSuccess } from "./ReportWriting/Modal/SubmitSuccess";

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LeftUserMapping from "./UserList/LeftUserMapping";
-import LoadingPage from "../LoadingPage";
 import RightUserMapping from "./UserList/RightUserMapping";
-import * as S from "../../styled/ReportWriting/Modal/RwModalStyle";
+import * as S from "../../styled/ReportWriting/Modal/ReportWritingModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
 import { request } from "../../../utils/axios/axios";
 import axios from "axios";
@@ -20,7 +19,7 @@ const ReportWritingModal = ({
 }) => {
   const [toggled, setToggled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState("hidden");
-  const [loading, setLoading] = useState(true);
+
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
   const baseUrl = "http://211.38.86.92";
@@ -31,7 +30,6 @@ const ReportWritingModal = ({
         getUser = await request("get", `/account?name=`, {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
         });
-        setLoading(false);
       } catch (e) {
         alert(e);
       }
@@ -45,8 +43,6 @@ const ReportWritingModal = ({
     getUsers();
   }, [ACCESS_TOKEN, setSearchList]);
 
-  if (loading) return <LoadingPage />;
-
   const loadUserSearchList = async (search) => {
     try {
       let response = await request("get", `/account?name=${search}`, {
@@ -58,7 +54,6 @@ const ReportWritingModal = ({
           user,
         }))
       );
-      setLoading(false);
     } catch (e) {
       switch (e.data.status) {
         case 400:
@@ -83,6 +78,8 @@ const ReportWritingModal = ({
     }
   };
 
+  useEffect(() => {}, []);
+
   const onClickLeft = (id, userInfo) => {
     const user = selectedUserList.find((user) => {
       if (user.id === id) {
@@ -96,6 +93,9 @@ const ReportWritingModal = ({
     } else {
       setSelectedUserList(selectedUserList.filter((user) => user.id !== id));
     }
+
+    setToggled(true);
+    setIsModalOpen("visible");
   };
 
   const onClickRight = (id) => {
@@ -106,12 +106,12 @@ const ReportWritingModal = ({
     loadUserSearchList(e.target.value);
   };
 
-  const onLeftModalClose = () => {
+  const onClickLeftModalClose = () => {
     setOpen("hidden");
     setMyHei("0");
   };
 
-  const onRightModalClose = () => {
+  const onClickRightModalClose = () => {
     setIsModalOpen("hidden");
     setToggled(!toggled);
   };
@@ -139,7 +139,7 @@ const ReportWritingModal = ({
       <S.Div visibility={open}>
         <S.LeftModalMain height={myHei} opas={opas}>
           <S.LeftModalSort>
-            <S.LeftCloseBtn onClick={onLeftModalClose}>
+            <S.LeftCloseBtn onClick={onClickLeftModalClose}>
               <span>
                 {toggled === !true && <img src={Close} alt="Close" />}
               </span>
@@ -186,7 +186,11 @@ const ReportWritingModal = ({
             <S.RightModalSort>
               <S.RightCloseBtn>
                 <span>
-                  <img src={Close} alt="Close" onClick={onRightModalClose} />
+                  <img
+                    src={Close}
+                    alt="Close"
+                    onClick={onClickRightModalClose}
+                  />
                 </span>
               </S.RightCloseBtn>
               <S.RightSearchResult>{renderSelectedUser()}</S.RightSearchResult>

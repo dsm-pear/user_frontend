@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import SubmitSuccess from "../../SubmitSuccess";
 import * as S from "../../../../styled/ReportWriting/Modal/SubmitRequest/TeamRequest/TeamSubmitReportStyle";
+import SubmitSuccess from "../../SubmitSuccess";
+import { useHistory } from "react-router-dom";
 import { Close } from "../../../../../assets";
 import axios from "axios";
 
@@ -30,6 +31,7 @@ const TeamSubmitReportModal = ({
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
 
+  const history = useHistory();
   const Api = axios;
   const FileApi = axios;
   const MainUrl = "http://211.38.86.92:8005";
@@ -59,7 +61,7 @@ const TeamSubmitReportModal = ({
         access: `${access}`,
         field: `${field}`,
         grade: `${grade}`,
-        isSubmitted: isSubmitted ?? true,
+        isSubmitted: isSubmitted,
         fileName: `${files[0].name}`,
         github: `${github}`,
         teamName: `${teamName}`,
@@ -90,25 +92,41 @@ const TeamSubmitReportModal = ({
             console.log("파일 요청 성공");
           })
           .catch((err) => {
-            if (err.response.status === 410) {
-              Api.put(`${MainUrl}/auth`, undefined, {
-                headers: {
-                  "X-Refresh-Token": REFRESH_TOKEN,
-                },
-              }).then((res) => {
-                if (res.data.access_token) {
-                  localStorage.setItem("access-token", ACCESS_TOKEN);
-                  console.log(REFRESH_TOKEN);
-                  FileApi.post(`${FileUrl}/report/files/${id}`, isSubmitFile, {
-                    headers: {
-                      "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                      Authorization: `Bearer ${localStorage.getItem(
-                        "access-token"
-                      )}`,
-                    },
-                  });
-                }
-              });
+            switch (err.response.status) {
+              case 410:
+                Api.put(`${MainUrl}/auth`, undefined, {
+                  headers: {
+                    "X-Refresh-Token": REFRESH_TOKEN,
+                  },
+                }).then((res) => {
+                  if (res.data.access_token) {
+                    localStorage.setItem("access-token", ACCESS_TOKEN);
+                    console.log(REFRESH_TOKEN);
+                    FileApi.post(
+                      `${FileUrl}/report/files/${id}`,
+                      isSubmitFile,
+                      {
+                        headers: {
+                          "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                          Authorization: `Bearer ${localStorage.getItem(
+                            "access-token"
+                          )}`,
+                        },
+                      }
+                    );
+                  }
+                });
+                break;
+
+              case 403:
+                alert("권한이 없습니다.");
+
+                localStorage.removeItem("access-token");
+                localStorage.removeItem("refresh-token");
+                history.push("/");
+                break;
+              default:
+                console.log("err");
             }
           });
       })

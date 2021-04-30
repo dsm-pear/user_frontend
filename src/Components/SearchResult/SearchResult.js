@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "../styled/SearchResult/SearchResultStyle";
 import SearchResultProfile from "./SearchResultProfile";
 import Header from "../Main/Header";
@@ -22,8 +22,7 @@ const SearchResult = ({ location }) => {
   const [loading, setLoading] = useState(null);
   const [data, setData] = useState(null);
 
-  useEffect(()=> {
-
+  useEffect(() => {
     const DataApi = async () => {
       setLoading(true);
 
@@ -56,7 +55,7 @@ const SearchResult = ({ location }) => {
         case "profile":
           return <SearchResultProfile data={data} />;
         case "report":
-          console.log(data)
+          console.log(data);
           return <SearchResultReport data={data} />;
         default:
           return <div>없는 타입</div>;
@@ -82,7 +81,11 @@ const SearchResult = ({ location }) => {
     page_arr.map((num) => {
       if (Number(querys.page) !== num) {
         return (
-          <Link onClick={() => setNowPage(num)} to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`} key={num}>
+          <Link
+            onClick={() => setNowPage(num)}
+            to={`search-result?mode=${query.mode}&keyword=${query.keyword}&page=${num}`}
+            key={num}
+          >
             {" "}
             {page_arr[num]}{" "}
           </Link>

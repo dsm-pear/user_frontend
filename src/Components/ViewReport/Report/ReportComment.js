@@ -55,10 +55,9 @@ const ReportComment = (props) => {
 
   //유저 프로필 이동 이메일 보냄
   const userProfileMove = (userEmail) => {
-    console.log(userEmail)
+    console.log(userEmail);
     history.push({
-      pathname: "/user-profile",
-      state: { userEmail: userEmail },
+      pathname: `/user-profile?useremail=${userEmail}`,
     });
   };
 
@@ -73,10 +72,11 @@ const ReportComment = (props) => {
           <S.CommentBox key={commentId}>
             <S.Info>
               <div></div>
-              <Link to="/user-profile" className="Name">
+              <Link to={`/user-profile/${userEmail}`} className="Name">
                 {userName}
               </Link>
               <Link
+                to={`/user-profile/${userEmail}`}
                 onClick={() => userProfileMove(userEmail)}
                 className="Email"
               >

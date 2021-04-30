@@ -1,10 +1,6 @@
 import React from "react";
 import { checked, bfchecked } from "../../../../assets";
-<<<<<<< Updated upstream
-import * as S from "../../../styled/ReportWriting/Modal/LeftUserMappingStyle";
-=======
 import * as S from "../../../styled/ReportWriting/Modal/UserList/LeftUserMappingStyle";
->>>>>>> Stashed changes
 
 const LeftUserMapping = ({ userInfo, onClickLeft, selectedUserList }) => {
   return (
