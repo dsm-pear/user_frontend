@@ -18,7 +18,7 @@ const MainBox = styled.div`
   align-items: center;
   flex-direction: column;
   width: 68%;
-  height: 80%;
+  height: 1363px;
   border: solid 1px #e4eef2;
   background-color: white;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
