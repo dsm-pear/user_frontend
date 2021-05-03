@@ -3,7 +3,7 @@ import LeftUserMapping from "./UserList/LeftUserMapping";
 import RightUserMapping from "./UserList/RightUserMapping";
 import * as S from "../../styled/ReportWriting/Modal/ReportWritingModalStyle";
 import { Close, searchImg, NowTeam, clickNT } from "../../../assets";
-import { request } from "../../../utils/axios/axios";
+import { request, MainURL } from "../../../utils/axios/axios";
 import axios from "axios";
 
 const ReportWritingModal = ({
@@ -22,7 +22,6 @@ const ReportWritingModal = ({
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
-  const baseUrl = "http://211.38.86.92";
 
   useEffect(() => {
     async function getUsers(getUser) {
@@ -61,7 +60,7 @@ const ReportWritingModal = ({
           break;
         case 401:
           axios
-            .put(`${baseUrl}:8005/auth`, undefined, {
+            .put(`${MainURL}/auth`, undefined, {
               headers: {
                 "X-Refresh-Token": REFRESH_TOKEN,
               },
