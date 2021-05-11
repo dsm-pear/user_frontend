@@ -37,7 +37,6 @@ const Notice = ({location}) => {
                     ""
                 );
                 setContainerData(response.data);
-                console.log(response.data)
                 setEndPage(response.data.totalPages)
             }catch(e){
                 setError(e);
@@ -95,7 +94,6 @@ const Notice = ({location}) => {
     }
 
     if(error) return <div>{error}</div>
-    if(loading) return <div>Loading...</div>
 
     return(
         <>
@@ -111,8 +109,12 @@ const Notice = ({location}) => {
 
                         <S.NoticeContant>
 
-                            <NoticeContainer data={containerData}/>
-
+                            {
+                                !loading ?
+                                <NoticeContainer data={containerData}/>
+                                : <div>Loading..</div>
+                            }
+                            
                         </S.NoticeContant>
 
                         <S.NoticeAdd>
