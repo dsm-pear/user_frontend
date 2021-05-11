@@ -113,6 +113,7 @@ const SoleSubmitReportModal = ({
           localStorage.removeItem("refresh-token");
           history.push("/");
         }
+        alert("제출 실패");
       });
   };
 
