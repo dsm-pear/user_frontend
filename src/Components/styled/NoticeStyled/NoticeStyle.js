@@ -103,7 +103,6 @@ export const NoticeAdd = styled.div`
 `;
 
 export const NoticeAddNumber = styled.div`
-margin: 20px;
     width: 300px;
     justify-content: space-between;
     position: relative;
