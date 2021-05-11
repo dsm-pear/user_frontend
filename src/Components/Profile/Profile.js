@@ -10,18 +10,19 @@ const Profile = (props) => {
         <div></div>
         {/* 이름 / 깃허브 주소 / 자신 설명 */}
         <div className="input">{props.name}</div>
+        {<div className="input">{props.email}</div>}
 
         <input
           type="text"
           className="input"
-          placeholder={props.email}
+          placeholder={props.gitHub}
           disabled={props.text === "저장" ? false : true}
-          onKeyUp={(e) => props.setEmail(e.target.value)}
+          onKeyUp={(e) => props.setGithub(e.target.value)}
         />
         <input
           className="input introduce"
           type="text"
-          placeholde={props.produce}
+          placeholder={props.selfIntro}
           disabled={props.text === "저장" ? false : true}
           onKeyUp={(e) => props.setProduce(e.target.value)}
         />

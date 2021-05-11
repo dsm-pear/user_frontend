@@ -15,19 +15,19 @@ const Input = ({
   //버튼 색 변경
   const [bcolor, setBcolor] = useState("#e1e1e1");
 
-  const emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  const emailRule =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
   const handler = (e) => {
-    /* 이메일 정규화되면 버튼 색 바뀜 */
-    if (e.target.value.length >= 8 && emailRule.test(Data)) {
-      setBcolor("#5955d8");
-    } else {
-      setBcolor("#e1e1e1");
-    }
+    setBcolor("#5955d8");
     //회원가입 창에서 인풋 입력값 보내줌
     setData(e.target.value);
   };
-  const cilckEmailButtonHeandler = async () => {
+
+  const cilckEmailButtonHeandler = async (e) => {
+    //console.log(check.target.value);
+
+    setBcolor("#5955d8");
     if (button === "인증번호 발신") {
       if (!emailRule.test(Data)) {
         alert("올바른 이메일을 입력해주세요");
@@ -35,17 +35,14 @@ const Input = ({
         alert("이메일이 발신 되었습니다.");
 
         //인증번호 발송 하기 위해 이메일 보내기
-        console.log(post);
         try {
           await request("get", `/email/auth?email=${post}`, "", {});
         } catch (e) {
           console.error(e);
         }
-        console.log("확인");
       }
     } else if (button === "인증번호 확인") {
       //인증번호 확인 값 보내기
-      console.log(check);
       try {
         await request("put", "/email/auth", "", {
           email: post,
@@ -60,7 +57,6 @@ const Input = ({
     //인증번호
     else if (check.value.length >= 4) {
       setBcolor("#5955d8");
-      console.log(124);
     }
   };
 
@@ -71,7 +67,7 @@ const Input = ({
         <S.Button
           post={post}
           number={check}
-          onClick={cilckEmailButtonHeandler}
+          onClick={(e) => cilckEmailButtonHeandler(e)}
           background={bcolor}
           className="Number"
         >
