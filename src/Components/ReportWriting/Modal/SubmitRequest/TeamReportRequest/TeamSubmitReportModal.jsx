@@ -113,13 +113,17 @@ const TeamSubmitReportModal = ({
           });
       })
       .catch((err) => {
-        if (err.response.status === 403) {
+        if (err.response.status === 400) {
+          alert("선택 및 입력창에 모두 입력해주세요.");
+          return false;
+        } else if (err.response.status === 403) {
           alert("권한이 없습니다.");
 
           localStorage.removeItem("access-token");
           localStorage.removeItem("refresh-token");
           history.push("/");
         }
+        alert("제출 실패");
       });
   };
 
