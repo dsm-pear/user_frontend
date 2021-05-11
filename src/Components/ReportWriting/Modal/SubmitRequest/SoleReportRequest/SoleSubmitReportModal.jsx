@@ -42,6 +42,17 @@ const SoleSubmitReportModal = ({
   const onSubmitButtonClick = () => {
     console.log(files[0]?.name);
 
+    // if (grade === null) {
+    //   alert("보고서의 학년을 선택해주세요.");
+    //   return false;
+    // } else if (field === null) {
+    //   alert("보고서의 분야를 선택해주세요.");
+    //   return false;
+    // } else if (access === null) {
+    //   alert("보고서의 범위를 선택해주세요.");
+    //   return false;
+    // }
+
     Api.post(
       `${MainURL}/report/sole`,
       {
@@ -106,7 +117,10 @@ const SoleSubmitReportModal = ({
           });
       })
       .catch((err) => {
-        if (err.response.status === 403) {
+        if (err.response.status === 400) {
+          alert("선택 및 입력창에 모두 입력해주세요.");
+          return false;
+        } else if (err.response.status === 403) {
           alert("권한이 없습니다.");
 
           localStorage.removeItem("access-token");
