@@ -12,6 +12,8 @@ const Project = (props) => {
   const location = useLocation();
   const history = useHistory();
 
+  console.log(props.isAccepted);
+
   const reportChilckHandler = () => {
     history.push({
       pathname: `/view-report/${props.reportId}`,
@@ -55,7 +57,11 @@ const Project = (props) => {
       setBoxShadow("0 3px 6px 0 rgba(0, 0, 0, 0.16)");
       setText("승인거부");
       console.log("승인거부");
-    } else {
+    } else if (
+      props.isSubmitted === true &&
+      props.isAccepted === false &&
+      props.isRejected === false
+    ) {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");
       setBackground("#ffeded");

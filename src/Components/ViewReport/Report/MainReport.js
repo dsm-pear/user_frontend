@@ -65,7 +65,7 @@ function MainReport() {
         <ReportView
           title={reportData.title}
           text={reportData.description}
-          git="{reportData.github}"
+          git={reportData.github}
           file={reportData.fileName}
           fileId={reportData.fileId}
         />

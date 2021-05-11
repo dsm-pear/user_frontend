@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as S from "../../../../styled/ReportWriting/Modal/SubmitRequest/TeamRequest/TeamSubmitReportStyle";
 import SubmitSuccess from "../../SubmitSuccess";
+import { FileURL, MainURL } from "../../../../../utils/axios/axios";
 import { useHistory } from "react-router-dom";
 import { Close } from "../../../../../assets";
 import axios from "axios";
@@ -34,8 +35,6 @@ const TeamSubmitReportModal = ({
   const history = useHistory();
   const Api = axios;
   const FileApi = axios;
-  const MainUrl = "http://211.38.86.92:8005";
-  const FileUrl = "http://54.180.224.67:3000";
 
   const onCloseSubmitModal = () => {
     setState("hidden");
@@ -46,7 +45,7 @@ const TeamSubmitReportModal = ({
     console.log(files[0]?.name, selectedUserList);
 
     Api.post(
-      `${MainUrl}/report/team`,
+      `${MainURL}/report/team`,
       {
         title: `${title}`,
         description: `${description}`,
@@ -81,7 +80,7 @@ const TeamSubmitReportModal = ({
         isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
         const id = response.data;
         // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-        FileApi.post(`${FileUrl}/report/files/${id}`, isSubmitFile, {
+        FileApi.post(`${FileURL}/report/files/${id}`, isSubmitFile, {
           headers: {
             "Content-Type": "multipart/form-data", // multipart = 파일 업로드
             Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -92,7 +91,7 @@ const TeamSubmitReportModal = ({
           })
           .catch((err) => {
             if (err.response.status === 410) {
-              Api.put(`${MainUrl}/auth`, undefined, {
+              Api.put(`${MainURL}/auth`, undefined, {
                 headers: {
                   "X-Refresh-Token": REFRESH_TOKEN,
                 },
@@ -100,7 +99,7 @@ const TeamSubmitReportModal = ({
                 if (res.data.access_token) {
                   localStorage.setItem("access-token", ACCESS_TOKEN);
                   console.log(REFRESH_TOKEN);
-                  FileApi.post(`${FileUrl}/report/files/${id}`, isSubmitFile, {
+                  FileApi.post(`${FileURL}/report/files/${id}`, isSubmitFile, {
                     headers: {
                       "Content-Type": "multipart/form-data", // multipart = 파일 업로드
                       Authorization: `Bearer ${localStorage.getItem(

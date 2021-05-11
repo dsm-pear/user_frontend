@@ -3,7 +3,6 @@ import Header from '../Main/Header';
 import * as S from '../styled/NoticeStyled/NoticeContentStyle';
 import Leave from '../../assets/ArrowImg/Leave.png';
 import link from '../../assets/link.svg';
-import { Link } from 'react-router-dom';
 import { request, fileRequest, FileURL } from '../../utils/axios/axios'
 
 
@@ -11,8 +10,6 @@ const NoticeContent = (props) => {
 
     const { params } = props.match;
     const ContentId = params.data;
-
-    console.log(ContentId)
 
     const [ contentData, setContentData ] = useState(null);
     const [ fileData , setFileData] = useState(null);
@@ -42,35 +39,41 @@ const NoticeContent = (props) => {
             }
             setLoading(false);
         };
+    
+        DataApi();
+    }, [ContentId]);
 
+    useEffect(() => {
         const FileApi = async () => {
             try{
                 const response = await fileRequest(
                     "get",
-                    `/notice/files/${ContentId}`,
+                    `/notice/files/1`,
                     {},
                     "",
                 );
-                setFileData(response.data);
-                console.log(response.data)
+                setFileData(response);
+                console.log(response);
             }catch(e){
                 console.log(e)
             }
         }
-    
-        DataApi();
+
         FileApi()
-      }, [ContentId]);
+    }, [ContentId])
 
-      const FileDownload = () => {
-        window.open(FileURL + `/notice/${fileData[0].id}`);
-      }
+    const onBack = () => {
+        window.history.back()
+    }
 
-      if (loading) return <div>로딩중..</div>;
-      if (error) return <div>{error}</div>;
-      if (!contentData) return <div>보고서가 없습니다!</div>;
+    const FileDownload = () => {
+        window.open(FileURL + `/notice/${fileData.id}`);
+    }
 
-      const createTime = contentData.createdAt.split(" ")
+    if (error) return <div>{error}</div>;
+    if (!contentData) return <div>보고서가 없습니다!</div>;
+
+    const createTime = contentData.createdAt.split(" ")
 
     return(
         <>
@@ -78,11 +81,15 @@ const NoticeContent = (props) => {
                     <Header/>
 
                     <S.NoticeContant key={contentData.id}>
+
+                        {
+                            loading && <div>Loading...</div>
+                        }
                         <S.NoticeHeader>
                             <S.NoLeave>
-                                <Link to={'/notice?page=1'}>
+                                <div onClick={onBack}>
                                     <img src={Leave} alt="사진"/>
-                                </Link>
+                                </div>
                             </S.NoLeave>
 
                             <S.NoTitle>
@@ -99,16 +106,22 @@ const NoticeContent = (props) => {
                         </S.NoticeContain>
 
 
-                        <S.NoticeFile>
-                            <S.FileLink>
-                            <img onClick={FileDownload} src={link} alt="사진"/>
-                            </S.FileLink>
-                            <S.FileTitle>
-                                <div onClick={FileDownload}>
-                                    {contentData.fileName}
-                                </div>
-                            </S.FileTitle>
-                        </S.NoticeFile>
+                        {
+                            
+                            contentData.fileName &&
+                            <S.NoticeFile>
+                                <S.FileLink>
+                                <img onClick={FileDownload} src={link} alt="사진"/>
+                                </S.FileLink>
+                                <S.FileTitle>
+                                    <div onClick={FileDownload}>
+                                        {contentData.fileName}
+                                    </div>
+                                </S.FileTitle>
+                            </S.NoticeFile>
+
+                        }
+                        
 
                     </S.NoticeContant>
                 </S.Background>
