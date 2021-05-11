@@ -33,7 +33,7 @@ const ReportView = (props) => {
               access: `${props.access}`,
               field: `${props.field}`,
               grade: `${props.grade}`,
-              isSubmitted: false,
+              isSubmitted: true,
               fileName: `${props.fileName}`,
               github: `${props.git}`,
             },
@@ -156,7 +156,39 @@ const ReportView = (props) => {
     }
   };
 
-  const isDeleteReprot = () => {};
+  const isDeleteReprot = () => {
+    axios
+      .delete(
+        `${MainURL}/report/${reportId}`,
+        {
+          id: `${reportId}`,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        const id = res.id;
+        axios.delete(`${FileURL}/report/${id}`, props.file, {
+          headers: {
+            "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+        });
+      })
+      .catch((err) => {
+        if (err.response.status === 403) {
+          alert("권한이 없습니다.");
+
+          localStorage.removeItem("access-token");
+          localStorage.removeItem("refresh-token");
+          history.push("/");
+        }
+      });
+  };
 
   return (
     <S.Contents>
