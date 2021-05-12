@@ -39,10 +39,6 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
       title: "",
       tags: [],
       description: "",
-      type: "",
-      access: "",
-      field: "",
-      grade: "",
     };
     setTitle(savedData.title);
     setTags(savedData.tags);
