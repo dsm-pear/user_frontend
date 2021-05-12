@@ -124,7 +124,7 @@ const Project = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 20px;
   width: 76%;
   height: 490px;
@@ -139,8 +139,6 @@ const PreProject = styled.div`
   align-items: center;
   margin: 30px;
   width: 80%;
-  /* overflow-x: hidden;
-  overflow-y: auto; */
 `;
 
 export const MainProject = styled.div`

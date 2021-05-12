@@ -46,6 +46,7 @@ const Project = (props) => {
       props.isAccepted === true &&
       props.isRejected === false
     ) {
+      setText("제출");
       console.log("제출");
     } else if (
       props.isSubmitted === false &&
