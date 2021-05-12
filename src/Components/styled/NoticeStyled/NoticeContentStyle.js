@@ -89,6 +89,7 @@ export const NoticeFile = styled.div`
     display: flex;
 `;
 export const FileLink = styled.div`
+    cursor: pointer;
     width: 20px;
     padding-left: 15px;
 `;

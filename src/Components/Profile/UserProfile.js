@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import { request, /* useRefresh */ } from "../../utils/axios/axios.js";
+import { request /* useRefresh */ } from "../../utils/axios/axios.js";
 import * as S from "../styled/Profile/style.js";
 import Profile from "./Profile";
 import Header from "../Main/Header";
 import MainProject from "../../Components/Profile/MainProject";
+import { BoxLoading } from "react-loadingg";
 
-function UserProfile() {
+function UserProfile({ match }) {
   //내 프로젝트 리트
   const [myReportListResponses, setMyReportListResponses] = useState([]);
   const [userProfile, setUserProfile] = useState("");
   //const refreshHandler = useRefresh();
-
-  const location = useLocation();
-
-  const userEmail = location.state;
-
-  console.log(userEmail);
+  const [loding, setLoding] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     //유저 프로필 API
+
     const getProfile = async () => {
       try {
         const data = await request(
           "get",
-          `/profile?user-email=${userEmail.userEmail}`,
+          `/profile?user-email=${match.params.userEmail}`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           ""
         );
@@ -32,13 +29,15 @@ function UserProfile() {
       } catch (e) {
         console.error(e);
       }
+      setLoding(false);
+      setError(null);
     };
     //유저 프로젝트 API
     const getProject = async () => {
       try {
         const data = await request(
           "get",
-          `/profile/report?user-email=${userEmail.userEmail}&size=&page=`,
+          `/profile/report?user-email=${match.params.userEmail}&size=&page=`,
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           ""
         );
@@ -46,11 +45,17 @@ function UserProfile() {
       } catch (e) {
         console.error(e);
       }
+      setLoding(false);
+      setError(null);
     };
 
     getProfile();
     getProject();
-  }, [userEmail]);
+  }, [match.params.userEmail]);
+
+  if (loding) return <div>로딩중</div>;
+  if (error) return <div>에러입니다</div>;
+  if (!userProfile) return <BoxLoading />;
 
   return (
     <>
@@ -62,8 +67,8 @@ function UserProfile() {
               <Profile
                 name={userProfile.userName}
                 email={userProfile.userEmail}
-                produce={userProfile.selfIntro}
-                github={userProfile.gitHub}
+                selfIntro={userProfile.selfIntro}
+                gitHub={userProfile.gitHub}
               />
             }
             {/* 프로젝트 보여주는 곳 */}

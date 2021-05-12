@@ -8,6 +8,7 @@ import ReportComment from "./ReportComment";
 import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
+import { BoxLoading } from "react-loadingg";
 
 function MainReport() {
   const [reportData, setReportData] = useState("");
@@ -48,7 +49,7 @@ function MainReport() {
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  if (!reportData) return <div>서버좀 줘라</div>;
+  if (!reportData) return <BoxLoading />;
 
   return (
     <S.Main>
@@ -64,9 +65,17 @@ function MainReport() {
         <ReportView
           title={reportData.title}
           text={reportData.description}
-          git="{reportData.github}"
+          languages={reportData.languages}
+          team={reportData.type}
+          access={reportData.access}
+          field={reportData.field}
+          grade={reportData.grade}
+          isSubmitted={reportData.isSubmitted}
           file={reportData.fileName}
           fileId={reportData.fileId}
+          git={reportData.github}
+          teamName={reportData.teamName}
+          members={members}
         />
         {reportData.type === "SOLE" ? null : (
           <ReportTeam teamName={reportData.teamName} members={members} />

@@ -7,8 +7,12 @@ const SearchPropfile = ({ dataList }) => {
   const history = useHistory();
 
   const onLink = (email) => {
-    history.push(`/user-profile/${email}`);
+    history.push({
+      pathname: `/user-profile`,
+      state: { useremail: email },
+    });
   };
+
   return dataList.map((data) => (
     <div onClick={() => onLink(data.email)} key={data.email}>
       <S.Container style={{ color: "#6192f3" }}>
@@ -28,15 +32,8 @@ const SearchPropfile = ({ dataList }) => {
 const SearchResultProfile = (props) => {
   const searchData = props.data;
 
-  return (
-    <>
-      {searchData ? (
-        <SearchPropfile dataList={searchData.userResponses} />
-      ) : (
-        <S.NoneData></S.NoneData>
-      )}
-    </>
-  );
+  return <>{searchData ? <SearchPropfile dataList={searchData.userResponses} /> : <S.NoneData></S.NoneData>}</>;
+
 };
 
 export default SearchResultProfile;

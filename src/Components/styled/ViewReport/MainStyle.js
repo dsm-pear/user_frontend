@@ -18,7 +18,7 @@ const MainBox = styled.div`
   align-items: center;
   flex-direction: column;
   width: 68%;
-  height: 80%;
+  height: 1363px;
   border: solid 1px #e4eef2;
   background-color: white;
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.16);
@@ -193,7 +193,7 @@ const Info = styled.div`
 
   > div {
     margin: 7px;
-    width: 37px;
+    width: 35px;
     height: 35px;
     background-image: url(${StudentProfile});
     background-size: 35px;
@@ -224,7 +224,18 @@ const Info = styled.div`
     width: 20%;
   }
   .Comment {
-    width: 68%;
+    width: 55%;
+  }
+
+  .deleteButton {
+    outline: none;
+    border: none;
+    padding: 5px;
+    margin: 10px 20px;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #80808054;
   }
 `;
 const CommentBox = styled.div``;
@@ -236,7 +247,7 @@ const CoverLang = styled.div`
   width: 90%;
   height: 10%;
   border: solid 1px #e4eef2;
-  margin-bottom: 50px;
+  margin-bottom: 37px;
 
   > h2 {
     margin: 10px;
