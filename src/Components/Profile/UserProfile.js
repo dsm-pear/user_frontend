@@ -9,7 +9,8 @@ import { BoxLoading } from "react-loadingg";
 function UserProfile({ match }) {
   //내 프로젝트 리트
   const [myReportListResponses, setMyReportListResponses] = useState([]);
-  const [userProfile, setUserProfile] = useState("");
+  const [userProfile, setUserProfile] = useState([]);
+  const [totalElements, setTotalElements] = useState(0);
   //const refreshHandler = useRefresh();
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
@@ -42,6 +43,7 @@ function UserProfile({ match }) {
           ""
         );
         setMyReportListResponses(data.data.profileReportResponses);
+        setTotalElements(data.data.totalElements);
       } catch (e) {
         console.error(e);
       }
@@ -73,17 +75,25 @@ function UserProfile({ match }) {
             }
             {/* 프로젝트 보여주는 곳 */}
             <S.Project>
-              <S.PreProject>
-                {myReportListResponses.map((myReportListResponses, index) => (
-                  <MainProject
-                    key={index}
-                    reportId={myReportListResponses.reportId}
-                    type={myReportListResponses.type}
-                    title={myReportListResponses.title}
-                    date={myReportListResponses.createdAt.split("T")[0]}
-                  />
-                ))}
-              </S.PreProject>
+              {totalElements === 0 ? (
+                <div className="not-report">보고서가 없습니다.</div>
+              ) : (
+                <>
+                  <S.PreProject>
+                    {myReportListResponses.map(
+                      (myReportListResponses, index) => (
+                        <MainProject
+                          key={index}
+                          reportId={myReportListResponses.reportId}
+                          type={myReportListResponses.type}
+                          title={myReportListResponses.title}
+                          date={myReportListResponses.createdAt.split("T")[0]}
+                        />
+                      )
+                    )}
+                  </S.PreProject>
+                </>
+              )}
             </S.Project>
           </S.Cover>
         </S.MainProfile>

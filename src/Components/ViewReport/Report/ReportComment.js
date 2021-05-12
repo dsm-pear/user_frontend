@@ -33,6 +33,7 @@ const ReportComment = (props) => {
       );
     } catch (e) {
       console.error(e);
+      alert("댓글을 작성 할 수 없습니다.");
     }
   };
 

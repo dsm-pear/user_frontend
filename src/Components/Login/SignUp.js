@@ -94,7 +94,6 @@ function SignUp() {
       password !== "" &&
       pwconfirm !== ""
     ) {
-      console.log("check");
       setButton("#5955d8");
       setBcolor("#ffffff");
     }
@@ -115,7 +114,6 @@ function SignUp() {
       setData: setPost,
       data: post,
       button: "인증번호 발신",
-      disabled: false,
     },
     {
       type: "text",
@@ -125,7 +123,7 @@ function SignUp() {
       button: "인증번호 확인",
     },
     {
-      type: "text",
+      type: "password",
       placeholder: "비밀번호를 입력해주세요",
       setData: setPassword,
       data: null,
@@ -153,18 +151,7 @@ function SignUp() {
           </div>
           <div className="InputCover">
             {inputs.map(
-              (
-                {
-                  type,
-                  button,
-                  background,
-                  data,
-                  placeholder,
-                  setData,
-                  disabled,
-                },
-                i
-              ) => (
+              ({ type, button, background, data, placeholder, setData }, i) => (
                 <InputCom
                   key={i}
                   post={post}
@@ -175,7 +162,6 @@ function SignUp() {
                   Data={data}
                   button={button}
                   background={background}
-                  disabled={disabled}
                 />
               )
             )}

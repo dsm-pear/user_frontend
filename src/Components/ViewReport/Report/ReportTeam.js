@@ -8,9 +8,11 @@ const ReportTeam = (props) => {
     <S.Teambox>
       <h2>{props.teamName}</h2>
       <S.TableCover>
-        {member.map(({ memberName, memberId }) => (
+        {member.map(({ memberName, memberId, memberEmail }) => (
           <S.Member key={memberId}>
-            <span>{memberName}</span>
+            <span>
+              {memberName} ({memberEmail})
+            </span>
           </S.Member>
         ))}
       </S.TableCover>
