@@ -5,9 +5,9 @@ import * as S from '../styled/MainStyled/HeaderStyle'
 import DownArrow from '../../assets/ArrowImg/DownArrow.png';
 import UpArrow from '../../assets/ArrowImg/UpArrow.png';
 import SearchImg from '../../assets/searchImg.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-const Header = (props) => {
+const Header = () => {
     const [ searchtype, setSearchtype ] = useState("보고서");
     const [ color, setColor ] = useState("#000000");
     const [ show, setShow ] = useState(false);
@@ -16,6 +16,8 @@ const Header = (props) => {
     const [ img, setImg ] = useState(DownArrow);
     const [ value, setValue ] = useState("report");
     const [ keyword, setKeyword ] = useState("");
+
+    const history = useHistory();
 
     const isAccessToken = localStorage.getItem('access-token');
     const isRefrechToken = localStorage.getItem('refresh-token');
@@ -65,10 +67,26 @@ const Header = (props) => {
         window.location.href=`/search-result?mode=${value}&keyword=${keyword}&page=1`
     }
 
+    const onNotice = () => {
+        history.push('/notice?page=1')
+    }
+
+    const onWrite = () => {
+        history.push('/report-writing')
+    }
+
+    const onGrade = (number) => {
+        history.push({
+            pathname: `/view-report`,
+            state: { grade: `GRADE${number}` }
+        });
+    }
+
     const LogOut = () => {
         localStorage.removeItem("access-token");
         localStorage.removeItem("refresh-token");
         localStorage.removeItem("refresh-exp");
+        history.push('/');
     }
     
     return (
@@ -105,17 +123,17 @@ const Header = (props) => {
                     {/* 메뉴 */}
                     <S.MenuBar>
                         <S.MenuUl>
-                            <S.MenuList><Link to={'/notice?page=1'}>공지사항</Link></S.MenuList>
+                            <S.MenuList onClick={onNotice}>공지사항</S.MenuList>
 
-                            <S.MenuList><Link to={'/report-writing'}>보고서 등록</Link></S.MenuList>
+                            <S.MenuList onClick={onWrite}>보고서 등록</S.MenuList>
                             <S.MenuList onMouseEnter={onReportUp} onMouseLeave={onReportDown}>
                                 보고서 보기
                                 {
                                     report &&
                                     <S.MenuSee>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE1`}><S.ReportSee>1학년</S.ReportSee></Link>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE2`}><S.ReportSee>2학년</S.ReportSee></Link>
-                                        <Link to={`/view-report/report/filter?size=6&page=1&type=&field=&grade=GRADE3`}><S.ReportSee>3학년</S.ReportSee></Link>
+                                        <S.ReportSee onClick={()=>onGrade("1")}>1학년</S.ReportSee>
+                                        <S.ReportSee onClick={()=>onGrade("2")}>2학년</S.ReportSee>
+                                        <S.ReportSee onClick={()=>onGrade("3")}>3학년</S.ReportSee>
                                     </S.MenuSee>
                                 }
                             </S.MenuList>
