@@ -12,14 +12,11 @@ const Project = (props) => {
   const location = useLocation();
   const history = useHistory();
 
-  console.log(props.isAccepted);
-
   const reportChilckHandler = () => {
     history.push({
       pathname: `/view-report/${props.reportId}`,
       state: { reportId: props.reportId },
     });
-    console.log(props.reportId);
   };
 
   const color =
@@ -31,9 +28,9 @@ const Project = (props) => {
 
   useEffect(() => {
     if (
-      props.isSubmitted === false &&
       props.isAccepted === false &&
-      props.isRejected === false
+      props.isRejected === false &&
+      props.isSubmitted === false
     ) {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");
@@ -42,15 +39,16 @@ const Project = (props) => {
       setText("임시저장");
       console.log("임시저장");
     } else if (
-      props.isSubmitted === true &&
       props.isAccepted === true &&
-      props.isRejected === false
+      props.isRejected === false &&
+      props.isSubmitted === true
     ) {
+      setText("제출");
       console.log("제출");
     } else if (
-      props.isSubmitted === false &&
       props.isAccepted === false &&
-      props.isRejected === true
+      props.isRejected === true &&
+      props.isSubmitted === false
     ) {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");
@@ -58,9 +56,9 @@ const Project = (props) => {
       setText("승인거부");
       console.log("승인거부");
     } else if (
-      props.isSubmitted === true &&
       props.isAccepted === false &&
-      props.isRejected === false
+      props.isRejected === false &&
+      props.isSubmitted === true
     ) {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");

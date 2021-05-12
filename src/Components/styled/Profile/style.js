@@ -85,7 +85,10 @@ const ProPhoto = styled.form`
     margin: 10px 0px;
     padding: 20px;
     width: 88%;
-    height: 94px;
+    min-width: 88%;
+    max-width: 88%;
+    min-height: 94px;
+    max-height: 94px;
   }
   textarea::placeholder {
     color: gray;
@@ -124,13 +127,18 @@ const Project = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 20px;
   width: 76%;
   height: 490px;
   border-radius: 10px;
   box-shadow: 0 1px 4px #c3c7c7;
   overflow: hidden auto;
+
+  .not-report {
+    padding: 20px;
+    color: grey;
+  }
 `;
 
 const PreProject = styled.div`
@@ -139,8 +147,6 @@ const PreProject = styled.div`
   align-items: center;
   margin: 30px;
   width: 80%;
-  /* overflow-x: hidden;
-  overflow-y: auto; */
 `;
 
 export const MainProject = styled.div`
