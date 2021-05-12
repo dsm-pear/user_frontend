@@ -42,17 +42,6 @@ const SoleSubmitReportModal = ({
   const onSubmitButtonClick = () => {
     console.log(files[0]?.name);
 
-    // if (grade === null) {
-    //   alert("보고서의 학년을 선택해주세요.");
-    //   return false;
-    // } else if (field === null) {
-    //   alert("보고서의 분야를 선택해주세요.");
-    //   return false;
-    // } else if (access === null) {
-    //   alert("보고서의 범위를 선택해주세요.");
-    //   return false;
-    // }
-
     Api.post(
       `${MainURL}/report/sole`,
       {
@@ -148,8 +137,8 @@ const SoleSubmitReportModal = ({
             </S.ModalHeader>
             <S.ModalMainText>
               <span>
-                첨부 파일의 확장자가 PDF형식이 맞는지 파일명은 프로젝트명 / 학번
-                / 이름
+                첨부 파일의 확장자가 PDF, 한글 형식이 맞는지 파일명은 프로젝트명
+                / 학번 / 이름
               </span>
               <p></p>
               <span>
