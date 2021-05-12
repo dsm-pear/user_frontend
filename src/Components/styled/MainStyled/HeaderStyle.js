@@ -152,7 +152,7 @@ export const MenuSee = styled.div`
     cursor: pointer;
     margin-top: 74.5px;
     margin-left: 4px;
-    z-index: 5;
+    z-index: 99;
     position: absolute;
     transition: all 0.3s;
 `;
@@ -184,7 +184,7 @@ export const Mypage = styled.div`
     position: absolute;
     margin-top: 60px;
     margin-left: 5px;
-    z-index: 5;
+    z-index: 99;
 `;
 
 export const Mypro = styled.div`

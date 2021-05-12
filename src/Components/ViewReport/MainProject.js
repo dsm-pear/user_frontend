@@ -1,48 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { request } from "../../utils/axios/axios";
-import { Link } from "react-router-dom";
+import React from "react";
 import * as S from "../styled/ViewReport/style";
-import ProjectHeader from "./ProjectHeader";
 import Project from "./Project";
+import ProHeader from "./ProHeader";
 
-function MainProject() {
-  const [ReportListResponses, setReportListResponses] = useState([]);
-
-  const getProjectList = async () => {
-    try {
-      const { data } = await request(
-        "get",
-        "/list?size=6&page=1",
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        ""
-      );
-
-      setReportListResponses(data.ReportListResponses);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    getProjectList();
-  }, []);
-
+//위에 카테고리 개인, 팀, 동아리
+function MainProject(props) {
   return (
     <>
       <S.MainProject>
-        <ProjectHeader />
+        {/* 얘는 카테고리네임에게 setType을 전달함 */}
+        <ProHeader setType={props.setType} />
         <S.MainCover>
-          {ReportListResponses.map(({ id, team, title, data }) => (
-            <Project id={id} team={team} title={title} date={data} />
-          ))}
+          {props.ReportListResponses.map(
+            ({ reportId, type, title, createdAt }, i) => (
+              <Project
+                key={i}
+                reportId={reportId}
+                team={type}
+                title={title}
+                date={createdAt}
+              />
+            )
+          )}
         </S.MainCover>
-        <S.Number>
-          <Link>1</Link>
-          <Link>2</Link>
-          <Link>3</Link>
-          <Link>4</Link>
-          <Link>5</Link>
-        </S.Number>
       </S.MainProject>
     </>
   );

@@ -1,29 +1,57 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import * as S from "../../styled/ViewReport/style";
+//import { request /* useRefresh */ } from "../../../utils/axios/axios";
 
-const CategoryName = ({ SwName, Ele }) => {
-  console.log("hihi")
+const CategoryName = (props) => {
+  //중복 선택 useState
+  const [selected, setSeletect] = useState(0);
+  //const refreshHandler = useRefresh();
+
+  //API 요청
+  //카테고리 중복선택 안되게
+  const handleColor = async (row) => {
+    setSeletect(row.id);
+    console.log(row.field);
+    if (row.field === "WEB") {
+      props.setField("WEB");
+    } else if (row.field === "APP") {
+      props.setField("APP");
+    } else if (row.field === "GAME") {
+      props.setField("GAME");
+    } else if (row.field === "AI") {
+      props.setField("AI");
+    } else if (row.field === "EMBEDDED") {
+      props.setField("EMBEDDED");
+    } else if (row.field) {
+      props.setField("SECURITY");
+    } else {
+      props.setField("");
+    }
+  };
+
   return (
     <S.Category>
-      <span>{SwName}</span>
+      <span>{props.SwName}</span>
       <S.ReportKindOf>
         <ul>
-          {Ele.map(({ text, link }, i) => {
-            return (
-              <NavLink
-                to={`/view-report/${link}`}
-                key={i}
-                activeClassName="active"
-              >
-                {text}
-              </NavLink>
-            );
-          })}
+          {props.Ele.map((list) => (
+            <button
+              key={list.id}
+              onClick={() => handleColor(list)}
+              style={{
+                background:
+                  list.id === selected
+                    ? "linear-gradient(to bottom, #5955d8, #716dec)"
+                    : "none",
+                color: list.id === selected ? "white" : "",
+              }}
+            >
+              {list.text}
+            </button>
+          ))}
         </ul>
       </S.ReportKindOf>
     </S.Category>
   );
 };
-
 export default CategoryName;

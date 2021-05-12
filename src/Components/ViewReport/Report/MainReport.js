@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { request } from "../../../utils/axios/axios";
+import { request /* useRefresh  */ } from "../../../utils/axios/axios";
+import { useLocation } from "react-router-dom";
 import * as S from "../../styled/ViewReport/MainStyle";
 import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
@@ -7,48 +8,48 @@ import ReportComment from "./ReportComment";
 import ReportLanguage from "./ReportLanguage";
 import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
+import { BoxLoading } from "react-loadingg";
 
-function MainReport({ match }) {
-  const [reportData, setReportData] = useState(null);
+function MainReport() {
+  const [reportData, setReportData] = useState("");
+  const [comments, setComments] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [languages, setLanguages] = useState([]);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
-  const [fileId, setFileId] = useState(null);
 
-  const getReportView = async () => {
-    try {
-      loding(true);
-      const data = await request(
-        "get",
-        `/report/${match.params.reportid}`,
-        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-        0
-      );
+  //토큰 검사
+  //const refreshHandler = useRefresh();
 
-      setReportData(data.data);
-      console.log(reportData);
-    } catch (e) {
-      console.log(e);
-    }
-    setLoding(false);
-    setError(null);
-  };
+  const location = useLocation();
+  const reportId = location.state.reportId;
 
   useEffect(() => {
-    getReportView();
-  }, []);
+    const report = async () => {
+      try {
+        const { data } = await request(
+          "get",
+          `/report/${reportId}`,
+          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+          0
+        );
+        setReportData(data);
+        setComments(data.comments);
+        setMembers(data.member);
+        setLanguages(data.languages);
+      } catch (e) {
+        console.error(e);
+      }
+      setLoding(false);
+      setError(null);
+    };
 
-  const downlodehandler = async () => {
-    try {
-      const data = await request("get", `/report/${match.params.fileid}`);
-      setFileId(data.data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    report();
+  }, [reportId]);
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
-  if (!reportData) return <div>서버좀 줘라</div>;
+  if (!reportData) return <BoxLoading />;
 
   return (
     <S.Main>
@@ -64,16 +65,19 @@ function MainReport({ match }) {
         <ReportView
           title={reportData.title}
           text={reportData.description}
-          git="{reportData.github}"
+          git={reportData.github}
           file={reportData.fileName}
-          onClick={downlodehandler}
+          fileId={reportData.fileId}
         />
-        <ReportTeam />
-        <ReportLanguage languages={reportData.languages} />
+        {reportData.type === "SOLE" ? null : (
+          <ReportTeam teamName={reportData.teamName} members={members} />
+        )}
+
+        <ReportLanguage languages={languages} />
         <ReportComment
-          name={reportData.userName}
-          content={reportData.content}
-          commentId={reportData.commentId}
+          reportId={reportId}
+          commentId={comments.commentId}
+          comments={comments}
         />
       </S.MainBox>
     </S.Main>
