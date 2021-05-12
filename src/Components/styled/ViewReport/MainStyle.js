@@ -248,6 +248,7 @@ const CoverLang = styled.div`
   height: 10%;
   border: solid 1px #e4eef2;
   margin-bottom: 37px;
+  overflow: auto;
 
   > h2 {
     margin: 10px;
@@ -259,12 +260,17 @@ const CoverLang = styled.div`
 const TableCover = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 80%;
   height: auto;
   margin: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 const Language = styled.div`
   cursor: pointer;
+  margin: 10px;
   > span {
     margin: 8px;
     width: 5%;

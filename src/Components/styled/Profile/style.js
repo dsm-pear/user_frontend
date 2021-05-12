@@ -85,7 +85,10 @@ const ProPhoto = styled.form`
     margin: 10px 0px;
     padding: 20px;
     width: 88%;
-    height: 94px;
+    min-width: 88%;
+    max-width: 88%;
+    min-height: 94px;
+    max-height: 94px;
   }
   textarea::placeholder {
     color: gray;
@@ -131,6 +134,11 @@ const Project = styled.div`
   border-radius: 10px;
   box-shadow: 0 1px 4px #c3c7c7;
   overflow: hidden auto;
+
+  .not-report {
+    padding: 20px;
+    color: grey;
+  }
 `;
 
 const PreProject = styled.div`
