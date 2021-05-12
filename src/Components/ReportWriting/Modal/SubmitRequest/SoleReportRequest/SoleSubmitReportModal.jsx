@@ -137,8 +137,8 @@ const SoleSubmitReportModal = ({
             </S.ModalHeader>
             <S.ModalMainText>
               <span>
-                첨부 파일의 확장자가 PDF형식이 맞는지 파일명은 프로젝트명 / 학번
-                / 이름
+                첨부 파일의 확장자가 PDF, 한글 형식이 맞는지 파일명은 프로젝트명
+                / 학번 / 이름
               </span>
               <p></p>
               <span>
