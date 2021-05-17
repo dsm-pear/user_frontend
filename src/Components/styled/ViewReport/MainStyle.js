@@ -258,12 +258,12 @@ const CoverLang = styled.div`
 `;
 
 const TableCover = styled.div`
+  margin: 1%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 80%;
+  width: 99%;
   height: auto;
-  margin: 30px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
