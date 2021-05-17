@@ -147,7 +147,7 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
           access: `${access}`,
           field: `${field}`,
           grade: `${grade}`,
-          isSubmitted: false,
+          isSubmitted: true,
           fileName: `${files[0].name}`,
           github: `${github}`,
           teamName: `${teamName}`,
