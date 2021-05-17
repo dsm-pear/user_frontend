@@ -13,7 +13,7 @@ import {
   NoticeContent,
   SearchResult,
   Main,
-} from "../Components/index";
+} from "../components/index";
 
 function UserRouter() {
   return (

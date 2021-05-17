@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 
@@ -150,8 +149,7 @@ export const MenuSee = styled.div`
     background-color: #ffffff;
     text-align: center;
     cursor: pointer;
-    margin-top: 74.5px;
-    margin-left: 4px;
+    top: 80px;
     z-index: 99;
     position: absolute;
     transition: all 0.3s;
@@ -182,8 +180,7 @@ export const Mypage = styled.div`
     background-color: #ffffff;
     text-align: center;
     position: absolute;
-    margin-top: 60px;
-    margin-left: 5px;
+    top: 85px;
     z-index: 99;
 `;
 

@@ -1,3 +1,4 @@
+
 import * as S from "../styled/SearchResult/SearchResultStyle.js";
 import { StudentProfile } from "../../assets";
 import React from "react";
@@ -9,10 +10,9 @@ const SearchPropfile = ({ dataList }) => {
   const onLink = (email) => {
     history.push({
       pathname: `/user-profile`,
-      state: { useremail: email },
+      state: { useremail : email}
     });
   };
-
   return dataList.map((data) => (
     <div onClick={() => onLink(data.email)} key={data.email}>
       <S.Container style={{ color: "#6192f3" }}>
@@ -31,9 +31,7 @@ const SearchPropfile = ({ dataList }) => {
 };
 const SearchResultProfile = (props) => {
   const searchData = props.data;
-
   return <>{searchData ? <SearchPropfile dataList={searchData.userResponses} /> : <S.NoneData></S.NoneData>}</>;
-
 };
 
 export default SearchResultProfile;

@@ -44,8 +44,6 @@ const Questions = () => {
             {},
             questData
         )
-
-        console.log(response)
         
         const statusNumber = Number(response.status)
 
@@ -55,6 +53,8 @@ const Questions = () => {
             setMessage("에러발생! 내용을 확인해주세요")
         }
         setModalVisible(true);
+        setContent('');
+        setEmail('');
     }
 
     
@@ -90,6 +90,7 @@ const Questions = () => {
                                 type="email"
                                 placeholder="이메일을 입력해주세요."
                                 onChange={onEmail}
+                                value={email}
                             />
                         </S.EmailBox>
 
@@ -98,6 +99,7 @@ const Questions = () => {
                                 rows="8"
                                 placeholder="버그 & 문의사항을 입력해주세요"
                                 onChange={onContent}
+                                value={content}
                             />
                         </S.ContentBox>
 
