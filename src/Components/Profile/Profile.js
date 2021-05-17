@@ -19,7 +19,7 @@ const Profile = (props) => {
           disabled={props.text === "저장" ? false : true}
           onKeyUp={(e) => props.setGithub(e.target.value)}
         />
-        <input
+        <textarea
           className="input introduce"
           type="text"
           placeholder={props.selfIntro}

@@ -106,7 +106,10 @@ const SoleSubmitReportModal = ({
           });
       })
       .catch((err) => {
-        if (err.response.status === 403) {
+        if (err.response.status === 400) {
+          alert("선택 및 입력창에 모두 입력해주세요.");
+          return false;
+        } else if (err.response.status === 403) {
           alert("권한이 없습니다.");
 
           localStorage.removeItem("access-token");
@@ -134,8 +137,8 @@ const SoleSubmitReportModal = ({
             </S.ModalHeader>
             <S.ModalMainText>
               <span>
-                첨부 파일의 확장자가 PDF형식이 맞는지 파일명은 프로젝트명 / 학번
-                / 이름
+                첨부 파일의 확장자가 PDF, 한글 형식이 맞는지 파일명은 프로젝트명
+                / 학번 / 이름
               </span>
               <p></p>
               <span>

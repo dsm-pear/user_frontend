@@ -17,7 +17,6 @@ const Project = (props) => {
       pathname: `/view-report/${props.reportId}`,
       state: { reportId: props.reportId },
     });
-    console.log(props.reportId);
   };
 
   const color =
@@ -29,9 +28,9 @@ const Project = (props) => {
 
   useEffect(() => {
     if (
-      props.isSubmitted === false &&
       props.isAccepted === false &&
-      props.isRejected === false
+      props.isRejected === false &&
+      props.isSubmitted === false
     ) {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");
@@ -40,22 +39,27 @@ const Project = (props) => {
       setText("임시저장");
       console.log("임시저장");
     } else if (
-      props.isSubmitted === true &&
       props.isAccepted === true &&
-      props.isRejected === false
+      props.isRejected === false &&
+      props.isSubmitted === true
     ) {
+      setText("제출");
       console.log("제출");
     } else if (
-      props.isSubmitted === false &&
       props.isAccepted === false &&
-      props.isRejected === true
+      props.isRejected === true &&
+      props.isSubmitted === false
     ) {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");
       setBoxShadow("0 3px 6px 0 rgba(0, 0, 0, 0.16)");
       setText("승인거부");
       console.log("승인거부");
-    } else {
+    } else if (
+      props.isAccepted === false &&
+      props.isRejected === false &&
+      props.isSubmitted === true
+    ) {
       setBorder("solid 1.6px #ff5959");
       setFontColor(" #ff5959");
       setBackground("#ffeded");
