@@ -89,6 +89,7 @@ const ProPhoto = styled.form`
     max-width: 88%;
     min-height: 94px;
     max-height: 94px;
+    resize: none;
   }
   textarea::placeholder {
     color: gray;
