@@ -1,10 +1,16 @@
 import React, {useCallback} from 'react';
 import * as S from '../styled/NoticeStyled/NoticeStyle';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 const NoticeContainer = (props) => {
     const containerData = props.data;
+
+    const history = useHistory();
+
+    const onLink = (id) => {
+        history.push(`/notice-content/${id}`)
+    }
 
     const Container = useCallback(
         (dataList)=>{
@@ -12,7 +18,7 @@ const NoticeContainer = (props) => {
             return dataList.map((data)=>{
                 const createTime=data.createdAt.split(" ")
                 return(
-                    <Link to={`/notice-content/${data.id}`} key={data.id}>
+                    <div onClick={()=>onLink(data.id)} key={data.id}>
                         <S.Container>
                             <S.ContainerContant>
                                 <S.ContainerTitle>
@@ -23,7 +29,7 @@ const NoticeContainer = (props) => {
                                 </S.ContainerDay>
                             </S.ContainerContant>
                         </S.Container>
-                    </Link>
+                    </div>
                 )
             })
         }
