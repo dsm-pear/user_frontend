@@ -8,10 +8,7 @@ const SearchPropfile = ({ dataList }) => {
   const history = useHistory();
 
   const onLink = (email) => {
-    history.push({
-      pathname: `/user-profile`,
-      state: { useremail : email}
-    });
+    history.push(`/user-profile/${email}`);
   };
   return dataList.map((data) => (
     <div onClick={() => onLink(data.email)} key={data.email}>

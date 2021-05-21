@@ -5,12 +5,17 @@ import { useHistory } from "react-router-dom";
 const SearchReport = ({dataList}) => {
   const history = useHistory();
 
+  const onLink = (id) => {
+    history.push(`/view-report/${id}`)
+  }
+
   return dataList.map((data) => {
     const type = data.type === "TEAM" ? "팀" : data.type === "SOLE" ? "개인" : "동아리";
     const color = data.type === "TEAM" ? "#6192f3" : data.type === "SOLE" ? "#27d5b1" : "#5955d8";
     const createTime = data.createdAt.split("T");
+
     return (
-      <div onClick={() => history.push(`/view-report/${data.reportId}`)} key={data.reportId}>
+      <div onClick={()=>onLink(data.reportId)} key={data.reportId}>
         <S.Container bordercolor={color}>
           <S.ContainerContant>
             <S.ContainerBDC fontcolor={color}>[{type}]</S.ContainerBDC>
