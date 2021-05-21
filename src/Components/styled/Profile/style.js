@@ -55,6 +55,10 @@ const ProPhoto = styled.form`
     width: 150px;
     margin: 10px;
   }
+
+  & a {
+    width: 100%;
+  }
   .input {
     justify-content: center;
     background-color: white;
@@ -63,7 +67,7 @@ const ProPhoto = styled.form`
     display: flex;
     align-items: center;
     margin: 10px 0;
-    width: 88%;
+    width: 86%;
     height: 40px;
     border-radius: 10px;
     outline: none;
@@ -84,9 +88,9 @@ const ProPhoto = styled.form`
     height: 30%;
     margin: 10px 0px;
     padding: 20px;
-    width: 88%;
-    min-width: 88%;
-    max-width: 88%;
+    width: 6%;
+    min-width: 86%;
+    max-width: 86%;
     min-height: 94px;
     max-height: 94px;
     resize: none;

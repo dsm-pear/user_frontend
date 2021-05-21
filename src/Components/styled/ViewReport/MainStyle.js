@@ -265,7 +265,7 @@ const TableCover = styled.div`
   width: 99%;
   height: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `;
 const Language = styled.div`
