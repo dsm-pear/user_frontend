@@ -81,7 +81,7 @@ const ProPhoto = styled.form`
     &::placeholder {
       margin: 10px;
       font-size: 15px;
-      color: black;
+      color: gray;
     }
   }
   .introduce {
