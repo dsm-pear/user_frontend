@@ -181,7 +181,7 @@ export const Mypage = styled.div`
     background-color: #ffffff;
     text-align: center;
     position: absolute;
-    top: 85px;
+    top: 82px;
     z-index: 99;
 `;
 
