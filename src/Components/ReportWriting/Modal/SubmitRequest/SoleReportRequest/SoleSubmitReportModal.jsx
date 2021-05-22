@@ -115,6 +115,8 @@ const SoleSubmitReportModal = ({
           localStorage.removeItem("access-token");
           localStorage.removeItem("refresh-token");
           history.push("/");
+        } else if (err.response.status === 404) {
+          alert("404");
         }
         alert("제출 실패");
       });
