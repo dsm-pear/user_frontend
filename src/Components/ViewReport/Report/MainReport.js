@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { request /* useRefresh  */ } from "../../../utils/axios/axios";
-import { useLocation } from "react-router-dom";
+import { request, useRefresh } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import ReportHeader from "./ReportHeader";
 import ReportView from "./ReportView";
@@ -10,7 +9,7 @@ import Header from "../../Main/Header";
 import ReportTeam from "./ReportTeam";
 import { BoxLoading } from "react-loadingg";
 
-function MainReport() {
+function MainReport({ match }) {
   const [reportData, setReportData] = useState("");
   const [comments, setComments] = useState([]);
   const [members, setMembers] = useState([]);
@@ -19,33 +18,44 @@ function MainReport() {
   const [error, setError] = useState(null);
 
   //토큰 검사
-  //const refreshHandler = useRefresh();
+  const refreshHandler = useRefresh();
 
-  const location = useLocation();
-  const reportId = location.state.reportId;
+  const report = async () => {
+    try {
+      const { data } = await request(
+        "get",
+        `/report/${match.params.reportId}`,
+        { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
+        ""
+      );
+      setReportData(data);
+      setComments(data.comments);
+      setMembers(data.member);
+      setLanguages(data.languages);
+    } catch (e) {
+      switch (e.response.status) {
+        case 400:
+          alert("보고서 불러오기를 실패했습니다.");
+          break;
+        case 401:
+          refreshHandler().then(() => {
+            report();
+          });
+          break;
+        case 403:
+          alert("로그인을 해주세요");
+          break;
+        default:
+          break;
+      }
+    }
+    setLoding(false);
+    setError(null);
+  };
 
   useEffect(() => {
-    const report = async () => {
-      try {
-        const { data } = await request(
-          "get",
-          `/report/${reportId}`,
-          { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
-          0
-        );
-        setReportData(data);
-        setComments(data.comments);
-        setMembers(data.member);
-        setLanguages(data.languages);
-      } catch (e) {
-        console.error(e);
-      }
-      setLoding(false);
-      setError(null);
-    };
-
     report();
-  }, [reportId]);
+  }, []);
 
   if (loding) return <div>로딩중</div>;
   if (error) return <div>에러입니다</div>;
@@ -65,7 +75,7 @@ function MainReport() {
         <ReportView
           title={reportData.title}
           text={reportData.description}
-          git="{reportData.github}"
+          git={reportData.github}
           file={reportData.fileName}
           fileId={reportData.fileId}
         />
@@ -75,7 +85,7 @@ function MainReport() {
 
         <ReportLanguage languages={languages} />
         <ReportComment
-          reportId={reportId}
+          reportId={match.params.reportId}
           commentId={comments.commentId}
           comments={comments}
         />
