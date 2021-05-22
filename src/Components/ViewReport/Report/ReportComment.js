@@ -80,8 +80,6 @@ const ReportComment = (props) => {
                 </button>
               ) : null}
             </S.Info>
-
-            <S.Date />
           </S.CommentBox>
         ))}
       </S.MainCom>
