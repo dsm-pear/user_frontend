@@ -8,6 +8,7 @@ export const Background = styled.div`
     height: 100vh;
     background-repeat: no-repeat;
     min-width: 1320px;
+    min-height: 950px;
     font-family: "Noto Sans KR", sans-serif;
     a{
         text-decoration: none;
