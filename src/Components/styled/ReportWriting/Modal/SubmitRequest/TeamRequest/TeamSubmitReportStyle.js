@@ -16,6 +16,10 @@ export const Main = styled.div`
   * {
     box-sizing: border-box;
   }
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ModalMain = styled.div`
@@ -24,16 +28,24 @@ export const ModalMain = styled.div`
   opacity: ${({ myopa }) => myopa};
   box-shadow: 8px 10px 30px 0 rgba(0, 0, 0, 0.16);
   overflow: hidden;
-  width: 670px;
+  width: 650px;
   border: 1px solid #ffffff;
   border-radius: 20px;
   background-color: #ffffff;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const ModalSort = styled.div`
   width: 100%;
   height: 100%;
   padding: 1rem 1rem;
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 export const CloseBtn = styled.div`
@@ -45,6 +57,10 @@ export const CloseBtn = styled.div`
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+
+  &:hover {
+    cursor: default;
+  }
 
   span > img {
     width: 18px;
@@ -59,12 +75,32 @@ export const ModalHeader = styled.div`
   text-align: center;
   margin-top: 1.5rem;
   font-family: BBTreeGB;
+
+  &:hover {
+    cursor: default;
+  }
+
+  span {
+    &:hover {
+      cursor: text;
+    }
+  }
 `;
 export const ModalMainText = styled.div`
-  font-size: 17px;
+  font-size: 16px;
   text-align: center;
   margin-top: 1.4rem;
   font-family: BBTreeGL;
+
+  &:hover {
+    cursor: default;
+  }
+
+  span {
+    &:hover {
+      cursor: text;
+    }
+  }
 
   p {
     margin-top: 0.4rem;
@@ -81,6 +117,10 @@ export const SubmitBtn = styled.div`
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+
+  &:hover {
+    cursor: default;
+  }
 
   span {
     display: flex;

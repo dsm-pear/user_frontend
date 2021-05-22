@@ -12,17 +12,23 @@ const Profile = (props) => {
         <div className="input">{props.name}</div>
         {<div className="input">{props.email}</div>}
 
-        <input
-          type="text"
-          className="input"
-          placeholder={props.gitHub}
-          disabled={props.text === "저장" ? false : true}
-          onKeyUp={(e) => props.setGithub(e.target.value)}
-        />
-        <input
+        <a href={`${props.gitHub}`}>
+          <input
+            type="text"
+            className="input"
+            placeholder={
+              props.gitHub === "" ? "깃허브 링크를 입력해주세요" : props.gitHub
+            }
+            disabled={props.text === "저장" ? false : true}
+            onKeyUp={(e) => props.setGithub(e.target.value)}
+          />
+        </a>
+        <textarea
           className="input introduce"
           type="text"
-          placeholder={props.selfIntro}
+          placeholder={
+            props.selfIntro === "" ? "자기소개를 써주세요" : props.selfIntro
+          }
           disabled={props.text === "저장" ? false : true}
           onKeyUp={(e) => props.setProduce(e.target.value)}
         />

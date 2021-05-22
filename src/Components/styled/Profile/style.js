@@ -55,6 +55,10 @@ const ProPhoto = styled.form`
     width: 150px;
     margin: 10px;
   }
+
+  & a {
+    width: 100%;
+  }
   .input {
     justify-content: center;
     background-color: white;
@@ -63,7 +67,7 @@ const ProPhoto = styled.form`
     display: flex;
     align-items: center;
     margin: 10px 0;
-    width: 88%;
+    width: 86%;
     height: 40px;
     border-radius: 10px;
     outline: none;
@@ -82,6 +86,17 @@ const ProPhoto = styled.form`
   }
   .introduce {
     height: 30%;
+    margin: 10px 0px;
+    padding: 20px;
+    width: 6%;
+    min-width: 86%;
+    max-width: 86%;
+    min-height: 94px;
+    max-height: 94px;
+    resize: none;
+  }
+  textarea::placeholder {
+    color: gray;
   }
 `;
 const Git = styled.div`
@@ -117,12 +132,18 @@ const Project = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 20px;
   width: 76%;
   height: 490px;
   border-radius: 10px;
   box-shadow: 0 1px 4px #c3c7c7;
+  overflow: hidden auto;
+
+  .not-report {
+    padding: 20px;
+    color: grey;
+  }
 `;
 
 const PreProject = styled.div`
@@ -131,8 +152,6 @@ const PreProject = styled.div`
   align-items: center;
   margin: 30px;
   width: 80%;
-  overflow-x: hidden;
-  overflow-y: auto;
 `;
 
 export const MainProject = styled.div`
@@ -142,7 +161,7 @@ export const MainProject = styled.div`
   justify-content: space-around;
   width: 100%;
   height: 49px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   border: 1.6px solid ${(props) => props.color};
   border-radius: 6px;
   background-color: #ffffff;

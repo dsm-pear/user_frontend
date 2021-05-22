@@ -8,7 +8,7 @@ import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
 import axios from "axios";
 
-const TeamReportWriting = ({ type, access, field, grade }) => {
+const TeamReportWriting = ({ type, grade, field, access }) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
@@ -33,6 +33,17 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
       setLoading(false);
     }, 500);
   }, []);
+
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("userTextData")) || {
+      title: "",
+      tags: [],
+      description: "",
+    };
+    setTitle(savedData.title);
+    setTags(savedData.tags);
+    setDescription(savedData.description);
+  }, [setTitle, setTags, setDescription]);
 
   if (loading) return <LoadingPage />;
 
@@ -63,17 +74,19 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
     setMyHei("450px");
   };
 
-  const onLanguageChange = (e) => {
-    if (e.key === "Enter" && e.target.value.trim()) {
+  const onLanguageChange = (elements) => {
+    if (elements.key === "Enter" && elements.target.value.trim()) {
       const newTags = [...tags];
-      newTags[tags.length] = e.target.value;
+      newTags[tags.length] = elements.target.value;
       setTags(newTags);
-      e.target.value = "";
-    } else if (e.key === "," && e.target.value.trim()) {
-      const newTags = [...tags];
-      newTags[tags.length] = e.target.value;
-      setTags(newTags);
-      e.target.value = "";
+      elements.target.value = "";
+    }
+    if (tags.length > 7) {
+      alert("언어는 최대 8개까지 추가할 수 있습니다.");
+
+      const overLimitTag = [...tags];
+      overLimitTag.splice(elements, 0);
+      setTags(overLimitTag);
     }
   };
 
@@ -153,9 +166,21 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
         console.log("임시저장 성공");
         setIsSubmitted(true);
       })
-      .catch(() => {
+      .catch((err) => {
         console.log("임시저장 실패");
+
+        if (err.response.status === 400)
+          alert("필수 입력칸을 모두 입력 후 임시저장 해주세요.");
       });
+
+    window.localStorage.setItem(
+      "userTextData",
+      JSON.stringify({
+        title: title,
+        tags: tags,
+        description: description,
+      })
+    );
   };
 
   return (
@@ -212,6 +237,7 @@ const TeamReportWriting = ({ type, access, field, grade }) => {
             <input
               type="text"
               placeholder="개발에 사용한 언어들을 입력해주세요"
+              maxLength="7"
               onKeyPress={onLanguageChange}
             />
           </S.UseLang>

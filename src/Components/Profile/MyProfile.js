@@ -13,6 +13,7 @@ function MyProfile() {
 
   const [profileReport, setProfileReport] = useState([]);
   const [profileData, setProfileData] = useState("");
+  const [totalElements, setTotalElements] = useState("");
   const [reportId, setReportId] = useState("");
   const [gitHub, setGithub] = useState("");
   const [produce, setProduce] = useState("");
@@ -36,7 +37,6 @@ function MyProfile() {
             intro: produce,
           }
         );
-        console.log("프로필 수정 완료");
       } catch (e) {
         console.error(e);
       }
@@ -56,10 +56,7 @@ function MyProfile() {
           { Authorization: `Bearer ${localStorage.getItem("access-token")}` },
           ""
         );
-
         setProfileData(data);
-
-        console.log(data.selfIntro);
       } catch (e) {
         //토큰 만료
         console.error(e);
@@ -82,6 +79,7 @@ function MyProfile() {
         );
         setProfileReport(data.myPageReportResponses);
         setReportId(data.myPageReportResponses.reportId);
+        setTotalElements(data.totalElements);
       } catch (e) {
         console.error(e);
       }
@@ -109,25 +107,31 @@ function MyProfile() {
 
           {/* 프로젝트 보여주는 곳 */}
           <S.Project>
-            <S.PreProject>
-              {profileReport.map((myPageReportResponses, index) => (
-                <Project
-                  key={index}
-                  type={myPageReportResponses.type}
-                  title={myPageReportResponses.title}
-                  date={myPageReportResponses.createdAt.split("T")[0]}
-                  //임시저장되었나 확인
-                  isSubmitted={myPageReportResponses.isSubmitted}
-                  //승인
-                  isAccepted={myPageReportResponses.isAccepted}
-                  //승인거부
-                  isRejected={myPageReportResponses.isRejected}
-                  reportId={myPageReportResponses.reportId}
-                />
-              ))}
+            {totalElements === 0 ? (
+              <div className="not-report">보고서가 없습니다.</div>
+            ) : (
+              <>
+                <S.PreProject>
+                  {profileReport.map((myPageReportResponses, index) => (
+                    <Project
+                      key={index}
+                      type={myPageReportResponses.type}
+                      title={myPageReportResponses.title}
+                      date={myPageReportResponses.createdAt.split("T")[0]}
+                      //임시저장되었나 확인
+                      isSubmitted={myPageReportResponses.isSubmitted}
+                      //승인
+                      isAccepted={myPageReportResponses.isAccepted}
+                      //승인거부
+                      isRejected={myPageReportResponses.isRejected}
+                      reportId={myPageReportResponses.reportId}
+                    />
+                  ))}
 
-              {/* 밑에 더보기 / 숫자 */}
-            </S.PreProject>
+                  {/* 밑에 더보기 / 숫자 */}
+                </S.PreProject>
+              </>
+            )}
           </S.Project>
         </S.Cover>
         <S.Modify type="submit" onClick={ChangeProfile}>

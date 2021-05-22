@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as S from "../../../../styled/ReportWriting/Modal/SubmitRequest/SoloRequest/SoleSubmitReportStyle";
 import SubmitSuccess from "../../SubmitSuccess";
+import { FileURL, MainURL } from "../../../../../utils/axios/axios";
 import { useHistory } from "react-router-dom";
 import { Close } from "../../../../../assets";
 import axios from "axios";
@@ -32,25 +33,17 @@ const SoleSubmitReportModal = ({
   const history = useHistory();
   const Api = axios;
   const FileApi = axios;
-  const MainUrl = "http://211.38.86.92:8005";
-  const FileUrl = "http://54.180.224.67:3000";
 
-  const onClick = () => {
+  const onCloseSubmitModal = () => {
     setState("hidden");
     setHei("0");
   };
 
-  const btnClick = () => {
-    setView("visible");
-    setState("hidden");
-    setMyOpa("0");
-    setOpa("1");
-
+  const onSubmitButtonClick = () => {
     console.log(files[0]?.name);
-    axios.defaults.xsrfCookieName = "csrftoken";
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+
     Api.post(
-      `${MainUrl}/report/sole`,
+      `${MainURL}/report/sole`,
       {
         title: `${title}`,
         description: `${description}`,
@@ -71,12 +64,16 @@ const SoleSubmitReportModal = ({
       }
     )
       .then((response) => {
+        setView("visible");
+        setState("hidden");
+        setMyOpa("0");
+        setOpa("1");
         console.log(response);
         const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
         isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
         const id = response.data;
         // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-        FileApi.post(`${FileUrl}/report/files/${id}`, isSubmitFile, {
+        FileApi.post(`${FileURL}/report/files/${id}`, isSubmitFile, {
           headers: {
             "Content-Type": "multipart/form-data", // multipart = 파일 업로드
             Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -86,43 +83,41 @@ const SoleSubmitReportModal = ({
             console.log("파일 요청 성공");
           })
           .catch((err) => {
-            switch (err.response.status) {
-              case 410:
-                Api.put(`${MainUrl}/auth`, undefined, {
-                  headers: {
-                    "X-Refresh-Token": REFRESH_TOKEN,
-                  },
-                }).then((res) => {
-                  if (res.data.access_token) {
-                    localStorage.setItem("access-token", ACCESS_TOKEN);
-                    console.log(REFRESH_TOKEN);
-                    FileApi.post(
-                      `${FileUrl}/report/files/${id}`,
-                      isSubmitFile,
-                      {
-                        headers: {
-                          "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                          Authorization: `Bearer ${localStorage.getItem(
-                            "access-token"
-                          )}`,
-                        },
-                      }
-                    );
-                  }
-                });
-                break;
-
-              case 403:
-                localStorage.removeItem("access-token");
-                localStorage.removeItem("refresh-token");
-                history.push("/");
-                break;
-              default:
-                console.log("err");
+            if (err.response.status === 410) {
+              Api.put(`${MainURL}/auth`, undefined, {
+                headers: {
+                  "X-Refresh-Token": REFRESH_TOKEN,
+                },
+              }).then((res) => {
+                if (res.data.access_token) {
+                  localStorage.setItem("access-token", ACCESS_TOKEN);
+                  console.log(REFRESH_TOKEN);
+                  FileApi.post(`${FileURL}/report/files/${id}`, isSubmitFile, {
+                    headers: {
+                      "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                      Authorization: `Bearer ${localStorage.getItem(
+                        "access-token"
+                      )}`,
+                    },
+                  });
+                }
+              });
             }
           });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 400) {
+          alert("선택 및 입력창에 모두 입력해주세요.");
+          return false;
+        } else if (err.response.status === 403) {
+          alert("권한이 없습니다.");
+
+          localStorage.removeItem("access-token");
+          localStorage.removeItem("refresh-token");
+          history.push("/");
+        }
+        alert("제출 실패");
+      });
   };
 
   return (
@@ -131,7 +126,7 @@ const SoleSubmitReportModal = ({
       <S.Main visibility={state}>
         <S.ModalMain height={hei} myopa={myopa}>
           <S.ModalSort>
-            <S.CloseBtn onClick={onClick}>
+            <S.CloseBtn onClick={onCloseSubmitModal}>
               <span>
                 <img src={Close} alt="Close" />
               </span>
@@ -142,8 +137,8 @@ const SoleSubmitReportModal = ({
             </S.ModalHeader>
             <S.ModalMainText>
               <span>
-                첨부 파일의 확장자가 PDF형식이 맞는지 파일명은 프로젝트명 / 학번
-                / 이름
+                첨부 파일의 확장자가 PDF, 한글 형식이 맞는지 파일명은 프로젝트명
+                / 학번 / 이름
               </span>
               <p></p>
               <span>
@@ -156,7 +151,7 @@ const SoleSubmitReportModal = ({
                 제출 바랍니다.
               </span>
             </S.ModalMainText>
-            <S.SubmitBtn onClick={btnClick}>
+            <S.SubmitBtn onClick={onSubmitButtonClick}>
               <span>제출</span>
             </S.SubmitBtn>
           </S.ModalSort>
