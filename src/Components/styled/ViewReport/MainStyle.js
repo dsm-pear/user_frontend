@@ -8,8 +8,8 @@ const Main = styled.body`
   flex-direction: column;
   align-items: center;
   background-image: url(${MainScrollBackground_1});
-  /* background-size: 100vw 100vh; */
   background-repeat: no-repeat;
+  min-width: 1500px;
 `;
 
 const MainBox = styled.div`
@@ -183,7 +183,7 @@ const Info = styled.div`
   display: flex;
   align-items: center;
   width: auto;
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
   border: none;
   border-radius: 20px;
@@ -228,6 +228,7 @@ const Info = styled.div`
   }
 
   .deleteButton {
+    min-width: 50px;
     outline: none;
     border: none;
     padding: 5px;
@@ -239,8 +240,6 @@ const Info = styled.div`
   }
 `;
 const CommentBox = styled.div``;
-
-const Date = styled.div``;
 
 const CoverLang = styled.div`
   cursor: pointer;
@@ -325,7 +324,6 @@ export {
   MainCom,
   CommentBox,
   Info,
-  Date,
   Add,
   TableCover,
   CoverLang,
