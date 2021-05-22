@@ -28,6 +28,8 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const MainUrl = "http://211.38.86.92:8005";
 
+  let clickCount = 0;
+
   useEffect(() => {
     setInterval(() => {
       setLoading(false);
@@ -136,42 +138,74 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
   };
 
   const isSaveData = () => {
-    axios
-      .post(
-        `${MainUrl}/report/team`,
-        {
-          title: `${title}`,
-          description: `${description}`,
-          languages: tags,
-          type: `${type}`,
-          access: `${access}`,
-          field: `${field}`,
-          grade: `${grade}`,
-          isSubmitted: true,
-          fileName: `${files[0].name}`,
-          github: `${github}`,
-          teamName: `${teamName}`,
-          members: selectedUserList.map((users) => {
-            return users.user.email;
-          }),
-        },
-        {
-          headers: {
-            "Contect-Type": "application/json",
-            Authorization: `Bearer ${ACCESS_TOKEN}`,
+    if (clickCount === 0) {
+      axios
+        .post(
+          `${MainUrl}/report/team`,
+          {
+            title: `${title}`,
+            description: `${description}`,
+            languages: tags,
+            type: `${type}`,
+            access: `${access}`,
+            field: `${field}`,
+            grade: `${grade}`,
+            isSubmitted: true,
+            fileName: `${files[0].name}`,
+            github: `${github}`,
           },
-        }
-      )
-      .then(() => {
-        console.log("임시저장 성공");
-        setIsSubmitted(true);
-      })
-      .catch((err) => {
-        console.log("임시저장 실패");
+          {
+            headers: {
+              "Contect-Type": "application/json",
+              Authorization: `Bearer ${ACCESS_TOKEN}`,
+            },
+          }
+        )
+        .then(() => {
+          console.log("임시저장 성공");
+          setIsSubmitted(true);
+        })
+        .catch((err) => {
+          console.log("임시저장 실패");
 
-        if (err.response.status === 400)
-          alert("필수 입력칸을 모두 입력 후 임시저장 해주세요.");
-      });
+          if (err.response.status === 400)
+            alert("필수 입력칸을 모두 입력 후 임시저장 해주세요.");
+        });
+    } else {
+      axios
+        .post(
+          `${MainUrl}/report/team`,
+          {
+            title: `${title}`,
+            description: `${description}`,
+            languages: tags,
+            type: `${type}`,
+            access: `${access}`,
+            field: `${field}`,
+            grade: `${grade}`,
+            isSubmitted: true,
+            fileName: `${files[0].name}`,
+            github: `${github}`,
+          },
+          {
+            headers: {
+              "Contect-Type": "application/json",
+              Authorization: `Bearer ${ACCESS_TOKEN}`,
+            },
+          }
+        )
+        .then(() => {
+          console.log("임시저장 성공");
+          setIsSubmitted(true);
+        })
+        .catch((err) => {
+          console.log("임시저장 실패");
+
+          if (err.response.status === 400)
+            alert("필수 입력칸을 모두 입력 후 임시저장 해주세요.");
+        });
+    }
+    ++clickCount;
 
     window.localStorage.setItem(
       "userTextData",
