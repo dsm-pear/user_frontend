@@ -32,7 +32,7 @@ const ReportComment = (props) => {
         window.location.reload()
       );
     } catch (e) {
-      console.error(e);
+      alert("댓글을 작성 할 수 없습니다.");
     }
   };
 
@@ -53,14 +53,6 @@ const ReportComment = (props) => {
     }
   };
 
-  //유저 프로필 이동 이메일 보냄
-  const userProfileMove = (userEmail) => {
-    console.log(userEmail);
-    history.push({
-      pathname: `/user-profile?useremail=${userEmail}`,
-    });
-  };
-
   return (
     <S.CommentMain>
       <S.Add>
@@ -75,11 +67,7 @@ const ReportComment = (props) => {
               <Link to={`/user-profile/${userEmail}`} className="Name">
                 {userName}
               </Link>
-              <Link
-                to={`/user-profile/${userEmail}`}
-                onClick={() => userProfileMove(userEmail)}
-                className="Email"
-              >
+              <Link to={`/user-profile/${userEmail}`} className="Email">
                 {userEmail}
               </Link>
               <span className="Comment">{content}</span>
