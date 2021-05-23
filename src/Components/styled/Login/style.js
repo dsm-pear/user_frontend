@@ -5,7 +5,6 @@ const LoginBody = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
   top: 0;
   width: 100%;
   position: absolute;
