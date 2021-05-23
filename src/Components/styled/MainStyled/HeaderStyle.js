@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 
 
@@ -47,7 +48,9 @@ export const SeachBar = styled.div`
 export const SeachBarSelect = styled.div`
     font-size: 13px;
     width: 70px;
+    height: 38px;
     border: none;
+    display: table;
     border-radius: 21px 0 0 21px;
     background-color: #e4eef2;
     cursor: pointer;
@@ -60,7 +63,9 @@ export const SeachBarSelect = styled.div`
 export const SeachChoice = styled.div`
     cursor: pointer;
     text-align: center;
-    padding-top: 12px;
+    display: table-cell; 
+    vertical-align: middle;
+    padding-top: 3px;
     img{
         width: 10px;
         margin-right: 3px;
