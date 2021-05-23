@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
@@ -20,9 +21,19 @@ const ReportWriting = () => {
   const [clickAcceessNumber, setClickAcceessNumber] = useState("공개 범위");
   const [showSoleReportComponent, setShowSoleReportComponent] = useState(false);
   const [showTeamReportComponent, setShowTeamReportComponent] = useState(false);
-  const [showCircleReportComponent, setShowCircleReportComponent] = useState(
-    false
-  );
+  const [showCircleReportComponent, setShowCircleReportComponent] =
+    useState(false);
+
+  const ACCESS_TOKEN = localStorage.getItem("access-token");
+  const REFRESH_TOKEN = localStorage.getItem("refresh-token");
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!ACCESS_TOKEN || !REFRESH_TOKEN) {
+      alert("로그인 후 이용해주세요.");
+      history.push("/");
+    }
+  }, [ACCESS_TOKEN, REFRESH_TOKEN, history]);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
