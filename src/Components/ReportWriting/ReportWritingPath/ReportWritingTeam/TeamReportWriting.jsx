@@ -137,6 +137,16 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
     return <span>팀에서 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
+  const deleteSavedTextData = () => {
+    setTimeout(() => {
+      window.localStorage.removeItem("userTextData");
+    }, 172800000);
+
+    clearTimeout(deleteSavedTextData);
+  };
+
+  let id;
+
   const isSaveData = () => {
     if (clickCount === 0) {
       axios
@@ -165,9 +175,11 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
             },
           }
         )
-        .then(() => {
-          console.log("임시저장 성공");
+        .then((response) => {
           setIsSubmitted(true);
+          ++clickCount;
+
+          id = response.data;
         })
         .catch((err) => {
           console.log("임시저장 실패");
@@ -178,7 +190,7 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
     } else {
       axios
         .post(
-          `${MainUrl}/report/team`,
+          `${MainUrl}/report/team/${id}`,
           {
             title: `${title}`,
             description: `${description}`,
@@ -213,7 +225,6 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
             alert("필수 입력칸을 모두 입력 후 임시저장 해주세요.");
         });
     }
-    ++clickCount;
 
     window.localStorage.setItem(
       "userTextData",
@@ -223,6 +234,8 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
         description: description,
       })
     );
+
+    deleteSavedTextData();
   };
 
   return (
