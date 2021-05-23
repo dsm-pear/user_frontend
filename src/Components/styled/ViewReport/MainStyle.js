@@ -293,7 +293,7 @@ const Year = styled.div`
 `;
 
 const Teambox = styled(CoverLang)`
-  height: 7%;
+  height: 8.1%;
 `;
 
 const Modify = styled.div`
