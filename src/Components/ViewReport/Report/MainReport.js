@@ -77,7 +77,7 @@ function MainReport({ match }) {
           text={reportData.description}
           git={reportData.github}
           file={reportData.fileName}
-          fileId={reportData.fileId}
+          fileId="3"
         />
         {reportData.type === "SOLE" ? null : (
           <ReportTeam teamName={reportData.teamName} members={members} />

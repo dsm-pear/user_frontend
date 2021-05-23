@@ -3,7 +3,6 @@ import { FileURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props) => {
-
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(FileURL + `/report/${fileId}`);
@@ -24,14 +23,26 @@ const ReportView = (props) => {
       </S.MainText>
       <S.Linkimg>
         <div className="git"></div>
-        <a href={props.git}>프로젝트 깃허브 구경하기</a>
+        {props.git === "" ? (
+          <div style={{ color: "gray" }}>깃허브 링크가 없습니다. </div>
+        ) : (
+          <a href={props.git}>프로젝트 깃허브 구경하기</a>
+        )}
       </S.Linkimg>
       <S.Linkimg>
         <div className="img"></div>
-        <p>{props.file}</p>
-        <div className="downimg" onClick={fileDownloadHandler}>
-          다운로드
-        </div>
+        {props.file === null ? (
+          <div style={{ color: "gray", marginLeft: "5px" }}>
+            파일이 존재하지 않습니다.
+          </div>
+        ) : (
+          <>
+            <p>{props.file}</p>
+            <div className="downimg" onClick={fileDownloadHandler}>
+              다운로드
+            </div>
+          </>
+        )}
       </S.Linkimg>
     </S.Contents>
   );
