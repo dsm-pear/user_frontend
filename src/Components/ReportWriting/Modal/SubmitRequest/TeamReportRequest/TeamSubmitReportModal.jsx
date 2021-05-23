@@ -80,7 +80,7 @@ const TeamSubmitReportModal = ({
         isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
         const id = response.data;
         // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-        FileApi.post(`${FileURL}/report/files/${id}`, isSubmitFile, {
+        FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
           headers: {
             "Content-Type": "multipart/form-data", // multipart = 파일 업로드
             Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -99,7 +99,7 @@ const TeamSubmitReportModal = ({
                 if (res.data.access_token) {
                   localStorage.setItem("access-token", ACCESS_TOKEN);
                   console.log(REFRESH_TOKEN);
-                  FileApi.post(`${FileURL}/report/files/${id}`, isSubmitFile, {
+                  FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
                     headers: {
                       "Content-Type": "multipart/form-data", // multipart = 파일 업로드
                       Authorization: `Bearer ${localStorage.getItem(
