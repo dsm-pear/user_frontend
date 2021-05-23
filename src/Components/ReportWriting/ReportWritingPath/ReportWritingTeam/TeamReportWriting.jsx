@@ -153,6 +153,10 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
             isSubmitted: true,
             fileName: `${files[0].name}`,
             github: `${github}`,
+            teamName: `${teamName}`,
+            members: selectedUserList.map((users) => {
+              return users.user.email;
+            }),
           },
           {
             headers: {
@@ -186,6 +190,10 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
             isSubmitted: true,
             fileName: `${files[0].name}`,
             github: `${github}`,
+            teamName: `${teamName}`,
+            members: selectedUserList.map((users) => {
+              return users.user.email;
+            }),
           },
           {
             headers: {
