@@ -1,6 +1,6 @@
 //내가 보는 내 프로필 수정 하기 누르기
 import React, { useState, useEffect } from "react";
-import { request /*  useRefresh */ } from "../../utils/axios/axios";
+import { request, useRefresh } from "../../utils/axios/axios";
 import * as S from "../styled/Profile/style";
 import Header from "../Main/Header";
 import Project from "./Project";
@@ -9,7 +9,6 @@ import { BoxLoading } from "react-loadingg";
 
 function MyProfile() {
   const [text, setText] = useState("수정");
-  // const refreshHandler = useRefresh();
 
   const [profileReport, setProfileReport] = useState([]);
   const [profileData, setProfileData] = useState("");
@@ -21,8 +20,8 @@ function MyProfile() {
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
 
-  //수정 누르면 저장으로 바뀌고 input disabled 가 해제됨
-  //프로필 수정 API
+  const refreshHandler = useRefresh();
+
   const ChangeProfile = async () => {
     if (text === "수정") {
       setText("저장");
@@ -38,7 +37,21 @@ function MyProfile() {
           }
         );
       } catch (e) {
-        console.error(e);
+        switch (e.response.status) {
+          case 400:
+            alert("프로필 불러오기를 실패했습니다.");
+            break;
+          case 401:
+            refreshHandler().then(() => {
+              ChangeProfile();
+            });
+            break;
+          case 403:
+            alert("로그인을 해주세요");
+            break;
+          default:
+            break;
+        }
       }
       setLoding(false);
       setError(null);
@@ -87,7 +100,7 @@ function MyProfile() {
 
     getProfile();
     getMyProject();
-  }, [reportId]);
+  }, []);
 
   return (
     <S.Main>

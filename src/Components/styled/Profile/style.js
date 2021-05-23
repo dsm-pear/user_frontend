@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { MainBackground, StudentProfile } from "../../../assets";
 
 const Main = styled.div`
-  height: 100vh;
   background-image: url(${MainBackground});
-  background-size: 100vw 100vh;
+  height: 100vh;
   background-repeat: no-repeat;
+  min-width: 1480px;
+  min-height: 900px;
 `;
 const MainProfile = styled.div`
   margin: auto;
@@ -44,7 +45,7 @@ const Profile = styled.div`
 const ProPhoto = styled.form`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -53,12 +54,28 @@ const ProPhoto = styled.form`
     background-image: url(${StudentProfile});
     height: 150px;
     width: 150px;
-    margin: 10px;
+    margin: 0 auto;
   }
 
   & a {
     width: 100%;
   }
+
+  & input {
+    width: 86%;
+    padding: 0 20px;
+    margin: 10px 0;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    font-family: "Noto Sans KR", sans-serif;
+    box-shadow: 0 1px 4px #c3c7c7;
+    cursor: pointer;
+    background: none;
+  }
+
   .input {
     justify-content: center;
     background-color: white;
@@ -84,6 +101,7 @@ const ProPhoto = styled.form`
       color: gray;
     }
   }
+
   .introduce {
     height: 30%;
     margin: 10px 0px;
