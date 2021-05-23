@@ -121,6 +121,16 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
     return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
+  const deleteSavedTextData = () => {
+    setTimeout(() => {
+      window.localStorage.removeItem("userTextData");
+    }, 172800000);
+
+    clearTimeout(deleteSavedTextData);
+  };
+
+  let id;
+
   const isSaveData = () => {
     if (clickCount === 0) {
       axios
@@ -145,9 +155,13 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             },
           }
         )
-        .then(() => {
-          console.log("임시저장 성공");
+        .then((response) => {
           setIsSubmitted(true);
+          ++clickCount;
+
+          console.log("임시저장 성공");
+
+          id = response.data;
         })
         .catch((err) => {
           console.log("임시저장 실패");
@@ -158,7 +172,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
     } else {
       axios
         .post(
-          `${MainUrl}/report/sole`,
+          `${MainUrl}/report/sole/${id}`,
           {
             title: `${title}`,
             description: `${description}`,
@@ -189,7 +203,6 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             alert("필수 입력칸을 모두 입력 후 임시저장 해주세요.");
         });
     }
-    ++clickCount;
 
     window.localStorage.setItem(
       "userTextData",
@@ -200,11 +213,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
       })
     );
 
-    setTimeout(() => {
-      window.localStorage.removeItem("userTextData");
-    }, 172800000);
-
-    clearTimeout();
+    deleteSavedTextData();
   };
 
   return (
