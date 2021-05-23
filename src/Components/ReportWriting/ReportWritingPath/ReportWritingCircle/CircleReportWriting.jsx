@@ -8,7 +8,7 @@ import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
 import axios from "axios";
 
-const TeamReportWriting = ({ type, grade, field, access }) => {
+const CircleReportWriting = ({ type, grade, field, access }) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
@@ -372,4 +372,4 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
     </>
   );
 };
-export default TeamReportWriting;
+export default CircleReportWriting;
