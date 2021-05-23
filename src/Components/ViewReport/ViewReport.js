@@ -55,7 +55,7 @@ function ViewReport() {
   useEffect(() => {
     //프로젝트 목록 리스트 얻어오기
     getProjectList();
-  }, []);
+  }, [type, field, grade]);
 
   return (
     <S.Main>
