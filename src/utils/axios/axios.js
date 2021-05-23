@@ -2,7 +2,7 @@ import Axios from "axios";
 import { useHistory } from "react-router-dom";
 
 export const MainURL = "http://211.38.86.92:8005";
-export const FileURL = "http://54.180.224.67:3000";
+export const FileURL = "http://211.38.86.92:3001";
 
 export function request(method, url, header, data) {
   return Axios({
@@ -12,13 +12,10 @@ export function request(method, url, header, data) {
     data: data,
   })
     .then((res) => {
-      console.log("다 받기 성공");
-      console.log(res);
       return res;
     })
     .catch((e) => {
-      console.log(MainURL + url);
-      console.error(e);
+      throw e;
     });
 }
 
@@ -30,8 +27,6 @@ export function fileRequest(method, url, header, data) {
     data: data,
   })
     .then((res) => {
-      console.log("다 받기 성공");
-      console.log(res);
       return res;
     })
     .catch((e) => {
@@ -39,11 +34,8 @@ export function fileRequest(method, url, header, data) {
     });
 }
 
-export function useRefresh(method, url, data) {
+export function useRefresh(data) {
   const history = useHistory();
-
-  // return true;
-
   return Axios({
     method: "put",
     url: MainURL + "/auth",
