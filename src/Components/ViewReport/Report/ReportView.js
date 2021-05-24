@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
-const ReportView = (props) => {
+const ReportView = (props, languages, members) => {
   // const [isSoleModifyReport, setIsSoleModifyReport] = useState([]);
   // const [isSoleDeleteReprot, setIsSoleDeleteReprot] = useState([]);
   // const [isTeamModifyReport, setIsTeamModifyReport] = useState([]);
@@ -28,13 +28,12 @@ const ReportView = (props) => {
             {
               title: `${props.title}`,
               description: `${props.text}`,
-              languages: props.languages,
+              languages: languages,
               type: `${props.team}`,
               access: `${props.access}`,
               field: `${props.field}`,
               grade: `${props.grade}`,
-              isSubmitted: true,
-              fileName: `${props.fileName}`,
+              isSubmitted: props.isSubmitted,
               github: `${props.git}`,
             },
             {
@@ -45,6 +44,7 @@ const ReportView = (props) => {
             }
           )
           .then((res) => {
+            console.log(res);
             axios.put(`/report/${fileId}`, props.file, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
