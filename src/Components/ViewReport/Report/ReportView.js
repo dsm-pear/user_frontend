@@ -1,18 +1,22 @@
 import React from "react";
+import { useHistory, useLocation } from "react-router";
 import { FileURL, MainURL } from "../../../utils/axios/axios";
-import { useHistory, useLocation } from "react-router-dom";
-import axios from "axios";
 import * as S from "../../styled/ViewReport/MainStyle";
+import axios from "axios";
 
 const ReportView = (props, languages, members) => {
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
-    window.open(FileURL + `/report/${fileId}`);
+    window.open(
+      FileURL +
+        `/report/${fileId}?token=Bearer ${localStorage.getItem("access-token")}`
+    );
   };
 
   const history = useHistory();
-  // const location = useLocation();
   const reportId = props.reportId;
+
+  console.log(props.isSubmitted);
 
   const isModifyReport = () => {
     switch (props.team) {
@@ -23,7 +27,7 @@ const ReportView = (props, languages, members) => {
             {
               title: `${props.title}`,
               description: `${props.text}`,
-              languages: languages,
+              languages: props.languages,
               type: `${props.team}`,
               access: `${props.access}`,
               field: `${props.field}`,
@@ -178,9 +182,9 @@ const ReportView = (props, languages, members) => {
         if (err.response.status === 403) {
           alert("권한이 없습니다.");
 
-          // localStorage.removeItem("access-token");
-          // localStorage.removeItem("refresh-token");
-          // history.push("/");
+          localStorage.removeItem("access-token");
+          localStorage.removeItem("refresh-token");
+          history.push("/");
         }
       });
   };
@@ -208,7 +212,7 @@ const ReportView = (props, languages, members) => {
       </S.Linkimg>
       <S.Linkimg>
         <div className="img"></div>
-        {props.file === null ? (
+        {props.fileId === null ? (
           <div style={{ color: "gray", marginLeft: "5px" }}>
             파일이 존재하지 않습니다.
           </div>
