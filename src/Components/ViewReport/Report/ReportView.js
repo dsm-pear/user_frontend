@@ -1,17 +1,18 @@
 import React from "react";
-import { FileURL } from "../../../utils/axios/axios";
+import { FileURL, MainURL } from "../../../utils/axios/axios";
+import { useHistory, useLocation } from "react-router-dom";
+import axios from "axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 
 const ReportView = (props, languages, members) => {
- 
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(FileURL + `/report/${fileId}`);
   };
 
   const history = useHistory();
-  const location = useLocation();
-  const reportId = location.state.reportId;
+  // const location = useLocation();
+  const reportId = props.reportId;
 
   const isModifyReport = () => {
     switch (props.team) {
@@ -177,19 +178,19 @@ const ReportView = (props, languages, members) => {
         if (err.response.status === 403) {
           alert("권한이 없습니다.");
 
-          localStorage.removeItem("access-token");
-          localStorage.removeItem("refresh-token");
-          history.push("/");
+          // localStorage.removeItem("access-token");
+          // localStorage.removeItem("refresh-token");
+          // history.push("/");
         }
       });
   };
-  
+
   return (
     <S.Contents>
       {/* 보고서 수정 삭제   */}
       <S.Modify>
-        <button>수정</button>
-        <button>삭제</button>
+        <button onClick={isModifyReport}>수정</button>
+        <button onClick={isDeleteReprot}>삭제</button>
       </S.Modify>
       <S.Title>
         <p>{props.title}</p>
