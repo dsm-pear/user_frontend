@@ -65,8 +65,15 @@ function MainReport() {
         <ReportView
           title={reportData.title}
           text={reportData.description}
+          languages={languages}
+          team={reportData.type}
+          access={reportData.access}
+          field={reportData.field}
+          grade={reportData.grade}
+          isSubmitted={reportData.isSubmitted}
           git={reportData.github}
-          file={reportData.fileName}
+          teamName={reportData.teamName}
+          members={members}
           fileId={reportData.fileId}
         />
         {reportData.type === "SOLE" ? null : (
