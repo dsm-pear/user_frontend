@@ -17,6 +17,8 @@ function MainReport({ match }) {
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
 
+  console.log(match.params.reportId);
+
   //토큰 검사
   const refreshHandler = useRefresh();
 
@@ -77,7 +79,17 @@ function MainReport({ match }) {
           text={reportData.description}
           git={reportData.github}
           file={reportData.fileName}
-          fileId="3"
+  
+          reportId={match.params.reportId}
+          languages={languages}
+          team={reportData.type}
+          access={reportData.access}
+          field={reportData.field}
+          grade={reportData.grade}
+          isSubmitted={reportData.isSubmitted}
+          teamName={reportData.teamName}
+          members={members}
+          fileId={reportData.fileId}
         />
         {reportData.type === "SOLE" ? null : (
           <ReportTeam teamName={reportData.teamName} members={members} />
