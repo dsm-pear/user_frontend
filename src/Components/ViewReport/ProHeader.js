@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import * as S from "../styled/ViewReport/style";
 
 const ProHeader = (props) => {
-  const [seleted, setSeleted] = useState(0);
+  const [seleted, setSeleted] = useState(1);
 
   //전체, 팀, 개인, 동아리 필터링
   const lists = [
     {
-      id : 1, 
-      title : "전체",
+      id: 1,
+      title: "전체",
     },
     {
       id: 2,
@@ -32,10 +32,9 @@ const ProHeader = (props) => {
       props.setType("SOLE");
     } else if (row.title === "동아리") {
       props.setType("CIRCLES");
-    }else {
+    } else {
       props.setType("");
     }
-    
   };
 
   return (

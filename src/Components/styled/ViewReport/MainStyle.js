@@ -8,8 +8,8 @@ const Main = styled.body`
   flex-direction: column;
   align-items: center;
   background-image: url(${MainScrollBackground_1});
-  /* background-size: 100vw 100vh; */
   background-repeat: no-repeat;
+  min-width: 1500px;
 `;
 
 const MainBox = styled.div`
@@ -183,7 +183,7 @@ const Info = styled.div`
   display: flex;
   align-items: center;
   width: auto;
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
   border: none;
   border-radius: 20px;
@@ -228,6 +228,7 @@ const Info = styled.div`
   }
 
   .deleteButton {
+    min-width: 50px;
     outline: none;
     border: none;
     padding: 5px;
@@ -239,8 +240,6 @@ const Info = styled.div`
   }
 `;
 const CommentBox = styled.div``;
-
-const Date = styled.div``;
 
 const CoverLang = styled.div`
   cursor: pointer;
@@ -258,14 +257,14 @@ const CoverLang = styled.div`
 `;
 
 const TableCover = styled.div`
+  margin: 1%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 80%;
+  width: 99%;
   height: auto;
-  margin: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `;
 const Language = styled.div`
@@ -294,7 +293,7 @@ const Year = styled.div`
 `;
 
 const Teambox = styled(CoverLang)`
-  height: 7%;
+  height: 8.1%;
 `;
 
 const Modify = styled.div`
@@ -325,7 +324,6 @@ export {
   MainCom,
   CommentBox,
   Info,
-  Date,
   Add,
   TableCover,
   CoverLang,

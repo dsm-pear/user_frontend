@@ -2,10 +2,12 @@ import styled from "styled-components";
 import { MainBackground } from "../../../assets";
 
 const Main = styled.div`
-  height: 100vh;
   background-image: url(${MainBackground});
-  background-size: 100vw 100vh;
+  background-size: 100% 100%;
+  height: 100vh;
   background-repeat: no-repeat;
+  min-width: 1480px;
+  min-height: 900px;
 `;
 
 const Cover = styled.div`
@@ -147,12 +149,6 @@ const ProjectHeader = styled.nav`
     }
   }
 `;
-const MainPro = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
 
 const Project = styled.div`
   display: flex;
@@ -211,6 +207,13 @@ const MainCover = styled.div`
   height: 70%;
   width: 94%;
   overflow: auto;
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Number = styled.div`
@@ -229,7 +232,6 @@ export {
   ReportKindOf,
   MainProject,
   ProjectHeader,
-  MainPro,
   Project,
   MainCover,
   Number,

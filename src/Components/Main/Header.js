@@ -86,6 +86,7 @@ const Header = () => {
         localStorage.removeItem("access-token");
         localStorage.removeItem("refresh-token");
         localStorage.removeItem("refresh-exp");
+        history.push('/');
     }
     
     return (

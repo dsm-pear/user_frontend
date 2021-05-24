@@ -7,7 +7,7 @@ import Nextpage from '../../assets/nextpageimg.png';
 const Body = () => {
 
     const onclick = () => {
-        window.scrollTo({top: 1100, behavior: "smooth"});
+        window.scrollTo({top: window.innerHeight+50, behavior: "smooth"});
     }
 
     const isAccessToken = localStorage.getItem('access-token');

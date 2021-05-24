@@ -1,18 +1,10 @@
 import React from "react";
 import * as S from "../styled/ViewReport/style";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Project = (props) => {
-  const history = useHistory();
   const createdAt = props.date.split("T");
   const reportId = props.reportId;
-
-  const reportChilckHandler = () => {
-    history.push({
-      pathname: `/view-report/${reportId}`,
-      state: { reportId: reportId },
-    });
-  };
 
   const color =
     props.team === "CIRCLES"
@@ -23,13 +15,13 @@ const Project = (props) => {
 
   return (
     <>
-      <S.MainPro onClick={reportChilckHandler}>
+      <Link className="link" to={`/view-report/${reportId}`} >
         <S.Project color={color}>
           <span className="project_team">[{props.team}]</span>
           <p className="project_title">{props.title}</p>
           <span className="project_date">{createdAt[0]}</span>
         </S.Project>
-      </S.MainPro>
+      </Link>
     </>
   );
 };
