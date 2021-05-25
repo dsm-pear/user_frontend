@@ -57,11 +57,11 @@ const Category = styled.div`
   flex-direction: column;
   width: 100%;
   height: 38%;
+
   &:nth-child(2) {
     margin-top: 30px;
   }
 
-  cursor: pointer;
   & > span {
     margin: 15px 0 0 30px;
     font-size: 20px;
@@ -81,6 +81,7 @@ const ReportKindOf = styled.div`
   & ul {
     height: 100%;
     & button {
+      cursor: pointer;
       margin-bottom: 20px;
       width: 102%;
       background-color: white;

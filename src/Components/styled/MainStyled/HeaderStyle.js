@@ -65,7 +65,6 @@ export const SeachChoice = styled.div`
     text-align: center;
     display: table-cell; 
     vertical-align: middle;
-    padding-top: 3px;
     img{
         width: 10px;
         margin-right: 3px;
