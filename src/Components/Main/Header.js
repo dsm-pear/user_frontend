@@ -22,7 +22,7 @@ const Header = () => {
     const isAccessToken = localStorage.getItem('access-token');
     const isRefrechToken = localStorage.getItem('refresh-token');
 
-    const onlist = () => {
+    const onList = () => {
         if(!show){
             setShow(true);
             setImg(UpArrow);
@@ -103,7 +103,7 @@ const Header = () => {
                     {/* 검색창 */}
                     <S.SeachBar>
                         <form onSubmit={onSubmit}>
-                            <S.SeachBarSelect onClick={onlist}>
+                            <S.SeachBarSelect onClick={onList}>
                                 <S.SeachChoice style={{color: color}}><img src={img} alt="검색"/>{searchtype}</S.SeachChoice>
                                 { 
                                 show &&
@@ -124,8 +124,12 @@ const Header = () => {
                     <S.MenuBar>
                         <S.MenuUl>
                             <S.MenuList onClick={onNotice}>공지사항</S.MenuList>
+                            {
+                                isAccessToken && isRefrechToken ? 
+                                <S.MenuList onClick={onWrite}>보고서 등록</S.MenuList>
+                                : <div></div>
+                            }
 
-                            <S.MenuList onClick={onWrite}>보고서 등록</S.MenuList>
                             <S.MenuList onMouseEnter={onReportUp} onMouseLeave={onReportDown}>
                                 보고서 보기
                                 {
@@ -153,7 +157,7 @@ const Header = () => {
                                 <S.Profile><img src={Profile} alt="Profile"/></S.Profile>
                                 
                             </S.MenuList>
-                            : null
+                            : <div></div>
                             }
                         </S.MenuUl>
                     </S.MenuBar>
