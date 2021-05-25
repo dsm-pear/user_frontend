@@ -192,10 +192,15 @@ const ReportView = (props) => {
   return (
     <S.Contents>
       {/* 보고서 수정 삭제   */}
-      <S.Modify>
-        <button onClick={isModifyReport}>수정</button>
-        <button onClick={isDeleteReprot}>삭제</button>
-      </S.Modify>
+      {props.isMine === true ? (
+        <S.Modify>
+          <button onClick={isModifyReport}>수정</button>
+          <button onClick={isDeleteReprot}>삭제</button>
+        </S.Modify>
+      ) : (
+        <></>
+      )}
+
       <S.Title>
         <p>{props.title}</p>
       </S.Title>
