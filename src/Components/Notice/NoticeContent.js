@@ -18,6 +18,8 @@ const NoticeContent = (props) => {
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(null);
 
+    const history = useHistory()
+
     useEffect(() => {
         const DataApi = async () => {
             try {
@@ -64,8 +66,12 @@ const NoticeContent = (props) => {
     }, [ContentId])
 
     const onBack = () => {
-        window.history.back()
+        history.push(`/notice?page=1`)
     }
+
+    window.onpopstate = () => {
+        history.push(`/notice?page=1`)
+      };
 
     const FileDownload = () => {
         window.open(FileURL + `/notice/${fileData.id}`);
