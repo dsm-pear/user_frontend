@@ -20,7 +20,6 @@ const SoleSubmitReportModal = ({
   access,
   field,
   grade,
-  isSubmitted,
   files,
   github,
 }) => {
@@ -52,7 +51,7 @@ const SoleSubmitReportModal = ({
         access: `${access}`,
         field: `${field}`,
         grade: `${grade}`,
-        isSubmitted: isSubmitted,
+        isSubmitted: true,
         fileName: `${files[0].name}`,
         github: `${github}`,
       },
