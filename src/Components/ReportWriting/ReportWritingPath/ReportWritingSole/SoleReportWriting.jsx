@@ -15,7 +15,6 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [github, setGithub] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
@@ -156,7 +155,6 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
           }
         )
         .then((response) => {
-          setIsSubmitted(true);
           ++clickCount;
 
           console.log("임시저장 성공");
@@ -181,7 +179,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             access: `${access}`,
             field: `${field}`,
             grade: `${grade}`,
-            isSubmitted: true,
+            isSubmitted: false,
             fileName: `${files[0].name}`,
             github: `${github}`,
           },
@@ -192,10 +190,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             },
           }
         )
-        .then(() => {
-          console.log("임시저장 성공");
-          setIsSubmitted(true);
-        })
+        .then(() => {})
         .catch((err) => {
           console.log("임시저장 실패");
 
@@ -233,7 +228,6 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
         field={field}
         grade={grade}
         files={files}
-        isSubmitted={isSubmitted}
         github={github}
       />
 

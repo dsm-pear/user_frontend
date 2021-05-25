@@ -22,7 +22,6 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
   const [teamName, setTeamName] = useState("");
   const [searchList, setSearchList] = useState([]);
   const [selectedUserList, setSelectedUserList] = useState([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
@@ -176,7 +175,6 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
           }
         )
         .then((response) => {
-          setIsSubmitted(true);
           ++clickCount;
 
           id = response.data;
@@ -199,7 +197,7 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
             access: `${access}`,
             field: `${field}`,
             grade: `${grade}`,
-            isSubmitted: true,
+            isSubmitted: false,
             fileName: `${files[0].name}`,
             github: `${github}`,
             teamName: `${teamName}`,
@@ -216,7 +214,6 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
         )
         .then(() => {
           console.log("임시저장 성공");
-          setIsSubmitted(true);
         })
         .catch((err) => {
           console.log("임시저장 실패");
@@ -258,7 +255,6 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
         github={github}
         teamName={teamName}
         selectedUserList={selectedUserList}
-        isSubmitted={isSubmitted}
       />
       <ReportWritingModal
         setOpen={setOpen}

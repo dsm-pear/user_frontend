@@ -77,15 +77,8 @@ function MainReport({ match }) {
         <ReportView
           title={reportData.title}
           text={reportData.description}
-          languages={languages}
-          team={reportData.type}
-          access={reportData.access}
-          field={reportData.field}
-          grade={reportData.grade}
-          isSubmitted={reportData.isSubmitted}
           git={reportData.github}
           file={reportData.fileName}
-  
           reportId={match.params.reportId}
           languages={languages}
           team={reportData.type}

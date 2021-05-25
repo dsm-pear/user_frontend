@@ -4,7 +4,7 @@ import { FileURL, MainURL } from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import axios from "axios";
 
-const ReportView = (props, languages, members) => {
+const ReportView = (props) => {
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(
@@ -32,7 +32,7 @@ const ReportView = (props, languages, members) => {
               access: `${props.access}`,
               field: `${props.field}`,
               grade: `${props.grade}`,
-              isSubmitted: props.isSubmitted,
+              isSubmitted: props.isSubmitted ?? null === true,
               github: `${props.git}`,
             },
             {
@@ -42,9 +42,9 @@ const ReportView = (props, languages, members) => {
               },
             }
           )
-          .then((res) => {
-            console.log(res);
-            axios.put(`/report/${fileId}`, props.file, {
+          .then(() => {
+            const fatchFile = new FormData();
+            axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
                 Authorization: `Bearer ${localStorage.getItem("access-token")}`,
