@@ -12,13 +12,10 @@ export function request(method, url, header, data) {
     data: data,
   })
     .then((res) => {
-      console.log("다 받기 성공");
-      console.log(res);
       return res;
     })
     .catch((e) => {
-      console.log(MainURL + url);
-      console.error(e);
+      throw e;
     });
 }
 
@@ -30,8 +27,6 @@ export function fileRequest(method, url, header, data) {
     data: data,
   })
     .then((res) => {
-      console.log("다 받기 성공");
-      console.log(res);
       return res;
     })
     .catch((e) => {
@@ -39,11 +34,8 @@ export function fileRequest(method, url, header, data) {
     });
 }
 
-export function useRefresh(method, url, data) {
+export function useRefresh(data) {
   const history = useHistory();
-
-  // return true;
-
   return Axios({
     method: "put",
     url: MainURL + "/auth",

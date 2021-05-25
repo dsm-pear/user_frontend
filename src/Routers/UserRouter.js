@@ -12,8 +12,9 @@ import {
   Notice,
   NoticeContent,
   SearchResult,
+  SubmitSuccess,
   Main,
-} from "../components/index";
+} from "../Components/index";
 
 function UserRouter() {
   return (
@@ -26,11 +27,17 @@ function UserRouter() {
         <Route path="/user-profile/:userEmail" component={UserProfile} exact />
         <Route path="/my-profile" component={MyProfile} exact />
         <Route path="/view-report" component={ViewReport} exact />
-        <Route path="/view-report/:reportid" component={MainReport} exact />
+        <Route path="/view-report/:reportId" component={MainReport} exact />
         <Route path="/report-writing" component={ReportWriting} exact />
+
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
         <Route path="/search-result" component={SearchResult} exact />
+
+        <Route path="/notice" component={Notice} exact />
+        <Route path="/notice-content/:data" component={NoticeContent} exact />
+
+        <Route path="/search-result/:data" component={SearchResult} exact />
       </Switch>
     </>
   );

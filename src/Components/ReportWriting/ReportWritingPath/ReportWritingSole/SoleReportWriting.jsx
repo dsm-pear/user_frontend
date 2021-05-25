@@ -15,7 +15,6 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [github, setGithub] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
@@ -121,6 +120,16 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
     return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
+  const deleteSavedTextData = () => {
+    setTimeout(() => {
+      window.localStorage.removeItem("userTextData");
+    }, 172800000);
+
+    clearTimeout(deleteSavedTextData);
+  };
+
+  let id;
+
   const isSaveData = () => {
     if (clickCount === 0) {
       axios
@@ -145,9 +154,12 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             },
           }
         )
-        .then(() => {
+        .then((response) => {
+          ++clickCount;
+
           console.log("임시저장 성공");
-          setIsSubmitted(true);
+
+          id = response.data;
         })
         .catch((err) => {
           console.log("임시저장 실패");
@@ -158,7 +170,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
     } else {
       axios
         .post(
-          `${MainUrl}/report/sole`,
+          `${MainUrl}/report/sole/${id}`,
           {
             title: `${title}`,
             description: `${description}`,
@@ -167,7 +179,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             access: `${access}`,
             field: `${field}`,
             grade: `${grade}`,
-            isSubmitted: true,
+            isSubmitted: false,
             fileName: `${files[0].name}`,
             github: `${github}`,
           },
@@ -178,10 +190,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             },
           }
         )
-        .then(() => {
-          console.log("임시저장 성공");
-          setIsSubmitted(true);
-        })
+        .then(() => {})
         .catch((err) => {
           console.log("임시저장 실패");
 
@@ -189,7 +198,6 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             alert("필수 입력칸을 모두 입력 후 임시저장 해주세요.");
         });
     }
-    ++clickCount;
 
     window.localStorage.setItem(
       "userTextData",
@@ -200,11 +208,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
       })
     );
 
-    setTimeout(() => {
-      window.localStorage.removeItem("userTextData");
-    }, 172800000);
-
-    clearTimeout();
+    deleteSavedTextData();
   };
 
   return (
@@ -224,7 +228,6 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
         field={field}
         grade={grade}
         files={files}
-        isSubmitted={isSubmitted}
         github={github}
       />
 
