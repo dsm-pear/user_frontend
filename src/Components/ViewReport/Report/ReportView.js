@@ -1,18 +1,19 @@
 import React from "react";
+import { useHistory, useLocation } from "react-router";
 import { FileURL, MainURL } from "../../../utils/axios/axios";
-import { useHistory, useLocation } from "react-router-dom";
-import axios from "axios";
 import * as S from "../../styled/ViewReport/MainStyle";
+import axios from "axios";
 
-const ReportView = (props, languages, members) => {
+const ReportView = (props) => {
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(FileURL + `/report/${fileId}`);
   };
 
   const history = useHistory();
-  // const location = useLocation();
   const reportId = props.reportId;
+
+  console.log(props.isSubmitted);
 
   const isModifyReport = () => {
     switch (props.team) {
@@ -23,12 +24,12 @@ const ReportView = (props, languages, members) => {
             {
               title: `${props.title}`,
               description: `${props.text}`,
-              languages: languages,
+              languages: props.languages,
               type: `${props.team}`,
               access: `${props.access}`,
               field: `${props.field}`,
               grade: `${props.grade}`,
-              isSubmitted: props.isSubmitted,
+              isSubmitted: props.isSubmitted ?? null === true,
               github: `${props.git}`,
             },
             {
@@ -38,9 +39,9 @@ const ReportView = (props, languages, members) => {
               },
             }
           )
-          .then((res) => {
-            console.log(res);
-            axios.put(`/report/${fileId}`, props.file, {
+          .then(() => {
+            const fatchFile = new FormData();
+            axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
                 Authorization: `Bearer ${localStorage.getItem("access-token")}`,
@@ -178,9 +179,9 @@ const ReportView = (props, languages, members) => {
         if (err.response.status === 403) {
           alert("권한이 없습니다.");
 
-          // localStorage.removeItem("access-token");
-          // localStorage.removeItem("refresh-token");
-          // history.push("/");
+          localStorage.removeItem("access-token");
+          localStorage.removeItem("refresh-token");
+          history.push("/");
         }
       });
   };
