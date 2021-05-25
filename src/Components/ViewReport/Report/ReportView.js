@@ -7,7 +7,10 @@ import axios from "axios";
 const ReportView = (props) => {
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
-    window.open(FileURL + `/report/${fileId}`);
+    window.open(
+      FileURL +
+        `/report/${fileId}?token=Bearer ${localStorage.getItem("access-token")}`
+    );
   };
 
   const history = useHistory();
@@ -209,7 +212,7 @@ const ReportView = (props) => {
       </S.Linkimg>
       <S.Linkimg>
         <div className="img"></div>
-        {props.file === null ? (
+        {props.fileId === null ? (
           <div style={{ color: "gray", marginLeft: "5px" }}>
             파일이 존재하지 않습니다.
           </div>
