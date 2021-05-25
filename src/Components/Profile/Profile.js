@@ -7,6 +7,16 @@ const Profile = (props) => {
     window.location.href = `${props.github}`;
   }; */
 
+  let str,
+    test = document.getElementById("test");
+  if (test !== null) {
+    str = test.de;
+  } else {
+    str = null;
+  }
+
+  console.log(str);
+
   return (
     <S.Profile>
       <S.ProPhoto>
@@ -17,35 +27,22 @@ const Profile = (props) => {
         {<div className="input">{props.email}</div>}
 
         <input
-          /* onClick={() =>
-            props.text === "수정" ? onClick() : console.log(props.text)
-          } */
           type="text"
           className="link-input"
-          placeholder={
-            props.gitHub === "" ? "깃허브 링크를 입력해주세요" : props.gitHub
-          }
+          placeholder="깃허브 링크를 입력해주세요"
+          defaultValue={props.gitHub}
           disabled={props.text === "저장" ? false : true}
-          onChange={(e) => {
-            e.target.value === null
-              ? props.setGithub(props.gitHub)
-              : props.setGithub(e.target.value);
-          }}
+          onChange={(e) => props.setGithub(e.target.value)}
         />
 
         <textarea
+          id="test"
           className="input introduce"
           type="text"
-          placeholder={
-            props.selfIntro === "" ? "자기소개를 써주세요" : props.selfIntro
-          }
+          placeholder="자기소개를 작성해주세요"
           disabled={props.text === "저장" ? false : true}
-          onChange={(e) => {
-            console.log(e.target.value)
-            e.target.value === null
-              ? props.setProduce(props.selfIntro)
-              : props.setProduce(e.target.value);
-          }}
+          defaultValue={props.selfIntro}
+          onChange={(e) => props.setProduce(e.target.value)}
         />
       </S.ProPhoto>
     </S.Profile>
