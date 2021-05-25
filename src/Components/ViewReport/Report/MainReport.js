@@ -89,6 +89,7 @@ function MainReport({ match }) {
           teamName={reportData.teamName}
           members={members}
           fileId={reportData.fileId}
+          isMine={reportData.isMine}
         />
         {reportData.type === "SOLE" ? null : (
           <ReportTeam teamName={reportData.teamName} members={members} />
