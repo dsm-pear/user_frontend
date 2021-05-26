@@ -36,7 +36,9 @@ const CircleReportWriting = ({ type, grade, field, access }) => {
   }, []);
 
   useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("userTextData")) || {
+    const savedData = JSON.parse(
+      localStorage.getItem("circleUserTextData")
+    ) || {
       title: "",
       tags: [],
       description: "",
@@ -64,7 +66,7 @@ const CircleReportWriting = ({ type, grade, field, access }) => {
     setTeamName(e.target.value);
   };
 
-  const onClick = () => {
+  const onShowUpMenu = () => {
     setState("visible");
     setHei("280px");
     setMyOpa("1");
@@ -138,7 +140,7 @@ const CircleReportWriting = ({ type, grade, field, access }) => {
 
   const deleteSavedTextData = () => {
     setTimeout(() => {
-      window.localStorage.removeItem("userTextData");
+      window.localStorage.removeItem("circleUserTextData");
     }, 172800000);
 
     clearTimeout(deleteSavedTextData);
@@ -224,7 +226,7 @@ const CircleReportWriting = ({ type, grade, field, access }) => {
     }
 
     window.localStorage.setItem(
-      "userTextData",
+      "circleUserTextData",
       JSON.stringify({
         title: title,
         tags: tags,
@@ -310,7 +312,8 @@ const CircleReportWriting = ({ type, grade, field, access }) => {
                 <img src={gitgubimg} alt="gitgub-link" />
                 <input
                   type="text"
-                  placeholder="동아리의 GITHUB 링크를 입력해주세요 (선택)"
+                  name="userGithubURL"
+                  placeholder="(선택) 자신의 GITHUB 링크를 입력해주세요 ex) https://www.google.co.kr/"
                   onChange={onGithubChange}
                 />
               </div>
@@ -359,7 +362,7 @@ const CircleReportWriting = ({ type, grade, field, access }) => {
             <S.SaveBtn>
               <div onClick={isSaveData}>임시저장</div>
             </S.SaveBtn>
-            <S.SubBtn onClick={onClick}>
+            <S.SubBtn onClick={onShowUpMenu}>
               <div>제출하기</div>
             </S.SubBtn>
           </S.SaveSubBtn>

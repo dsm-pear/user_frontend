@@ -29,7 +29,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
   }, []);
 
   useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("userTextData")) || {
+    const savedData = JSON.parse(localStorage.getItem("soleUserTextData")) || {
       title: "",
       tags: [],
       description: "",
@@ -53,7 +53,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
     setGithub(e.target.value);
   };
 
-  const onClick = () => {
+  const onShowUpMenu = () => {
     setState("visible");
     setHei("280px");
     setMyOpa("1");
@@ -122,7 +122,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
 
   const deleteSavedTextData = () => {
     setTimeout(() => {
-      window.localStorage.removeItem("userTextData");
+      window.localStorage.removeItem("soleUserTextData");
     }, 172800000);
 
     clearTimeout(deleteSavedTextData);
@@ -200,7 +200,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
     }
 
     window.localStorage.setItem(
-      "userTextData",
+      "soleUserTextData",
       JSON.stringify({
         title: title,
         tags: tags,
@@ -274,7 +274,8 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
                 <img src={gitgubimg} alt="gitgub-link" />
                 <input
                   type="text"
-                  placeholder="자신의 GITHUB 링크를 입력해주세요 (선택)"
+                  name="userGithubURL"
+                  placeholder="(선택) 자신의 GITHUB 링크를 입력해주세요 ex) https://www.google.co.kr/"
                   onChange={onGithubChange}
                 />
               </div>
@@ -292,7 +293,7 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
             <S.SaveBtn>
               <div onClick={isSaveData}>임시저장</div>
             </S.SaveBtn>
-            <S.SubBtn onClick={onClick}>
+            <S.SubBtn onClick={onShowUpMenu}>
               <div>제출하기</div>
             </S.SubBtn>
           </S.SaveSubBtn>

@@ -116,7 +116,7 @@ const TeamSubmitReportModal = ({
           alert("선택 및 입력창에 모두 입력해주세요.");
           return false;
         } else if (err.response.status === 403) {
-          alert("권한이 없습니다.");
+          alert("로그아웃");
 
           localStorage.removeItem("access-token");
           localStorage.removeItem("refresh-token");
