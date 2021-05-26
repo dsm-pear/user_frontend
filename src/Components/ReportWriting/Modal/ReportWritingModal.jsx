@@ -77,8 +77,6 @@ const ReportWritingModal = ({
     }
   };
 
-  useEffect(() => {}, []);
-
   const onClickLeft = (id, userInfo) => {
     const user = selectedUserList.find((user) => {
       if (user.id === id) {
