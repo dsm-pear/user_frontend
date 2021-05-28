@@ -1,6 +1,11 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router";
-import { FileURL, MainURL } from "../../../utils/axios/axios";
+import { useHistory } from "react-router";
+import {
+  request,
+  fileRequest,
+  FileURL,
+  MainURL,
+} from "../../../utils/axios/axios";
 import * as S from "../../styled/ViewReport/MainStyle";
 import axios from "axios";
 
@@ -13,6 +18,7 @@ const ReportView = (props) => {
     );
   };
 
+  let ACCESS_TOKEN = localStorage.getItem("access-token");
   const history = useHistory();
   const reportId = props.reportId;
 
@@ -153,38 +159,70 @@ const ReportView = (props) => {
     }
   };
 
-  const isDeleteReprot = () => {
-    axios
-      .delete(
-        `${MainURL}/report/${reportId}`,
+  const isDeleteReprot = async () => {
+    try {
+      await request(
+        "delete",
+        `/report/${reportId}`,
         {
-          id: `${reportId}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
+          id: `${reportId}`,
         }
-      )
-      .then((res) => {
-        const id = res.id;
-        axios.delete(`${FileURL}/report/${id}`, props.file, {
-          headers: {
-            "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
-        });
-      })
-      .catch((err) => {
-        if (err.response.status === 403) {
-          alert("권한이 없습니다.");
+      );
 
-          localStorage.removeItem("access-token");
-          localStorage.removeItem("refresh-token");
-          history.push("/");
+      await fileRequest(
+        "delete",
+        `/report/${fileId}`,
+        {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        },
+        {
+          file_id: `${fileId}`,
         }
-      });
+      );
+    } catch (err) {
+      if (err.response.status === 403) {
+        alert("로그아웃 됩니다.");
+
+        localStorage.removeItem("access-token");
+        localStorage.removeItem("refresh-token");
+        history.push("/");
+      }
+    }
+    // axios
+    //   .delete(
+    //     `${MainURL}/report/${reportId}`,
+    //     {
+    //       id: `${reportId}`,
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${ACCESS_TOKEN}`,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     axios.delete(`${FileURL}/report/${fileId}`, props.file, {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    //       },
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     if (err.response.status === 403) {
+    //       alert("권한이 없습니다.");
+
+    //       // localStorage.removeItem("access-token");
+    //       // localStorage.removeItem("refresh-token");
+    //       // history.push("/");
+    //     }
+    //   });
   };
 
   return (
