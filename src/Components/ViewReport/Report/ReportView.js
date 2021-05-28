@@ -49,13 +49,16 @@ const ReportView = (props) => {
             }
           )
           .then(() => {
-            // const fatchFile = new FormData();
-            axios.put(`${FileURL}/report/${fileId}`, `${fileId}`, {
+            const fatchFile = new FormData();
+            fatchFile.append("reportFile");
+            axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
                 Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             });
+
+            history.push("/report-writing");
           })
           .catch((err) => {
             if (err.response.status === 403) {
