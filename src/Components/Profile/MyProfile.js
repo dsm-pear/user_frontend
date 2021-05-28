@@ -140,8 +140,6 @@ function MyProfile() {
                       reportId={myPageReportResponses.reportId}
                     />
                   ))}
-
-                  {/* 밑에 더보기 / 숫자 */}
                 </S.PreProject>
               </>
             )}
