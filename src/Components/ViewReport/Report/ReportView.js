@@ -38,22 +38,22 @@ const ReportView = (props) => {
               access: `${props.access}`,
               field: `${props.field}`,
               grade: `${props.grade}`,
-              isSubmitted: props.isSubmitted ?? null === true,
+              isSubmitted: props.isSubmitted,
               github: `${props.git}`,
             },
             {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             }
           )
           .then(() => {
-            const fatchFile = new FormData();
-            axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
+            // const fatchFile = new FormData();
+            axios.put(`${FileURL}/report/${fileId}`, `${fileId}`, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             });
           })
@@ -88,7 +88,7 @@ const ReportView = (props) => {
             {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             }
           )
@@ -97,7 +97,7 @@ const ReportView = (props) => {
             axios.put(`${FileURL}/report/${id}`, props.file, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             });
           })
@@ -131,7 +131,7 @@ const ReportView = (props) => {
             {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             }
           )
@@ -140,7 +140,7 @@ const ReportView = (props) => {
             axios.put(`${FileURL}/report/${id}`, props.file, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             });
           })
@@ -161,6 +161,18 @@ const ReportView = (props) => {
 
   const isDeleteReprot = async () => {
     try {
+      await fileRequest(
+        "delete",
+        `/report/${fileId}`,
+        {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        },
+        {
+          file_id: `${fileId}`,
+        }
+      );
+
       await request(
         "delete",
         `/report/${reportId}`,
@@ -173,17 +185,8 @@ const ReportView = (props) => {
         }
       );
 
-      await fileRequest(
-        "delete",
-        `/report/${fileId}`,
-        {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-        },
-        {
-          file_id: `${fileId}`,
-        }
-      );
+      alert("보고서를 삭제했습니다.");
+      history.push("/my-profile");
     } catch (err) {
       if (err.response.status === 403) {
         alert("로그아웃 됩니다.");
@@ -193,36 +196,6 @@ const ReportView = (props) => {
         history.push("/");
       }
     }
-    // axios
-    //   .delete(
-    //     `${MainURL}/report/${reportId}`,
-    //     {
-    //       id: `${reportId}`,
-    //     },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${ACCESS_TOKEN}`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     axios.delete(`${FileURL}/report/${fileId}`, props.file, {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-    //       },
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     if (err.response.status === 403) {
-    //       alert("권한이 없습니다.");
-
-    //       // localStorage.removeItem("access-token");
-    //       // localStorage.removeItem("refresh-token");
-    //       // history.push("/");
-    //     }
-    //   });
   };
 
   return (
