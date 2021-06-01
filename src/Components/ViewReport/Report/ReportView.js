@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import {
   request,
@@ -10,6 +10,8 @@ import * as S from "../../styled/ViewReport/MainStyle";
 import axios from "axios";
 
 const ReportView = (props) => {
+  const [file, setFile] = useState([]);
+
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(
@@ -50,7 +52,7 @@ const ReportView = (props) => {
           )
           .then(() => {
             const fatchFile = new FormData();
-            // fatchFile.append("reportFile");
+            fatchFile.append("reportFile");
             axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
@@ -85,7 +87,9 @@ const ReportView = (props) => {
               isSubmitted: props.isSubmitted,
               github: `${props.git}`,
               teamName: `${props.teamName}`,
-              members: [props.isMemberEmail.user.memberEmail],
+              members: props.isMemberEmail.map((users) => {
+                return users.user.memberEmail;
+              }),
             },
             {
               headers: {
@@ -131,7 +135,9 @@ const ReportView = (props) => {
               isSubmitted: props.isSubmitted,
               github: `${props.git}`,
               teamName: `${props.teamName}`,
-              members: props.members,
+              members: props.isMemberEmail.map((users) => {
+                return users.user.memberEmail;
+              }),
             },
             {
               headers: {
