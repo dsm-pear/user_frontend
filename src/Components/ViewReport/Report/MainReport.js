@@ -13,6 +13,7 @@ function MainReport({ match }) {
   const [reportData, setReportData] = useState("");
   const [comments, setComments] = useState([]);
   const [members, setMembers] = useState([]);
+  const [isMemberEmail, setIsMemberEmail] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
@@ -33,7 +34,14 @@ function MainReport({ match }) {
       setReportData(data);
       setComments(data.comments);
       setMembers(data.member);
+      setIsMemberEmail(
+        data.member.map((user, index) => ({
+          id: index + 1,
+          user,
+        }))
+      );
       setLanguages(data.languages);
+      console.log(data);
     } catch (e) {
       switch (e.response.status) {
         case 400:
@@ -87,7 +95,7 @@ function MainReport({ match }) {
           grade={reportData.grade}
           isSubmitted={reportData.isSubmitted}
           teamName={reportData.teamName}
-          members={members}
+          isMemberEmail={isMemberEmail}
           fileId={reportData.fileId}
           isMine={reportData.isMine}
         />
