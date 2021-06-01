@@ -50,7 +50,7 @@ const ReportView = (props) => {
           )
           .then(() => {
             const fatchFile = new FormData();
-            fatchFile.append("reportFile");
+            // fatchFile.append("reportFile");
             axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
@@ -67,7 +67,6 @@ const ReportView = (props) => {
               localStorage.removeItem("access-token");
               localStorage.removeItem("refresh-token");
               history.push("/");
-            } else if (err.response.status === 401) {
             }
           });
         break;
@@ -83,10 +82,10 @@ const ReportView = (props) => {
               access: `${props.access}`,
               field: `${props.field}`,
               grade: `${props.grade}`,
-              isSubmitted: props.isSubmitted ?? null === true,
+              isSubmitted: props.isSubmitted,
               github: `${props.git}`,
               teamName: `${props.teamName}`,
-              members: props.members,
+              members: [props.isMemberEmail.user.memberEmail],
             },
             {
               headers: {
@@ -95,14 +94,17 @@ const ReportView = (props) => {
               },
             }
           )
-          .then((res) => {
-            const id = res.id;
-            axios.put(`${FileURL}/report/${id}`, props.file, {
+          .then(() => {
+            const fatchFile = new FormData();
+            // fatchFile.append("reportFile");
+            axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
                 Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             });
+
+            history.push("/report-writing");
           })
           .catch((err) => {
             if (err.response.status === 403) {
@@ -126,7 +128,7 @@ const ReportView = (props) => {
               access: `${props.access}`,
               field: `${props.field}`,
               grade: `${props.grade}`,
-              isSubmitted: props.isSubmitted ?? null === true,
+              isSubmitted: props.isSubmitted,
               github: `${props.git}`,
               teamName: `${props.teamName}`,
               members: props.members,
@@ -138,14 +140,17 @@ const ReportView = (props) => {
               },
             }
           )
-          .then((res) => {
-            const id = res.id;
-            axios.put(`${FileURL}/report/${id}`, props.file, {
+          .then(() => {
+            const fatchFile = new FormData();
+            // fatchFile.append("reportFile");
+            axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
                 Authorization: `Bearer ${ACCESS_TOKEN}`,
               },
             });
+
+            history.push("/report-writing");
           })
           .catch((err) => {
             if (err.response.status === 403) {
