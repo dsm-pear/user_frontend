@@ -10,8 +10,6 @@ import * as S from "../../styled/ViewReport/MainStyle";
 import axios from "axios";
 
 const ReportView = (props) => {
-  const [file, setFile] = useState([]);
-
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(
