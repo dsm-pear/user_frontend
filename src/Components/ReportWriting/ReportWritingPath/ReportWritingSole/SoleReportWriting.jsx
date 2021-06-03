@@ -14,7 +14,9 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
   const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [github, setGithub] = useState("");
+  const [github, setGithub] = useState(
+    "http://github.com" || "https://github.com"
+  );
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");

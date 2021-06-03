@@ -10,8 +10,6 @@ import * as S from "../../styled/ViewReport/MainStyle";
 import axios from "axios";
 
 const ReportView = (props) => {
-  const [file, setFile] = useState([]);
-
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(
@@ -52,7 +50,7 @@ const ReportView = (props) => {
           )
           .then(() => {
             const fatchFile = new FormData();
-            fatchFile.append("reportFile");
+            // fatchFile.append("reportFile");
             axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
