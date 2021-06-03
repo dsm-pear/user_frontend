@@ -50,7 +50,7 @@ const ReportView = (props) => {
           )
           .then(() => {
             const fatchFile = new FormData();
-            fatchFile.append("reportFile");
+            // fatchFile.append("reportFile");
             axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
