@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import GlobalFonts from "../GlobalStyle";
 import {
@@ -8,15 +8,17 @@ import {
   MyProfile,
   ViewReport,
   MainReport,
+  ReportView,
   ReportWriting,
   Notice,
   NoticeContent,
   SearchResult,
-  SubmitSuccess,
   Main,
 } from "../Components/index";
 
 function UserRouter() {
+  const [files, setFiles] = useState([]);
+
   return (
     <>
       <GlobalFonts />
@@ -28,7 +30,16 @@ function UserRouter() {
         <Route path="/my-profile" component={MyProfile} exact />
         <Route path="/view-report" component={ViewReport} exact />
         <Route path="/view-report/:reportId" component={MainReport} exact />
-        <Route path="/report-writing" component={ReportWriting} exact />
+        <Route
+          path="/report-view"
+          render={() => <ReportView files={files} />}
+          exact
+        />
+        <Route
+          path="/report-writing"
+          render={() => <ReportWriting files={files} setFiles={setFiles} />}
+          exact
+        />
 
         <Route path="/notice" component={Notice} exact />
         <Route path="/notice-content/:data" component={NoticeContent} exact />
