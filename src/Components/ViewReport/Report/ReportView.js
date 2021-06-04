@@ -9,7 +9,7 @@ import {
 import * as S from "../../styled/ViewReport/MainStyle";
 import axios from "axios";
 
-const ReportView = (props) => {
+const ReportView = (props, files) => {
   const fileId = props.fileId;
   const fileDownloadHandler = () => {
     window.open(
@@ -21,8 +21,6 @@ const ReportView = (props) => {
   let ACCESS_TOKEN = localStorage.getItem("access-token");
   const history = useHistory();
   const reportId = props.reportId;
-
-  console.log(props.isSubmitted);
 
   const isModifyReport = () => {
     switch (props.team) {
@@ -50,7 +48,7 @@ const ReportView = (props) => {
           )
           .then(() => {
             const fatchFile = new FormData();
-            // fatchFile.append("reportFile");
+            fatchFile.append("reportFile", files[0]);
             axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
@@ -98,7 +96,7 @@ const ReportView = (props) => {
           )
           .then(() => {
             const fatchFile = new FormData();
-            // fatchFile.append("reportFile");
+            fatchFile.append("reportFile", files[0]);
             axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
@@ -146,7 +144,7 @@ const ReportView = (props) => {
           )
           .then(() => {
             const fatchFile = new FormData();
-            // fatchFile.append("reportFile");
+            fatchFile.append("reportFile", files[0]);
             axios.put(`${FileURL}/report/${fileId}`, fatchFile, {
               headers: {
                 "Content-Type": "multipart/form-data", // multipart = 파일 업로드
