@@ -6,15 +6,16 @@ import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
 import axios from "axios";
 
-const SoleReportWriting = ({ type, grade, field, access }) => {
+const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
   const [tags, setTags] = useState([]);
-  const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [github, setGithub] = useState("");
+  const [github, setGithub] = useState(
+    "http://github.com" || "https://github.com"
+  );
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
