@@ -8,17 +8,25 @@ import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
 import axios from "axios";
 
-const CircleReportWriting = ({ type, grade, field, access }) => {
+const CircleReportWriting = ({
+  type,
+  grade,
+  field,
+  access,
+  files,
+  setFiles,
+}) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
   const [open, setOpen] = useState("hidden");
   const [myHei, setMyHei] = useState("0");
   const [tags, setTags] = useState([]);
-  const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [github, setGithub] = useState("");
+  const [github, setGithub] = useState(
+    "http://github.com" || "https://github.com"
+  );
   const [teamName, setTeamName] = useState("");
   const [searchList, setSearchList] = useState([]);
   const [selectedUserList, setSelectedUserList] = useState([]);
