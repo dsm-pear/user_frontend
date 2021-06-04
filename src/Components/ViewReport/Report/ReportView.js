@@ -118,7 +118,7 @@ const ReportView = (props) => {
             }
           });
         break;
-      case "CIRCLE":
+      case "CIRCLES":
         axios
           .patch(
             `${MainURL}/report/team/${reportId}`,
