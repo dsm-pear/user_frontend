@@ -4,6 +4,7 @@ export { default as UserProfile } from "./Profile/UserProfile";
 export { default as MyProfile } from "./Profile/MyProfile";
 export { default as ViewReport } from "./ViewReport/ViewReport";
 export { default as MainReport } from "./ViewReport/Report/MainReport";
+export { default as ReportView } from "./ViewReport/Report/ReportView";
 export { default as ReportWriting } from "./ReportWriting/ReportWriting";
 export { default as TeamReportWriting } from "./ReportWriting/ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 export { default as SoleReportWriting } from "./ReportWriting/ReportWritingPath/ReportWritingSole/SoleReportWriting";
