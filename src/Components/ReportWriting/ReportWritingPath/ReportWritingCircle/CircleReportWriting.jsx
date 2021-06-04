@@ -38,6 +38,10 @@ const CircleReportWriting = ({
   let clickCount = 0;
 
   useEffect(() => {
+    // 받아온 report data 띄우는 api
+  }, []);
+
+  useEffect(() => {
     setInterval(() => {
       setLoading(false);
     }, 500);
