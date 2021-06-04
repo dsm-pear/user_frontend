@@ -9,7 +9,7 @@ import { RWlogo } from "../../assets";
 import { select } from "../../assets";
 import { selecthover } from "../../assets";
 
-const ReportWriting = () => {
+const ReportWriting = ({ files, setFiles }) => {
   const [grade, setGrade] = useState("");
   const [type, setType] = useState("");
   const [field, setField] = useState("");
@@ -309,6 +309,8 @@ const ReportWriting = () => {
                   grade={grade}
                   field={field}
                   access={access}
+                  files={files}
+                  setFiles={setFiles}
                 />
               ) : null || showTeamReportComponent === true ? (
                 <TeamReportWriting
@@ -316,6 +318,8 @@ const ReportWriting = () => {
                   grade={grade}
                   field={field}
                   access={access}
+                  files={files}
+                  setFiles={setFiles}
                 />
               ) : null || showCircleReportComponent === true ? (
                 <CircleReportWriting
@@ -323,6 +327,8 @@ const ReportWriting = () => {
                   grade={grade}
                   field={field}
                   access={access}
+                  files={files}
+                  setFiles={setFiles}
                 />
               ) : null}
             </S.ReportBody>

@@ -6,12 +6,11 @@ import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
 import axios from "axios";
 
-const SoleReportWriting = ({ type, grade, field, access }) => {
+const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
   const [tags, setTags] = useState([]);
-  const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [github, setGithub] = useState(
@@ -23,6 +22,10 @@ const SoleReportWriting = ({ type, grade, field, access }) => {
   const MainUrl = "http://211.38.86.92:8005";
 
   let clickCount = 0;
+
+  useEffect(() => {
+    // 받아온 report data 띄우는 api
+  }, []);
 
   useEffect(() => {
     setInterval(() => {

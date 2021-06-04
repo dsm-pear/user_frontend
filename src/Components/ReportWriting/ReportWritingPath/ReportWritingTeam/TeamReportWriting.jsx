@@ -8,17 +8,18 @@ import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
 import axios from "axios";
 
-const TeamReportWriting = ({ type, grade, field, access }) => {
+const TeamReportWriting = ({ type, grade, field, access, files, setFiles }) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
   const [open, setOpen] = useState("hidden");
   const [myHei, setMyHei] = useState("0");
   const [tags, setTags] = useState([]);
-  const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [github, setGithub] = useState("");
+  const [github, setGithub] = useState(
+    "http://github.com" || "https://github.com"
+  );
   const [teamName, setTeamName] = useState("");
   const [searchList, setSearchList] = useState([]);
   const [selectedUserList, setSelectedUserList] = useState([]);
@@ -28,6 +29,10 @@ const TeamReportWriting = ({ type, grade, field, access }) => {
   const MainUrl = "http://211.38.86.92:8005";
 
   let clickCount = 0;
+
+  useEffect(() => {
+    // 받아온 report data 띄우는 api
+  }, []);
 
   useEffect(() => {
     setInterval(() => {
