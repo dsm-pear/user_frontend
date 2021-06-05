@@ -6,16 +6,10 @@ import LoadingPage from "../../LoadingPage";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingTeam/style";
 import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
+import { request } from "../../../../utils/axios/axios";
 import axios from "axios";
 
-const CircleReportWriting = ({
-  type,
-  grade,
-  field,
-  access,
-  files,
-  setFiles,
-}) => {
+const CircleReportWriting = (props) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
@@ -36,6 +30,8 @@ const CircleReportWriting = ({
   const MainUrl = "http://211.38.86.92:8005";
 
   let clickCount = 0;
+
+  const reportId = props.reportId;
 
   useEffect(() => {
     // 받아온 report data 띄우는 api
@@ -117,42 +113,42 @@ const CircleReportWriting = ({
     inputElement.setAttribute("accept", ".pdf, .hwp");
     inputElement.click();
     inputElement.onchange = () => {
-      const prevFiles = [...files];
+      const prevFiles = [...props.files];
       for (const file of inputElement.files) {
         prevFiles.push(file);
       }
       console.log(inputElement.files);
-      setFiles(prevFiles);
+      props.setFiles(prevFiles);
       console.log(inputElement.value, inputElement.files[0].name);
     };
   };
 
   const onDelClickFile = (index) => {
-    const delFile = [...files];
+    const delFile = [...props.files];
     delFile.splice(index, 1);
-    setFiles(delFile);
+    props.setFiles(delFile);
   };
 
   const attachFiles = (index) => {
-    if (files.length !== 0 && files.length < 2) {
-      return files.map((file, i) => {
+    if (props.files.length !== 0 && props.files.length < 2) {
+      return props.files.map((file, i) => {
         return (
           <div key={i} onClick={() => onDelClickFile(i)}>
             {file.name}
           </div>
         );
       });
-    } else if (files.length > 1) {
+    } else if (props.files.length > 1) {
       alert("파일은 하나만 추가할 수 있습니다.");
-      files.splice(index, 1);
+      props.files.splice(index, 3);
       return false;
     }
-    return <span>동아리에서 작성한 개발 보고서의 파일을 올려주세요.</span>;
+    return <span>팀에서 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
   const deleteSavedTextData = () => {
     setTimeout(() => {
-      window.localStorage.removeItem("circleUserTextData");
+      window.localStorage.removeItem("teamUserTextData");
     }, 172800000);
 
     clearTimeout(deleteSavedTextData);
@@ -169,12 +165,12 @@ const CircleReportWriting = ({
             title: `${title}`,
             description: `${description}`,
             languages: tags,
-            type: `${type}`,
-            access: `${access}`,
-            field: `${field}`,
-            grade: `${grade}`,
+            type: `${props.type}`,
+            access: `${props.access}`,
+            field: `${props.field}`,
+            grade: `${props.grade}`,
             isSubmitted: true,
-            fileName: `${files[0].name}`,
+            fileName: `${props.files[0].name}`,
             github: `${github}`,
             teamName: `${teamName}`,
             members: selectedUserList.map((users) => {
@@ -207,12 +203,12 @@ const CircleReportWriting = ({
             title: `${title}`,
             description: `${description}`,
             languages: tags,
-            type: `${type}`,
-            access: `${access}`,
-            field: `${field}`,
-            grade: `${grade}`,
+            type: `${props.type}`,
+            access: `${props.access}`,
+            field: `${props.field}`,
+            grade: `${props.grade}`,
             isSubmitted: false,
-            fileName: `${files[0].name}`,
+            fileName: `${props.files[0].name}`,
             github: `${github}`,
             teamName: `${teamName}`,
             members: selectedUserList.map((users) => {
@@ -238,7 +234,7 @@ const CircleReportWriting = ({
     }
 
     window.localStorage.setItem(
-      "circleUserTextData",
+      "teamUserTextData",
       JSON.stringify({
         title: title,
         tags: tags,
@@ -261,11 +257,11 @@ const CircleReportWriting = ({
         title={title}
         description={description}
         tags={tags}
-        type={type}
-        access={access}
-        field={field}
-        grade={grade}
-        files={files}
+        access={props.access}
+        type={props.type}
+        field={props.field}
+        grade={props.grade}
+        files={props.files}
         github={github}
         teamName={teamName}
         selectedUserList={selectedUserList}
