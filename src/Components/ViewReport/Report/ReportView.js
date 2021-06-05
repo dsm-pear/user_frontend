@@ -56,7 +56,10 @@ const ReportView = (props, files) => {
               },
             });
 
-            history.push("/report-writing");
+            history.push({
+              pathname: "/report-writing",
+              state: { reportId: reportId },
+            });
           })
           .catch((err) => {
             if (err.response.status === 403) {
@@ -104,7 +107,10 @@ const ReportView = (props, files) => {
               },
             });
 
-            history.push("/report-writing");
+            history.push({
+              pathname: "/report-writing",
+              state: { reportId: reportId },
+            });
           })
           .catch((err) => {
             if (err.response.status === 403) {
@@ -152,7 +158,10 @@ const ReportView = (props, files) => {
               },
             });
 
-            history.push("/report-writing");
+            history.push({
+              pathname: "/report-writing",
+              state: { reportId: reportId },
+            });
           })
           .catch((err) => {
             if (err.response.status === 403) {
