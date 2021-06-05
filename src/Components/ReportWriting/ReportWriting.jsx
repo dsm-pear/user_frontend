@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
@@ -27,6 +27,9 @@ const ReportWriting = ({ files, setFiles }) => {
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
   const history = useHistory();
+  const location = useLocation();
+
+  const reportId = location.state.reportId;
 
   useEffect(() => {
     if (!ACCESS_TOKEN || !REFRESH_TOKEN) {
@@ -305,6 +308,7 @@ const ReportWriting = ({ files, setFiles }) => {
             <S.ReportBody>
               {showSoleReportComponent === true ? (
                 <SoleReportWriting
+                  reportId={reportId}
                   type={type}
                   grade={grade}
                   field={field}
@@ -314,6 +318,7 @@ const ReportWriting = ({ files, setFiles }) => {
                 />
               ) : null || showTeamReportComponent === true ? (
                 <TeamReportWriting
+                  reportId={reportId}
                   type={type}
                   grade={grade}
                   field={field}
@@ -323,6 +328,7 @@ const ReportWriting = ({ files, setFiles }) => {
                 />
               ) : null || showCircleReportComponent === true ? (
                 <CircleReportWriting
+                  reportId={reportId}
                   type={type}
                   grade={grade}
                   field={field}
