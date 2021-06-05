@@ -34,8 +34,20 @@ const TeamReportWriting = (props) => {
   const reportId = props.reportId;
 
   useEffect(() => {
-    // 받아온 report data 띄우는 api
-  }, []);
+    async function getUserReportDatas() {
+      try {
+        const reportData = await request("get", `/report/modify/${reportId}`, {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        });
+        setTitle(reportData.data.title);
+        // setTags(reportData.data.tags);
+        setDescription(reportData.data.description);
+        setGithub(reportData.data.github);
+        // props.setFiles(reportData.data.fileName);
+      } catch (error) {}
+    }
+    getUserReportDatas();
+  }, [ACCESS_TOKEN, reportId]);
 
   useEffect(() => {
     setInterval(() => {

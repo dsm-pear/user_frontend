@@ -8,6 +8,7 @@ import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
 import { selecthover } from "../../assets";
+import { request } from "../../utils/axios/axios";
 
 const ReportWriting = ({ files, setFiles }) => {
   const [grade, setGrade] = useState("");
@@ -37,6 +38,27 @@ const ReportWriting = ({ files, setFiles }) => {
       history.push("/");
     }
   }, [ACCESS_TOKEN, REFRESH_TOKEN, history]);
+
+  useEffect(() => {
+    async function getUserReportHeaderData() {
+      try {
+        const reportHeaderData = await request(
+          "get",
+          `/report/modify/${reportId}`,
+          {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          }
+        );
+        console.log(reportHeaderData);
+        setType(reportHeaderData.data.type);
+        console.log(type);
+        setGrade(reportHeaderData.data.grade);
+        setField(reportHeaderData.data.field);
+        setAccess(reportHeaderData.data.access);
+      } catch (error) {}
+    }
+    getUserReportHeaderData();
+  }, [ACCESS_TOKEN, reportId]);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));

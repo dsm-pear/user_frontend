@@ -4,7 +4,7 @@ import LoadingPage from "../../LoadingPage";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingSole/style";
 import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
-import { request } from "../../../../utils/axios/axios";
+import { request, MainURL } from "../../../../utils/axios/axios";
 import axios from "axios";
 
 const SoleReportWriting = (props) => {
@@ -20,7 +20,6 @@ const SoleReportWriting = (props) => {
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
-  const MainUrl = "http://211.38.86.92:8005";
 
   let clickCount = 0;
 
@@ -29,13 +28,14 @@ const SoleReportWriting = (props) => {
   useEffect(() => {
     async function getUserReportDatas() {
       try {
-        const { reportData } = await request(
-          "get",
-          `/report/modify/${reportId}`,
-          {
-            Authorization: `Bearer ${ACCESS_TOKEN}`,
-          }
-        );
+        const reportData = await request("get", `/report/modify/${reportId}`, {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        });
+        setTitle(reportData.data.title);
+        // setTags(reportData.data.tags);
+        setDescription(reportData.data.description);
+        setGithub(reportData.data.github);
+        // props.setFiles(reportData.data.fileName);
       } catch (error) {}
     }
     getUserReportDatas();
@@ -47,16 +47,18 @@ const SoleReportWriting = (props) => {
     }, 500);
   }, []);
 
-  if (loading) return <LoadingPage />;
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("soleUserTextData")) || {
+      title: "",
+      tags: [],
+      description: "",
+    };
+    setTitle(savedData.title);
+    setTags(savedData.tags);
+    setDescription(savedData.description);
+  }, []);
 
-  const savedData = JSON.parse(localStorage.getItem("soleUserTextData")) || {
-    title: "",
-    tags: [],
-    description: "",
-  };
-  setTitle(savedData.title);
-  setTags(savedData.tags);
-  setDescription(savedData.description);
+  if (loading) return <LoadingPage />;
 
   const onTitleChange = (e) => {
     setTitle(e.target.value);
@@ -151,7 +153,7 @@ const SoleReportWriting = (props) => {
     if (clickCount === 0) {
       axios
         .post(
-          `${MainUrl}/report/sole`,
+          `${MainURL}/report/sole`,
           {
             title: `${title}`,
             description: `${description}`,
@@ -187,7 +189,7 @@ const SoleReportWriting = (props) => {
     } else {
       axios
         .post(
-          `${MainUrl}/report/sole/${id}`,
+          `${MainURL}/report/sole/${id}`,
           {
             title: `${title}`,
             description: `${description}`,
