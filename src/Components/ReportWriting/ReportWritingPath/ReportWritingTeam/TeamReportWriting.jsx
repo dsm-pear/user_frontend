@@ -6,7 +6,7 @@ import LoadingPage from "../../LoadingPage";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingTeam/style";
 import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
-import { request } from "../../../../utils/axios/axios";
+import { request, fileRequest, MainURL } from "../../../../utils/axios/axios";
 import axios from "axios";
 
 const TeamReportWriting = (props) => {
@@ -27,7 +27,6 @@ const TeamReportWriting = (props) => {
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
-  const MainUrl = "http://211.38.86.92:8005";
 
   let clickCount = 0;
 
@@ -36,14 +35,38 @@ const TeamReportWriting = (props) => {
   useEffect(() => {
     async function getUserReportDatas() {
       try {
-        const reportData = await request("get", `/report/modify/${reportId}`, {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-        });
-        setTitle(reportData.data.title);
-        // setTags(reportData.data.tags);
-        setDescription(reportData.data.description);
-        setGithub(reportData.data.github);
-        // props.setFiles(reportData.data.fileName);
+        const reportMainData = await request(
+          "get",
+          `/report/modify/${reportId}`,
+          {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          }
+        );
+        setTitle(reportMainData.data.title);
+        setTags(reportMainData.data.languages.map((lang) => lang));
+        setDescription(reportMainData.data.description);
+        setGithub(reportMainData.data.github);
+        setTeamName(reportMainData.data.teamName);
+        setSelectedUserList(
+          reportMainData.data.member.map((userData, index) => ({
+            id: index + 1,
+            userData,
+          }))
+        );
+
+        const reportFileData = await fileRequest(
+          "get",
+          `/report/files/${reportId}`,
+          {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          }
+        );
+        props.setFiles(
+          reportFileData.data.map((file, index) => ({
+            id: index + 1,
+            file,
+          }))
+        );
       } catch (error) {}
     }
     getUserReportDatas();
@@ -140,20 +163,37 @@ const TeamReportWriting = (props) => {
   };
 
   const attachFiles = (index) => {
-    if (props.files.length !== 0 && props.files.length < 2) {
-      return props.files.map((file, i) => {
-        return (
-          <div key={i} onClick={() => onDelClickFile(i)}>
-            {file.name}
-          </div>
-        );
-      });
-    } else if (props.files.length > 1) {
-      alert("파일은 하나만 추가할 수 있습니다.");
-      props.files.splice(index, 3);
-      return false;
+    if (reportId) {
+      if (props.files.length !== 0 && props.files.length < 2) {
+        return props.files.map((fileData, i) => {
+          return (
+            <div key={i} onClick={() => onDelClickFile(i)}>
+              {fileData.file.path}
+            </div>
+          );
+        });
+      } else if (props.files.length > 1) {
+        alert("파일은 하나만 추가할 수 있습니다.");
+        props.files.splice(index, 1);
+        return false;
+      }
+      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
+    } else {
+      if (props.files.length !== 0 && props.files.length < 2) {
+        return props.files.map((fileData, i) => {
+          return (
+            <div key={i} onClick={() => onDelClickFile(i)}>
+              {fileData.name}
+            </div>
+          );
+        });
+      } else if (props.files.length > 1) {
+        alert("파일은 하나만 추가할 수 있습니다.");
+        props.files.splice(index, 1);
+        return false;
+      }
+      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
     }
-    return <span>팀에서 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
   const deleteSavedTextData = () => {
@@ -170,7 +210,7 @@ const TeamReportWriting = (props) => {
     if (clickCount === 0) {
       axios
         .post(
-          `${MainUrl}/report/team`,
+          `${MainURL}/report/team`,
           {
             title: `${title}`,
             description: `${description}`,
@@ -208,7 +248,7 @@ const TeamReportWriting = (props) => {
     } else {
       axios
         .post(
-          `${MainUrl}/report/team/${id}`,
+          `${MainURL}/report/team/${id}`,
           {
             title: `${title}`,
             description: `${description}`,
@@ -333,6 +373,7 @@ const TeamReportWriting = (props) => {
                   name="userGithubURL"
                   placeholder="(선택) 자신의 GITHUB 링크를 입력해주세요 ex) https://www.google.co.kr/"
                   onChange={onGithubChange}
+                  value={github}
                 />
               </div>
             </span>
@@ -353,6 +394,7 @@ const TeamReportWriting = (props) => {
                     type="text"
                     placeholder="팀의 이름을 입력해주세요"
                     onChange={onTeamNameChange}
+                    value={teamName}
                   />
                 </S.TeamNameBox>
               </S.SetTeamName>
@@ -365,6 +407,7 @@ const TeamReportWriting = (props) => {
                         <SelectedUsers
                           key={selectedUser.id}
                           selectedUser={selectedUser}
+                          reportId={reportId}
                         />
                       );
                     })}

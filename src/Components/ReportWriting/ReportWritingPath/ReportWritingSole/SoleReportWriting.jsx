@@ -4,7 +4,7 @@ import LoadingPage from "../../LoadingPage";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingSole/style";
 import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
-import { request, MainURL } from "../../../../utils/axios/axios";
+import { request, fileRequest, MainURL } from "../../../../utils/axios/axios";
 import axios from "axios";
 
 const SoleReportWriting = (props) => {
@@ -28,14 +28,31 @@ const SoleReportWriting = (props) => {
   useEffect(() => {
     async function getUserReportDatas() {
       try {
-        const reportData = await request("get", `/report/modify/${reportId}`, {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-        });
-        setTitle(reportData.data.title);
-        // setTags(reportData.data.tags);
-        setDescription(reportData.data.description);
-        setGithub(reportData.data.github);
-        // props.setFiles(reportData.data.fileName);
+        const reportMainData = await request(
+          "get",
+          `/report/modify/${reportId}`,
+          {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          }
+        );
+        setTitle(reportMainData.data.title);
+        setTags(reportMainData.data.languages.map((lang) => lang));
+        setDescription(reportMainData.data.description);
+        setGithub(reportMainData.data.github);
+
+        const reportFileData = await fileRequest(
+          "get",
+          `/report/files/${reportId}`,
+          {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          }
+        );
+        props.setFiles(
+          reportFileData.data.map((file, index) => ({
+            id: index + 1,
+            file,
+          }))
+        );
       } catch (error) {}
     }
     getUserReportDatas();
@@ -123,20 +140,37 @@ const SoleReportWriting = (props) => {
   };
 
   const attachFiles = (index) => {
-    if (props.files.length !== 0 && props.files.length < 2) {
-      return props.files.map((file, i) => {
-        return (
-          <div key={i} onClick={() => onDelClickFile(i)}>
-            {file.name}
-          </div>
-        );
-      });
-    } else if (props.files.length > 1) {
-      alert("파일은 하나만 추가할 수 있습니다.");
-      props.files.splice(index, 1);
-      return false;
+    if (reportId) {
+      if (props.files.length !== 0 && props.files.length < 2) {
+        return props.files.map((fileData, i) => {
+          return (
+            <div key={i} onClick={() => onDelClickFile(i)}>
+              {fileData.file.path}
+            </div>
+          );
+        });
+      } else if (props.files.length > 1) {
+        alert("파일은 하나만 추가할 수 있습니다.");
+        props.files.splice(index, 1);
+        return false;
+      }
+      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
+    } else {
+      if (props.files.length !== 0 && props.files.length < 2) {
+        return props.files.map((fileData, i) => {
+          return (
+            <div key={i} onClick={() => onDelClickFile(i)}>
+              {fileData.name}
+            </div>
+          );
+        });
+      } else if (props.files.length > 1) {
+        alert("파일은 하나만 추가할 수 있습니다.");
+        props.files.splice(index, 1);
+        return false;
+      }
+      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
     }
-    return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
   const deleteSavedTextData = () => {
@@ -296,6 +330,7 @@ const SoleReportWriting = (props) => {
                   name="userGithubURL"
                   placeholder="(선택) 자신의 GITHUB 링크를 입력해주세요 ex) https://www.google.co.kr/"
                   onChange={onGithubChange}
+                  value={github}
                 />
               </div>
             </span>
