@@ -4,9 +4,10 @@ import LoadingPage from "../../LoadingPage";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingSole/style";
 import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
+import { request, fileRequest, MainURL } from "../../../../utils/axios/axios";
 import axios from "axios";
 
-const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
+const SoleReportWriting = (props) => {
   const [state, setState] = useState("hidden");
   const [hei, setHei] = useState("0");
   const [myopa, setMyOpa] = useState("1");
@@ -19,13 +20,43 @@ const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
   const [loading, setLoading] = useState(true);
 
   const ACCESS_TOKEN = localStorage.getItem("access-token");
-  const MainUrl = "http://211.38.86.92:8005";
 
   let clickCount = 0;
 
+  const reportId = props.reportId;
+
   useEffect(() => {
-    // 받아온 report data 띄우는 api
-  }, []);
+    async function getUserReportDatas() {
+      try {
+        const reportMainData = await request(
+          "get",
+          `/report/modify/${reportId}`,
+          {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          }
+        );
+        setTitle(reportMainData.data.title);
+        setTags(reportMainData.data.languages.map((lang) => lang));
+        setDescription(reportMainData.data.description);
+        setGithub(reportMainData.data.github);
+
+        const reportFileData = await fileRequest(
+          "get",
+          `/report/files/${reportId}`,
+          {
+            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          }
+        );
+        props.setFiles(
+          reportFileData.data.map((file, index) => ({
+            id: index + 1,
+            file,
+          }))
+        );
+      } catch (error) {}
+    }
+    getUserReportDatas();
+  }, [ACCESS_TOKEN, reportId]);
 
   useEffect(() => {
     setInterval(() => {
@@ -42,7 +73,7 @@ const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
     setTitle(savedData.title);
     setTags(savedData.tags);
     setDescription(savedData.description);
-  }, [setTitle, setTags, setDescription]);
+  }, []);
 
   if (loading) return <LoadingPage />;
 
@@ -92,37 +123,54 @@ const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
     inputElement.setAttribute("accept", ".pdf, .hwp");
     inputElement.click();
     inputElement.onchange = () => {
-      const prevFiles = [...files];
+      const prevFiles = [...props.files];
       for (const file of inputElement.files) {
         prevFiles.push(file);
       }
       console.log(inputElement.files);
-      setFiles(prevFiles);
+      props.setFiles(prevFiles);
       console.log(inputElement.value, inputElement.files[0].name);
     };
   };
 
   const onDelClickFile = (index) => {
-    const delFile = [...files];
+    const delFile = [...props.files];
     delFile.splice(index, 1);
-    setFiles(delFile);
+    props.setFiles(delFile);
   };
 
   const attachFiles = (index) => {
-    if (files.length !== 0 && files.length < 2) {
-      return files.map((file, i) => {
-        return (
-          <div key={i} onClick={() => onDelClickFile(i)}>
-            {file.name}
-          </div>
-        );
-      });
-    } else if (files.length > 1) {
-      alert("파일은 하나만 추가할 수 있습니다.");
-      files.splice(index, 1);
-      return false;
+    if (reportId) {
+      if (props.files.length !== 0 && props.files.length < 2) {
+        return props.files.map((fileData, i) => {
+          return (
+            <div key={i} onClick={() => onDelClickFile(i)}>
+              {fileData.file.path}
+            </div>
+          );
+        });
+      } else if (props.files.length > 1) {
+        alert("파일은 하나만 추가할 수 있습니다.");
+        props.files.splice(index, 1);
+        return false;
+      }
+      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
+    } else {
+      if (props.files.length !== 0 && props.files.length < 2) {
+        return props.files.map((fileData, i) => {
+          return (
+            <div key={i} onClick={() => onDelClickFile(i)}>
+              {fileData.name}
+            </div>
+          );
+        });
+      } else if (props.files.length > 1) {
+        alert("파일은 하나만 추가할 수 있습니다.");
+        props.files.splice(index, 1);
+        return false;
+      }
+      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
     }
-    return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
   const deleteSavedTextData = () => {
@@ -139,17 +187,17 @@ const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
     if (clickCount === 0) {
       axios
         .post(
-          `${MainUrl}/report/sole`,
+          `${MainURL}/report/sole`,
           {
             title: `${title}`,
             description: `${description}`,
             languages: tags,
-            type: `${type}`,
-            access: `${access}`,
-            field: `${field}`,
-            grade: `${grade}`,
+            type: `${props.type}`,
+            access: `${props.access}`,
+            field: `${props.field}`,
+            grade: `${props.grade}`,
             isSubmitted: true,
-            fileName: `${files[0].name}`,
+            fileName: `${props.files[0].name}`,
             github: `${github}`,
           },
           {
@@ -175,17 +223,17 @@ const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
     } else {
       axios
         .post(
-          `${MainUrl}/report/sole/${id}`,
+          `${MainURL}/report/sole/${id}`,
           {
             title: `${title}`,
             description: `${description}`,
             languages: tags,
-            type: `${type}`,
-            access: `${access}`,
-            field: `${field}`,
-            grade: `${grade}`,
+            type: `${props.type}`,
+            access: `${props.access}`,
+            field: `${props.field}`,
+            grade: `${props.grade}`,
             isSubmitted: false,
-            fileName: `${files[0].name}`,
+            fileName: `${props.files[0].name}`,
             github: `${github}`,
           },
           {
@@ -228,11 +276,11 @@ const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
         title={title}
         description={description}
         tags={tags}
-        type={type}
-        access={access}
-        field={field}
-        grade={grade}
-        files={files}
+        type={props.type}
+        access={props.access}
+        field={props.field}
+        grade={props.grade}
+        files={props.files}
         github={github}
       />
 
@@ -282,6 +330,7 @@ const SoleReportWriting = ({ type, grade, field, access, files, setFiles }) => {
                   name="userGithubURL"
                   placeholder="(선택) 자신의 GITHUB 링크를 입력해주세요 ex) https://www.google.co.kr/"
                   onChange={onGithubChange}
+                  value={github}
                 />
               </div>
             </span>

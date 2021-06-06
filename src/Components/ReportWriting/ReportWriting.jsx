@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import SoleReportWriting from "./ReportWritingPath/ReportWritingSole/SoleReportWriting";
 import TeamReportWriting from "./ReportWritingPath/ReportWritingTeam/TeamReportWriting";
 import CircleReportWriting from "./ReportWritingPath/ReportWritingCircle/CircleReportWriting";
@@ -8,6 +8,7 @@ import * as S from "../styled/ReportWriting/style";
 import { RWlogo } from "../../assets";
 import { select } from "../../assets";
 import { selecthover } from "../../assets";
+import { request } from "../../utils/axios/axios";
 
 const ReportWriting = ({ files, setFiles }) => {
   const [grade, setGrade] = useState("");
@@ -27,6 +28,9 @@ const ReportWriting = ({ files, setFiles }) => {
   const ACCESS_TOKEN = localStorage.getItem("access-token");
   const REFRESH_TOKEN = localStorage.getItem("refresh-token");
   const history = useHistory();
+  const location = useLocation();
+
+  const reportId = location.state ? location.state.reportId : undefined;
 
   useEffect(() => {
     if (!ACCESS_TOKEN || !REFRESH_TOKEN) {
@@ -34,6 +38,27 @@ const ReportWriting = ({ files, setFiles }) => {
       history.push("/");
     }
   }, [ACCESS_TOKEN, REFRESH_TOKEN, history]);
+
+  useEffect(() => {
+    if (reportId) {
+      async function getUserReportHeaderData() {
+        try {
+          const reportHeaderData = await request(
+            "get",
+            `/report/modify/${reportId}`,
+            {
+              Authorization: `Bearer ${ACCESS_TOKEN}`,
+            }
+          );
+          setType(reportHeaderData.data.type);
+          setGrade(reportHeaderData.data.grade);
+          setField(reportHeaderData.data.field);
+          setAccess(reportHeaderData.data.access);
+        } catch (error) {}
+      }
+      getUserReportHeaderData();
+    }
+  }, [ACCESS_TOKEN, reportId]);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
@@ -305,6 +330,7 @@ const ReportWriting = ({ files, setFiles }) => {
             <S.ReportBody>
               {showSoleReportComponent === true ? (
                 <SoleReportWriting
+                  reportId={reportId}
                   type={type}
                   grade={grade}
                   field={field}
@@ -314,6 +340,7 @@ const ReportWriting = ({ files, setFiles }) => {
                 />
               ) : null || showTeamReportComponent === true ? (
                 <TeamReportWriting
+                  reportId={reportId}
                   type={type}
                   grade={grade}
                   field={field}
@@ -323,6 +350,7 @@ const ReportWriting = ({ files, setFiles }) => {
                 />
               ) : null || showCircleReportComponent === true ? (
                 <CircleReportWriting
+                  reportId={reportId}
                   type={type}
                   grade={grade}
                   field={field}
