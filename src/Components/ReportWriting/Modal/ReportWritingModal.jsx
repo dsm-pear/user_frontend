@@ -35,7 +35,8 @@ const ReportWritingModal = ({
       setSearchList(
         getUser.data.userResponses.map((user, index) => ({
           id: index + 1,
-          user,
+          name: user.name,
+          email: user.email,
         }))
       );
     }
@@ -50,7 +51,8 @@ const ReportWritingModal = ({
       setSearchList(
         response.data.userResponses.map((user, index) => ({
           id: index + 1,
-          user,
+          name: user.name,
+          email: user.email,
         }))
       );
     } catch (e) {

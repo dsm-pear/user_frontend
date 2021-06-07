@@ -10,7 +10,7 @@ const LeftUserMapping = ({ userInfo, onClickLeft, selectedUserList }) => {
           <S.LeftSideBox>
             <S.BolderCheckBox>
               <span>
-                {userInfo.user.name} ({userInfo.user.email})
+                {userInfo.name} ({userInfo.email})
               </span>
               <div>
                 {selectedUserList.find(

@@ -1,28 +1,17 @@
 import React, { useState } from "react";
 import * as S from "../../../../styled/ReportWriting/Modal/SubmitRequest/SoloRequest/SoleSubmitReportStyle";
 import SubmitSuccess from "../../SubmitSuccess";
-import { FileURL, MainURL } from "../../../../../utils/axios/axios";
+import {
+  FileURL,
+  MainURL,
+  fileRequest,
+  request,
+} from "../../../../../utils/axios/axios";
 import { useHistory } from "react-router-dom";
 import { Close } from "../../../../../assets";
 import axios from "axios";
 
-const SoleSubmitReportModal = ({
-  setState,
-  setHei,
-  state,
-  hei,
-  myopa,
-  setMyOpa,
-  title,
-  description,
-  tags,
-  type,
-  access,
-  field,
-  grade,
-  files,
-  github,
-}) => {
+const SoleSubmitReportModal = (props) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
 
@@ -34,101 +23,233 @@ const SoleSubmitReportModal = ({
   const FileApi = axios;
 
   const onCloseSubmitModal = () => {
-    setState("hidden");
-    setHei("0");
+    props.setState("hidden");
+    props.setHei("0");
   };
 
   const onSubmitButtonClick = () => {
-    if (files.length > 0) {
-      Api.post(
-        `${MainURL}/report/sole`,
-        {
-          title: `${title}`,
-          description: `${description}`,
-          languages: tags,
-          type: `${type}`,
-          access: `${access}`,
-          field: `${field}`,
-          grade: `${grade}`,
-          isSubmitted: true,
-          fileName: `${files[0].name}`,
-          github: `${github}`,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${ACCESS_TOKEN}`,
+    if (props.reportId) {
+      if (props.files.length > 0) {
+        Api.post(
+          `${MainURL}/report/sole`,
+          {
+            title: `${props.title}`,
+            description: `${props.description}`,
+            languages: props.tags,
+            type: `${props.type}`,
+            access: `${props.access}`,
+            field: `${props.field}`,
+            grade: `${props.grade}`,
+            isSubmitted: true,
+            fileName: `${props.files[0].name}`,
+            github: `${props.github}`,
           },
-        }
-      )
-        .then((response) => {
-          setView("visible");
-          setState("hidden");
-          setMyOpa("0");
-          setOpa("1");
-          console.log(response);
-          const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
-          isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
-          const id = response.data;
-          // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
-          FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
+          {
             headers: {
-              "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+              "Content-Type": "application/json",
               Authorization: `Bearer ${ACCESS_TOKEN}`,
             },
-          })
-            .then(() => {
-              console.log("파일 요청 성공");
-            })
-            .catch((err) => {
-              if (err.response.status === 410) {
-                Api.put(`${MainURL}/auth`, undefined, {
-                  headers: {
-                    "X-Refresh-Token": REFRESH_TOKEN,
-                  },
-                }).then((res) => {
-                  if (res.data.access_token) {
-                    localStorage.setItem("access-token", ACCESS_TOKEN);
-                    console.log(REFRESH_TOKEN);
-                    FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
-                      headers: {
-                        "Content-Type": "multipart/form-data", // multipart = 파일 업로드
-                        Authorization: `Bearer ${localStorage.getItem(
-                          "access-token"
-                        )}`,
-                      },
-                    });
-                  }
-                });
-              }
-            });
-        })
-        .catch((err) => {
-          if (err.response.status === 400) {
-            alert("선택 및 입력창에 모두 입력해주세요.");
-            return false;
-          } else if (err.response.status === 403) {
-            alert("로그아웃");
-
-            localStorage.removeItem("access-token");
-            localStorage.removeItem("refresh-token");
-            history.push("/");
-          } else if (err.response.status === 404) {
-            alert("404");
           }
-          alert("제출 실패");
-        });
+        )
+          .then((response) => {
+            setView("visible");
+            props.setState("hidden");
+            props.setMyOpa("0");
+            setOpa("1");
+            console.log(response);
+            const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
+            isSubmitFile.append("reportFile", props.files[0]); // append = 기존의 것 + @
+            const id = response.data;
+            // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
+            FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
+              headers: {
+                "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
+              },
+            })
+              .then(() => {
+                console.log("파일 요청 성공");
+              })
+              .catch((err) => {
+                if (err.response.status === 410) {
+                  Api.put(`${MainURL}/auth`, undefined, {
+                    headers: {
+                      "X-Refresh-Token": REFRESH_TOKEN,
+                    },
+                  }).then((res) => {
+                    if (res.data.access_token) {
+                      localStorage.setItem("access-token", ACCESS_TOKEN);
+                      console.log(REFRESH_TOKEN);
+                      FileApi.post(
+                        `${FileURL}/report/file/${id}`,
+                        isSubmitFile,
+                        {
+                          headers: {
+                            "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                            Authorization: `Bearer ${localStorage.getItem(
+                              "access-token"
+                            )}`,
+                          },
+                        }
+                      );
+                    }
+                  });
+                }
+              });
+            const isDeleteReprot = async () => {
+              try {
+                await fileRequest(
+                  "delete",
+                  `/report/${props.fileId}`,
+                  {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${ACCESS_TOKEN}`,
+                  },
+                  {
+                    file_id: `${props.fileId}`,
+                  }
+                );
+
+                await request(
+                  "delete",
+                  `/report/${props.reportId}`,
+                  {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${ACCESS_TOKEN}`,
+                  },
+                  {
+                    id: `${props.reportId}`,
+                  }
+                );
+
+                history.push("/my-profile");
+              } catch (err) {
+                if (err.response.status === 403) {
+                  alert("로그아웃 됩니다.");
+
+                  localStorage.removeItem("access-token");
+                  localStorage.removeItem("refresh-token");
+                  history.push("/");
+                }
+              }
+            };
+            isDeleteReprot();
+          })
+          .catch((err) => {
+            if (err.response.status === 400) {
+              alert("선택 및 입력창에 모두 입력해주세요.");
+              return false;
+            } else if (err.response.status === 403) {
+              alert("로그아웃 됩니다.");
+
+              localStorage.removeItem("access-token");
+              localStorage.removeItem("refresh-token");
+              history.push("/");
+            } else if (err.response.status === 404) {
+              alert("404");
+            }
+            alert("제출 실패");
+          });
+      } else {
+        alert("보고서를 모두 작성해주세요.");
+        return false;
+      }
     } else {
-      alert("보고서를 모두 작성해주세요.");
-      return false;
+      if (props.files.length > 0) {
+        Api.post(
+          `${MainURL}/report/sole`,
+          {
+            title: `${props.title}`,
+            description: `${props.description}`,
+            languages: props.tags,
+            type: `${props.type}`,
+            access: `${props.access}`,
+            field: `${props.field}`,
+            grade: `${props.grade}`,
+            isSubmitted: true,
+            fileName: `${props.files[0].name}`,
+            github: `${props.github}`,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${ACCESS_TOKEN}`,
+            },
+          }
+        )
+          .then((response) => {
+            setView("visible");
+            props.setState("hidden");
+            props.setMyOpa("0");
+            setOpa("1");
+            console.log(response);
+            const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
+            isSubmitFile.append("reportFile", props.files[0]); // append = 기존의 것 + @
+            const id = response.data;
+            // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
+            FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
+              headers: {
+                "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
+              },
+            })
+              .then(() => {
+                console.log("파일 요청 성공");
+              })
+              .catch((err) => {
+                if (err.response.status === 410) {
+                  Api.put(`${MainURL}/auth`, undefined, {
+                    headers: {
+                      "X-Refresh-Token": REFRESH_TOKEN,
+                    },
+                  }).then((res) => {
+                    if (res.data.access_token) {
+                      localStorage.setItem("access-token", ACCESS_TOKEN);
+                      console.log(REFRESH_TOKEN);
+                      FileApi.post(
+                        `${FileURL}/report/file/${id}`,
+                        isSubmitFile,
+                        {
+                          headers: {
+                            "Content-Type": "multipart/form-data", // multipart = 파일 업로드
+                            Authorization: `Bearer ${localStorage.getItem(
+                              "access-token"
+                            )}`,
+                          },
+                        }
+                      );
+                    }
+                  });
+                }
+              });
+          })
+          .catch((err) => {
+            if (err.response.status === 400) {
+              alert("선택 및 입력창에 모두 입력해주세요.");
+              return false;
+            } else if (err.response.status === 403) {
+              alert("로그아웃 됩니다.");
+
+              localStorage.removeItem("access-token");
+              localStorage.removeItem("refresh-token");
+              history.push("/");
+            } else if (err.response.status === 404) {
+              alert("404");
+            }
+            alert("제출 실패");
+          });
+      } else {
+        alert("보고서를 모두 작성해주세요.");
+        return false;
+      }
     }
   };
 
   return (
     <>
       <SubmitSuccess setView={setView} setOpa={setOpa} view={view} opa={opa} />
-      <S.Main visibility={state}>
-        <S.ModalMain height={hei} myopa={myopa}>
+      <S.Main visibility={props.state}>
+        <S.ModalMain height={props.hei} myopa={props.myopa}>
           <S.ModalSort>
             <S.CloseBtn onClick={onCloseSubmitModal}>
               <span>
