@@ -4,6 +4,7 @@ import LoadingPage from "../../LoadingPage";
 import * as S from "../../../styled/ReportWriting/ReportWritingPath/ReportWritingSole/style";
 import { link } from "../../../../assets";
 import { github as gitgubimg } from "../../../../assets";
+import { useHistory } from "react-router-dom";
 import { request, fileRequest, MainURL } from "../../../../utils/axios/axios";
 import axios from "axios";
 
@@ -17,8 +18,10 @@ const SoleReportWriting = (props) => {
   const [github, setGithub] = useState(
     "http://github.com" || "https://github.com"
   );
+  const [fileId, setFileId] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const history = useHistory();
   const ACCESS_TOKEN = localStorage.getItem("access-token");
 
   let clickCount = 0;
@@ -26,37 +29,55 @@ const SoleReportWriting = (props) => {
   const reportId = props.reportId;
 
   useEffect(() => {
-    async function getUserReportDatas() {
-      try {
-        const reportMainData = await request(
-          "get",
-          `/report/modify/${reportId}`,
-          {
-            Authorization: `Bearer ${ACCESS_TOKEN}`,
-          }
-        );
-        setTitle(reportMainData.data.title);
-        setTags(reportMainData.data.languages.map((lang) => lang));
-        setDescription(reportMainData.data.description);
-        setGithub(reportMainData.data.github);
+    if (reportId) {
+      async function getUserReportDatas() {
+        try {
+          const reportMainData = await request(
+            "get",
+            `/report/modify/${reportId}`,
+            {
+              Authorization: `Bearer ${ACCESS_TOKEN}`,
+            }
+          );
+          setTitle(reportMainData.data.title);
+          setTags(reportMainData.data.languages.map((lang) => lang));
+          setDescription(reportMainData.data.description);
+          setGithub(reportMainData.data.github);
+          setFileId(reportMainData.data.fileId);
 
-        const reportFileData = await fileRequest(
-          "get",
-          `/report/files/${reportId}`,
-          {
-            Authorization: `Bearer ${ACCESS_TOKEN}`,
+          const reportFileData = await fileRequest(
+            "get",
+            `/report/files/${reportId}`,
+            {
+              Authorization: `Bearer ${ACCESS_TOKEN}`,
+            }
+          );
+          props.setFiles(
+            reportFileData.data.map((file, index) => ({
+              id: index + 1,
+              name: file.path,
+            }))
+          );
+        } catch (error) {
+          switch (error.response.status) {
+            case 403:
+              alert("로그아웃 됩니다.");
+
+              localStorage.removeItem("access-token");
+              localStorage.removeItem("refresh-token");
+              history.push("/");
+              break;
+            case 404:
+              alert(error.response.status);
+              break;
+            default:
+              break;
           }
-        );
-        props.setFiles(
-          reportFileData.data.map((file, index) => ({
-            id: index + 1,
-            file,
-          }))
-        );
-      } catch (error) {}
+        }
+      }
+      getUserReportDatas();
     }
-    getUserReportDatas();
-  }, [ACCESS_TOKEN, reportId]);
+  }, [ACCESS_TOKEN]);
 
   useEffect(() => {
     setInterval(() => {
@@ -140,37 +161,20 @@ const SoleReportWriting = (props) => {
   };
 
   const attachFiles = (index) => {
-    if (reportId) {
-      if (props.files.length !== 0 && props.files.length < 2) {
-        return props.files.map((fileData, i) => {
-          return (
-            <div key={i} onClick={() => onDelClickFile(i)}>
-              {fileData.file.path}
-            </div>
-          );
-        });
-      } else if (props.files.length > 1) {
-        alert("파일은 하나만 추가할 수 있습니다.");
-        props.files.splice(index, 1);
-        return false;
-      }
-      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
-    } else {
-      if (props.files.length !== 0 && props.files.length < 2) {
-        return props.files.map((fileData, i) => {
-          return (
-            <div key={i} onClick={() => onDelClickFile(i)}>
-              {fileData.name}
-            </div>
-          );
-        });
-      } else if (props.files.length > 1) {
-        alert("파일은 하나만 추가할 수 있습니다.");
-        props.files.splice(index, 1);
-        return false;
-      }
-      return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
+    if (props.files.length !== 0 && props.files.length < 2) {
+      return props.files.map((fileData, i) => {
+        return (
+          <div key={i} onClick={() => onDelClickFile(i)}>
+            {fileData.name}
+          </div>
+        );
+      });
+    } else if (props.files.length > 1) {
+      alert("파일은 하나만 추가할 수 있습니다.");
+      props.files.splice(index, 1);
+      return false;
     }
+    return <span>자신이 작성한 개발 보고서의 파일을 올려주세요.</span>;
   };
 
   const deleteSavedTextData = () => {
@@ -282,6 +286,8 @@ const SoleReportWriting = (props) => {
         grade={props.grade}
         files={props.files}
         github={github}
+        reportId={reportId}
+        fileId={fileId}
       />
 
       <S.ReportBody>

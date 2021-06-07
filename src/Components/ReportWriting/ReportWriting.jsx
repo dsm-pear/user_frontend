@@ -54,11 +54,23 @@ const ReportWriting = ({ files, setFiles }) => {
           setGrade(reportHeaderData.data.grade);
           setField(reportHeaderData.data.field);
           setAccess(reportHeaderData.data.access);
-        } catch (error) {}
+        } catch (error) {
+          switch (error.response.status) {
+            case 403:
+              alert("로그아웃 됩니다.");
+
+              localStorage.removeItem("access-token");
+              localStorage.removeItem("refresh-token");
+              history.push("/");
+              break;
+            default:
+              break;
+          }
+        }
       }
       getUserReportHeaderData();
     }
-  }, [ACCESS_TOKEN, reportId]);
+  }, [ACCESS_TOKEN]);
 
   const onMouseOver = (e) => {
     setHoverNumber(Number(e.currentTarget.dataset.id));
