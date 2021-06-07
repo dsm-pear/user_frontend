@@ -13,7 +13,7 @@ const RightUserMapping = ({ selectedUser, onClickRight }) => {
           <S.RightSideBox>
             <S.RightBolderCheckBox>
               <S.UserInfo>
-                {selectedUser.user.name} ({selectedUser.user.email})
+                {selectedUser.name} ({selectedUser.email})
               </S.UserInfo>
               <S.MemberSelect>
                 <img src={checked} alt="checked" />
