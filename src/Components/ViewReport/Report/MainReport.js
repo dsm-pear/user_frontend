@@ -18,8 +18,6 @@ function MainReport({ match }) {
   const [loding, setLoding] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log(match.params.reportId);
-
   //토큰 검사
   const refreshHandler = useRefresh();
 
@@ -108,6 +106,7 @@ function MainReport({ match }) {
           reportId={match.params.reportId}
           commentId={comments.commentId}
           comments={comments}
+          comment={reportData.comment}
         />
       </S.MainBox>
     </S.Main>
