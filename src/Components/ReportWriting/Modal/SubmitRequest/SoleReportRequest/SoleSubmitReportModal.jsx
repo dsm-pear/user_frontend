@@ -11,7 +11,25 @@ import { useHistory } from "react-router-dom";
 import { Close } from "../../../../../assets";
 import axios from "axios";
 
-const SoleSubmitReportModal = (props) => {
+const SoleSubmitReportModal = ({
+  setState,
+  setHei,
+  setMyOpa,
+  state,
+  hei,
+  myopa,
+  title,
+  description,
+  tags,
+  type,
+  access,
+  field,
+  grade,
+  files,
+  github,
+  reportId,
+  fileId,
+}) => {
   const [view, setView] = useState("hidden");
   const [opa, setOpa] = useState("0");
 
@@ -23,26 +41,26 @@ const SoleSubmitReportModal = (props) => {
   const FileApi = axios;
 
   const onCloseSubmitModal = () => {
-    props.setState("hidden");
-    props.setHei("0");
+    setState("hidden");
+    setHei("0");
   };
 
   const onSubmitButtonClick = () => {
-    if (props.reportId) {
-      if (props.files.length > 0) {
+    if (reportId) {
+      if (files.length > 0) {
         Api.post(
           `${MainURL}/report/sole`,
           {
-            title: `${props.title}`,
-            description: `${props.description}`,
-            languages: props.tags,
-            type: `${props.type}`,
-            access: `${props.access}`,
-            field: `${props.field}`,
-            grade: `${props.grade}`,
+            title: `${title}`,
+            description: `${description}`,
+            languages: tags,
+            type: `${type}`,
+            access: `${access}`,
+            field: `${field}`,
+            grade: `${grade}`,
             isSubmitted: true,
-            fileName: `${props.files[0].name}`,
-            github: `${props.github}`,
+            fileName: `${files[0].name}`,
+            github: `${github}`,
           },
           {
             headers: {
@@ -53,12 +71,12 @@ const SoleSubmitReportModal = (props) => {
         )
           .then((response) => {
             setView("visible");
-            props.setState("hidden");
-            props.setMyOpa("0");
+            setState("hidden");
+            setMyOpa("0");
             setOpa("1");
             console.log(response);
             const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
-            isSubmitFile.append("reportFile", props.files[0]); // append = 기존의 것 + @
+            isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
             const id = response.data;
             // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
             FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
@@ -100,29 +118,27 @@ const SoleSubmitReportModal = (props) => {
               try {
                 await fileRequest(
                   "delete",
-                  `/report/${props.fileId}`,
+                  `/report/${fileId}`,
                   {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${ACCESS_TOKEN}`,
                   },
                   {
-                    file_id: `${props.fileId}`,
+                    file_id: `${fileId}`,
                   }
                 );
 
                 await request(
                   "delete",
-                  `/report/${props.reportId}`,
+                  `/report/${reportId}`,
                   {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${ACCESS_TOKEN}`,
                   },
                   {
-                    id: `${props.reportId}`,
+                    id: `${reportId}`,
                   }
                 );
-
-                history.push("/my-profile");
               } catch (err) {
                 if (err.response.status === 403) {
                   alert("로그아웃 됩니다.");
@@ -155,20 +171,20 @@ const SoleSubmitReportModal = (props) => {
         return false;
       }
     } else {
-      if (props.files.length > 0) {
+      if (files.length > 0) {
         Api.post(
           `${MainURL}/report/sole`,
           {
-            title: `${props.title}`,
-            description: `${props.description}`,
-            languages: props.tags,
-            type: `${props.type}`,
-            access: `${props.access}`,
-            field: `${props.field}`,
-            grade: `${props.grade}`,
+            title: `${title}`,
+            description: `${description}`,
+            languages: tags,
+            type: `${type}`,
+            access: `${access}`,
+            field: `${field}`,
+            grade: `${grade}`,
             isSubmitted: true,
-            fileName: `${props.files[0].name}`,
-            github: `${props.github}`,
+            fileName: `${files[0].name}`,
+            github: `${github}`,
           },
           {
             headers: {
@@ -179,12 +195,12 @@ const SoleSubmitReportModal = (props) => {
         )
           .then((response) => {
             setView("visible");
-            props.setState("hidden");
-            props.setMyOpa("0");
+            setState("hidden");
+            setMyOpa("0");
             setOpa("1");
             console.log(response);
             const isSubmitFile = new FormData(); // 파일을 이용할 때 FormData
-            isSubmitFile.append("reportFile", props.files[0]); // append = 기존의 것 + @
+            isSubmitFile.append("reportFile", files[0]); // append = 기존의 것 + @
             const id = response.data;
             // data.set('report_id', 1) // set = 기존의 것은 삭제 -> 새로운 것 추가
             FileApi.post(`${FileURL}/report/file/${id}`, isSubmitFile, {
@@ -248,8 +264,8 @@ const SoleSubmitReportModal = (props) => {
   return (
     <>
       <SubmitSuccess setView={setView} setOpa={setOpa} view={view} opa={opa} />
-      <S.Main visibility={props.state}>
-        <S.ModalMain height={props.hei} myopa={props.myopa}>
+      <S.Main visibility={state}>
+        <S.ModalMain height={hei} myopa={myopa}>
           <S.ModalSort>
             <S.CloseBtn onClick={onCloseSubmitModal}>
               <span>
