@@ -55,6 +55,19 @@ const ReportComment = (props) => {
         <div onClick={postReportComment}></div>
       </S.Add>
       <S.MainCom>
+        {props.comment === null ? (
+          <></>
+        ) : (
+          <>
+            <S.Info>
+              <div></div>
+              <Link to="" className="Name">
+                관리자
+              </Link>
+              <span className="Comment">{props.comment}</span>
+            </S.Info>
+          </>
+        )}
         {comments.map(({ userName, userEmail, content, commentId, isMine }) => (
           <S.CommentBox key={commentId}>
             <S.Info>
